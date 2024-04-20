@@ -35,4 +35,3 @@ nek nie jest pełny otrzymuje jeden pocisk;
 4 Biblioteki/Framework
 • libGDX
 5 Repository
-1/1
