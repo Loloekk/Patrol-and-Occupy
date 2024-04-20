@@ -19,7 +19,7 @@ W pozostałych trybach na jednego gracza będzie przypadał jeden przycisk (któ
 - magazynek pocisków, pojazd może wystrzelić pocisk, tylko jeżeli magazynek nie jest pusty. Magazynek posiada ograniczoną ilość miejsc. Co sekundę każdy pojazd, którego magazynek nie jest pełny otrzymuje jeden pocisk;
 - możliwość rozstawiania dynamitów, które wybuchają po jakimś czasie;
 - dźwiek strzałów, wybuchów oraz zniszczeń pojazdów;
-- dodanie botów, co umożliwiło by granie samemu.
+- dodanie botów, co umożliwiłoby granie samemu.
 
 ## Biblioteki/Framework
 - libGDX
