@@ -14,7 +14,7 @@ W trybie dla dwóch osób sterowanie pojazdami będzie się odbywało domyślnie
 
 W pozostałych trybach na jednego gracza będzie przypadał jeden przycisk (które dokładnie przyciski, to jest jeszcze do ustalenia).
 
-### Opcjonalne rozszerzenia
+## Opcjonalne rozszerzenia
 - Ustawienia, umożliwiające zmianę długości trwania rundy oraz zmianę klawiszów do sterowania pojazdami;
 - magazynek pocisków, pojazd może wystrzelić pocisk, tylko jeżeli magazynek nie jest pusty. Magazynek posiada ograniczoną ilość miejsc. Co sekundę każdy pojazd, którego magazynek nie jest pełny otrzymuje jeden pocisk;
 - możliwość rozstawiania dynamitów, które wybuchają po jakimś czasie;
