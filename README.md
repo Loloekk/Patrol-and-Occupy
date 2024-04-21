@@ -1,4 +1,4 @@
-Projekt, który aktualnie jest udostępniony, jest jedynie przykładem, na kótrym testujemy działanie biblioteki.
+Kod projektu, który aktualnie jest udostępniony, jest jedynie przykładem, na kótrym testujemy działanie biblioteki.
 
 # Tytuł projektu: Patrol and Occupy
 
