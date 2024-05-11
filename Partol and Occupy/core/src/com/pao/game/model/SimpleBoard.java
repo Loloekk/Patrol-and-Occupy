@@ -19,6 +19,22 @@ public class SimpleBoard implements Board{
         setstart(System.nanoTime());
         lastUpdateTime = startTime;
     }
+    SimpleBoard(int width, int height, List<Color> players){
+        this(width,height);
+        for(Color color : players){
+            final float offX = 100;
+            final float offY = 100;
+            switch(color){
+                case R: tankList.add(new Tank(offX,offY,Color.R,this)); break;
+                case G: tankList.add(new Tank(offX,height-offY,Color.G,this)); break;
+                case B: tankList.add(new Tank(width-offX,height-offY,Color.B,this)); break;
+                case Y: tankList.add(new Tank(width-offX,offY,Color.Y,this)); break;
+                default:{
+                    throw new RuntimeException("Unknown color in SimpleBoard() constructor");
+                }
+            }
+        }
+    }
     public void setstart(long time){
         startTime = time;
     }
