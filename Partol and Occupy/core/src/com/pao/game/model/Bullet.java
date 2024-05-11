@@ -19,9 +19,8 @@ public class Bullet extends GameObject{
         polygon.translate(dx, dy);
     }
     public void destroy(){
-        if(!board.getBulletList().contains(this)){
+        if(!board.getBulletList().contains(this))
             throw new RuntimeException("Bullet is not present in getBulletList()");
-        }
         board.getBulletList().remove(this);
     }
     public Color getColor(){
