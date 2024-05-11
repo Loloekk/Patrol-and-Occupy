@@ -15,11 +15,9 @@ public class Tank extends GameObject{
     boolean moveRightState;
     boolean moveBackwardsState;
     boolean isAlive;
-    //final float width = 20;
-    //final float height = 30;
 
     public Tank(float x, float y, Color color, Board board) {
-        super(x, y, 20, 30);
+        super(x, y, 100, 150);
         this.color = color;
         this.board = board;
         this.isAlive = true;
