@@ -59,7 +59,14 @@ public class Tank extends GameObject{
         countKeyRotate %= 2;
         countKey = countKeyRide + countKeyRotate;
 
-        float timeDivided = time / countKey;
+        if(countKey == 0) {
+            if(board.checkBulletCollision(this)) {
+                isAlive = false;
+            }
+            return;
+        }
+
+        float timeDivided = time / countKey;    // /0
         float dX = 0;
         float dY = 0;
         float angle = polygon.getRotation() * MathUtils.degreesToRadians;
