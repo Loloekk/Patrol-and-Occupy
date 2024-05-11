@@ -39,6 +39,13 @@ public class GameScreen implements Screen {
         camera.update();
         game.batch.setProjectionMatrix(camera.combined);
         game.batch.begin();
+        for(ColoredParams bullet : VM.getBullets()) {
+            game.batch.draw(text.getBulletTexture(),bullet.getX(),bullet.getY());
+        }
+        for(ColoredParams tank : VM.getTanks()) {
+            game.batch.draw(text.getTankTexture(tank.getColor()),tank.getX(),tank.getY());
+        }
+        game.batch.end();
         for(PlayerView player : players)
         {
             if(Gdx.input.isKeyPressed(player.up) && player.lastStateUp == false){
@@ -58,8 +65,8 @@ public class GameScreen implements Screen {
                 VM.setMove(player.color, Move.R,true);
             }
             if(Gdx.input.isKeyPressed(player.up) == false && player.lastStateUp){
-            player.lastStateUp = false;
-            VM.setMove(player.color, Move.F,false);
+                player.lastStateUp = false;
+                VM.setMove(player.color, Move.F,false);
             }
             if(Gdx.input.isKeyPressed(player.down) == false && player.lastStateDown ){
                 player.lastStateUp = false;
@@ -73,15 +80,8 @@ public class GameScreen implements Screen {
                 player.lastStateUp = false;
                 VM.setMove(player.color, Move.R,false);
             }
-
         }
         VM.update(time);
-        for(ColoredParams bullet : VM.getBullets()) {
-            game.batch.draw(text.getBulletTexture(),bullet.getX(),bullet.getY());
-        }
-        for(ColoredParams tank : VM.getTanks()) {
-            game.batch.draw(text.getTankTexture(tank.getColor()),tank.getX(),tank.getY());
-        }
     }
     public void resize(int width, int height) {
     }

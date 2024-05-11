@@ -3,6 +3,7 @@ package com.pao.game.view;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -13,9 +14,10 @@ public class Textures {
     Texture bullet;
     public Textures(int n)
     {
+        tanks = new HashMap<>();
         tanks.put(null,new Texture(Gdx.files.internal("tank_gray.png")));
         for(Color color : Color.getColorList(n)){
-            if(color == Color.R) tanks.put(color,new Texture(Gdx.files.internal("tank_res.png")));
+            if(color == Color.R) tanks.put(color,new Texture(Gdx.files.internal("tank_red.png")));
             if(color == Color.B) tanks.put(color,new Texture(Gdx.files.internal("tank_blue.png")));
             if(color == Color.G) tanks.put(color,new Texture(Gdx.files.internal("tank_green.png")));
             if(color == Color.Y) tanks.put(color,new Texture(Gdx.files.internal("tank_yellow.png")));
