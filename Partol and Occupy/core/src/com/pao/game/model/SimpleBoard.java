@@ -8,11 +8,17 @@ import java.util.Set;
 import com.pao.game.viewmodel.*;
 
 public class SimpleBoard implements Board{
-    List<Tank> tankList;
-    List<Bullet> bulletList;
+    List<Tank> tankList = new ArrayList<>();
+    List<Bullet> bulletList = new ArrayList<>();
     long startTime;
     long lastUpdateTime;
     int width,height;
+    SimpleBoard(int width, int height){
+        this.width = width;
+        this.height = height;
+        setstart(System.nanoTime());
+        lastUpdateTime = startTime;
+    }
     public void setstart(long time){
         startTime = time;
     }
