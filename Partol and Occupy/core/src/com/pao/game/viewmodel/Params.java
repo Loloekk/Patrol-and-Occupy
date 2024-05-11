@@ -13,19 +13,19 @@ public class Params {
         this.y=y;
         this.rotation=rotation;
     }
-    float getX() {
+    public float getX() {
         return x;
     }
-    float getY() {
+    public float getY() {
         return y;
     }
-    float getWidht() {
+    public float getWidht() {
         return widht;
     }
-    float getHeight() {
+    public float getHeight() {
         return height;
     }
-    float getRotation(){
+    public float getRotation(){
         return rotation;
     }
 }

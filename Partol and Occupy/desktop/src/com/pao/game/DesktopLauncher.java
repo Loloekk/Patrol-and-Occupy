@@ -2,7 +2,7 @@ package com.pao.game;
 
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
-import com.pao.game.view.PatrolandOccupy;
+import com.pao.game.view.*;
 
 // Please note that on macOS your application needs to be started with the -XstartOnFirstThread JVM argument
 public class DesktopLauncher {
@@ -10,6 +10,6 @@ public class DesktopLauncher {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
 		config.setForegroundFPS(60);
 		config.setTitle("Patrol and Occupy");
-		new Lwjgl3Application(new PatrolandOccupy(), config);
+		new Lwjgl3Application(new Drop(), config);
 	}
 }

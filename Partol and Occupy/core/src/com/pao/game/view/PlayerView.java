@@ -19,5 +19,9 @@ public class PlayerView {
         this.down=down;
         this.left=left;
         this.right=right;
+        lastStateDown = false;
+        lastStateUp = false;
+        lastStateLeft = false;
+        lastStateRight = false;
     }
 }

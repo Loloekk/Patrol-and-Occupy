@@ -6,4 +6,7 @@ public class ColoredParams extends Params{
         super(widht, height, x, y, rotation);
         this.color=color;
     }
+    public Color getColor() {
+        return color;
+    }
 }
