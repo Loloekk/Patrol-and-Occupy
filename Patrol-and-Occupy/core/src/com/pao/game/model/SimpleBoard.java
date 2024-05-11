@@ -30,7 +30,7 @@ public class SimpleBoard implements Board{
                 case B: tankList.add(new Tank(width-offX,height-offY,Color.B,this)); break;
                 case Y: tankList.add(new Tank(width-offX,offY,Color.Y,this)); break;
                 default:{
-                    throw new RuntimeException("Unknown color in SimpleBoard() constructor");
+                    throw new RuntimeException("Unknown color");
                 }
             }
         }
@@ -125,5 +125,14 @@ public class SimpleBoard implements Board{
     }
     public void addBullet(Bullet bullet){
         bulletList.add(bullet);
+    }
+    public void shoot(Color color){
+        for(Tank tank : tankList){
+            if(tank.color == color){
+                tank.shoot();
+                break;
+            }
+        }
+        throw new RuntimeException("Unknown color");
     }
 }
