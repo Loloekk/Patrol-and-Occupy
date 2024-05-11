@@ -1,10 +1,12 @@
 package com.pao.game.model;
 
+import com.pao.game.viewmodel.*;
+
 public interface Board {
     void update(long t);
     void setstart(long t);
-    void setmove(color c, int move, boolean value);
-    boolean checkBoardCollision(GameObject board);
-    boolean checkBulletCollision(GameObject bullet);
-    boolean checkTankCollision(GameObject tank);
+    void setmove(Color color, Move move, boolean value);
+    boolean checkBoardCollision(GameObject gameObject);
+    boolean checkBulletCollision(GameObject gameObject);
+    boolean checkTankCollision(GameObject gameObject);
 }

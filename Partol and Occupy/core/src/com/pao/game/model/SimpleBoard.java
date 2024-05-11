@@ -1,8 +1,7 @@
 package com.pao.game.model;
 
-import com.badlogic.gdx.Game;
-
 import java.util.List;
+import com.pao.game.viewmodel.*;
 
 public class SimpleBoard implements Board{
     List<Tank> tankList;
@@ -12,14 +11,14 @@ public class SimpleBoard implements Board{
     public void setStartTime(){}
     public void setstart(long time){}
     public void update(long t){}
-    public void setmove(color c, int move, boolean value){}
-    public boolean checkBoardCollision(GameObject board){
+    public void setmove(Color color, Move move, boolean value){}
+    public boolean checkBoardCollision(GameObject gameObject){
         return false;
     }
-    public boolean checkBulletCollision(GameObject bullet){
+    public boolean checkBulletCollision(GameObject gameObject){
         return false;
     }
-    public boolean checkTankCollision(GameObject tank){
+    public boolean checkTankCollision(GameObject gameObject){
         return false;
     }
 
