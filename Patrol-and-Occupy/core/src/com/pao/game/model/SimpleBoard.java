@@ -90,12 +90,10 @@ public class SimpleBoard implements Board{
     }
     public boolean checkBoardCollision(GameObject gameObject){
         float[] Vertices = gameObject.polygon.getTransformedVertices();
-        System.out.println("WIDTH:"+width+" HEIGHT:"+height);
         final int offset = 6;
         for(int i=0; i<Vertices.length; i+=2){
             float X = Vertices[i];
             float Y = Vertices[i+1];
-            System.out.println("X:"+X+" Y:"+Y);
             if(X>=width+offset || X<=-offset || Y>=height+offset || Y<=-offset)
                 return true;
         }
