@@ -14,4 +14,6 @@ public interface Board {
     List<Bullet> getBulletList();
     public int getWidth();
     public int getHeight();
+
+    void addBullet(Bullet bullet);
 }

@@ -3,8 +3,6 @@ package com.pao.game.model;
 import java.util.List;
 import com.pao.game.viewmodel.*;
 
-import static java.lang.Math.abs;
-
 public class SimpleBoard implements Board{
     List<Tank> tankList;
     List<Bullet> bulletList;
@@ -15,7 +13,9 @@ public class SimpleBoard implements Board{
         startTime = time;
     }
     public void update(long t){
+        // TODO
 
+        lastUpdateTime = System.nanoTime();
     }
     public void setmove(Color color, Move move, boolean value){
         Tank tank = null;
@@ -76,5 +76,8 @@ public class SimpleBoard implements Board{
     }
     public int getHeight(){
         return height;
+    }
+    public void addBullet(Bullet bullet){
+        bulletList.add(bullet);
     }
 }
