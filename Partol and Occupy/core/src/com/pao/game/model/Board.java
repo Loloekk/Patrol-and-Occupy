@@ -4,7 +4,8 @@ import com.pao.game.viewmodel.*;
 import java.util.List;
 
 public interface Board {
-    void update(long t);
+
+    void update(float t);
     void setstart(long t);
     void setmove(Color color, Move move, boolean value);
     boolean checkBoardCollision(GameObject gameObject);
@@ -12,8 +13,7 @@ public interface Board {
     boolean checkTankCollision(GameObject gameObject);
     List<Tank> getTankList();
     List<Bullet> getBulletList();
-    public int getWidth();
-    public int getHeight();
-
+    int getWidth();
+    int getHeight();
     void addBullet(Bullet bullet);
 }

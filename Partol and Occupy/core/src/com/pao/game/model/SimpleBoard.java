@@ -10,8 +10,8 @@ import com.pao.game.viewmodel.*;
 public class SimpleBoard implements Board{
     List<Tank> tankList = new ArrayList<>();
     List<Bullet> bulletList = new ArrayList<>();
-    long startTime;
-    long lastUpdateTime;
+    float startTime;
+    float lastUpdateTime;
     int width,height;
     public SimpleBoard(int width, int height){
         this.width = width;
@@ -38,7 +38,7 @@ public class SimpleBoard implements Board{
     public void setstart(long time){
         startTime = time;
     }
-    public void update(long t){
+    public void update(float t){
         // Try to move every tank
         for(Tank tank : tankList)
             tank.update(t);
@@ -60,7 +60,7 @@ public class SimpleBoard implements Board{
             for(Bullet bullet : toDestroy)
                 bullet.destroy();
         }
-        lastUpdateTime = System.nanoTime();
+        lastUpdateTime = System.nanoTime() * (float)1e9;
     }
     public void setmove(Color color, Move move, boolean value){
         Tank tank = null;
