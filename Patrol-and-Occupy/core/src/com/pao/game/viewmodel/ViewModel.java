@@ -25,6 +25,7 @@ public class ViewModel {
     {
         board.setmove(color,move,state);
     }
+    public void shoot(Color color){board.shoot(color);}
     public List<ColoredParams> getTanks()
     {
         List<ColoredParams> tanksParamsList = new ArrayList<>();

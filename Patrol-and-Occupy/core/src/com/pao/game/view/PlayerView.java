@@ -8,20 +8,24 @@ public class PlayerView {
     int down;
     int left;
     int right;
+    int shot;
+    boolean lastshoot;
     boolean lastStateUp;
     boolean lastStateDown;
     boolean lastStateLeft;
     boolean lastStateRight;
-    public PlayerView(Color color, int up,int down,int left,int right)
+    public PlayerView(Color color, int up,int down,int left,int right, int shot)
     {
         this.color =color;
         this.up=up;
         this.down=down;
         this.left=left;
         this.right=right;
+        this.shot=shot;
         lastStateDown = false;
         lastStateUp = false;
         lastStateLeft = false;
         lastStateRight = false;
+        lastshoot = false;
     }
 }

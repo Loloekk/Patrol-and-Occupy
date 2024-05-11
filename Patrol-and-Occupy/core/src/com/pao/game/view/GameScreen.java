@@ -29,10 +29,10 @@ public class GameScreen implements Screen {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 1000,800);
         //camera.position.set(350,223,0);
-        VM=new ViewModel(1000,800,n);
+        VM=new ViewModel(500,400,n);
         players = new ArrayList<>();
-        if(n>=1)players.add(new PlayerView(Color.R, Input.Keys.UP,Input.Keys.DOWN,Input.Keys.LEFT,Input.Keys.RIGHT));
-        if(n>=2)players.add(new PlayerView(Color.B, Input.Keys.W,Input.Keys.S,Input.Keys.A,Input.Keys.D));
+        if(n>=1)players.add(new PlayerView(Color.R, Input.Keys.UP,Input.Keys.DOWN,Input.Keys.LEFT,Input.Keys.RIGHT,Input.Keys.SPACE));
+        if(n>=2)players.add(new PlayerView(Color.B, Input.Keys.W,Input.Keys.S,Input.Keys.A,Input.Keys.D,Input.Keys.CONTROL_RIGHT));
         text = new Textures(n);
     }
     @Override
@@ -42,7 +42,13 @@ public class GameScreen implements Screen {
         game.batch.setProjectionMatrix(camera.combined);
         game.batch.begin();
         for(ColoredParams bullet : VM.getBullets()) {
-            game.batch.draw(text.getBulletTexture(),bullet.getX(),bullet.getY());
+            Texture texture =text.getTankTexture(bullet.getColor());
+            float X=bullet.getX();
+            float Y=bullet.getY();
+            float W=bullet.getWidht();
+            float H=bullet.getHeight();
+            game.batch.draw(texture,X-H/2,Y-W/2,H/2,W/2,H+10,W,1,1,bullet.getRotation(),0,0,texture.getWidth(), texture.getHeight(), false, false);
+
         }
         for(ColoredParams tank : VM.getTanks()) {
             Texture texture =text.getTankTexture(tank.getColor());
@@ -90,6 +96,13 @@ public class GameScreen implements Screen {
             if(Gdx.input.isKeyPressed(player.right) == false && player.lastStateRight){
                 player.lastStateRight = false;
                 VM.setMove(player.color, Move.R,false);
+            }
+            if(Gdx.input.isKeyPressed(player.shot)&& player.lastshoot==false){
+                player.lastshoot=true;
+                VM.shoot(player.color);
+            }
+            if(Gdx.input.isKeyPressed(player.shot)==false&& player.lastshoot){
+                player.lastshoot=false;
             }
         }
         VM.update(time);

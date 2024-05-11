@@ -47,19 +47,19 @@ public class SimpleBoard implements Board{
             bullet.update(t);
         // Check for tank bullet hits (nothing, it's checked in Tank.update())
         // Check for destroyed bullets
-        {
-            Set<Bullet> toDestroy = new HashSet<>();
-            // Tank hits
-            for(Bullet bullet : bulletList)
-                if(checkTankCollision(bullet))
-                    toDestroy.add(bullet);
-            // Outside the map (currently checks if it hits map boundary)
-            for(Bullet bullet : bulletList)
-                if(checkBoardCollision(bullet))
-                    toDestroy.add(bullet);
-            for(Bullet bullet : toDestroy)
-                bullet.destroy();
-        }
+//        { @TODO
+//            Set<Bullet> toDestroy = new HashSet<>();
+//            // Tank hits
+//            for(Bullet bullet : bulletList)
+//                if(checkTankCollision(bullet))
+//                    toDestroy.add(bullet);
+//            // Outside the map (currently checks if it hits map boundary)
+//            for(Bullet bullet : bulletList)
+//                if(checkBoardCollision(bullet))
+//                    toDestroy.add(bullet);
+//            for(Bullet bullet : toDestroy)
+//                bullet.destroy();
+//        }
         lastUpdateTime = System.nanoTime() * (float)1e9;
     }
     public void setmove(Color color, Move move, boolean value){
@@ -130,9 +130,9 @@ public class SimpleBoard implements Board{
         for(Tank tank : tankList){
             if(tank.color == color){
                 tank.shoot();
-                break;
+                return;
             }
         }
-        throw new RuntimeException("Unknown color");
+        //throw new RuntimeException("Unknown color");
     }
 }
