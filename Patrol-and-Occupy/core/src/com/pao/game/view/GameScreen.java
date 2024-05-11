@@ -28,8 +28,8 @@ public class GameScreen implements Screen {
         this.game=game;
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 1000,800);
-        camera.position.set(350,223,0);
-        VM=new ViewModel(955,760,n);
+        //camera.position.set(350,223,0);
+        VM=new ViewModel(1000,800,n);
         players = new ArrayList<>();
         if(n>=1)players.add(new PlayerView(Color.R, Input.Keys.UP,Input.Keys.DOWN,Input.Keys.LEFT,Input.Keys.RIGHT));
         if(n>=2)players.add(new PlayerView(Color.B, Input.Keys.W,Input.Keys.S,Input.Keys.A,Input.Keys.D));
@@ -50,10 +50,10 @@ public class GameScreen implements Screen {
             float Y=tank.getY();
             float W=tank.getWidht();
             float H=tank.getHeight();
-            game.batch.draw(texture,X,Y,H/2,W/2,H,W,1,1,tank.getRotation(),0,0,texture.getWidth(), texture.getHeight(), false, false);
-//            System.out.println(X);
-//            System.out.println(Y);
-//            System.out.println("");
+            game.batch.draw(texture,X-H/2,Y-W/2,H/2,W/2,H,W,1,1,tank.getRotation(),0,0,texture.getWidth(), texture.getHeight(), false, false);
+            System.out.println(X);
+            System.out.println(Y);
+            System.out.println("");
             //spriteBatch.draw(texture, x, y, originX, originY, width, height, 1, 1, rotation, 0, 0, texture.getWidth(), texture.getHeight(), false, false);
         }
         game.batch.end();
