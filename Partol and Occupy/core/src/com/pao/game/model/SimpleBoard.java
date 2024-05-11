@@ -100,13 +100,13 @@ public class SimpleBoard implements Board{
     }
     public boolean checkBulletCollision(GameObject gameObject){
         for(Bullet bullet : getBulletList())
-            if(gameObject.intersects(bullet))
+            if(gameObject!= bullet && gameObject.intersects(bullet))
                 return true;
         return false;
     }
     public boolean checkTankCollision(GameObject gameObject){
         for(Tank tank : getTankList())
-            if(gameObject.intersects(tank))
+            if(gameObject!=tank && gameObject.intersects(tank))
                 return true;
         return false;
     }

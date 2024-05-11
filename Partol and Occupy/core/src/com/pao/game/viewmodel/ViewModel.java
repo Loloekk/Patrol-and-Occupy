@@ -32,7 +32,7 @@ public class ViewModel {
         while(Itr.hasNext())
         {
             Tank tank = Itr.next();
-            tanksParamsList.add(new ColoredParams(tank.getIsAlive() == true ? tank.getColor() : null,tank.getWidth(),tank.getHeight(),tank.getX(),tank.getY(),tank.getRotation()));
+            tanksParamsList.add(new ColoredParams(tank.getColor(),tank.getWidth(),tank.getHeight(),tank.getX(),tank.getY(),tank.getRotation()));
         }
         return tanksParamsList;
     }
