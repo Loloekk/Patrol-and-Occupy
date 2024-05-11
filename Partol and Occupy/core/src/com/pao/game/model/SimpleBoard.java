@@ -23,10 +23,7 @@ public class SimpleBoard implements Board{
         // Move every bullet
         for(Bullet bullet : bulletList)
             bullet.update(t);
-        // Check for hit tanks
-        for(Tank tank : tankList)
-            if(checkBulletCollision(tank))
-                tank.setIsAlive(false);
+        // Check for tank bullet hits (nothing, it's checked in Tank.update())
         // Check for destroyed bullets
         {
             Set<Bullet> toDestroy = new HashSet<>();
