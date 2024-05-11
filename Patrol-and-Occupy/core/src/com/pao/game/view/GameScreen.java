@@ -36,7 +36,7 @@ public class GameScreen implements Screen {
     }
     @Override
     public void render(float time){
-        ScreenUtils.clear(0, 0, 0.2f, 1);
+        ScreenUtils.clear(0.9f, 0.9f, 0.9f, 1);
         camera.update();
         game.batch.setProjectionMatrix(camera.combined);
         game.batch.begin();
