@@ -1,4 +1,4 @@
-package com.pao.game.model;
+package com.pao.game.view;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
-import com.pao.game.view.lalalla;
 
 public class PatrolandOccupy extends ApplicationAdapter {
 
@@ -58,7 +57,6 @@ public class PatrolandOccupy extends ApplicationAdapter {
 
 		@Override
 		public void render () {
-			lalalla.main(null);
 			Gdx.gl.glClearColor(0, 0, 0.2f, 1);
 			Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
