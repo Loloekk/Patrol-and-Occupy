@@ -7,9 +7,9 @@ import com.badlogic.gdx.math.Vector2;
 public class Tank extends GameObject{
     Color color;
     Board board;
-    float rideForwardSpeed = 10;
-    float rideBackwardsSpeed = 5;
-    float rotateSpeed = 5;
+    float rideForwardSpeed = 400;
+    float rideBackwardsSpeed = 200;
+    float rotateSpeed = 200;
     boolean moveForwardState;
     boolean moveLeftState;
     boolean moveRightState;
