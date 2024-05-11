@@ -29,7 +29,7 @@ public class GameScreen implements Screen {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 1000,800);
         //camera.position.set(350,223,0);
-        VM=new ViewModel(500,400,n);
+        VM=new ViewModel(1000,800,n);
         players = new ArrayList<>();
         if(n>=1)players.add(new PlayerView(Color.R, Input.Keys.UP,Input.Keys.DOWN,Input.Keys.LEFT,Input.Keys.RIGHT,Input.Keys.SPACE));
         if(n>=2)players.add(new PlayerView(Color.B, Input.Keys.W,Input.Keys.S,Input.Keys.A,Input.Keys.D,Input.Keys.CONTROL_RIGHT));
