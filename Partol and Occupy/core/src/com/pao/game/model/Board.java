@@ -12,4 +12,6 @@ public interface Board {
     boolean checkTankCollision(GameObject gameObject);
     List<Tank> getTankList();
     List<Bullet> getBulletList();
+    public int getWidth();
+    public int getHeight();
 }

@@ -8,6 +8,7 @@ public class SimpleBoard implements Board{
     List<Bullet> bulletList;
     long startTime;
     long lastUpdateTime;
+    int width,heigth;
     public void setStartTime(){}
     public void setstart(long time){}
     public void update(long t){}
@@ -26,5 +27,11 @@ public class SimpleBoard implements Board{
     }
     public List<Bullet> getBulletList(){
         return bulletList;
+    }
+    public int getWidth(){
+        return width;
+    }
+    public int getHeight(){
+        return heigth;
     }
 }
