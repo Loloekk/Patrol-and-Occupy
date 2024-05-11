@@ -7,11 +7,12 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class Drop extends Game {
     public SpriteBatch batch;
     //public BitmapFont font;
-
+    GameScreen tmp;
     public void create() {
         batch = new SpriteBatch();
         //font = new BitmapFont();
-        this.setScreen(new GameScreen(this,2));
+        tmp = new GameScreen(this,2);
+        this.setScreen(tmp);
     }
 
     public void render() {
@@ -20,6 +21,7 @@ public class Drop extends Game {
 
     public void dispose() {
         batch.dispose();
+        tmp.dispose();
         //font.dispose();
     }
 }
