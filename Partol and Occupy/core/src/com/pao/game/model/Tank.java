@@ -1,11 +1,14 @@
 package com.pao.game.model;
 
+import com.pao.game.viewmodel.*;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector2;
 
 public class Tank extends GameObject{
     Color color;
     Board board;
-    float rideSpeed = 10;
+    float rideForwardSpeed = 10;
+    float rideBackwardsSpeed = 5;
     float rotateSpeed = 5;
     boolean moveForwardState;
     boolean moveLeftState;
@@ -36,25 +39,61 @@ public class Tank extends GameObject{
     public void setIsAlive(boolean state) {
         isAlive = state;
     }
-      public Color getColor() {
+    public Color getColor() {
         return color;
     }
     public boolean getIsAlive() {
         return isAlive;
     }
     public void update(float time) {
-        // booleany imply
+        if(!isAlive) return;
+
+        int countKeyRide = 0;
+        int countKeyRotate = 0;
+        int countKey;
+        if(moveForwardState) countKeyRide++;
+        if(moveBackwardsState) countKeyRide++;
+        countKeyRide %= 2;
+        if(moveLeftState) countKeyRotate++;
+        if(moveRightState) countKeyRotate++;
+        countKeyRotate %= 2;
+        countKey = countKeyRide + countKeyRotate;
+
+        float timeDivided = time / countKey;
+        float dX = 0;
+        float dY = 0;
         float angle = polygon.getRotation() * MathUtils.degreesToRadians;
-        float dx = MathUtils.cos(angle) * speed;
-        float dy = MathUtils.sin(angle) * speed;
-        polygon.translate(dx, dy);
-        if(board.checkTankCollision(this) || board.checkBoardCollision(this)) {
-            polygon.translate(-dx, -dy);
+        float dAngle = 0;
+        if(moveForwardState && !moveBackwardsState) {       //move forward
+            dX = MathUtils.cos(angle) * rideForwardSpeed * timeDivided;
+            dY = MathUtils.sin(angle) * rideForwardSpeed * timeDivided;
+            polygon.translate(dX, dY);
         }
-    }
-    public void checkIfShooted() {
+        if(!moveForwardState && moveBackwardsState) {       //move backwards
+            dX = -MathUtils.cos(angle) * rideBackwardsSpeed * timeDivided;
+            dY = -MathUtils.sin(angle) * rideBackwardsSpeed * timeDivided;
+            polygon.translate(dX, dY);
+        }
+        if(moveLeftState && !moveRightState) {      //rotate left
+            dAngle = rotateSpeed * timeDivided;
+            polygon.rotate(dAngle);
+        }
+        if(!moveLeftState && moveRightState) {      //rotate right
+            polygon.rotate(-rotateSpeed * timeDivided);
+        }
+
+        if(board.checkTankCollision(this) || board.checkBoardCollision(this)) {
+            polygon.translate(-dX, -dY);
+            polygon.rotate(-dAngle);
+        }
+        if(board.checkBulletCollision(this)) {
+            isAlive = false;
+        }
 
     }
+    //    public boolean checkIfShooted() {
+//        return board.checkBulletCollision(this);
+//    }
     public void shoot() {
         float angle = polygon.getRotation() * MathUtils.degreesToRadians;
         float x = getX() + MathUtils.cos(angle) * getHeight()/2;
