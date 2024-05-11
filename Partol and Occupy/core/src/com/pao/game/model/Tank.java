@@ -79,7 +79,8 @@ public class Tank extends GameObject{
             polygon.rotate(dAngle);
         }
         if(!moveLeftState && moveRightState) {      //rotate right
-            polygon.rotate(-rotateSpeed * timeDivided);
+            dAngle = -rotateSpeed * timeDivided;
+            polygon.rotate(dAngle);
         }
 
         if(board.checkTankCollision(this) || board.checkBoardCollision(this)) {
