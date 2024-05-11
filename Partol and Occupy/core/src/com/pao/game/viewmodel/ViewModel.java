@@ -18,17 +18,7 @@ public class ViewModel {
     Board board;
     public void setMove(Color color,Move move, boolean state)
     {
-        Iterator<Tank> itr = board.getTankList().iterator();
-        while(itr.hasNext())
-        {
-            Tank tank = itr.next();
-            if(tank.getColor() == color){
-                if(move == U) tank.setMoveForwardState(state);
-                if(move == L) tank.setMoveLeftState(state);
-                if(move == R) tank.setMoveRightState(state);
-                if(move == B) tank.setMoveBackwardsState(state);
-            }
-        }
+        board.setmove(color,move,state);
     }
     public List<ColoredParams> getTanks()
     {
@@ -50,6 +40,7 @@ public class ViewModel {
             Bullet bullet = Itr.next();
             bulletsParamsList.add(new ColoredParams(bullet.getColor(),bullet.getWidth(),bullet.getHeight(),bullet.getX(),bullet.getY(),bullet.getRotation()));
         }
+        return bulletsParamsList;
     }
 
 }
