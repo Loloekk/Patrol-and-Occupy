@@ -36,7 +36,7 @@ public class GameScreen implements Screen {
     }
     @Override
     public void render(float time){
-        ScreenUtils.clear(0.9f, 0.9f, 0.9f, 1);
+        ScreenUtils.clear(0.9f, 0.9f, 0.4f, 1);
         camera.update();
         game.batch.setProjectionMatrix(camera.combined);
         game.batch.begin();
@@ -49,7 +49,10 @@ public class GameScreen implements Screen {
             float Y=tank.getY();
             float W=tank.getWidht();
             float H=tank.getHeight();
-            game.batch.draw(texture,X,Y,W/2f,H/2f,W,H,1,1,tank.getRotation()+270f,0,0,texture.getWidth(), texture.getHeight(), false, false);
+            game.batch.draw(texture,X-H/2,Y-W/2,0,0,H,W,1,1,tank.getRotation(),0,0,texture.getWidth(), texture.getHeight(), false, false);
+//            System.out.println(X);
+//            System.out.println(Y);
+//            System.out.println("");
             //spriteBatch.draw(texture, x, y, originX, originY, width, height, 1, 1, rotation, 0, 0, texture.getWidth(), texture.getHeight(), false, false);
         }
         game.batch.end();
