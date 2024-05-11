@@ -22,8 +22,8 @@ public class SimpleBoard implements Board{
     public SimpleBoard(int width, int height, List<Color> players){
         this(width,height);
         for(Color color : players){
-            final float offX = 100;
-            final float offY = 100;
+            final float offX = 330;
+            final float offY = 330;
             switch(color){
                 case R: tankList.add(new Tank(offX,offY,Color.R,this)); break;
                 case G: tankList.add(new Tank(offX,height-offY,Color.G,this)); break;
@@ -89,7 +89,7 @@ public class SimpleBoard implements Board{
         }
     }
     public boolean checkBoardCollision(GameObject gameObject){
-        float[] Vertices = gameObject.polygon.getVertices();
+        float[] Vertices = gameObject.polygon.getTransformedVertices();
         for(int i=0; i<Vertices.length; i+=2){
             float X = Vertices[i];
             float Y = Vertices[i+1];
