@@ -13,13 +13,13 @@ public class SimpleBoard implements Board{
     long startTime;
     long lastUpdateTime;
     int width,height;
-    SimpleBoard(int width, int height){
+    public SimpleBoard(int width, int height){
         this.width = width;
         this.height = height;
         setstart(System.nanoTime());
         lastUpdateTime = startTime;
     }
-    SimpleBoard(int width, int height, List<Color> players){
+    public SimpleBoard(int width, int height, List<Color> players){
         this(width,height);
         for(Color color : players){
             final float offX = 100;
