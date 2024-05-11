@@ -50,7 +50,7 @@ public class GameScreen implements Screen {
             float Y=tank.getY();
             float W=tank.getWidht();
             float H=tank.getHeight();
-            game.batch.draw(texture,X-H/2,Y-W/2,H/2,W/2,H+10,W,1,1,tank.getRotation(),0,0,texture.getWidth(), texture.getHeight(), false, false);
+            game.batch.draw(texture,X-H/2,Y-W/2,H/2,W/2,H+15,W,1,1,tank.getRotation(),0,0,texture.getWidth(), texture.getHeight(), false, false);
 //            System.out.println(X);
 //            System.out.println(Y);
 //            System.out.println("");
