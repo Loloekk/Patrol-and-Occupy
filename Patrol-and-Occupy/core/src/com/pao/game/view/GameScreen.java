@@ -47,7 +47,7 @@ public class GameScreen implements Screen {
             float Y=bullet.getY();
             float W=bullet.getWidht();
             float H=bullet.getHeight();
-            game.batch.draw(texture,X-H/2,Y-W/2,H/2,W/2,H,W,1,1,bullet.getRotation(),0,0,texture.getWidth(), texture.getHeight(), false, false);
+            game.batch.draw(texture,X-5*H,Y-5*W,5*H,5*W,10*H,10*W,1,1,bullet.getRotation(),0,0,texture.getWidth(), texture.getHeight(), false, false);
 
         }
         for(ColoredParams tank : VM.getTanks()) {
