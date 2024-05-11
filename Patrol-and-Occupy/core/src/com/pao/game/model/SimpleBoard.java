@@ -22,8 +22,8 @@ public class SimpleBoard implements Board{
     public SimpleBoard(int width, int height, List<Color> players){
         this(width,height);
         for(Color color : players){
-            final float offX = 0;
-            final float offY = 0;
+            final float offX = 200;
+            final float offY = 200;
             switch(color){
                 case R: tankList.add(new Tank(offX,offY,Color.R,this)); break;
                 case G: tankList.add(new Tank(offX,height-offY,Color.G,this)); break;
