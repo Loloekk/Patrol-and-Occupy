@@ -21,5 +21,10 @@ public class SimpleBoard implements Board{
     public boolean checkTankCollision(GameObject gameObject){
         return false;
     }
-
+    public List<Tank> getTankList(){
+        return tankList;
+    }
+    public List<Bullet> getBulletList(){
+        return bulletList;
+    }
 }

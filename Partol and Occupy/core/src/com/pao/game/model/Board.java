@@ -1,6 +1,7 @@
 package com.pao.game.model;
 
 import com.pao.game.viewmodel.*;
+import java.util.List;
 
 public interface Board {
     void update(long t);
@@ -9,4 +10,6 @@ public interface Board {
     boolean checkBoardCollision(GameObject gameObject);
     boolean checkBulletCollision(GameObject gameObject);
     boolean checkTankCollision(GameObject gameObject);
+    List<Tank> getTankList();
+    List<Bullet> getBulletList();
 }
