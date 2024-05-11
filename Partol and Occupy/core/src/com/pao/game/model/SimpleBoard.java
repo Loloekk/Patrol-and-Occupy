@@ -3,12 +3,14 @@ package com.pao.game.model;
 import java.util.List;
 import com.pao.game.viewmodel.*;
 
+import static java.lang.Math.abs;
+
 public class SimpleBoard implements Board{
     List<Tank> tankList;
     List<Bullet> bulletList;
     long startTime;
     long lastUpdateTime;
-    int width,heigth;
+    int width,height;
     public void setstart(long time){
         startTime = time;
     }
@@ -42,12 +44,25 @@ public class SimpleBoard implements Board{
         }
     }
     public boolean checkBoardCollision(GameObject gameObject){
-
+        float[] Vertices = gameObject.polygon.getVertices();
+        for(int i=0; i<Vertices.length; i+=2){
+            float X = Vertices[i];
+            float Y = Vertices[i+1];
+            if(X>=width || X<=0 || Y>=height || Y<=0)
+                return true;
+        }
+        return false;
     }
     public boolean checkBulletCollision(GameObject gameObject){
+        for(Bullet bullet : getBulletList())
+            if(gameObject.intersects(bullet))
+                return true;
         return false;
     }
     public boolean checkTankCollision(GameObject gameObject){
+        for(Tank tank : getTankList())
+            if(gameObject.intersects(tank))
+                return true;
         return false;
     }
     public List<Tank> getTankList(){
@@ -60,6 +75,6 @@ public class SimpleBoard implements Board{
         return width;
     }
     public int getHeight(){
-        return heigth;
+        return height;
     }
 }
