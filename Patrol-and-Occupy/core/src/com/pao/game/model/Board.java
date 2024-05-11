@@ -6,7 +6,7 @@ import java.util.List;
 public interface Board {
 
     void update(float t);
-    void setstart(long t);
+    void setstart(float t);
     void setmove(Color color, Move move, boolean value);
     boolean checkBoardCollision(GameObject gameObject);
     boolean checkBulletCollision(GameObject gameObject);

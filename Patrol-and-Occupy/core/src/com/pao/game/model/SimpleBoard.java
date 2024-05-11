@@ -16,7 +16,7 @@ public class SimpleBoard implements Board{
     public SimpleBoard(int width, int height){
         this.width = width;
         this.height = height;
-        setstart(System.nanoTime());
+        setstart((float)System.nanoTime() * (float)1e9);
         lastUpdateTime = startTime;
     }
     public SimpleBoard(int width, int height, List<Color> players){
@@ -35,7 +35,7 @@ public class SimpleBoard implements Board{
             }
         }
     }
-    public void setstart(long time){
+    public void setstart(float time){
         startTime = time;
     }
     public void update(float t){
@@ -100,7 +100,7 @@ public class SimpleBoard implements Board{
     }
     public boolean checkBulletCollision(GameObject gameObject){
         for(Bullet bullet : getBulletList())
-            if(gameObject!= bullet && gameObject.intersects(bullet))
+            if(gameObject!=bullet && gameObject.intersects(bullet))
                 return true;
         return false;
     }
