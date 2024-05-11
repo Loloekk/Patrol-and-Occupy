@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.pao.game.model.*;
 import com.pao.game.viewmodel.Color;
@@ -43,7 +44,13 @@ public class GameScreen implements Screen {
             game.batch.draw(text.getBulletTexture(),bullet.getX(),bullet.getY());
         }
         for(ColoredParams tank : VM.getTanks()) {
-            game.batch.draw(text.getTankTexture(tank.getColor()),tank.getX(),tank.getY());
+            Texture texture =text.getTankTexture(tank.getColor());
+            float X=tank.getX();
+            float Y=tank.getY();
+            float W=tank.getWidht();
+            float H=tank.getHeight();
+            game.batch.draw(texture,X,Y,W/2f,H/2f,W,H,1,1,tank.getRotation()+270f,0,0,texture.getWidth(), texture.getHeight(), false, false);
+            //spriteBatch.draw(texture, x, y, originX, originY, width, height, 1, 1, rotation, 0, 0, texture.getWidth(), texture.getHeight(), false, false);
         }
         game.batch.end();
         for(PlayerView player : players)
