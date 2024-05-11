@@ -53,15 +53,15 @@ public class GameScreen implements Screen {
                 VM.setMove(player.color, Move.F,true);
             }
             if(Gdx.input.isKeyPressed(player.down) && player.lastStateDown == false){
-                player.lastStateUp = true;
+                player.lastStateDown = true;
                 VM.setMove(player.color, Move.B,true);
             }
             if(Gdx.input.isKeyPressed(player.left) && player.lastStateLeft == false){
-                player.lastStateUp = true;
+                player.lastStateLeft = true;
                 VM.setMove(player.color, Move.L,true);
             }
             if(Gdx.input.isKeyPressed(player.right) && player.lastStateRight == false){
-                player.lastStateUp = true;
+                player.lastStateRight = true;
                 VM.setMove(player.color, Move.R,true);
             }
             if(Gdx.input.isKeyPressed(player.up) == false && player.lastStateUp){
@@ -69,15 +69,15 @@ public class GameScreen implements Screen {
                 VM.setMove(player.color, Move.F,false);
             }
             if(Gdx.input.isKeyPressed(player.down) == false && player.lastStateDown ){
-                player.lastStateUp = false;
+                player.lastStateDown = false;
                 VM.setMove(player.color, Move.B,false);
             }
             if(Gdx.input.isKeyPressed(player.left) == false && player.lastStateLeft){
-                player.lastStateUp = false;
+                player.lastStateLeft = false;
                 VM.setMove(player.color, Move.L,false);
             }
             if(Gdx.input.isKeyPressed(player.right) == false && player.lastStateRight){
-                player.lastStateUp = false;
+                player.lastStateRight = false;
                 VM.setMove(player.color, Move.R,false);
             }
         }
