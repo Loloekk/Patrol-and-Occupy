@@ -22,6 +22,7 @@ public class Tank extends GameObject{
         super(x, y, 20, 30);
         this.color = color;
         this.board = board;
+        this.isAlive = true;
     }
 
     public void setMoveForwardState(boolean state) {
