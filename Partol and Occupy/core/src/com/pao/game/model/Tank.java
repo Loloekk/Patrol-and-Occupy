@@ -1,38 +1,64 @@
 package com.pao.game.model;
 
+import com.badlogic.gdx.math.MathUtils;
+
 public class Tank extends GameObject{
     Color color;
     Board board;
+    float rideSpeed = 10;
+    float rotateSpeed = 5;
     boolean moveForwardState;
     boolean moveLeftState;
     boolean moveRightState;
     boolean moveBackwardsState;
     boolean isAlive;
-    public Tank() {
-        super();
+    //final float width = 20;
+    //final float height = 30;
+
+    public Tank(float x, float y, Color color, Board board) {
+        super(x, y, 20, 30);
+        this.color = color;
+        this.board = board;
     }
-    void setMoveForwardState(boolean state) {
+
+    public void setMoveForwardState(boolean state) {
         moveForwardState = state;
     }
-    void setMoveLeftState(boolean state) {
+    public void setMoveLeftState(boolean state) {
         moveLeftState = state;
     }
-    void setMoveRightState(boolean state) {
+    public void setMoveRightState(boolean state) {
         moveRightState = state;
     }
-    void setMoveBackwardsState(boolean state) {
+    public void setMoveBackwardsState(boolean state) {
         moveBackwardsState = state;
     }
-    void setIsAlive(boolean state) {
+    public void setIsAlive(boolean state) {
         isAlive = state;
     }
-    void update(float time) {
+      public Color getColor() {
+        return color;
+    }
+    public boolean getIsAlive() {
+        return isAlive;
+    }
+    public void update(float time) {
+        // booleany imply
+        float angle = polygon.getRotation() * MathUtils.degreesToRadians;
+        float dx = MathUtils.cos(angle) * speed;
+        float dy = MathUtils.sin(angle) * speed;
+        polygon.translate(dx, dy);
+        if(board.checkTankCollision(this) || board.checkBoardCollision(this)) {
+            polygon.translate(-dx, -dy);
+        }
+    }
+    public void checkIfShooted() {
 
     }
-    void checkIfShooted() {
-
-    }
-    void shoot() {
-
+    public void shoot() {
+        float angle = polygon.getRotation() * MathUtils.degreesToRadians;
+        float x = getX() + MathUtils.cos(angle) * getHeight()/2;
+        float y = getY() + MathUtils.sin(angle) * getHeight()/2;
+        board.addBullet(new Bullet(x, y, this));
     }
 }

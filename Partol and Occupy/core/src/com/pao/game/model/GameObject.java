@@ -5,24 +5,30 @@ import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Vector2;
 
 public class GameObject {
-    Vector2 position;
     Polygon polygon;
-
-    public GameObject(float[] vertices) {
-        this.position = new Vector2();      //
-        this.polygon = new Polygon(vertices);
+    public GameObject(float x, float y, float width, float height) {
+        float[] vertices = {x-width/2, y-height/2, x+width/2, y-height/2, x+width/2, y+height/2, x-width/2, y+height/2};
+        polygon = new Polygon(vertices);
+        polygon.setPosition(x, y);
+        polygon.setOrigin(x, y);
     }
 
-    boolean intersects(GameObject gameObject) {
+    public boolean intersects(GameObject gameObject) {
         return Intersector.overlapConvexPolygons(polygon, gameObject.polygon);
     }
-    float getX() {
+    public float getX() {
         return polygon.getX();
     }
-    float getY() {
+    public float getY() {
         return polygon.getY();
     }
-    float getRotation() {
+    public float getWidth() {
+        return ;
+    }
+    public float getHeight() {
+        return ;
+    }
+    public float getRotation() {
         return polygon.getRotation();
     }
 }
