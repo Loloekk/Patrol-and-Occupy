@@ -99,9 +99,6 @@ public class Tank extends GameObject{
         }
 
     }
-    //    public boolean checkIfShooted() {
-//        return board.checkBulletCollision(this);
-//    }
     public void shoot() {
         float angle = polygon.getRotation() * MathUtils.degreesToRadians;
         float x = getX() + MathUtils.cos(angle) * getHeight()/2;
