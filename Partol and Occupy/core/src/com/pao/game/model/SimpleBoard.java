@@ -1,6 +1,10 @@
 package com.pao.game.model;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import com.pao.game.viewmodel.*;
 
 public class SimpleBoard implements Board{
@@ -13,8 +17,30 @@ public class SimpleBoard implements Board{
         startTime = time;
     }
     public void update(long t){
-        // TODO
-
+        // Try to move every tank
+        for(Tank tank : tankList)
+            tank.update(t);
+        // Move every bullet
+        for(Bullet bullet : bulletList)
+            bullet.update(t);
+        // Check for hit tanks
+        for(Tank tank : tankList)
+            if(checkBulletCollision(tank))
+                tank.setIsAlive(false);
+        // Check for destroyed bullets
+        {
+            Set<Bullet> toDestroy = new HashSet<>();
+            // Tank hits
+            for(Bullet bullet : bulletList)
+                if(checkTankCollision(bullet))
+                    toDestroy.add(bullet);
+            // Outside the map (currently checks if it hits map boundary)
+            for(Bullet bullet : bulletList)
+                if(checkBoardCollision(bullet))
+                    toDestroy.add(bullet);
+            for(Bullet bullet : toDestroy)
+                bullet.destroy();
+        }
         lastUpdateTime = System.nanoTime();
     }
     public void setmove(Color color, Move move, boolean value){
