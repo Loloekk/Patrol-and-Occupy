@@ -7,8 +7,8 @@ import com.badlogic.gdx.math.Vector2;
 public class Tank extends GameObject{
     Color color;
     Board board;
-    float rideForwardSpeed = 300;
-    float rideBackwardsSpeed = 150;
+    float rideForwardSpeed = 150;
+    float rideBackwardsSpeed = 100;
     float rotateSpeed = 200;
     boolean moveForwardState;
     boolean moveLeftState;
@@ -18,7 +18,7 @@ public class Tank extends GameObject{
     boolean isAlive;
 
     public Tank(float x, float y, Color color, Board board) {
-        super(x, y, 60, 90);
+        super(x, y, 60, 70);
         this.color = color;
         this.board = board;
         this.isAlive = true;
