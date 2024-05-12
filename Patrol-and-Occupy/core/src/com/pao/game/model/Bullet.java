@@ -10,6 +10,7 @@ public class Bullet extends GameObject{
         super(x, y, 3, 5);
         polygon.setRotation(tank.getRotation());
         color = tank.getColor();
+        board = tank.board;
     }
     public void update(float t){
         final float speed = 30f;
@@ -19,6 +20,8 @@ public class Bullet extends GameObject{
         polygon.translate(dx, dy);
     }
     public void destroy(){
+        if(board.getBulletList() == null)
+            return;
         if(!board.getBulletList().contains(this))
             throw new RuntimeException("Bullet is not present in getBulletList()");
         board.getBulletList().remove(this);

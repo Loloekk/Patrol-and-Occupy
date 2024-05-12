@@ -40,26 +40,34 @@ public class SimpleBoard implements Board{
     }
     public void update(float t){
         // Try to move every tank
-        for(Tank tank : tankList)
-            tank.update(t);
+        if(tankList != null) {
+            for (Tank tank : tankList)
+                tank.update(t);
+        }
         // Move every bullet
-        for(Bullet bullet : bulletList)
-            bullet.update(t);
+        if(bulletList != null){
+            for (Bullet bullet : bulletList)
+                bullet.update(t);
+        }
         // Check for tank bullet hits (nothing, it's checked in Tank.update())
         // Check for destroyed bullets
-//        { @TODO
-//            Set<Bullet> toDestroy = new HashSet<>();
-//            // Tank hits
-//            for(Bullet bullet : bulletList)
-//                if(checkTankCollision(bullet))
-//                    toDestroy.add(bullet);
-//            // Outside the map (currently checks if it hits map boundary)
-//            for(Bullet bullet : bulletList)
-//                if(checkBoardCollision(bullet))
-//                    toDestroy.add(bullet);
-//            for(Bullet bullet : toDestroy)
-//                bullet.destroy();
-//        }
+        {
+            Set<Bullet> toDestroy = new HashSet<>();
+            // Tank hits
+            if(bulletList != null) {
+                for (Bullet bullet : bulletList)
+                    if (checkTankCollision(bullet))
+                        toDestroy.add(bullet);
+            }
+            // Outside the map (currently checks if it hits map boundary)
+            if(bulletList != null) {
+                for (Bullet bullet : bulletList)
+                    if (checkBoardCollision(bullet))
+                        toDestroy.add(bullet);
+            }
+            for(Bullet bullet : toDestroy)
+                bullet.destroy();
+        }
         lastUpdateTime = System.nanoTime() * (float)1e9;
     }
     public void setmove(Color color, Move move, boolean value){
@@ -100,14 +108,19 @@ public class SimpleBoard implements Board{
         return false;
     }
     public boolean checkBulletCollision(GameObject gameObject){
+        if(getBulletList() == null)
+            return false;
         for(Bullet bullet : getBulletList())
-            if(gameObject!=bullet && gameObject.intersects(bullet))
+            if(gameObject!=bullet && gameObject.intersects(bullet) && !(gameObject instanceof Tank && ((Tank) gameObject).color==bullet.color)){
                 return true;
+            }
         return false;
     }
     public boolean checkTankCollision(GameObject gameObject){
+        if(getTankList() == null)
+            return false;
         for(Tank tank : getTankList())
-            if(gameObject!=tank && gameObject.intersects(tank))
+            if(gameObject!=tank && gameObject.intersects(tank) && !(gameObject instanceof Bullet && ((Bullet) gameObject).color==tank.color))
                 return true;
         return false;
     }
@@ -127,12 +140,14 @@ public class SimpleBoard implements Board{
         bulletList.add(bullet);
     }
     public void shoot(Color color){
+        if(tankList == null)
+            return;
         for(Tank tank : tankList){
             if(tank.color == color){
                 tank.shoot();
                 return;
             }
         }
-        //throw new RuntimeException("Unknown color");
+        throw new RuntimeException("Unknown color");
     }
 }
