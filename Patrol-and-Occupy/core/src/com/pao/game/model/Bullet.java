@@ -13,7 +13,7 @@ public class Bullet extends GameObject{
         board = tank.board;
     }
     public void update(float t){
-        final float speed = 150f;
+        final float speed = 550f;
         float angle = polygon.getRotation() * MathUtils.degreesToRadians;
         float dx = MathUtils.cos(angle) * speed * t;
         float dy = MathUtils.sin(angle) * speed * t;
