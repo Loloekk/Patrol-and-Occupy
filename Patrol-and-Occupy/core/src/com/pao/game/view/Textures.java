@@ -12,6 +12,7 @@ import com.pao.game.viewmodel.Color;
 public class Textures {
     Map<Color, Texture> tanks;
     Texture bullet;
+    Texture obstacle;
     public Textures(int n)
     {
         tanks = new HashMap<>();
@@ -23,6 +24,7 @@ public class Textures {
             if(color == Color.Y) tanks.put(color,new Texture(Gdx.files.internal("tank_yellow.png")));
         }
         bullet = new Texture(Gdx.files.internal("bullet.png"));
+        obstacle = new Texture(Gdx.files.internal("rock.png"));
     }
     public Texture getTankTexture(Color color)
     {
@@ -32,6 +34,7 @@ public class Textures {
     {
         return bullet;
     }
+    public Texture getObstacleTexture() { return obstacle; }
     public void dispose() {
         Iterator itr = tanks.values().iterator();
         while(itr.hasNext()){

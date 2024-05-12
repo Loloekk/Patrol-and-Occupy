@@ -11,11 +11,8 @@ import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.pao.game.model.*;
-import com.pao.game.viewmodel.Color;
+import com.pao.game.viewmodel.*;
 import com.pao.game.viewmodel.Color.*;
-import com.pao.game.viewmodel.ColoredParams;
-import com.pao.game.viewmodel.Move;
-import com.pao.game.viewmodel.ViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,10 +52,15 @@ public class GameScreen implements Screen {
         camera.update();
         game.batch.setProjectionMatrix(camera.combined);
         game.batch.begin();
-        long elapsedTime = TimeUtils.timeSinceNanos(startTime);
-        long elapsedSeconds = elapsedTime / 1_000_000_000;
-        font.draw(game.batch, "Czas: " + elapsedSeconds, 400, 700);
 
+        for(Params obstacle : VM.getObstacles()) {
+            Texture texture = text.getObstacleTexture();
+            float X = obstacle.getX();
+            float Y = obstacle.getY();
+            float W = obstacle.getWidht();
+            float H = obstacle.getHeight();
+            game.batch.draw(texture,X-H/2,Y-W/2,H/2,W/2,H,W,1,1,obstacle.getRotation(),0,0,texture.getWidth(), texture.getHeight(), false, false);
+        }
         for(ColoredParams bullet : VM.getBullets()) {
             Texture texture =text.getBulletTexture();
             float X=bullet.getX();
@@ -80,6 +82,9 @@ public class GameScreen implements Screen {
 //            System.out.println("");
             //spriteBatch.draw(texture, x, y, originX, originY, width, height, 1, 1, rotation, 0, 0, texture.getWidth(), texture.getHeight(), false, false);
         }
+        long elapsedTime = TimeUtils.timeSinceNanos(startTime);
+        long elapsedSeconds = elapsedTime / 1_000_000_000;
+        font.draw(game.batch, "Czas: " + elapsedSeconds, 400, 800);
         game.batch.end();
         for(PlayerView player : players)
         {

@@ -1,9 +1,6 @@
 package com.pao.game.viewmodel;
 
-import com.pao.game.model.Board;
-import com.pao.game.model.Bullet;
-import com.pao.game.model.SimpleBoard;
-import com.pao.game.model.Tank;
+import com.pao.game.model.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -45,6 +42,16 @@ public class ViewModel {
             bulletsParamsList.add(new ColoredParams(bullet.getColor(), bullet.getWidth(), bullet.getHeight(), bullet.getX(), bullet.getY(), bullet.getRotation()));
         }
         return bulletsParamsList;
+    }
+    public List<Params> getObstacles() {
+        List<Params> obstaclesParamsList = new ArrayList<>();
+        Iterator<Obstacle> Itr = board.getObstacleList().iterator();
+        while(Itr.hasNext())
+        {
+            Obstacle obstacle = Itr.next();
+            obstaclesParamsList.add(new Params(obstacle.getWidth(), obstacle.getHeight(), obstacle.getX(), obstacle.getY(), 0));
+        }
+        return obstaclesParamsList;
     }
     public void update(float time) {
         board.update(time);
