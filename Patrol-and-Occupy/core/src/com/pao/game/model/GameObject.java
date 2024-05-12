@@ -35,4 +35,5 @@ public class GameObject {
     public float getRotation() {
         return polygon.getRotation();
     }
+    public float[] getVertices() { return polygon.getTransformedVertices(); }
 }

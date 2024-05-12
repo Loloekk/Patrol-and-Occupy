@@ -105,7 +105,7 @@ public class SimpleBoard implements Board{
         }
     }
     public boolean checkBoardCollision(GameObject gameObject){
-        float[] Vertices = gameObject.polygon.getTransformedVertices();
+        float[] Vertices = gameObject.getVertices();
         final int offset = 6;
         for(int i=0; i<Vertices.length; i+=2){
             float X = Vertices[i];
