@@ -8,6 +8,7 @@ import com.pao.game.view.*;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
+		config.setWindowedMode(1000,800);
 		config.setForegroundFPS(60);
 		config.setTitle("Patrol and Occupy");
 		new Lwjgl3Application(new Drop(), config);
