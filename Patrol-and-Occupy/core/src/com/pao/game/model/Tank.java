@@ -71,22 +71,24 @@ public class Tank extends GameObject{
         float dY = 0;
         float angle = polygon.getRotation() * MathUtils.degreesToRadians;
         float dAngle = 0;
+        int sign = 1;
         if(moveForwardState && !moveBackwardsState) {       //move forward
             dX = MathUtils.cos(angle) * rideForwardSpeed * time;
             dY = MathUtils.sin(angle) * rideForwardSpeed * time;
             polygon.translate(dX, dY);
         }
         if(!moveForwardState && moveBackwardsState) {       //move backwards
+            sign = -1;
             dX = -MathUtils.cos(angle) * rideBackwardsSpeed * time;
             dY = -MathUtils.sin(angle) * rideBackwardsSpeed * time;
             polygon.translate(dX, dY);
         }
         if(moveLeftState && !moveRightState) {      //rotate left
-            dAngle = rotateSpeed * time;
+            dAngle = sign * rotateSpeed * time;
             polygon.rotate(dAngle);
         }
         if(!moveLeftState && moveRightState) {      //rotate right
-            dAngle = -rotateSpeed * time;
+            dAngle = -sign * rotateSpeed * time;
             polygon.rotate(dAngle);
         }
 
