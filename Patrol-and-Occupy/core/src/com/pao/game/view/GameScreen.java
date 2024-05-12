@@ -103,9 +103,6 @@ public class GameScreen implements Screen {
         long elapsedSeconds = elapsedTime / 1_000_000_000;
         font.draw(game.batch, "Czas: " + elapsedSeconds, 400, 800);
         game.batch.end();
-        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-            Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
-        }
         for(PlayerView player : players)
         {
             if(Gdx.input.isKeyPressed(player.getUp()) && player.getLastStateUp() == false){
