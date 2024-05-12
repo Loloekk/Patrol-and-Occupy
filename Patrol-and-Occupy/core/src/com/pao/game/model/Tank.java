@@ -5,7 +5,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 
 public class Tank extends GameObject{
-    Color color;
+    MyColor color;
     Board board;
     float rideForwardSpeed = 150;
     float rideBackwardsSpeed = 100;
@@ -17,7 +17,7 @@ public class Tank extends GameObject{
     boolean makeShoot;
     boolean isAlive;
 
-    public Tank(float x, float y, Color color, Board board) {
+    public Tank(float x, float y, MyColor color, Board board) {
         super(x, y, 60, 70);
         this.color = color;
         this.board = board;
@@ -42,7 +42,7 @@ public class Tank extends GameObject{
     public void setIsAlive(boolean state) {
         isAlive = state;
     }
-    public Color getColor() {
+    public MyColor getColor() {
         return color;
     }
     public boolean getIsAlive() {

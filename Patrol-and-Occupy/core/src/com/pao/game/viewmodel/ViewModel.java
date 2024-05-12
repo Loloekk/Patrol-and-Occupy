@@ -16,9 +16,9 @@ public class ViewModel {
     Board board;
     public ViewModel(int width, int height, int n)
     {
-        board = new SimpleBoard(width,height, Color.getColorList(n));
+        board = new SimpleBoard(width,height, MyColor.getColorList(n));
     }
-    public void setMove(Color color,Move move, boolean state)
+    public void setMove(MyColor color,Move move, boolean state)
     {
         board.setmove(color,move,state);
     }

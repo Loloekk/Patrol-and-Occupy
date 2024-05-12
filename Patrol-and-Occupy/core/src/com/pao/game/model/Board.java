@@ -7,7 +7,7 @@ public interface Board {
 
     void update(float t);
     void setstart(float t);
-    void setmove(Color color, Move move, boolean value);
+    void setmove(MyColor color, Move move, boolean value);
     boolean checkBoardCollision(GameObject gameObject);
     boolean checkBulletCollision(GameObject gameObject);
     boolean checkTankCollision(GameObject gameObject);

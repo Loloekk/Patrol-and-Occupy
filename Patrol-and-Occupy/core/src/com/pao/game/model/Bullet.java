@@ -5,7 +5,7 @@ import com.pao.game.viewmodel.*;
 
 public class Bullet extends GameObject{
     Board board;
-    Color color;
+    MyColor color;
     Bullet(float x, float y, Tank tank){
         super(x, y, 10, 30);
         polygon.setRotation(tank.getRotation());
@@ -26,7 +26,7 @@ public class Bullet extends GameObject{
             throw new RuntimeException("Bullet is not present in getBulletList()");
         board.getBulletList().remove(this);
     }
-    public Color getColor(){
+    public MyColor getColor(){
         return color;
     }
 }

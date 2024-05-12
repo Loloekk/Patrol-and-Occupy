@@ -3,11 +3,11 @@ package com.pao.game.viewmodel;
 import java.util.ArrayList;
 import java.util.List;
 
-public enum Color {
+public enum MyColor {
     R,G,B,Y;
-    public static List<Color> getColorList(int n)
+    public static List<MyColor> getColorList(int n)
     {
-        List<Color> colors = new ArrayList<>();
+        List<MyColor> colors = new ArrayList<>();
         if(n>=1)colors.add(R);
         if(n>=2)colors.add(B);
         if(n>=3)colors.add(G);

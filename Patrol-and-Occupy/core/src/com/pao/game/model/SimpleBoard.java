@@ -20,16 +20,16 @@ public class SimpleBoard implements Board{
         setstart((float)System.nanoTime() * (float)1e9);
         lastUpdateTime = startTime;
     }
-    public SimpleBoard(int width, int height, List<Color> players){
+    public SimpleBoard(int width, int height, List<MyColor> players){
         this(width,height);
-        for(Color color : players){
+        for(MyColor color : players){
             final float offX = 200;
             final float offY = 200;
             switch(color){
-                case R: tankList.add(new Tank(offX,offY,Color.R,this)); break;
-                case G: tankList.add(new Tank(offX,height-offY,Color.G,this)); break;
-                case B: tankList.add(new Tank(width-offX,height-offY,Color.B,this)); break;
-                case Y: tankList.add(new Tank(width-offX,offY,Color.Y,this)); break;
+                case R: tankList.add(new Tank(offX,offY,MyColor.R,this)); break;
+                case G: tankList.add(new Tank(offX,height-offY,MyColor.G,this)); break;
+                case B: tankList.add(new Tank(width-offX,height-offY,MyColor.B,this)); break;
+                case Y: tankList.add(new Tank(width-offX,offY,MyColor.Y,this)); break;
                 default:{
                     throw new RuntimeException("Unknown color");
                 }
@@ -78,7 +78,7 @@ public class SimpleBoard implements Board{
         }
         lastUpdateTime = System.nanoTime() * (float)1e9;
     }
-    public void setmove(Color color, Move move, boolean value){
+    public void setmove(MyColor color, Move move, boolean value){
         Tank tank = null;
         for(Tank t : tankList){
             if(color == t.getColor()){
