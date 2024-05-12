@@ -6,6 +6,10 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.utils.TimeUtils;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.pao.game.model.*;
 import com.pao.game.viewmodel.Color;
 import com.pao.game.viewmodel.Color.*;
@@ -23,6 +27,8 @@ public class GameScreen implements Screen {
     ViewModel VM;
     List<PlayerView> players;
     Textures text;
+    BitmapFont font;
+    long startTime;
 
     public GameScreen(final Drop game,int n){
         this.game=game;
@@ -34,6 +40,14 @@ public class GameScreen implements Screen {
         if(n>=1)players.add(new PlayerView(Color.R, Input.Keys.UP,Input.Keys.DOWN,Input.Keys.LEFT,Input.Keys.RIGHT,Input.Keys.SPACE));
         if(n>=2)players.add(new PlayerView(Color.B, Input.Keys.W,Input.Keys.S,Input.Keys.A,Input.Keys.D,Input.Keys.CONTROL_RIGHT));
         text = new Textures(n);
+
+        font = new BitmapFont();
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Roboto-Black.ttf"));
+        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameter.size = 40;
+        parameter.color = com.badlogic.gdx.graphics.Color.RED;
+        font = generator.generateFont(parameter);
+        startTime = TimeUtils.nanoTime();
     }
     @Override
     public void render(float time){
@@ -41,6 +55,10 @@ public class GameScreen implements Screen {
         camera.update();
         game.batch.setProjectionMatrix(camera.combined);
         game.batch.begin();
+        long elapsedTime = TimeUtils.timeSinceNanos(startTime);
+        long elapsedSeconds = elapsedTime / 1_000_000_000;
+        font.draw(game.batch, "Czas: " + elapsedSeconds, 400, 700);
+
         for(ColoredParams bullet : VM.getBullets()) {
             Texture texture =text.getBulletTexture();
             float X=bullet.getX();
