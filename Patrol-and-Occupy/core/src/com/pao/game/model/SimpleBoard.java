@@ -10,6 +10,7 @@ import com.pao.game.viewmodel.*;
 public class SimpleBoard implements Board{
     List<Tank> tankList = new ArrayList<>();
     List<Bullet> bulletList = new ArrayList<>();
+    List<Obstacle> obstacleList = new ArrayList<>();
     float startTime;
     float lastUpdateTime;
     int width,height;
@@ -34,6 +35,8 @@ public class SimpleBoard implements Board{
                 }
             }
         }
+        obstacleList.add(new Obstacle(400,400,300,50));
+        obstacleList.add(new Obstacle(400,700,50,200));
     }
     public void setstart(float time){
         startTime = time;
@@ -41,28 +44,33 @@ public class SimpleBoard implements Board{
     public void update(float t){
         // Move every bullet
         if(bulletList != null){
-            for (Bullet bullet : bulletList)
+            for(Bullet bullet : bulletList)
                 bullet.update(t);
         }
         // Try to move every tank
-        if(tankList != null) {
-            for (Tank tank : tankList)
+        if(tankList != null){
+            for(Tank tank : tankList)
                 tank.update(t);
         }
-        // Check for tank bullet hits (nothing, it's checked in Tank.update())
         // Check for destroyed bullets
         {
             Set<Bullet> toDestroy = new HashSet<>();
             // Tank hits
-            if(bulletList != null) {
-                for (Bullet bullet : bulletList)
-                    if (checkTankCollision(bullet))
+            if(bulletList != null){
+                for(Bullet bullet : bulletList)
+                    if(checkTankCollision(bullet))
+                        toDestroy.add(bullet);
+            }
+            // Obstacle hits
+            if(bulletList != null){
+                for(Bullet bullet : bulletList)
+                    if(checkObstacleCollision(bullet))
                         toDestroy.add(bullet);
             }
             // Outside the map (currently checks if it hits map boundary)
-            if(bulletList != null) {
-                for (Bullet bullet : bulletList)
-                    if (checkBoardCollision(bullet))
+            if(bulletList != null){
+                for(Bullet bullet : bulletList)
+                    if(checkBoardCollision(bullet))
                         toDestroy.add(bullet);
             }
             for(Bullet bullet : toDestroy)
@@ -124,11 +132,23 @@ public class SimpleBoard implements Board{
                 return true;
         return false;
     }
+    public boolean checkObstacleCollision(GameObject gameObject){
+        if(getObstacleList() == null)
+            return false;
+        for(Obstacle obstacle : getObstacleList())
+            if(gameObject!=obstacle && gameObject.intersects(obstacle))
+                return true;
+        return false;
+    }
+
     public List<Tank> getTankList(){
         return tankList;
     }
     public List<Bullet> getBulletList(){
         return bulletList;
+    }
+    public List<Obstacle> getObstacleList(){
+        return obstacleList;
     }
     public int getWidth(){
         return width;

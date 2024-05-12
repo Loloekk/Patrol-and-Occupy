@@ -90,7 +90,7 @@ public class Tank extends GameObject{
             polygon.rotate(dAngle);
         }
 
-        if(board.checkTankCollision(this) || board.checkBoardCollision(this)) {
+        if(board.checkTankCollision(this) || board.checkBoardCollision(this) || board.checkObstacleCollision(this)) {
             polygon.translate(-dX, -dY);
             polygon.rotate(-dAngle);
         }

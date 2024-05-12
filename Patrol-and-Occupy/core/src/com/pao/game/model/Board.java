@@ -11,7 +11,9 @@ public interface Board {
     boolean checkBoardCollision(GameObject gameObject);
     boolean checkBulletCollision(GameObject gameObject);
     boolean checkTankCollision(GameObject gameObject);
+    boolean checkObstacleCollision(GameObject gameObject);
     List<Tank> getTankList();
+    List<Obstacle> getObstacleList();
     List<Bullet> getBulletList();
     int getWidth();
     int getHeight();
