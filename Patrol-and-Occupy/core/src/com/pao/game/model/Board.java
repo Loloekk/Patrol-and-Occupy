@@ -18,5 +18,4 @@ public interface Board {
     int getWidth();
     int getHeight();
     void addBullet(Bullet bullet);
-    void shoot(Color color);
 }

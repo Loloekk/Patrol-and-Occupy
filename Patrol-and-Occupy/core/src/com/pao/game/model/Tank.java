@@ -14,6 +14,7 @@ public class Tank extends GameObject{
     boolean moveLeftState;
     boolean moveRightState;
     boolean moveBackwardsState;
+    boolean makeShoot;
     boolean isAlive;
 
     public Tank(float x, float y, Color color, Board board) {
@@ -35,6 +36,9 @@ public class Tank extends GameObject{
     public void setMoveBackwardsState(boolean state) {
         moveBackwardsState = state;
     }
+    public void setMakeShoot(boolean state) {
+        makeShoot = state;
+    }
     public void setIsAlive(boolean state) {
         isAlive = state;
     }
@@ -46,6 +50,15 @@ public class Tank extends GameObject{
     }
     public void update(float time) {
         if(!isAlive) return;
+
+        if(makeShoot)
+        {
+            makeShoot = false;
+            float angle = polygon.getRotation() * MathUtils.degreesToRadians;
+            float x = getX() + MathUtils.cos(angle) * getHeight()/2;
+            float y = getY() + MathUtils.sin(angle) * getHeight()/2;
+            board.addBullet(new Bullet(x, y, this));
+        }
 
         int countKeyRide = 0;
         int countKeyRotate = 0;
@@ -99,13 +112,5 @@ public class Tank extends GameObject{
         if(board.checkBulletCollision(this)) {
             isAlive = false;
         }
-
-    }
-    public void shoot() {
-        if(!isAlive) return;
-        float angle = polygon.getRotation() * MathUtils.degreesToRadians;
-        float x = getX() + MathUtils.cos(angle) * getHeight()/2;
-        float y = getY() + MathUtils.sin(angle) * getHeight()/2;
-        board.addBullet(new Bullet(x, y, this));
     }
 }

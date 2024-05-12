@@ -102,6 +102,9 @@ public class SimpleBoard implements Board{
             case R:
                 tank.setMoveRightState(value);
                 break;
+            case S:
+                tank.setMakeShoot(value);
+                break;
         }
     }
     public boolean checkBoardCollision(GameObject gameObject){
@@ -158,16 +161,5 @@ public class SimpleBoard implements Board{
     }
     public void addBullet(Bullet bullet){
         bulletList.add(bullet);
-    }
-    public void shoot(Color color){
-        if(tankList == null)
-            return;
-        for(Tank tank : tankList){
-            if(tank.color == color){
-                tank.shoot();
-                return;
-            }
-        }
-        throw new RuntimeException("Unknown color");
     }
 }

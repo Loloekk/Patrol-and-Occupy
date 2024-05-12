@@ -1,5 +1,5 @@
 package com.pao.game.viewmodel;
 
 public enum Move {
-    F,B,L,R;
+    F,B,L,R,S;
 }
