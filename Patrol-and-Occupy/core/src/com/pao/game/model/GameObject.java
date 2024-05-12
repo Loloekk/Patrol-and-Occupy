@@ -2,9 +2,8 @@ package com.pao.game.model;
 
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Polygon;
-import com.badlogic.gdx.math.Vector2;
 
-public class GameObject {
+public abstract class GameObject {
     Polygon polygon;
     float width;
     float height;
