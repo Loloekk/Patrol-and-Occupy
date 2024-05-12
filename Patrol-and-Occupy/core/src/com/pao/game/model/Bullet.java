@@ -7,13 +7,13 @@ public class Bullet extends GameObject{
     Board board;
     Color color;
     Bullet(float x, float y, Tank tank){
-        super(x, y, 3, 5);
+        super(x, y, 10, 30);
         polygon.setRotation(tank.getRotation());
         color = tank.getColor();
         board = tank.board;
     }
     public void update(float t){
-        final float speed = 30f;
+        final float speed = 150f;
         float angle = polygon.getRotation() * MathUtils.degreesToRadians;
         float dx = MathUtils.cos(angle) * speed * t;
         float dy = MathUtils.sin(angle) * speed * t;

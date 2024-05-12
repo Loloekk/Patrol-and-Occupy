@@ -39,15 +39,15 @@ public class SimpleBoard implements Board{
         startTime = time;
     }
     public void update(float t){
-        // Try to move every tank
-        if(tankList != null) {
-            for (Tank tank : tankList)
-                tank.update(t);
-        }
         // Move every bullet
         if(bulletList != null){
             for (Bullet bullet : bulletList)
                 bullet.update(t);
+        }
+        // Try to move every tank
+        if(tankList != null) {
+            for (Tank tank : tankList)
+                tank.update(t);
         }
         // Check for tank bullet hits (nothing, it's checked in Tank.update())
         // Check for destroyed bullets
