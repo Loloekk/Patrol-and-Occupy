@@ -18,7 +18,7 @@ public class ViewModel implements Runnable{
     Board board;
     public ViewModel(int width, int height, int n)
     {
-        board = new SimpleBoard(width,height, MyColor.getColorList(n));
+        board = new SimpleBoard(width,height, MyColor.getColorList(n), Setup.setupList.get(1));
     }
     public void setMove(MyColor color,Move move, boolean state)
     {

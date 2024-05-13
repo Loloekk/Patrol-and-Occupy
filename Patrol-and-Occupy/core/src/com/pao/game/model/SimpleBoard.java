@@ -43,11 +43,11 @@ public class SimpleBoard implements Board {
                 }
             }
         }
-        obstacleList.addAll(Obstacle.horizontalObstacle(400, 700, 50, 6));
-        obstacleList.addAll(Obstacle.verticalObstacle(400, 400, 50, 4));
-        obstacleList.addAll(Obstacle.horizontalObstacle(1000, 200, 50, 5));
-        obstacleList.addAll(Obstacle.verticalObstacle(1300, 800, 50, 5));
-        obstacleList.addAll(Obstacle.verticalObstacle(900, 600, 50, 2));
+        obstacleList.addAll(Obstacle.rectangleObstacle(400, 700, 50, 1, 6));
+        obstacleList.addAll(Obstacle.rectangleObstacle(400, 400, 50, 4, 1));
+        obstacleList.addAll(Obstacle.rectangleObstacle(1000, 200, 50, 1, 5));
+        obstacleList.addAll(Obstacle.rectangleObstacle(1300, 800, 50, 5, 1));
+        obstacleList.addAll(Obstacle.rectangleObstacle(900, 600, 50, 2, 1));
     }
 
     public SimpleBoard(int width, int height, List<MyColor> players, Setup setup){
