@@ -38,7 +38,7 @@ public class GameScreen implements Screen {
     long startTime;
     int width;
     int height;
-    RegionDrower drower;
+    RegionPainter painter;
 
     public GameScreen(final Drop game,int n){
         this.game=game;
@@ -66,7 +66,7 @@ public class GameScreen implements Screen {
         pixmap.fillRectangle(0, 0, width, height);
         ground = new Texture(pixmap);
         pixmap.dispose(); // Wymagane aby zwolnić zasoby Pixmap
-        drower = new RegionDrower(0,0,1920,1080,1920,1080,new Color(0.9f,0.9f,0.4f,1));
+        painter = new RegionPainter(0,0,1920,1080,1920,1080,new Color(0.9f,0.9f,0.4f,1));
     }
     @Override
     public void render(float time){
@@ -74,32 +74,20 @@ public class GameScreen implements Screen {
         camera.update();
         game.batch.setProjectionMatrix(camera.combined);
         game.batch.begin();
-        drower.fillBackground(game.batch);
+        painter.fillBackground(game.batch);
         //game.batch.draw(ground,0,0,width,height);
         for(Params obstacle : VM.getObstacles()) {
-            drower.draw(game.batch,new TextureRegion(text.getObstacleTexture()),obstacle);
+            painter.draw(game.batch,new TextureRegion(text.getObstacleTexture()),obstacle);
             //game.batch.draw(textureRegion,X-H/2,Y-W/2,H/2,W/2,H,W,1,1,obstacle.getRotation());
             //game.batch.draw(texture,X-H/2,Y-W/2,H/2,W/2,H,W,1,1,obstacle.getRotation(),0,0,texture.getWidth(), texture.getHeight(), false, false);
         }
         for(ColoredParams bullet : VM.getBullets()) {
-            Texture texture =text.getBulletTexture();
-            float X=bullet.getX();
-            float Y=bullet.getY();
-            float W=bullet.getWidht();
-            float H=bullet.getHeight();
-            TextureRegion textureRegion = new TextureRegion(texture);
-            drower.draw(game.batch,textureRegion,X,Y,W,H,bullet.getRotation());
+            painter.draw(game.batch,new TextureRegion(text.getBulletTexture()),bullet);
             //game.batch.draw(textureRegion,X-H/2,Y-W/2,H/2,W/2,H,W,1,1,bullet.getRotation());
             //game.batch.draw(texture,X-H/2,Y-W/2,H/2,W/2,H,W,1,1,bullet.getRotation(),0,0,texture.getWidth(), texture.getHeight(), false, false);
         }
         for(ColoredParams tank : VM.getTanks()) {
-            Texture texture =text.getTankTexture(tank.getColor());
-            float X=tank.getX();
-            float Y=tank.getY();
-            float W=tank.getWidht();
-            float H=tank.getHeight();
-            TextureRegion textureRegion = new TextureRegion(texture);
-            drower.draw(game.batch,textureRegion,X,Y,W,H,tank.getRotation());
+            painter.draw(game.batch,new TextureRegion(text.getTankTexture(tank.getColor())),tank);
             //game.batch.draw(region, X-H/2,Y-W/2,H/2,W/2,H+5,W,1,1,tank.getRotation());
             //game.batch.draw(texture,X-H/2,Y-W/2,H/2,W/2,H+5,W,1,1,tank.getRotation(),0,0,texture.getWidth(), texture.getHeight(), false, false);
         }
@@ -176,7 +164,7 @@ public class GameScreen implements Screen {
         text.dispose();
         ground.dispose();
         font.dispose();
-        drower.dispose();
+        painter.dispose();
     }
 
 
