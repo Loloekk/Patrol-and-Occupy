@@ -55,4 +55,8 @@ public class ViewModel {
     public void update(float time) {
         board.update(time);
     }
+    public float getRemainingTime()
+    {
+        return board.getRemainingTime();
+    }
 }

@@ -99,8 +99,7 @@ public class GameScreen implements Screen {
 //            System.out.println("");
             //spriteBatch.draw(texture, x, y, originX, originY, width, height, 1, 1, rotation, 0, 0, texture.getWidth(), texture.getHeight(), false, false);
         }
-        long elapsedTime = TimeUtils.timeSinceNanos(startTime);
-        long elapsedSeconds = elapsedTime / 1_000_000_000;
+        int elapsedSeconds = (int) VM.getRemainingTime();
         font.draw(game.batch, "Czas: " + elapsedSeconds, 400, 800);
         game.batch.end();
         for(PlayerView player : players)

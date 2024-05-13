@@ -11,19 +11,18 @@ public class SimpleBoard implements Board {
     List<Tank> tankList = new ArrayList<>();
     List<Bullet> bulletList = new ArrayList<>();
     List<Obstacle> obstacleList = new ArrayList<>();
-    float startTime;
-    float lastUpdateTime;
+    float remainingTime;
     int width, height;
 
     public SimpleBoard(int width, int height) {
         this.width = width;
         this.height = height;
-        setstart((float) System.nanoTime() * (float) 1e9);
-        lastUpdateTime = startTime;
+        remainingTime = 60;
     }
 
     public SimpleBoard(int width, int height, List<MyColor> players) {
         this(width, height);
+        remainingTime = 60;
         for (MyColor color : players) {
             final float offX = 200;
             final float offY = 200;
@@ -47,13 +46,20 @@ public class SimpleBoard implements Board {
         }
         obstacleList.add(new Obstacle(400, 400, 300, 50));
         obstacleList.add(new Obstacle(400, 700, 50, 200));
+
     }
 
-    public void setstart(float time) {
-        startTime = time;
+    public void setRemainingTime(float time) {
+        remainingTime = time;
     }
-
+    public void addRemainingTime(float time) {
+        remainingTime += time;
+    }
+    public float getRemainingTime(){
+        return remainingTime;
+    }
     public void update(float t) {
+        remainingTime-=t;
         // Move every bullet
         if (bulletList != null) {
             for (Bullet bullet : bulletList)
@@ -88,7 +94,6 @@ public class SimpleBoard implements Board {
             for (Bullet bullet : toDestroy)
                 bullet.destroy();
         }
-        lastUpdateTime = System.nanoTime() * (float) 1e9;
     }
 
     public void setmove(MyColor color, Move move, boolean value) {
