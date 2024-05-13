@@ -198,18 +198,4 @@ public class SimpleBoard implements Board {
     public void addBullet(Bullet bullet) {
         bulletList.add(bullet);
     }
-    public void addHorizontalObstacle(float x, float y, float side, int number) {
-        float x1 = x - (number - 1) / 2.0f * side;
-        for(int i = 0; i < number; i++) {
-            obstacleList.add(new Obstacle(x1, y, side, side));
-            x1 += side;
-        }
-    }
-    public void addVerticalObstacle(float x, float y, float side, int number) {
-        float y1 = y - (number - 1) / 2.0f * side;
-        for(int i = 0; i < number; i++) {
-            obstacleList.add(new Obstacle(x, y1, side, side));
-            y1 += side;
-        }
-    }
 }
