@@ -35,7 +35,7 @@ public class Setup {
 
             final float off = 200;
             List<ColoredParams> tankParamsList = new ArrayList<>();
-            tankParamsList.add(new ColoredParams(MyColor.R, 70, 60, width, off,0));
+            tankParamsList.add(new ColoredParams(MyColor.R, 70, 60, width-off, off,0));
             tankParamsList.add(new ColoredParams(MyColor.G,70, 60, width-off, height-off,0));
             tankParamsList.add(new ColoredParams(MyColor.B,70, 60, off, height-off,0));
             tankParamsList.add(new ColoredParams(MyColor.Y,70, 60, off, off,0));
@@ -52,7 +52,7 @@ public class Setup {
 
             final float off = 300;
             List<ColoredParams> tankParamsList = new ArrayList<>();
-            tankParamsList.add(new ColoredParams(MyColor.R, 70, 60, width, off,0));
+            tankParamsList.add(new ColoredParams(MyColor.R, 70, 60, width-off, off,0));
             tankParamsList.add(new ColoredParams(MyColor.G,70, 60, width-off, height-off,0));
             tankParamsList.add(new ColoredParams(MyColor.B,70, 60, off, height-off,0));
             tankParamsList.add(new ColoredParams(MyColor.Y,70, 60, off, off,0));
@@ -66,7 +66,7 @@ public class Setup {
 
             final float off = 200;
             List<ColoredParams> tankParamsList = new ArrayList<>();
-            tankParamsList.add(new ColoredParams(MyColor.R, 70, 60, width, off,0));
+            tankParamsList.add(new ColoredParams(MyColor.R, 70, 60, width-off, off,0));
             tankParamsList.add(new ColoredParams(MyColor.G,70, 60, width-off, height-off,0));
             tankParamsList.add(new ColoredParams(MyColor.B,70, 60, off, height-off,0));
             tankParamsList.add(new ColoredParams(MyColor.Y,70, 60, off, off,0));
