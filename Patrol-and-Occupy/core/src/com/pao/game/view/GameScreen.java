@@ -143,6 +143,7 @@ public class GameScreen implements Screen {
             }
             if(Gdx.input.isKeyPressed(player.getShoot())==false&& player.getLastShoot()){
                 player.setLastShoot(false);
+                VM.setMove(player.getColor(),Move.S,false);
             }
         }
         VM.update(time);
