@@ -97,7 +97,7 @@ public class GameScreen implements Screen {
             game.batch.draw(texture,X-H/2,Y-W/2,H/2,W/2,H+5,W,1,1,tank.getRotation(),0,0,texture.getWidth(), texture.getHeight(), false, false);
         }
         int elapsedSeconds = (int) VM.getRemainingTime();
-        font.draw(game.batch, "Czas: " + elapsedSeconds, 400, 800);
+        font.draw(game.batch, "Czas: " + elapsedSeconds, 900, 1000);
         game.batch.end();
         for(PlayerView player : players)
         {
