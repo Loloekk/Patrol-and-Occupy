@@ -8,10 +8,10 @@ public enum MyColor {
     public static List<MyColor> getColorList(int n)
     {
         List<MyColor> colors = new ArrayList<>();
-        if(n>=1)colors.add(R);
-        if(n>=2)colors.add(B);
-        if(n>=3)colors.add(G);
-        if(n>=4)colors.add(Y);
+        if(n>=1)colors.add(G);
+        if(n>=2)colors.add(Y);
+        if(n>=3)colors.add(R);
+        if(n>=4)colors.add(B);
         return colors;
     }
 }

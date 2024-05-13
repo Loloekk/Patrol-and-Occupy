@@ -61,12 +61,7 @@ public class GameScreen implements Screen {
         parameter.color = com.badlogic.gdx.graphics.Color.RED;
         font = generator.generateFont(parameter);
         startTime = TimeUtils.nanoTime();
-        Pixmap pixmap = new Pixmap(width, height, Pixmap.Format.RGBA8888);
-        pixmap.setColor(0.9f,0.9f,0.4f,1);
-        pixmap.fillRectangle(0, 0, width, height);
-        ground = new Texture(pixmap);
-        pixmap.dispose(); // Wymagane aby zwolnić zasoby Pixmap
-        painter = new RegionPainter(0,0,1920,1080,1920,1080,new Color(0.9f,0.9f,0.4f,1));
+        painter = new RegionPainter(game.batch,0,0,width,height,width,height,new Color(0.9f,0.9f,0.4f,1));
     }
     @Override
     public void render(float time){
@@ -74,20 +69,20 @@ public class GameScreen implements Screen {
         camera.update();
         game.batch.setProjectionMatrix(camera.combined);
         game.batch.begin();
-        painter.fillBackground(game.batch);
+        painter.fillBackground();
         //game.batch.draw(ground,0,0,width,height);
         for(Params obstacle : VM.getObstacles()) {
-            painter.draw(game.batch,new TextureRegion(text.getObstacleTexture()),obstacle);
+            painter.draw(new TextureRegion(text.getObstacleTexture()),obstacle);
             //game.batch.draw(textureRegion,X-H/2,Y-W/2,H/2,W/2,H,W,1,1,obstacle.getRotation());
             //game.batch.draw(texture,X-H/2,Y-W/2,H/2,W/2,H,W,1,1,obstacle.getRotation(),0,0,texture.getWidth(), texture.getHeight(), false, false);
         }
         for(ColoredParams bullet : VM.getBullets()) {
-            painter.draw(game.batch,new TextureRegion(text.getBulletTexture()),bullet);
+            painter.draw(new TextureRegion(text.getBulletTexture()),bullet);
             //game.batch.draw(textureRegion,X-H/2,Y-W/2,H/2,W/2,H,W,1,1,bullet.getRotation());
             //game.batch.draw(texture,X-H/2,Y-W/2,H/2,W/2,H,W,1,1,bullet.getRotation(),0,0,texture.getWidth(), texture.getHeight(), false, false);
         }
         for(ColoredParams tank : VM.getTanks()) {
-            painter.draw(game.batch,new TextureRegion(text.getTankTexture(tank.getColor())),tank);
+            painter.draw(new TextureRegion(text.getTankTexture(tank.getColor())),tank);
             //game.batch.draw(region, X-H/2,Y-W/2,H/2,W/2,H+5,W,1,1,tank.getRotation());
             //game.batch.draw(texture,X-H/2,Y-W/2,H/2,W/2,H+5,W,1,1,tank.getRotation(),0,0,texture.getWidth(), texture.getHeight(), false, false);
         }
