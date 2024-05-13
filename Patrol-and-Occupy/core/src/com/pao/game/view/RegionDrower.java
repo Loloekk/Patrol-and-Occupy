@@ -9,8 +9,8 @@ import com.pao.game.model.GameObject;
 import com.pao.game.viewmodel.Params;
 
 public class RegionDrower {
-    float orginX;
-    float orginY;
+    float originX;
+    float originY;
     float width;
     float height;
     float drowedWidth;
@@ -19,10 +19,10 @@ public class RegionDrower {
     float scaleHeight;
     Color backgorundColor;
     Texture backgroundTexture;
-    public RegionDrower(float orginX, float orginY, float width, float height, float drowedWidth, float drowedHeight, Color color)
+    public RegionDrower(float originX, float originY, float width, float height, float drowedWidth, float drowedHeight, Color color)
     {
-        this.orginX = orginX;
-        this.orginY = orginY;
+        this.originX = originX;
+        this.originY = originY;
         this.width = width;
         this.height = height;
         this.drowedHeight = drowedHeight;
@@ -38,7 +38,7 @@ public class RegionDrower {
     }
     public void fillBackground(Batch batch)
     {
-        batch.draw(new TextureRegion(backgroundTexture),orginX,orginY,width,height);
+        batch.draw(new TextureRegion(backgroundTexture),originX,originY,width,height);
     }
     public void draw(Batch batch, TextureRegion texture, float x, float y, float W, float H,float R) {
         batch.draw(texture,(x-H/2)*scaleHeight,(y-W/2)*scaleWidth,H/2*scaleHeight,W/2*scaleWidth,H*scaleHeight,W*scaleWidth,1,1,R);
