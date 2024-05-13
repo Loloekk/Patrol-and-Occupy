@@ -1,18 +1,20 @@
 package com.pao.game.viewmodel;
 
+import com.badlogic.gdx.utils.TimeUtils;
 import com.pao.game.model.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import static com.pao.game.viewmodel.Move.F;
 import static com.pao.game.viewmodel.Move.L;
 import static com.pao.game.viewmodel.Move.R;
 import static com.pao.game.viewmodel.Move.B;
 
-public class ViewModel {
+public class ViewModel implements Runnable{
     Board board;
     public ViewModel(int width, int height, int n)
     {
@@ -52,11 +54,24 @@ public class ViewModel {
         }
         return obstaclesParamsList;
     }
-    public void update(float time) {
-        board.update(time);
-    }
     public float getRemainingTime()
     {
         return board.getRemainingTime();
+    }
+    public void run()
+    {
+        double lastTimeUpdate = ((double) TimeUtils.millis())/1000d;
+        while(true){
+            //System.out.println(lastTimeUpdate);
+            double currentTime = ((double) TimeUtils.millis())/1000d;
+            board.update((float)(currentTime - lastTimeUpdate));
+            lastTimeUpdate = currentTime;
+
+            try {
+                TimeUnit.MILLISECONDS.sleep(1);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 }

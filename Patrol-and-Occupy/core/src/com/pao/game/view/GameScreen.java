@@ -40,14 +40,14 @@ public class GameScreen implements Screen {
     int height;
     RegionPainter painter;
 
-    public GameScreen(final Drop game,int n){
+    public GameScreen(final Drop game,int n,ViewModel VM){
         this.game=game;
         camera = new OrthographicCamera();
         width = 1920;
         height = 1080;
         camera.setToOrtho(false, width,height);
         viewport = new ExtendViewport(width,height,camera);
-        VM=new ViewModel(width,height,n);
+        this.VM=VM;
         players = new ArrayList<>();
         List<MyColor> colors = MyColor.getColorList(n);
         if(n>=1)players.add(new PlayerView(colors.get(0), Input.Keys.UP,Input.Keys.DOWN,Input.Keys.LEFT,Input.Keys.RIGHT,Input.Keys.CONTROL_RIGHT));
@@ -137,7 +137,7 @@ public class GameScreen implements Screen {
                 VM.setMove(player.getColor(),Move.S,false);
             }
         }
-        VM.update(time);
+        //VM.update(time);
     }
     public void resize(int width, int height) {
         viewport.update(width, height);
