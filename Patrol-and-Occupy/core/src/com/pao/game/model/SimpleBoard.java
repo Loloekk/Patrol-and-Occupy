@@ -44,9 +44,10 @@ public class SimpleBoard implements Board {
                 }
             }
         }
-        obstacleList.add(new Obstacle(400, 400, 300, 50));
-        obstacleList.add(new Obstacle(400, 700, 50, 200));
-
+//        obstacleList.add(new Obstacle(400, 400, 300, 50));
+//        obstacleList.add(new Obstacle(400, 700, 50, 200));
+          addHorizontalObstacle(400, 700, 50, 6);
+          addVerticalObstacle(400, 400, 50, 4);
     }
 
     public void setRemainingTime(float time) {
@@ -189,12 +190,18 @@ public class SimpleBoard implements Board {
     public void addBullet(Bullet bullet) {
         bulletList.add(bullet);
     }
-//    public void addHorizontalObstacle(float x, float y, float height, int number) {
-//          for(int i = 0; i < number; i++) {
-//                obstacleList.add(new Obstacle(400, 400, 300, 50));
-//          }
-//    }
-//    public void addVerticalObstacle(float x, float y, float width, int number) {
-//
-//    }
+    public void addHorizontalObstacle(float x, float y, float side, int number) {
+        float x1 = x - (number - 1) / 2.0f * side;
+        for(int i = 0; i < number; i++) {
+            obstacleList.add(new Obstacle(x1, y, side, side));
+            x1 += side;
+        }
+    }
+    public void addVerticalObstacle(float x, float y, float side, int number) {
+        float y1 = y - (number - 1) / 2.0f * side;
+        for(int i = 0; i < number; i++) {
+            obstacleList.add(new Obstacle(x, y1, side, side));
+            y1 += side;
+        }
+    }
 }
