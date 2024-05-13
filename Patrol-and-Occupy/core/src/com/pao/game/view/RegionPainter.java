@@ -7,28 +7,28 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.pao.game.viewmodel.Params;
 
-public class RegionDraw {
+public class RegionPainter {
     float originX;
     float originY;
     float width;
     float height;
-    float drawWidth;
-    float drawHeight;
+    float painterWidth;
+    float painterHeight;
     float scaleWidth;
     float scaleHeight;
     Color backgorundColor;
     Texture backgroundTexture;
-    public RegionDraw(float originX, float originY, float width, float height, float drawWidth, float drawHeight, Color color)
+    public RegionPainter(float originX, float originY, float width, float height, float painterWidth, float painterHeight, Color color)
     {
         this.originX = originX;
         this.originY = originY;
         this.width = width;
         this.height = height;
-        this.drawHeight = drawHeight;
-        this.drawWidth = drawWidth;
+        this.painterHeight = painterHeight;
+        this.painterWidth = painterWidth;
         this.backgorundColor = color;
-        scaleHeight = height/drawHeight;
-        scaleWidth = width/drawWidth;
+        scaleHeight = height/painterHeight;
+        scaleWidth = width/painterWidth;
         Pixmap pixmap = new Pixmap((int)width, (int) height, Pixmap.Format.RGBA8888);
         pixmap.setColor(backgorundColor);
         pixmap.fillRectangle(0, 0, (int)width, (int)height);
