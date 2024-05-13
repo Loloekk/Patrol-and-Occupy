@@ -5,31 +5,30 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.pao.game.model.GameObject;
 import com.pao.game.viewmodel.Params;
 
-public class RegionDrower {
+public class RegionDraw {
     float originX;
     float originY;
     float width;
     float height;
-    float drowedWidth;
-    float drowedHeight;
+    float drawWidth;
+    float drawHeight;
     float scaleWidth;
     float scaleHeight;
     Color backgorundColor;
     Texture backgroundTexture;
-    public RegionDrower(float originX, float originY, float width, float height, float drowedWidth, float drowedHeight, Color color)
+    public RegionDraw(float originX, float originY, float width, float height, float drawWidth, float drawHeight, Color color)
     {
         this.originX = originX;
         this.originY = originY;
         this.width = width;
         this.height = height;
-        this.drowedHeight = drowedHeight;
-        this.drowedWidth = drowedWidth;
+        this.drawHeight = drawHeight;
+        this.drawWidth = drawWidth;
         this.backgorundColor = color;
-        scaleHeight = height/drowedHeight;
-        scaleWidth = width/drowedWidth;
+        scaleHeight = height/drawHeight;
+        scaleWidth = width/drawWidth;
         Pixmap pixmap = new Pixmap((int)width, (int) height, Pixmap.Format.RGBA8888);
         pixmap.setColor(backgorundColor);
         pixmap.fillRectangle(0, 0, (int)width, (int)height);
