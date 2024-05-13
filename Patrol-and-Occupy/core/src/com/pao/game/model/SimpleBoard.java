@@ -22,7 +22,6 @@ public class SimpleBoard implements Board {
 
     public SimpleBoard(int width, int height, List<MyColor> players) {
         this(width, height);
-        remainingTime = 60;
         for (MyColor color : players) {
             final float offX = 200;
             final float offY = 200;
@@ -51,6 +50,12 @@ public class SimpleBoard implements Board {
         addHorizontalObstacle(1000, 200, 50, 5);
         addVerticalObstacle(1300, 800, 50, 5);
         addVerticalObstacle(900, 600, 50, 2);
+    }
+
+    public SimpleBoard(int width, int height, Setup setup){
+        this(width, height);
+        tankList.addAll(setup.getTankList());
+        obstacleList.addAll(setup.getObstacleList());
     }
 
     public void setRemainingTime(float time) {
