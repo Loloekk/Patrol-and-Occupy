@@ -41,5 +41,6 @@ public class Textures {
             ((Texture) itr.next()).dispose();
         }
         bullet.dispose();
+        obstacle.dispose();
     }
 }

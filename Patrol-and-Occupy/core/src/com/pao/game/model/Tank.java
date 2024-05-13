@@ -9,7 +9,7 @@ public class Tank extends GameObject{
     Board board;
     float rideForwardSpeed = 150;
     float rideBackwardsSpeed = 100;
-    float rotateSpeed = 200;
+    float rotateSpeed = 100;
     boolean moveForwardState;
     boolean moveLeftState;
     boolean moveRightState;

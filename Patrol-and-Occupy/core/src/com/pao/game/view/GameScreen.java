@@ -46,8 +46,9 @@ public class GameScreen implements Screen {
         viewport = new ExtendViewport(width,height,camera);
         VM=new ViewModel(width,height,n);
         players = new ArrayList<>();
-        if(n>=1)players.add(new PlayerView(MyColor.R, Input.Keys.UP,Input.Keys.DOWN,Input.Keys.LEFT,Input.Keys.RIGHT,Input.Keys.CONTROL_RIGHT));
-        if(n>=2)players.add(new PlayerView(MyColor.B, Input.Keys.W,Input.Keys.S,Input.Keys.A,Input.Keys.D,Input.Keys.SPACE));
+        List<MyColor> colors = MyColor.getColorList(n);
+        if(n>=1)players.add(new PlayerView(colors.get(0), Input.Keys.UP,Input.Keys.DOWN,Input.Keys.LEFT,Input.Keys.RIGHT,Input.Keys.CONTROL_RIGHT));
+        if(n>=2)players.add(new PlayerView(colors.get(1), Input.Keys.W,Input.Keys.S,Input.Keys.A,Input.Keys.D,Input.Keys.SPACE));
         text = new Textures(n);
 
         font = new BitmapFont();
@@ -94,10 +95,6 @@ public class GameScreen implements Screen {
             float W=tank.getWidht();
             float H=tank.getHeight();
             game.batch.draw(texture,X-H/2,Y-W/2,H/2,W/2,H+5,W,1,1,tank.getRotation(),0,0,texture.getWidth(), texture.getHeight(), false, false);
-//            System.out.println(X);
-//            System.out.println(Y);
-//            System.out.println("");
-            //spriteBatch.draw(texture, x, y, originX, originY, width, height, 1, 1, rotation, 0, 0, texture.getWidth(), texture.getHeight(), false, false);
         }
         int elapsedSeconds = (int) VM.getRemainingTime();
         font.draw(game.batch, "Czas: " + elapsedSeconds, 400, 800);
