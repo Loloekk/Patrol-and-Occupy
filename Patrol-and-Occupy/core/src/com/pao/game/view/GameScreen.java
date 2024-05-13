@@ -40,8 +40,8 @@ public class GameScreen implements Screen {
     public GameScreen(final Drop game,int n){
         this.game=game;
         camera = new OrthographicCamera();
-        width = 1000;
-        height = 800;
+        width = 1920;
+        height = 1080;
         camera.setToOrtho(false, width,height);
         viewport = new ExtendViewport(width,height,camera);
         VM=new ViewModel(width,height,n);
