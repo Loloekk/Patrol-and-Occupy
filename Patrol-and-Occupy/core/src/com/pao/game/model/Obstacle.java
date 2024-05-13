@@ -16,9 +16,9 @@ public class Obstacle extends GameObject{
             float x1 = x - (numberOfColumns - 1) / 2.0f * side;
             for(int j = 0; j < numberOfColumns; j++) {
                 Obstacle obstacle = new Obstacle(x1, y1, side, side);
-                //obstacle.polygon.translate(x-x1, y-y1);
-                //obstacle.polygon.rotate(degrees);
-                //obstacle.polygon.translate((x1-x) * MathUtils.cos(degrees * MathUtils.degreesToRadians), (y1-y) * MathUtils.sin(degrees * MathUtils.degreesToRadians));
+                obstacle.polygon.translate(x-x1, y-y1);
+                obstacle.polygon.rotate(degrees);
+                obstacle.polygon.translate((x1-x) * MathUtils.cos(degrees * MathUtils.degreesToRadians) - (y1-y) * MathUtils.sin(degrees * MathUtils.degreesToRadians), (x1-x) * MathUtils.sin(degrees * MathUtils.degreesToRadians) + (y1-y) * MathUtils.cos(degrees * MathUtils.degreesToRadians));
                 obstacleList.add(obstacle);
                 x1 += side;
             }
