@@ -43,8 +43,6 @@ public class SimpleBoard implements Board {
                 }
             }
         }
-//      obstacleList.add(new Obstacle(400, 400, 300, 50));
-//      obstacleList.add(new Obstacle(400, 700, 50, 200));
         obstacleList.addAll(Obstacle.horizontalObstacle(400, 700, 50, 6));
         obstacleList.addAll(Obstacle.verticalObstacle(400, 400, 50, 4));
         obstacleList.addAll(Obstacle.horizontalObstacle(1000, 200, 50, 5));
@@ -52,9 +50,22 @@ public class SimpleBoard implements Board {
         obstacleList.addAll(Obstacle.verticalObstacle(900, 600, 50, 2));
     }
 
-    public SimpleBoard(int width, int height, Setup setup){
+    public SimpleBoard(int width, int height, List<MyColor> players, Setup setup){
         this(width, height);
-        tankList.addAll(setup.getTankList());
+        // Add players tanks
+        for(MyColor color : players){
+            boolean foundColor = false;
+            for(ColoredParams tankParams : setup.getTankParamsList()){
+                if(tankParams.getColor() == color){
+                    foundColor = true;
+                    tankList.add(new Tank(tankParams.getX(), tankParams.getY(), color, this));
+                    break;
+                }
+            }
+            if(!foundColor)
+                throw new RuntimeException("Setup does not contain info about all players");
+        }
+        // Add obstacles
         obstacleList.addAll(setup.getObstacleList());
     }
 
