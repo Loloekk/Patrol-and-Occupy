@@ -68,7 +68,7 @@ public class ViewModel implements Runnable{
             lastTimeUpdate = currentTime;
 
             try {
-                TimeUnit.MILLISECONDS.sleep(1);
+                TimeUnit.MILLISECONDS.sleep(10);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
