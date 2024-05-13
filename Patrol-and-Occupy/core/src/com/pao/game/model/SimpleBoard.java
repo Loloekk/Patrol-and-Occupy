@@ -20,36 +20,6 @@ public class SimpleBoard implements Board {
         remainingTime = 60;
     }
 
-    public SimpleBoard(int width, int height, List<MyColor> players) {
-        this(width, height);
-        for (MyColor color : players) {
-            final float offX = 200;
-            final float offY = 200;
-            switch (color) {
-                case R:
-                    tankList.add(new Tank(offX, offY, MyColor.R, this));
-                    break;
-                case G:
-                    tankList.add(new Tank(offX, height - offY, MyColor.G, this));
-                    break;
-                case B:
-                    tankList.add(new Tank(width - offX, height - offY, MyColor.B, this));
-                    break;
-                case Y:
-                    tankList.add(new Tank(width - offX, offY, MyColor.Y, this));
-                    break;
-                default: {
-                    throw new RuntimeException("Unknown color");
-                }
-            }
-        }
-        obstacleList.addAll(Obstacle.rectangleObstacle(400, 700, 50, 1, 6, 0));
-        obstacleList.addAll(Obstacle.rectangleObstacle(400, 400, 50, 4, 1, 0));
-        obstacleList.addAll(Obstacle.rectangleObstacle(1000, 200, 50, 1, 5, 0));
-        obstacleList.addAll(Obstacle.rectangleObstacle(1300, 800, 50, 5, 1, 0));
-        obstacleList.addAll(Obstacle.rectangleObstacle(900, 600, 50, 2, 1, 0));
-    }
-
     public SimpleBoard(int width, int height, List<MyColor> players, Setup setup){
         this(width, height);
         // Add players tanks
