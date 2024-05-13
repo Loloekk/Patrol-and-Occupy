@@ -11,6 +11,19 @@ public class Setup {
     static int height = 1080;
     public static List<Setup> setupList = new ArrayList<>();
     static{
+        // Setup 0. (Empty)
+        {
+            List<Obstacle> obstacleList = new ArrayList<>();
+
+            final float off = 200;
+            List<ColoredParams> tankParamsList = new ArrayList<>();
+            tankParamsList.add(new ColoredParams(MyColor.R, 70, 60, width, off,0));
+            tankParamsList.add(new ColoredParams(MyColor.G,70, 60, width-off, height-off,0));
+            tankParamsList.add(new ColoredParams(MyColor.B,70, 60, off, height-off,0));
+            tankParamsList.add(new ColoredParams(MyColor.Y,70, 60, off, off,0));
+
+            setupList.add(new Setup(tankParamsList, obstacleList));
+        }
         // Setup 1.
         {
             List<Obstacle> obstacleList = new ArrayList<>();
@@ -28,7 +41,6 @@ public class Setup {
             tankParamsList.add(new ColoredParams(MyColor.Y,70, 60, off, off,0));
 
             setupList.add(new Setup(tankParamsList, obstacleList));
-
         }
         // Setup 2.
         {

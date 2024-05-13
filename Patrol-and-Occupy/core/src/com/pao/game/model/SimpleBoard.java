@@ -14,7 +14,7 @@ public class SimpleBoard implements Board {
     float remainingTime;
     int width, height;
 
-    public SimpleBoard(int width, int height) {
+    private SimpleBoard(int width, int height) {
         this.width = width;
         this.height = height;
         remainingTime = 60;
