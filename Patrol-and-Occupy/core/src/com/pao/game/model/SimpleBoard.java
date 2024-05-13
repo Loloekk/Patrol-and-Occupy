@@ -45,11 +45,11 @@ public class SimpleBoard implements Board {
         }
 //      obstacleList.add(new Obstacle(400, 400, 300, 50));
 //      obstacleList.add(new Obstacle(400, 700, 50, 200));
-        addHorizontalObstacle(400, 700, 50, 6);
-        addVerticalObstacle(400, 400, 50, 4);
-        addHorizontalObstacle(1000, 200, 50, 5);
-        addVerticalObstacle(1300, 800, 50, 5);
-        addVerticalObstacle(900, 600, 50, 2);
+        obstacleList.addAll(Obstacle.horizontalObstacle(400, 700, 50, 6));
+        obstacleList.addAll(Obstacle.verticalObstacle(400, 400, 50, 4));
+        obstacleList.addAll(Obstacle.horizontalObstacle(1000, 200, 50, 5));
+        obstacleList.addAll(Obstacle.verticalObstacle(1300, 800, 50, 5));
+        obstacleList.addAll(Obstacle.verticalObstacle(900, 600, 50, 2));
     }
 
     public SimpleBoard(int width, int height, Setup setup){
