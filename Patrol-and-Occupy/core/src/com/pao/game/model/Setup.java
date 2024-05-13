@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Setup {
-    static int width = 1080;
-    static int height = 1920;
-    static List<Setup> setupList;
+    static int width = 1920;
+    static int height = 1080;
+    public static List<Setup> setupList = new ArrayList<>();
     static{
         // Setup 1.
         {
@@ -20,50 +20,46 @@ public class Setup {
             obstacleList.addAll(Obstacle.verticalObstacle(1300, 800, 50, 5));
             obstacleList.addAll(Obstacle.verticalObstacle(900, 600, 50, 2));
 
-            final int off = 200;
+            final float off = 200;
             List<ColoredParams> tankParamsList = new ArrayList<>();
             tankParamsList.add(new ColoredParams(MyColor.R, 70, 60, width, off,0));
-            tankParamsList.add(new ColoredParams(MyColor.B,70, 60, width-off, height-off,0));
-            tankParamsList.add(new ColoredParams(MyColor.G,70, 60, off, height-off,0));
+            tankParamsList.add(new ColoredParams(MyColor.G,70, 60, width-off, height-off,0));
+            tankParamsList.add(new ColoredParams(MyColor.B,70, 60, off, height-off,0));
             tankParamsList.add(new ColoredParams(MyColor.Y,70, 60, off, off,0));
 
-            Setup setup = new Setup(tankParamsList, obstacleList);
-            setupList.add(setup);
+            setupList.add(new Setup(tankParamsList, obstacleList));
 
         }
         // Setup 2.
         {
             List<Obstacle> obstacleList = new ArrayList<>();
-            obstacleList.addAll(Obstacle.verticalObstacle(400, 600, 30, 2));
-            obstacleList.addAll(Obstacle.horizontalObstacle(500, 500, 30, 5));
-            obstacleList.addAll(Obstacle.verticalObstacle(1000, 200, 30, 5));
-            obstacleList.addAll(Obstacle.horizontalObstacle(1300, 800, 30, 3));
-            obstacleList.addAll(Obstacle.horizontalObstacle(200, 600, 30, 5));
+            obstacleList.addAll(Obstacle.horizontalObstacle(500, 500, 80, 5));
+            obstacleList.addAll(Obstacle.verticalObstacle(1000, 200, 80, 5));
+            obstacleList.addAll(Obstacle.horizontalObstacle(1300, 800, 80, 3));
+            obstacleList.addAll(Obstacle.horizontalObstacle(200, 600, 80, 5));
 
-            final int off = 200;
+            final float off = 300;
             List<ColoredParams> tankParamsList = new ArrayList<>();
             tankParamsList.add(new ColoredParams(MyColor.R, 70, 60, width, off,0));
-            tankParamsList.add(new ColoredParams(MyColor.B,70, 60, width-off, height-off,0));
-            tankParamsList.add(new ColoredParams(MyColor.G,70, 60, off, height-off,0));
+            tankParamsList.add(new ColoredParams(MyColor.G,70, 60, width-off, height-off,0));
+            tankParamsList.add(new ColoredParams(MyColor.B,70, 60, off, height-off,0));
             tankParamsList.add(new ColoredParams(MyColor.Y,70, 60, off, off,0));
 
-            Setup setup = new Setup(tankParamsList, obstacleList);
-            setupList.add(setup);
+            setupList.add(new Setup(tankParamsList, obstacleList));
         }
         // Setup 3.
         {
             List<Obstacle> obstacleList = new ArrayList<>();
-            obstacleList.addAll(Obstacle.verticalObstacle(400, 600, 200, 1));
+            obstacleList.addAll(Obstacle.verticalObstacle((float) width /2, (float) height /2, 500, 1));
 
-            final int off = 200;
+            final float off = 200;
             List<ColoredParams> tankParamsList = new ArrayList<>();
             tankParamsList.add(new ColoredParams(MyColor.R, 70, 60, width, off,0));
-            tankParamsList.add(new ColoredParams(MyColor.B,70, 60, width-off, height-off,0));
-            tankParamsList.add(new ColoredParams(MyColor.G,70, 60, off, height-off,0));
+            tankParamsList.add(new ColoredParams(MyColor.G,70, 60, width-off, height-off,0));
+            tankParamsList.add(new ColoredParams(MyColor.B,70, 60, off, height-off,0));
             tankParamsList.add(new ColoredParams(MyColor.Y,70, 60, off, off,0));
 
-            Setup setup = new Setup(tankParamsList, obstacleList);
-            setupList.add(setup);
+            setupList.add(new Setup(tankParamsList, obstacleList));
         }
     }
     List<Obstacle> obstacleList;
