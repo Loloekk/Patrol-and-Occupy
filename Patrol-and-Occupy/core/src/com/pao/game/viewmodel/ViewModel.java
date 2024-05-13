@@ -50,7 +50,7 @@ public class ViewModel implements Runnable{
         while(Itr.hasNext())
         {
             Obstacle obstacle = Itr.next();
-            obstaclesParamsList.add(new Params(obstacle.getWidth(), obstacle.getHeight(), obstacle.getX(), obstacle.getY(), 0));
+            obstaclesParamsList.add(new Params(obstacle.getWidth(), obstacle.getHeight(), obstacle.getX(), obstacle.getY(), obstacle.getRotation()));
         }
         return obstaclesParamsList;
     }
