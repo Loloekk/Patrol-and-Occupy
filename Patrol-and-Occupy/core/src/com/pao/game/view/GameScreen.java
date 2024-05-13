@@ -3,6 +3,7 @@ package com.pao.game.view;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
@@ -37,6 +38,7 @@ public class GameScreen implements Screen {
     long startTime;
     int width;
     int height;
+    RegionDrower drower;
 
     public GameScreen(final Drop game,int n){
         this.game=game;
@@ -64,6 +66,7 @@ public class GameScreen implements Screen {
         pixmap.fillRectangle(0, 0, width, height);
         ground = new Texture(pixmap);
         pixmap.dispose(); // Wymagane aby zwolnić zasoby Pixmap
+        drower = new RegionDrower(0,0,1920,1080,1920,1080,new Color(0.9f,0.9f,0.4f,1));
     }
     @Override
     public void render(float time){
@@ -71,15 +74,11 @@ public class GameScreen implements Screen {
         camera.update();
         game.batch.setProjectionMatrix(camera.combined);
         game.batch.begin();
-        game.batch.draw(ground,0,0,width,height);
+        drower.fillBackground(game.batch);
+        //game.batch.draw(ground,0,0,width,height);
         for(Params obstacle : VM.getObstacles()) {
-            Texture texture = text.getObstacleTexture();
-            float X = obstacle.getX();
-            float Y = obstacle.getY();
-            float W = obstacle.getWidht();
-            float H = obstacle.getHeight();
-            TextureRegion textureRegion = new TextureRegion(texture);
-            game.batch.draw(textureRegion,X-H/2,Y-W/2,H/2,W/2,H,W,1,1,obstacle.getRotation());
+            drower.draw(game.batch,new TextureRegion(text.getObstacleTexture()),obstacle);
+            //game.batch.draw(textureRegion,X-H/2,Y-W/2,H/2,W/2,H,W,1,1,obstacle.getRotation());
             //game.batch.draw(texture,X-H/2,Y-W/2,H/2,W/2,H,W,1,1,obstacle.getRotation(),0,0,texture.getWidth(), texture.getHeight(), false, false);
         }
         for(ColoredParams bullet : VM.getBullets()) {
@@ -89,7 +88,8 @@ public class GameScreen implements Screen {
             float W=bullet.getWidht();
             float H=bullet.getHeight();
             TextureRegion textureRegion = new TextureRegion(texture);
-            game.batch.draw(textureRegion,X-H/2,Y-W/2,H/2,W/2,H,W,1,1,bullet.getRotation());
+            drower.draw(game.batch,textureRegion,X,Y,W,H,bullet.getRotation());
+            //game.batch.draw(textureRegion,X-H/2,Y-W/2,H/2,W/2,H,W,1,1,bullet.getRotation());
             //game.batch.draw(texture,X-H/2,Y-W/2,H/2,W/2,H,W,1,1,bullet.getRotation(),0,0,texture.getWidth(), texture.getHeight(), false, false);
         }
         for(ColoredParams tank : VM.getTanks()) {
@@ -98,8 +98,9 @@ public class GameScreen implements Screen {
             float Y=tank.getY();
             float W=tank.getWidht();
             float H=tank.getHeight();
-            TextureRegion region = new TextureRegion(texture);
-            game.batch.draw(region, X-H/2,Y-W/2,H/2,W/2,H+5,W,1,1,tank.getRotation());
+            TextureRegion textureRegion = new TextureRegion(texture);
+            drower.draw(game.batch,textureRegion,X,Y,W,H,tank.getRotation());
+            //game.batch.draw(region, X-H/2,Y-W/2,H/2,W/2,H+5,W,1,1,tank.getRotation());
             //game.batch.draw(texture,X-H/2,Y-W/2,H/2,W/2,H+5,W,1,1,tank.getRotation(),0,0,texture.getWidth(), texture.getHeight(), false, false);
         }
         int elapsedSeconds = (int) VM.getRemainingTime();
@@ -175,6 +176,7 @@ public class GameScreen implements Screen {
         text.dispose();
         ground.dispose();
         font.dispose();
+        drower.dispose();
     }
 
 
