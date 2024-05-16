@@ -20,8 +20,9 @@ public class Drop extends Game {
         Thread thread = new Thread(VM);
         thread.setDaemon(true);
         thread.start();
-        tmp = new GameScreen(this,n,VM);
-        this.setScreen(tmp);
+//        tmp = new GameScreen(this,n,VM);
+//        this.setScreen(tmp);
+        this.setScreen(new MainMenuScreen(this, n, VM));
     }
 
     public void render() {
