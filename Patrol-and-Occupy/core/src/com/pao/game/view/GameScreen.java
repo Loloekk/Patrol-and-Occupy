@@ -59,32 +59,7 @@ public class GameScreen implements Screen {
         startTime = TimeUtils.nanoTime();
         painter = new RegionPainter(game.batch,0,0,Drop.WIDTH,Drop.HEIGHT,Drop.WIDTH,Drop.HEIGHT,new Color(0.9f,0.9f,0.4f,1));
     }
-    @Override
-    public void render(float time){
-        ScreenUtils.clear(0.5f, 0.5f, 0.5f, 1);
-        camera.update();
-        game.batch.setProjectionMatrix(camera.combined);
-        game.batch.begin();
-        painter.fillBackground();
-        //game.batch.draw(ground,0,0,width,height);
-        for(Params obstacle : VM.getObstacles()) {
-            painter.draw(new TextureRegion(text.getObstacleTexture()),obstacle);
-            //game.batch.draw(textureRegion,X-H/2,Y-W/2,H/2,W/2,H,W,1,1,obstacle.getRotation());
-            //game.batch.draw(texture,X-H/2,Y-W/2,H/2,W/2,H,W,1,1,obstacle.getRotation(),0,0,texture.getWidth(), texture.getHeight(), false, false);
-        }
-        for(ColoredParams bullet : VM.getBullets()) {
-            painter.draw(new TextureRegion(text.getBulletTexture()),bullet);
-            //game.batch.draw(textureRegion,X-H/2,Y-W/2,H/2,W/2,H,W,1,1,bullet.getRotation());
-            //game.batch.draw(texture,X-H/2,Y-W/2,H/2,W/2,H,W,1,1,bullet.getRotation(),0,0,texture.getWidth(), texture.getHeight(), false, false);
-        }
-        for(ColoredParams tank : VM.getTanks()) {
-            painter.draw(new TextureRegion(text.getTankTexture(tank.getColor())),tank);
-            //game.batch.draw(region, X-H/2,Y-W/2,H/2,W/2,H+5,W,1,1,tank.getRotation());
-            //game.batch.draw(texture,X-H/2,Y-W/2,H/2,W/2,H+5,W,1,1,tank.getRotation(),0,0,texture.getWidth(), texture.getHeight(), false, false);
-        }
-        int elapsedSeconds = (int) VM.getRemainingTime();
-        font.draw(game.batch, "Czas: " + elapsedSeconds, 900, 1000);
-        game.batch.end();
+    public void update(float deltaTime) {
         for(PlayerView player : players)
         {
             if(Gdx.input.isKeyPressed(player.getUp()) && player.getLastStateUp() == false){
@@ -128,7 +103,37 @@ public class GameScreen implements Screen {
                 VM.setMove(player.getColor(),Move.S,false);
             }
         }
-        //VM.update(time);
+    }
+    public void draw() {
+        ScreenUtils.clear(0.5f, 0.5f, 0.5f, 1);
+        camera.update();
+        game.batch.setProjectionMatrix(camera.combined);
+        game.batch.begin();
+        painter.fillBackground();
+        //game.batch.draw(ground,0,0,width,height);
+        for(Params obstacle : VM.getObstacles()) {
+            painter.draw(new TextureRegion(text.getObstacleTexture()),obstacle);
+            //game.batch.draw(textureRegion,X-H/2,Y-W/2,H/2,W/2,H,W,1,1,obstacle.getRotation());
+            //game.batch.draw(texture,X-H/2,Y-W/2,H/2,W/2,H,W,1,1,obstacle.getRotation(),0,0,texture.getWidth(), texture.getHeight(), false, false);
+        }
+        for(ColoredParams bullet : VM.getBullets()) {
+            painter.draw(new TextureRegion(text.getBulletTexture()),bullet);
+            //game.batch.draw(textureRegion,X-H/2,Y-W/2,H/2,W/2,H,W,1,1,bullet.getRotation());
+            //game.batch.draw(texture,X-H/2,Y-W/2,H/2,W/2,H,W,1,1,bullet.getRotation(),0,0,texture.getWidth(), texture.getHeight(), false, false);
+        }
+        for(ColoredParams tank : VM.getTanks()) {
+            painter.draw(new TextureRegion(text.getTankTexture(tank.getColor())),tank);
+            //game.batch.draw(region, X-H/2,Y-W/2,H/2,W/2,H+5,W,1,1,tank.getRotation());
+            //game.batch.draw(texture,X-H/2,Y-W/2,H/2,W/2,H+5,W,1,1,tank.getRotation(),0,0,texture.getWidth(), texture.getHeight(), false, false);
+        }
+        int elapsedSeconds = (int) VM.getRemainingTime();
+        font.draw(game.batch, "Czas: " + elapsedSeconds, 900, 1000);
+        game.batch.end();
+    }
+    @Override
+    public void render(float delta){
+        update(delta);
+        draw();
     }
     public void resize(int width, int height) {
         viewport.update(width, height);
