@@ -13,6 +13,8 @@ public class Setup {
     static{
         // Setup 0. (Empty)
         {
+            List<Plate> plateList = new ArrayList<>();
+
             List<Obstacle> obstacleList = new ArrayList<>();
 
             final float off = 200;
@@ -22,10 +24,16 @@ public class Setup {
             tankParamsList.add(new ColoredParams(MyColor.B,70, 60, off, height-off,0));
             tankParamsList.add(new ColoredParams(MyColor.Y,70, 60, off, off,0));
 
-            setupList.add(new Setup(tankParamsList, obstacleList));
+            setupList.add(new Setup(tankParamsList, obstacleList, plateList));
         }
         // Setup 1.
         {
+            List<Plate> plateList = new ArrayList<>();
+            plateList.add(new Plate(300, 200));
+            plateList.add(new Plate(1000, 500));
+            plateList.add(new Plate(1500, 300));
+            plateList.add(new Plate(450, 900));
+
             List<Obstacle> obstacleList = new ArrayList<>();
             obstacleList.addAll(Obstacle.rectangleObstacle(400, 700, 50, 2, 6, 30));
             obstacleList.addAll(Obstacle.rectangleObstacle(400, 400, 50, 4, 1, 0));
@@ -40,10 +48,13 @@ public class Setup {
             tankParamsList.add(new ColoredParams(MyColor.B,70, 60, off, height-off,0));
             tankParamsList.add(new ColoredParams(MyColor.Y,70, 60, off, off,0));
 
-            setupList.add(new Setup(tankParamsList, obstacleList));
+            setupList.add(new Setup(tankParamsList, obstacleList, plateList));
         }
         // Setup 2.
         {
+            List<Plate> plateList = new ArrayList<>();
+            plateList.add(new Plate(300, 200));
+
             List<Obstacle> obstacleList = new ArrayList<>();
             obstacleList.addAll(Obstacle.rectangleObstacle(500, 500, 80, 1, 5, 0));
             obstacleList.addAll(Obstacle.rectangleObstacle(1000, 200, 80, 5, 1, 0));
@@ -57,10 +68,13 @@ public class Setup {
             tankParamsList.add(new ColoredParams(MyColor.B,70, 60, off, height-off,0));
             tankParamsList.add(new ColoredParams(MyColor.Y,70, 60, off, off,0));
 
-            setupList.add(new Setup(tankParamsList, obstacleList));
+            setupList.add(new Setup(tankParamsList, obstacleList, plateList));
         }
         // Setup 3.
         {
+            List<Plate> plateList = new ArrayList<>();
+            plateList.add(new Plate(300, 200));
+
             List<Obstacle> obstacleList = new ArrayList<>();
             obstacleList.addAll(Obstacle.rectangleObstacle((float) width /2, (float) height /2, 500, 1, 1, 0));
 
@@ -71,22 +85,26 @@ public class Setup {
             tankParamsList.add(new ColoredParams(MyColor.B,70, 60, off, height-off,0));
             tankParamsList.add(new ColoredParams(MyColor.Y,70, 60, off, off,0));
 
-            setupList.add(new Setup(tankParamsList, obstacleList));
+            setupList.add(new Setup(tankParamsList, obstacleList, plateList));
         }
     }
     List<Obstacle> obstacleList;
+    List<Plate> plateList;
     List<ColoredParams> tankParamsList;
 
-    public Setup(List<ColoredParams> tankParamsList, List<Obstacle> obstacleList){
+    public Setup(List<ColoredParams> tankParamsList, List<Obstacle> obstacleList, List<Plate> plateList){
         this.tankParamsList = tankParamsList;
         this.obstacleList = obstacleList;
+        this.plateList = plateList;
         if(tankParamsList==null) this.tankParamsList = new ArrayList<>();
         if(obstacleList==null) this.obstacleList = new ArrayList<>();
+        if(plateList==null) this.plateList = new ArrayList<>();
     }
 
     public List<Obstacle> getObstacleList(){
         return obstacleList;
     }
+    public List<Plate> getPlateList() { return plateList; }
     public List<ColoredParams> getTankParamsList(){
         return tankParamsList;
     }

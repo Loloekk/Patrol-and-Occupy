@@ -54,6 +54,16 @@ public class ViewModel implements Runnable{
         }
         return obstaclesParamsList;
     }
+    public List<ColoredParams> getPlates() {
+        List<ColoredParams> platesParamsList = new ArrayList<>();
+        Iterator<Plate> Itr = board.getPlateList().iterator();
+        while(Itr.hasNext())
+        {
+            Plate plate = Itr.next();
+            platesParamsList.add(new ColoredParams(plate.getColor(), plate.getWidth(), plate.getHeight(), plate.getX(), plate.getY(), plate.getRotation()));
+        }
+        return platesParamsList;
+    }
     public float getRemainingTime()
     {
         return board.getRemainingTime();

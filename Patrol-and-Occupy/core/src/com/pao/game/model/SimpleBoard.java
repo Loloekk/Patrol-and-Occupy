@@ -11,6 +11,7 @@ public class SimpleBoard implements Board {
     List<Tank> tankList = new ArrayList<>();
     List<Bullet> bulletList = new ArrayList<>();
     List<Obstacle> obstacleList = new ArrayList<>();
+    List<Plate> plateList = new ArrayList<>();
     float remainingTime;
     int width, height;
 
@@ -37,6 +38,7 @@ public class SimpleBoard implements Board {
         }
         // Add obstacles
         obstacleList.addAll(setup.getObstacleList());
+        plateList.addAll(setup.getPlateList());
     }
 
     public void setRemainingTime(float time) {
@@ -84,6 +86,16 @@ public class SimpleBoard implements Board {
             for (Bullet bullet : toDestroy)
                 bullet.destroy();
         }
+        // Color the plates
+        for(Plate plate : plateList) {
+            List<MyColor> colorsSet = new ArrayList<>();
+            for(Tank tank : tankList) {
+                if(plate.intersects(tank)) colorsSet.add(tank.getColor());
+            }
+            if(colorsSet.size() == 1) plate.setColor(colorsSet.get(0));
+            else if(colorsSet.size() > 1) plate.setColor(null);
+        }
+
     }
 
     public void setmove(MyColor color, Move move, boolean value) {
@@ -155,7 +167,6 @@ public class SimpleBoard implements Board {
                 return true;
         return false;
     }
-
     public List<Tank> getTankList() {
         return tankList;
     }
@@ -167,6 +178,7 @@ public class SimpleBoard implements Board {
     public List<Obstacle> getObstacleList() {
         return obstacleList;
     }
+    public List<Plate> getPlateList() { return plateList; }
 
     public int getWidth() {
         return width;

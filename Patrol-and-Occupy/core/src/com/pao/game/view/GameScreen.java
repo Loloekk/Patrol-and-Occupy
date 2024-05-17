@@ -120,6 +120,9 @@ public class GameScreen implements Screen {
         painterTop.fillBackground();
         painterGame.fillBackground();
         //game.batch.draw(ground,0,0,width,height);
+        for(ColoredParams plate: VM.getPlates()) {
+            painterGame.draw(new TextureRegion(text.getPlateTexture(plate.getColor())), plate);
+        }
         for(Params obstacle : VM.getObstacles()) {
             painterGame.draw(new TextureRegion(text.getObstacleTexture()),obstacle,1);
             //game.batch.draw(textureRegion,X-H/2,Y-W/2,H/2,W/2,H,W,1,1,obstacle.getRotation());
