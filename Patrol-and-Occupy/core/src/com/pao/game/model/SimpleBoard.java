@@ -90,7 +90,7 @@ public class SimpleBoard implements Board {
         for(Plate plate : plateList) {
             List<MyColor> colorsSet = new ArrayList<>();
             for(Tank tank : tankList) {
-                if(plate.intersects(tank)) colorsSet.add(tank.getColor());
+                if(tank.getIsAlive() && plate.intersects(tank)) colorsSet.add(tank.getColor());
             }
             if(colorsSet.size() == 1) plate.setColor(colorsSet.get(0));
             else if(colorsSet.size() > 1) plate.setColor(null);
