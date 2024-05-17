@@ -36,7 +36,10 @@ public class GameScreen implements Screen {
     Texture ground;
     BitmapFont font;
     long startTime;
-    RegionPainter painter;
+    RegionPainter painterGame;
+    RegionPainter painterRight;
+    RegionPainter painterLeft;
+    RegionPainter painterTop;
 
     public GameScreen(final Drop game,int n,ViewModel VM){
         this.game=game;
@@ -57,9 +60,12 @@ public class GameScreen implements Screen {
         parameter.color = com.badlogic.gdx.graphics.Color.RED;
         font = generator.generateFont(parameter);
         startTime = TimeUtils.nanoTime();
-        painter = new RegionPainter(game.batch,0,0,Drop.WIDTH,Drop.HEIGHT,Drop.WIDTH,Drop.HEIGHT,new Color(0.9f,0.9f,0.4f,1));
+        painterGame = new RegionPainter(game.batch,100,0,Drop.WIDTH-200,Drop.HEIGHT-100,1920,1080,new Color(0.9f,0.9f,0.4f,1));
+        painterLeft = new RegionPainter(game.batch,0,0,100,Drop.HEIGHT-100,100,Drop.HEIGHT-100,new Color(0f,1f,0f,1));
+        painterRight = new RegionPainter(game.batch,Drop.WIDTH-100,0,100,Drop.HEIGHT-100,100,Drop.HEIGHT-100,new Color(0f,1f,0f,1));
+        painterTop = new RegionPainter(game.batch,0,Drop.HEIGHT-100,Drop.WIDTH,100,Drop.WIDTH,100,new Color(0f,0f,1f,1));
     }
-    public void update(float deltaTime) {
+    public void update() {
         for(PlayerView player : players)
         {
             if(Gdx.input.isKeyPressed(player.getUp()) && player.getLastStateUp() == false){
@@ -105,24 +111,27 @@ public class GameScreen implements Screen {
         }
     }
     public void draw() {
-        ScreenUtils.clear(0.5f, 0.5f, 0.5f, 1);
+        ScreenUtils.clear(0f, 0f, 0f, 1);
         camera.update();
         game.batch.setProjectionMatrix(camera.combined);
         game.batch.begin();
-        painter.fillBackground();
+        painterLeft.fillBackground();
+        painterRight.fillBackground();
+        painterTop.fillBackground();
+        painterGame.fillBackground();
         //game.batch.draw(ground,0,0,width,height);
         for(Params obstacle : VM.getObstacles()) {
-            painter.draw(new TextureRegion(text.getObstacleTexture()),obstacle);
+            painterGame.draw(new TextureRegion(text.getObstacleTexture()),obstacle,1);
             //game.batch.draw(textureRegion,X-H/2,Y-W/2,H/2,W/2,H,W,1,1,obstacle.getRotation());
             //game.batch.draw(texture,X-H/2,Y-W/2,H/2,W/2,H,W,1,1,obstacle.getRotation(),0,0,texture.getWidth(), texture.getHeight(), false, false);
         }
         for(ColoredParams bullet : VM.getBullets()) {
-            painter.draw(new TextureRegion(text.getBulletTexture()),bullet);
+            painterGame.draw(new TextureRegion(text.getBulletTexture()),bullet);
             //game.batch.draw(textureRegion,X-H/2,Y-W/2,H/2,W/2,H,W,1,1,bullet.getRotation());
             //game.batch.draw(texture,X-H/2,Y-W/2,H/2,W/2,H,W,1,1,bullet.getRotation(),0,0,texture.getWidth(), texture.getHeight(), false, false);
         }
         for(ColoredParams tank : VM.getTanks()) {
-            painter.draw(new TextureRegion(text.getTankTexture(tank.getColor())),tank);
+            painterGame.draw(new TextureRegion(text.getTankTexture(tank.getColor())),tank);
             //game.batch.draw(region, X-H/2,Y-W/2,H/2,W/2,H+5,W,1,1,tank.getRotation());
             //game.batch.draw(texture,X-H/2,Y-W/2,H/2,W/2,H+5,W,1,1,tank.getRotation(),0,0,texture.getWidth(), texture.getHeight(), false, false);
         }
@@ -132,7 +141,7 @@ public class GameScreen implements Screen {
     }
     @Override
     public void render(float delta){
-        update(delta);
+        update();
         draw();
     }
     public void resize(int width, int height) {
@@ -160,7 +169,7 @@ public class GameScreen implements Screen {
         text.dispose();
         ground.dispose();
         font.dispose();
-        painter.dispose();
+        painterGame.dispose();
     }
 
 

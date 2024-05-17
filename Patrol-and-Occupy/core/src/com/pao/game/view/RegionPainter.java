@@ -29,8 +29,8 @@ public class RegionPainter {
         this.painterHeight = painterHeight;
         this.painterWidth = painterWidth;
         this.backgorundColor = color;
-        scaleHeight = height/painterHeight;
-        scaleWidth = width/painterWidth;
+        scaleWidth = height/painterHeight;
+        scaleHeight = width/painterWidth;
         Pixmap pixmap = new Pixmap((int)width, (int) height, Pixmap.Format.RGBA8888);
         pixmap.setColor(backgorundColor);
         pixmap.fillRectangle(0, 0, (int)width, (int)height);
@@ -42,10 +42,13 @@ public class RegionPainter {
         batch.draw(new TextureRegion(backgroundTexture),originX,originY,width,height);
     }
     public void draw(TextureRegion texture, float x, float y, float W, float H,float R) {
-        batch.draw(texture,(x-H/2)*scaleHeight,(y-W/2)*scaleWidth,H/2*scaleHeight,W/2*scaleWidth,H*scaleHeight,W*scaleWidth,1,1,R);
+        batch.draw(texture,(x-H/2)*scaleHeight+originX,(y-W/2)*scaleWidth+originY,H/2*scaleHeight,W/2*scaleWidth,H*scaleHeight,W*scaleWidth,1,1,R);
     }
     public void draw(TextureRegion texture, Params object) {
-        batch.draw(texture,(object.getX()- object.getHeight()/2)*scaleHeight,(object.getY()- object.getWidht()/2)*scaleWidth,object.getHeight()/2*scaleHeight,object.getWidht()/2*scaleWidth,object.getHeight()*scaleHeight,object.getWidht()*scaleWidth,1,1,object.getRotation());
+        batch.draw(texture,(object.getX()- object.getHeight()/2)*scaleHeight+originX,(object.getY()- object.getWidht()/2)*scaleWidth+originY,object.getHeight()/2*scaleHeight,object.getWidht()/2*scaleWidth,object.getHeight()*scaleHeight,object.getWidht()*scaleWidth,1,1,object.getRotation());
+    }
+    public void draw(TextureRegion texture, Params object,float add) {
+        batch.draw(texture,(object.getX()- object.getHeight()/2)*scaleHeight+originX,(object.getY()- object.getWidht()/2)*scaleWidth+originY,object.getHeight()/2*scaleHeight,object.getWidht()/2*scaleWidth,(object.getHeight()+add)*scaleHeight,(object.getWidht()+add)*scaleWidth,1,1,object.getRotation());
     }
     public void dispose()
     {

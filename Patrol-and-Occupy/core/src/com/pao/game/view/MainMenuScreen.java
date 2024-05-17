@@ -49,7 +49,7 @@ public class MainMenuScreen implements Screen {
     @Override
     public void render(float delta) {
         //Gdx.gl.glClear();
-        ScreenUtils.clear(0.5f, 0.5f, 0.5f, 1);
+        ScreenUtils.clear(0f, 0f, 0f, 1);
         camera.update();
         game.batch.setProjectionMatrix(camera.combined);
 
