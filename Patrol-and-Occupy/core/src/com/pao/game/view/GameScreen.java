@@ -36,17 +36,13 @@ public class GameScreen implements Screen {
     Texture ground;
     BitmapFont font;
     long startTime;
-    int width;
-    int height;
     RegionPainter painter;
 
     public GameScreen(final Drop game,int n,ViewModel VM){
         this.game=game;
         camera = new OrthographicCamera();
-        width = 1920;
-        height = 1080;
-        camera.setToOrtho(false, width,height);
-        viewport = new ExtendViewport(width,height,camera);
+        camera.setToOrtho(false, Drop.WIDTH,Drop.HEIGHT);
+        viewport = new ExtendViewport(Drop.WIDTH,Drop.HEIGHT,camera);
         this.VM=VM;
         players = new ArrayList<>();
         List<MyColor> colors = MyColor.getColorList(n);
@@ -61,7 +57,7 @@ public class GameScreen implements Screen {
         parameter.color = com.badlogic.gdx.graphics.Color.RED;
         font = generator.generateFont(parameter);
         startTime = TimeUtils.nanoTime();
-        painter = new RegionPainter(game.batch,0,0,width,height,width,height,new Color(0.9f,0.9f,0.4f,1));
+        painter = new RegionPainter(game.batch,0,0,Drop.WIDTH,Drop.HEIGHT,Drop.WIDTH,Drop.HEIGHT,new Color(0.9f,0.9f,0.4f,1));
     }
     @Override
     public void render(float time){

@@ -29,26 +29,22 @@ public class MainMenuScreen implements Screen {
     Rectangle playButton;
     Rectangle exitButton;
     Vector3 touchPoint;
-    int width;
-    int height;
     RegionPainter painter;
     public MainMenuScreen(Drop game, int n, ViewModel VM) {
         this.game = game;
         this.n = n;
         this.VM = VM;
-        width = 1920;
-        height = 1080;
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, width, height);
-        viewport = new ExtendViewport(width, height, camera);
+        camera.setToOrtho(false, Drop.WIDTH, Drop.HEIGHT);
+        viewport = new ExtendViewport(Drop.WIDTH, Drop.HEIGHT, camera);
         playButtonActive = new Texture(Gdx.files.internal("playActive.png"));
         playButtonInactive = new Texture(Gdx.files.internal("playInactive.png"));
         exitButtonActive = new Texture(Gdx.files.internal("exitActive.png"));
         exitButtonInactive = new Texture(Gdx.files.internal("exitInactive.png"));
-        playButton = new Rectangle(width/2 - BUTTON_WIDTH/2, PLAY_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
-        exitButton = new Rectangle(width/2 - BUTTON_WIDTH/2, EXIT_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
+        playButton = new Rectangle(Drop.WIDTH/2 - BUTTON_WIDTH/2, PLAY_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
+        exitButton = new Rectangle(Drop.WIDTH/2 - BUTTON_WIDTH/2, EXIT_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
         touchPoint = new Vector3();
-        painter = new RegionPainter(game.batch,0,0,width,height,width,height,new Color(0.9f,0.4f,0.4f,1));
+        painter = new RegionPainter(game.batch,0,0,Drop.WIDTH,Drop.HEIGHT,Drop.WIDTH,Drop.HEIGHT,new Color(0.9f,0.4f,0.4f,1));
     }
     @Override
     public void render(float delta) {
@@ -61,24 +57,24 @@ public class MainMenuScreen implements Screen {
         painter.fillBackground();
         camera.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
         if(playButton.contains(touchPoint.x, touchPoint.y)) {
-            game.batch.draw(playButtonActive, width / 2 - BUTTON_WIDTH / 2, PLAY_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
+            game.batch.draw(playButtonActive, Drop.WIDTH / 2 - BUTTON_WIDTH / 2, PLAY_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
             if(Gdx.input.isTouched()) {
                 //this.dispose();
                 game.setScreen(new GameScreen(game, n, VM));
             }
         }
         else {
-            game.batch.draw(playButtonInactive, width / 2 - BUTTON_WIDTH / 2, PLAY_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
+            game.batch.draw(playButtonInactive, Drop.WIDTH / 2 - BUTTON_WIDTH / 2, PLAY_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
         }
 
         if(exitButton.contains(touchPoint.x, touchPoint.y)) {
-            game.batch.draw(exitButtonActive, width / 2 - BUTTON_WIDTH / 2, EXIT_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
+            game.batch.draw(exitButtonActive, Drop.WIDTH / 2 - BUTTON_WIDTH / 2, EXIT_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
             if(Gdx.input.isTouched()) {
                 Gdx.app.exit();
             }
         }
         else {
-            game.batch.draw(exitButtonInactive, width / 2 - BUTTON_WIDTH / 2, EXIT_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
+            game.batch.draw(exitButtonInactive, Drop.WIDTH / 2 - BUTTON_WIDTH / 2, EXIT_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
         }
         game.batch.end();
     }

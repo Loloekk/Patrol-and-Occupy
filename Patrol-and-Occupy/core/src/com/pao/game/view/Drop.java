@@ -9,6 +9,8 @@ import com.pao.game.viewmodel.ViewModel;
 public class Drop extends Game {
     public SpriteBatch batch;
     //public BitmapFont font;
+    public static final int WIDTH = 1920;
+    public static final int HEIGHT = 1080;
     GameScreen tmp;
     public void create() {
         //Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
@@ -16,7 +18,7 @@ public class Drop extends Game {
         batch = new SpriteBatch();
         int n = 2;
         //font = new BitmapFont();
-        ViewModel VM = new ViewModel(1920,1080,n);
+        ViewModel VM = new ViewModel(WIDTH,HEIGHT,n);
         Thread thread = new Thread(VM);
         thread.setDaemon(true);
         thread.start();
