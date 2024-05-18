@@ -27,39 +27,32 @@ public class ViewModel implements Runnable{
     public List<ColoredParams> getTanks()
     {
         List<ColoredParams> tanksParamsList = new ArrayList<>();
-        Iterator<Tank> Itr = board.getTankList().iterator();
-        while(Itr.hasNext())
+        for(Tank tank : board.getTankList())
         {
-            Tank tank = Itr.next();
             tanksParamsList.add(new ColoredParams(tank.getIsAlive() ? tank.getColor() : null,tank.getWidth(),tank.getHeight(),tank.getX(),tank.getY(),tank.getRotation()));
         }
         return tanksParamsList;
     }
     public List<ColoredParams> getBullets() {
         List<ColoredParams> bulletsParamsList = new ArrayList<>();
-        Iterator<Bullet> Itr = board.getBulletList().iterator();
-        while (Itr.hasNext()) {
-            Bullet bullet = Itr.next();
+        for(Bullet bullet : board.getBulletList())
+        {
             bulletsParamsList.add(new ColoredParams(bullet.getColor(), bullet.getWidth(), bullet.getHeight(), bullet.getX(), bullet.getY(), bullet.getRotation()));
         }
         return bulletsParamsList;
     }
     public List<Params> getObstacles() {
         List<Params> obstaclesParamsList = new ArrayList<>();
-        Iterator<Obstacle> Itr = board.getObstacleList().iterator();
-        while(Itr.hasNext())
+        for(Obstacle obstacle : board.getObstacleList())
         {
-            Obstacle obstacle = Itr.next();
             obstaclesParamsList.add(new Params(obstacle.getWidth(), obstacle.getHeight(), obstacle.getX(), obstacle.getY(), obstacle.getRotation()));
         }
         return obstaclesParamsList;
     }
     public List<ColoredParams> getPlates() {
         List<ColoredParams> platesParamsList = new ArrayList<>();
-        Iterator<Plate> Itr = board.getPlateList().iterator();
-        while(Itr.hasNext())
+        for(Plate plate : board.getPlateList())
         {
-            Plate plate = Itr.next();
             platesParamsList.add(new ColoredParams(plate.getColor(), plate.getWidth(), plate.getHeight(), plate.getX(), plate.getY(), plate.getRotation()));
         }
         return platesParamsList;
