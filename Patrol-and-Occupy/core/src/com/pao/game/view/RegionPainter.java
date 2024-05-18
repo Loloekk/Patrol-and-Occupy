@@ -29,8 +29,8 @@ public class RegionPainter {
         this.painterHeight = painterHeight;
         this.painterWidth = painterWidth;
         this.backgorundColor = color;
-        scaleWidth = height/painterHeight;
-        scaleHeight = width/painterWidth;
+        scaleWidth = width/painterWidth;
+        scaleHeight = height/painterHeight;
         Pixmap pixmap = new Pixmap((int)width, (int) height, Pixmap.Format.RGBA8888);
         pixmap.setColor(backgorundColor);
         pixmap.fillRectangle(0, 0, (int)width, (int)height);
