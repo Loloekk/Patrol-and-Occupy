@@ -14,7 +14,7 @@ public class Drop extends Game {
     GameScreen tmp;
     public void create() {
         //Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
-        System.out.println(Gdx.graphics.getWidth()+" "+Gdx.graphics.getHeight());
+        //System.out.println(Gdx.graphics.getWidth()+" "+Gdx.graphics.getHeight());
         batch = new SpriteBatch();
         int n = 2;
         //font = new BitmapFont();
