@@ -8,7 +8,7 @@ public abstract class GameObject {
     float width;
     float height;
     public GameObject(float x, float y, float width, float height) {
-        float[] vertices = {-height/2, -width/2, height/2, -width/2, height/2, width/2, -height/2, width/2};
+        float[] vertices = {-width/2,-height/2 , -width/2, height/2, width/2, height/2,width/2 ,-height/2};
         polygon = new Polygon(vertices);
         //polygon.setOrigin(x, y);
         polygon.setPosition(x, y);

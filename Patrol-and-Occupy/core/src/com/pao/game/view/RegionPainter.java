@@ -46,12 +46,12 @@ public class RegionPainter {
                 H/2*scaleHeight,W/2*scaleWidth,H*scaleHeight,W*scaleWidth,1,1,R);
     }
     public void draw(TextureRegion texture, Params object) {
-        batch.draw(texture,(object.getX()- object.getHeight()/2)*scaleHeight+originX,(object.getY()- object.getWidht()/2)*scaleWidth+originY,
-                object.getHeight()/2*scaleHeight,object.getWidht()/2*scaleWidth,object.getHeight()*scaleHeight,object.getWidht()*scaleWidth,1,1,object.getRotation());
+        batch.draw(texture,(object.getX()- object.getWidht()/2)*scaleWidth+originX,(object.getY()- object.getHeight()/2)*scaleHeight+originY,
+                object.getWidht()/2*scaleWidth,object.getHeight()/2*scaleHeight,(object.getWidht())*scaleWidth,(object.getHeight())*scaleHeight,1,1,object.getRotation());
     }
     public void draw(TextureRegion texture, Params object,float add) {
-        batch.draw(texture,(object.getX()- object.getHeight()/2)*scaleHeight+originX,(object.getY()- object.getWidht()/2)*scaleWidth+originY,
-                object.getHeight()/2*scaleHeight,object.getWidht()/2*scaleWidth,(object.getHeight()+add)*scaleHeight,(object.getWidht()+add)*scaleWidth,1,1,object.getRotation());
+        batch.draw(texture,(object.getX()- object.getWidht()/2)*scaleWidth+originX,(object.getY()- object.getHeight()/2)*scaleHeight+originY,
+                object.getWidht()/2*scaleWidth,object.getHeight()/2*scaleHeight,(object.getWidht()+add)*scaleWidth,(object.getHeight()+add)*scaleHeight,1,1,object.getRotation());
     }
     public void dispose()
     {

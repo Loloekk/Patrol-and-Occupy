@@ -19,7 +19,7 @@ public class Tank extends GameObject{
     float lastShoot;
 
     public Tank(float x, float y, MyColor color, Board board) {
-        super(x, y, 60, 70);
+        super(x, y, 70, 60);
         this.color = color;
         this.board = board;
         this.isAlive = true;

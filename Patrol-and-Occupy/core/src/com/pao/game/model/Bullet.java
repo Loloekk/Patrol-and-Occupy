@@ -7,7 +7,7 @@ public class Bullet extends GameObject{
     Board board;
     MyColor color;
     Bullet(float x, float y, Tank tank){
-        super(x, y, 10, 30);
+        super(x, y, 30, 10);
         polygon.setRotation(tank.getRotation());
         color = tank.getColor();
         board = tank.board;
