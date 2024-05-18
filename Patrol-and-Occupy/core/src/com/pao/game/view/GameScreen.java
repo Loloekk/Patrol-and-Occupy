@@ -124,7 +124,7 @@ public class GameScreen implements Screen {
             painterGame.draw(new TextureRegion(text.getPlateTexture(plate.getColor())), plate);
         }
         for(Params obstacle : VM.getObstacles()) {
-            painterGame.draw(new TextureRegion(text.getObstacleTexture()),obstacle,1);
+            painterGame.draw(new TextureRegion(text.getObstacleTexture()),obstacle,1.03f);
             //game.batch.draw(textureRegion,X-H/2,Y-W/2,H/2,W/2,H,W,1,1,obstacle.getRotation());
             //game.batch.draw(texture,X-H/2,Y-W/2,H/2,W/2,H,W,1,1,obstacle.getRotation(),0,0,texture.getWidth(), texture.getHeight(), false, false);
         }
@@ -134,7 +134,7 @@ public class GameScreen implements Screen {
             //game.batch.draw(texture,X-H/2,Y-W/2,H/2,W/2,H,W,1,1,bullet.getRotation(),0,0,texture.getWidth(), texture.getHeight(), false, false);
         }
         for(ColoredParams tank : VM.getTanks()) {
-            painterGame.draw(new TextureRegion(text.getTankTexture(tank.getColor())),tank,1);
+            painterGame.draw(new TextureRegion(text.getTankTexture(tank.getColor())),tank,1.03f);
             //game.batch.draw(region, X-H/2,Y-W/2,H/2,W/2,H+5,W,1,1,tank.getRotation());
             //game.batch.draw(texture,X-H/2,Y-W/2,H/2,W/2,H+5,W,1,1,tank.getRotation(),0,0,texture.getWidth(), texture.getHeight(), false, false);
         }
