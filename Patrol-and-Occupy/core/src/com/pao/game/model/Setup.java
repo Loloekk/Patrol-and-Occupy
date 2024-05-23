@@ -2,6 +2,7 @@ package com.pao.game.model;
 
 import com.pao.game.viewmodel.ColoredParams;
 import com.pao.game.viewmodel.MyColor;
+import com.pao.game.viewmodel.Params;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,7 @@ public class Setup {
         {
             List<Plate> plateList = new ArrayList<>();
 
-            List<Obstacle> obstacleList = new ArrayList<>();
+            List<Params> obstacleList = new ArrayList<>();
 
             final float off = 200;
             List<ColoredParams> tankParamsList = new ArrayList<>();
@@ -34,7 +35,7 @@ public class Setup {
             plateList.add(new Plate(1500, 300));
             plateList.add(new Plate(450, 900));
 
-            List<Obstacle> obstacleList = new ArrayList<>();
+            List<Params> obstacleList = new ArrayList<>();
             obstacleList.addAll(Obstacle.rectangleObstacle(400, 700, 50, 2, 6, 30));
             obstacleList.addAll(Obstacle.rectangleObstacle(400, 400, 50, 4, 1, 0));
             obstacleList.addAll(Obstacle.rectangleObstacle(1000, 200, 50, 1, 5, 0));
@@ -55,7 +56,7 @@ public class Setup {
             List<Plate> plateList = new ArrayList<>();
             plateList.add(new Plate(300, 200));
 
-            List<Obstacle> obstacleList = new ArrayList<>();
+            List<Params> obstacleList = new ArrayList<>();
             obstacleList.addAll(Obstacle.rectangleObstacle(500, 500, 80, 1, 5, 0));
             obstacleList.addAll(Obstacle.rectangleObstacle(1000, 200, 80, 5, 1, 0));
             obstacleList.addAll(Obstacle.rectangleObstacle(1300, 800, 80, 1, 3, 0));
@@ -75,7 +76,7 @@ public class Setup {
             List<Plate> plateList = new ArrayList<>();
             plateList.add(new Plate(300, 200));
 
-            List<Obstacle> obstacleList = new ArrayList<>();
+            List<Params> obstacleList = new ArrayList<>();
             obstacleList.addAll(Obstacle.rectangleObstacle((float) width /2, (float) height /2, 500, 1, 1, 0));
 
             final float off = 200;
@@ -88,11 +89,11 @@ public class Setup {
             setupList.add(new Setup(tankParamsList, obstacleList, plateList));
         }
     }
-    List<Obstacle> obstacleList;
+    List<Params> obstacleList;
     List<Plate> plateList;
     List<ColoredParams> tankParamsList;
 
-    public Setup(List<ColoredParams> tankParamsList, List<Obstacle> obstacleList, List<Plate> plateList){
+    public Setup(List<ColoredParams> tankParamsList, List<Params> obstacleList, List<Plate> plateList){
         this.tankParamsList = tankParamsList;
         this.obstacleList = obstacleList;
         this.plateList = plateList;
@@ -101,7 +102,7 @@ public class Setup {
         if(plateList==null) this.plateList = new ArrayList<>();
     }
 
-    public List<Obstacle> getObstacleList(){
+    public List<Params> getObstacleList(){
         return obstacleList;
     }
     public List<Plate> getPlateList() { return plateList; }

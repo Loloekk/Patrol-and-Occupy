@@ -1,24 +1,25 @@
 package com.pao.game.model;
 
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.World;
+import com.pao.game.viewmodel.Params;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Obstacle extends GameObject{
-    public Obstacle(float x, float y, float width, float height) {
-        super(x, y, width, height);
+public class Obstacle extends BodyGameObject {
+    public Obstacle(float x, float y, float width, float height, float degree, World world) {
+        super(x, y, width, height, degree, BodyDef.BodyType.StaticBody, world, 1f, false);
     }
-    public static List<Obstacle> rectangleObstacle(float x, float y, float side, int numberOfRows, int numberOfColumns, float degrees) {
-        List<Obstacle> obstacleList = new ArrayList<>();
+    public static List<Params> rectangleObstacle(float x, float y, float side, int numberOfRows, int numberOfColumns, float degree) {
+        List<Params> obstacleList = new ArrayList<>();
         float y1 = y - (numberOfRows - 1) / 2.0f * side;
         for(int i = 0; i < numberOfRows; i++) {
             float x1 = x - (numberOfColumns - 1) / 2.0f * side;
             for(int j = 0; j < numberOfColumns; j++) {
-                Obstacle obstacle = new Obstacle(x1, y1, side, side);
-                obstacle.polygon.translate(x-x1, y-y1);
-                obstacle.polygon.rotate(degrees);
-                obstacle.polygon.translate((x1-x) * MathUtils.cos(degrees * MathUtils.degreesToRadians) - (y1-y) * MathUtils.sin(degrees * MathUtils.degreesToRadians), (x1-x) * MathUtils.sin(degrees * MathUtils.degreesToRadians) + (y1-y) * MathUtils.cos(degrees * MathUtils.degreesToRadians));
+                Params obstacle = new Params(side, side, x + (x1-x) * MathUtils.cos(degree * MathUtils.degreesToRadians) - (y1-y) * MathUtils.sin(degree * MathUtils.degreesToRadians),
+                                            y + (x1-x) * MathUtils.sin(degree * MathUtils.degreesToRadians) + (y1-y) * MathUtils.cos(degree * MathUtils.degreesToRadians), degree);
                 obstacleList.add(obstacle);
                 x1 += side;
             }

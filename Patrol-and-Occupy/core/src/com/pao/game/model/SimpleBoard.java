@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.badlogic.gdx.physics.box2d.World;
 import com.pao.game.viewmodel.*;
 
 public class SimpleBoard implements Board {
@@ -21,7 +22,7 @@ public class SimpleBoard implements Board {
         remainingTime = 60;
     }
 
-    public SimpleBoard(int width, int height, List<MyColor> players, Setup setup){
+    public SimpleBoard(int width, int height, List<MyColor> players, Setup setup, World world){
         this(width, height);
         // Add players tanks
         for(MyColor color : players){
@@ -29,7 +30,7 @@ public class SimpleBoard implements Board {
             for(ColoredParams tankParams : setup.getTankParamsList()){
                 if(tankParams.getColor() == color){
                     foundColor = true;
-                    tankList.add(new Tank(tankParams.getX(), tankParams.getY(), color, this));
+                    tankList.add(new Tank(tankParams.getX(), tankParams.getY(), color, this, world));
                     break;
                 }
             }
@@ -37,7 +38,10 @@ public class SimpleBoard implements Board {
                 throw new RuntimeException("Setup does not contain info about all players");
         }
         // Add obstacles
-        obstacleList.addAll(setup.getObstacleList());
+        for(Params obstacleParams : setup.getObstacleList()) {
+            obstacleList.add(new Obstacle(obstacleParams.getX(), obstacleParams.getY(), obstacleParams.getWidht(), obstacleParams.getHeight(), obstacleParams.getRotation(), world));
+        }
+        // Add plates
         plateList.addAll(setup.getPlateList());
     }
 

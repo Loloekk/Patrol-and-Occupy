@@ -5,25 +5,20 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.pao.game.model.*;
 import com.pao.game.viewmodel.*;
-import com.pao.game.viewmodel.MyColor.*;
-import com.pao.game.viewmodel.*;
-import com.sun.java.accessibility.util.SwingEventMonitor;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.pao.game.model.Constants.PPM;
 
 
 public class GameScreen implements Screen {
@@ -44,8 +39,8 @@ public class GameScreen implements Screen {
     public GameScreen(final Drop game,int n,ViewModel VM){
         this.game=game;
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, Drop.WIDTH,Drop.HEIGHT);
-        viewport = new ExtendViewport(Drop.WIDTH,Drop.HEIGHT,camera);
+        camera.setToOrtho(false, Drop.WIDTH/PPM,Drop.HEIGHT/PPM);
+        viewport = new ExtendViewport(Drop.WIDTH/PPM,Drop.HEIGHT/PPM,camera);
         this.VM=VM;
         players = new ArrayList<>();
         List<MyColor> colors = MyColor.getColorList(n);
@@ -93,6 +88,7 @@ public class GameScreen implements Screen {
                 VM.setMove(player.getColor(), Move.B,false);
             }
             if(Gdx.input.isKeyPressed(player.getLeft()) == false && player.getLetLastStateLeft()){
+                System.out.println("nie");
                 player.setLastStateLeft(false);
                 VM.setMove(player.getColor(), Move.L,false);
             }

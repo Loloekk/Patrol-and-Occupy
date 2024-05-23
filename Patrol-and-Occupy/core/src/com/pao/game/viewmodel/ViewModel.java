@@ -1,24 +1,24 @@
 package com.pao.game.viewmodel;
 
+import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.pao.game.model.*;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import static com.pao.game.viewmodel.Move.F;
-import static com.pao.game.viewmodel.Move.L;
-import static com.pao.game.viewmodel.Move.R;
-import static com.pao.game.viewmodel.Move.B;
+import static com.pao.game.model.Constants.*;
+
 
 public class ViewModel implements Runnable{
     Board board;
+    World world;
     public ViewModel(int width, int height, int n)
     {
-        board = new SimpleBoard(width,height, MyColor.getColorList(n), Setup.setupList.get(1));
+        world = new World(GRAVITY, true);
+        BodyCreator.setEdges(0,0, width, height, world);
+        board = new SimpleBoard(width,height, MyColor.getColorList(n), Setup.setupList.get(1), world);
     }
     public void setMove(MyColor color,Move move, boolean state)
     {
@@ -68,6 +68,7 @@ public class ViewModel implements Runnable{
             //System.out.println(lastTimeUpdate);
             double currentTime = ((double) TimeUtils.millis())/1000d;
             board.update((float)(currentTime - lastTimeUpdate));
+            world.step((float)(currentTime - lastTimeUpdate), VELOCITY_ITERATION, POSITION_ITERATION);
             lastTimeUpdate = currentTime;
 
             try {

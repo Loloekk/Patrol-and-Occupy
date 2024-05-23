@@ -3,7 +3,7 @@ package com.pao.game.model;
 import com.badlogic.gdx.math.MathUtils;
 import com.pao.game.viewmodel.*;
 
-public class Bullet extends GameObject{
+public class Bullet extends PolygonGameObject {
     Board board;
     MyColor color;
     Bullet(float x, float y, Tank tank){
@@ -13,7 +13,7 @@ public class Bullet extends GameObject{
         board = tank.board;
     }
     public void update(float t){
-        final float speed = 550f;
+        final float speed = 700f;
         float angle = polygon.getRotation() * MathUtils.degreesToRadians;
         float dx = MathUtils.cos(angle) * speed * t;
         float dy = MathUtils.sin(angle) * speed * t;
