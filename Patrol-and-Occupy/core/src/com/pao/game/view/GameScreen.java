@@ -88,7 +88,6 @@ public class GameScreen implements Screen {
                 VM.setMove(player.getColor(), Move.B,false);
             }
             if(Gdx.input.isKeyPressed(player.getLeft()) == false && player.getLetLastStateLeft()){
-                System.out.println("nie");
                 player.setLastStateLeft(false);
                 VM.setMove(player.getColor(), Move.L,false);
             }
