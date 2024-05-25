@@ -76,7 +76,7 @@ public class SettingsScreen implements Screen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 float value = slider.getValue();
-                //VM.setOption(o, value);
+                VM.setOption(o, value);
                 System.out.println(value);
             }
         });
