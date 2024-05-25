@@ -16,15 +16,10 @@ public class Drop extends Game {
         //Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
         //System.out.println(Gdx.graphics.getWidth()+" "+Gdx.graphics.getHeight());
         batch = new SpriteBatch();
-        int n = 2;
         //font = new BitmapFont();
-        ViewModel VM = new ViewModel(1920,1080,n);
-        Thread thread = new Thread(VM);
-        thread.setDaemon(true);
-        thread.start();
 //        tmp = new GameScreen(this,n,VM);
 //        this.setScreen(tmp);
-        this.setScreen(new MainMenuScreen(this, n, VM));
+        this.setScreen(new MainMenuScreen(this));
     }
 
     public void render() {

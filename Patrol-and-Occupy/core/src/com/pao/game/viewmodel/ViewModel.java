@@ -1,24 +1,36 @@
 package com.pao.game.viewmodel;
 
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.utils.TimeUtils;
 import com.pao.game.model.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import static com.pao.game.model.Constants.*;
 
 
-public class ViewModel implements Runnable{
+public class ViewModel{
     Board board;
     World world;
-    public ViewModel(int width, int height, int n)
+    ModelSettings settings;
+    public ViewModel(int n)
+    {
+        settings = new ModelSettings();
+    }
+
+    public void start()
     {
         world = new World(GRAVITY, true);
-        BodyCreator.setEdges(0,0, width, height, world);
-        board = new SimpleBoard(width,height, MyColor.getColorList(n), Setup.setupList.get(1), world);
+        BodyCreator.setEdges(0,0, settings.getWidth(), settings.getHeight(), world);
+        board = new SimpleBoard(settings, world);
+    }
+    public void setOption(Options o, float state)
+    {
+        settings.setOption(o,state);
+    }
+    public void setOption(Options o, int state)
+    {
+        settings.setOption(o,state);
     }
     public void setMove(MyColor color,Move move, boolean state)
     {
@@ -61,21 +73,5 @@ public class ViewModel implements Runnable{
     {
         return board.getRemainingTime();
     }
-    public void run()
-    {
-        double lastTimeUpdate = ((double) TimeUtils.millis())/1000d;
-        while(true){
-            //System.out.println(lastTimeUpdate);
-            double currentTime = ((double) TimeUtils.millis())/1000d;
-            board.update((float)(currentTime - lastTimeUpdate));
-            world.step((float)(currentTime - lastTimeUpdate), VELOCITY_ITERATION, POSITION_ITERATION);
-            lastTimeUpdate = currentTime;
-
-            try {
-                TimeUnit.MILLISECONDS.sleep(10);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
-    }
+    public void update(float time) {board.update(time);}
 }
