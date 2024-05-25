@@ -1,7 +1,5 @@
 package com.pao.game.model;
 
-import com.pao.game.viewmodel.MyColor;
-
 public class Plate extends PolygonGameObject {
     MyColor color;
     public Plate(float x, float y) {

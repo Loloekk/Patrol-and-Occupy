@@ -3,14 +3,13 @@ package com.pao.game.model;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.World;
-import com.pao.game.viewmodel.*;
 import com.badlogic.gdx.math.MathUtils;
 
 public class Tank extends BodyGameObject {
     MyColor color;
     Board board;
     Magazine magazine;
-    float rideForwardSpeed = 8f;
+    float rideForwardSpeed;
     float rideBackwardsSpeed = 6f;
     float rotateSpeed = 4f;
     boolean moveForwardState;
@@ -21,13 +20,17 @@ public class Tank extends BodyGameObject {
     boolean isAlive;
     float lastShoot;
 
+    ModelSettings settings;
 
-    public Tank(float x, float y, MyColor color, Board board, World world) {
+    public Tank(float x, float y, MyColor color, Board board, World world, ModelSettings settings) {
         super(x, y, 70, 60, 0, BodyDef.BodyType.DynamicBody, world, 1f, false);
+        this.settings = settings;
         this.color = color;
         this.board = board;
         this.isAlive = true;
-        this.magazine = new Magazine();
+        this.magazine = new Magazine(settings);
+        rideForwardSpeed = settings.getTankSpeed();
+        rideBackwardsSpeed = settings.getTankSpeed()/4*3;
     }
 
     public void setMoveForwardState(boolean state) {
@@ -67,7 +70,7 @@ public class Tank extends BodyGameObject {
             float angle = getRotation() * MathUtils.degreesToRadians;
             float x = getX() + MathUtils.cos(angle) * getHeight()/2;
             float y = getY() + MathUtils.sin(angle) * getHeight()/2;
-            board.addBullet(new Bullet(x, y, this));
+            board.addBullet(new Bullet(x, y, this,settings));
         }
 
         Vector2 vel = body.getLinearVelocity();

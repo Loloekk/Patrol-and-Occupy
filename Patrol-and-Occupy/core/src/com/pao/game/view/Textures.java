@@ -5,9 +5,8 @@ import com.badlogic.gdx.graphics.Texture;
 
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
-import com.pao.game.viewmodel.MyColor;
+import com.pao.game.model.MyColor;
 
 public class Textures {
     Map<MyColor, Texture> tanks;

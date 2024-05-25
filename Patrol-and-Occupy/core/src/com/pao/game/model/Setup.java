@@ -1,7 +1,6 @@
 package com.pao.game.model;
 
 import com.pao.game.viewmodel.ColoredParams;
-import com.pao.game.viewmodel.MyColor;
 import com.pao.game.viewmodel.Params;
 
 import java.util.ArrayList;

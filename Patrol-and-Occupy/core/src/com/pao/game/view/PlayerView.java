@@ -1,6 +1,6 @@
 package com.pao.game.view;
 
-import com.pao.game.viewmodel.MyColor;
+import com.pao.game.model.MyColor;
 
 public class PlayerView {
     MyColor color;

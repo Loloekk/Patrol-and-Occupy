@@ -7,12 +7,14 @@ public class Magazine {
     private float receiveCooldown;
     private float lastShoot;
     private float lastReceive;
+    ModelSettings settings;
 
-    public Magazine(){
-        capacity = 5;
-        quantity = 5;
-        shotCooldown = 0.5f;
-        receiveCooldown = 2f;
+    public Magazine(ModelSettings settings){
+        this.settings = settings;
+        capacity = settings.getMagazineCapacity();
+        quantity = capacity;
+        shotCooldown = settings.getShootCooldown();
+        receiveCooldown = settings.getReceiveCooldown();
         lastShoot = Float.MAX_VALUE;
         lastReceive = Float.MAX_VALUE;
     }

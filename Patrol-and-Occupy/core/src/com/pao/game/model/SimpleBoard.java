@@ -34,7 +34,7 @@ public class SimpleBoard implements Board {
             for(ColoredParams tankParams : setup.getTankParamsList()){
                 if(tankParams.getColor() == color){
                     foundColor = true;
-                    tankList.add(new Tank(tankParams.getX(), tankParams.getY(), color, this, world));
+                    tankList.add(new Tank(tankParams.getX(), tankParams.getY(), color, this, world,settings));
                     break;
                 }
             }
