@@ -8,11 +8,14 @@ import java.util.Iterator;
 import java.util.Map;
 import com.pao.game.model.MyColor;
 
+import javax.swing.plaf.TextUI;
+
 public class Textures {
     Map<MyColor, Texture> tanks;
     Texture bullet;
     Texture obstacle;
     Map<MyColor, Texture> plates;
+    Texture dynamite;
     public Textures(int n)
     {
         tanks = new HashMap<>();
@@ -33,6 +36,7 @@ public class Textures {
             if(color == MyColor.G) plates.put(color,new Texture(Gdx.files.internal("plate_green.png")));
             if(color == MyColor.Y) plates.put(color,new Texture(Gdx.files.internal("plate_yellow.png")));
         }
+        dynamite = new Texture(Gdx.files.internal("dynamite.jpeg"));
     }
     public Texture getTankTexture(MyColor color)
     {
@@ -40,13 +44,15 @@ public class Textures {
     }
     public Texture getBulletTexture() { return bullet; }
     public Texture getObstacleTexture() { return obstacle; }
-    public Texture getPlateTexture(MyColor color) {return plates.get(color); }
+    public Texture getPlateTexture(MyColor color) { return plates.get(color); }
+    public Texture getDynamiteTexture() { return dynamite; }
     public void dispose() {
-        Iterator itr = tanks.values().iterator();
-        while(itr.hasNext()){
-            ((Texture) itr.next()).dispose();
-        }
+        for (Texture texture : tanks.values())
+            texture.dispose();
+        for (Texture texture : plates.values())
+            texture.dispose();
         bullet.dispose();
         obstacle.dispose();
+        dynamite.dispose();
     }
 }

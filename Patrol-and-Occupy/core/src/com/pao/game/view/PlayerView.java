@@ -9,11 +9,13 @@ public class PlayerView {
     int left;
     int right;
     int shoot;
+    int placeDynamite;
     boolean lastShoot;
     boolean lastStateUp;
     boolean lastStateDown;
     boolean lastStateLeft;
     boolean lastStateRight;
+    boolean lastPlaceDynamite;
     public MyColor getColor(){
         return color;
     }
@@ -47,21 +49,23 @@ public class PlayerView {
     public int getShoot(){
         return shoot;
     }
+    public int getPlaceDynamite(){ return placeDynamite; }
     public void setLastShoot(boolean state){
-        lastShoot= state;
+        lastShoot = state;
     }
     public void setLastStateUp(boolean state){
-        lastStateUp= state;
+        lastStateUp = state;
     }
     public void setLastStateDown(boolean state){
-        lastStateDown= state;
+        lastStateDown = state;
     }
     public void setLastStateLeft(boolean state){
-        lastStateLeft= state;
+        lastStateLeft = state;
     }
     public void setLastStateRight(boolean state){
-        lastStateRight= state;
+        lastStateRight = state;
     }
+    public void setLastPlaceDynamite(boolean state) { lastPlaceDynamite = state; }
     public boolean getLastShoot(){
         return lastShoot;
     }
@@ -77,18 +81,21 @@ public class PlayerView {
     public boolean getLastStateRight(){
         return lastStateRight;
     }
-    public PlayerView(MyColor color, int up,int down,int left,int right, int shot)
+    public boolean getLastPlaceDynamite(){ return lastPlaceDynamite; }
+    public PlayerView(MyColor color, int up,int down,int left,int right, int shot, int placeDynamite)
     {
         this.color =color;
-        this.up=up;
-        this.down=down;
-        this.left=left;
-        this.right=right;
-        this.shoot=shot;
+        this.up = up;
+        this.down = down;
+        this.left = left;
+        this.right = right;
+        this.shoot = shot;
+        this.placeDynamite = placeDynamite;
         lastStateDown = false;
         lastStateUp = false;
         lastStateLeft = false;
         lastStateRight = false;
         lastShoot = false;
+        lastPlaceDynamite = false;
     }
 }

@@ -138,6 +138,9 @@ public class SimpleBoard implements Board {
             case S:
                 tank.setMakeShoot(value);
                 break;
+            case P:
+                tank.setPlaceDynamite(value);
+                break;
         }
     }
 

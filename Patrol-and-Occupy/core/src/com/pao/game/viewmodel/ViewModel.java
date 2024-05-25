@@ -58,6 +58,16 @@ public class ViewModel{
         }
         return platesParamsList;
     }
+    public List<Params> getDynamites() {
+        List<Params> dynamitesParamsList = new ArrayList<>();
+        for(Dynamite dynamite : board.getDynamiteList())
+        {
+            dynamitesParamsList.add(new Params(dynamite.getWidth(), dynamite.getHeight(), dynamite.getX(), dynamite.getY(), dynamite.getRotation()));
+        }
+        System.out.println("Size1:" + board.getDynamiteList().size());
+        System.out.println("Size2:" + dynamitesParamsList.size());
+        return dynamitesParamsList;
+    }
     public float getRemainingTime()
     {
         return board.getRemainingTime();

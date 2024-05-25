@@ -7,8 +7,9 @@ public class Dynamite extends BodyGameObject {
     ModelSettings settings;
 
     public Dynamite(float x, float y, Tank tank, ModelSettings settings) {
-        super(x, y, 40, 40, tank.getRotation(), BodyDef.BodyType.DynamicBody, tank.body.getWorld(), 0.2f, false);
+        super(x, y, 40, 40, 0, BodyDef.BodyType.DynamicBody, tank.body.getWorld(), 0.7f, false);
         this.settings = settings;
+        this.board = tank.board;
     }
 
     public void destroy() {
@@ -19,7 +20,7 @@ public class Dynamite extends BodyGameObject {
         // Boom, destroys every tank in given range
         for (Tank tank : board.getTankList()) {
             double distance = Math.sqrt( (this.getX()-tank.getX()) * (this.getX()-tank.getX()) + (this.getY()-tank.getY()) * (this.getY()-tank.getY()) );
-            if(distance <= 100){
+            if(distance <= 300){
                 tank.setIsAlive(false);
             }
         }

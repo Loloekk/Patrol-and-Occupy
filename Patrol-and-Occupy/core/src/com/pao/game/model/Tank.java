@@ -49,6 +49,7 @@ public class Tank extends BodyGameObject {
     public void setMakeShoot(boolean state) {
         makeShoot = state;
     }
+    public void setPlaceDynamite(boolean state) { placeDynamite = state; }
     public void setIsAlive(boolean state) {
         isAlive = state;
     }
@@ -75,10 +76,10 @@ public class Tank extends BodyGameObject {
 
         if(placeDynamite) {
             float angle = getRotation() * MathUtils.degreesToRadians;
-            float x = getX() - MathUtils.cos(angle) * getHeight()/2;
-            float y = getY() - MathUtils.sin(angle) * getHeight()/2;
+            float x = getX() - MathUtils.cos(angle) * getHeight();
+            float y = getY() - MathUtils.sin(angle) * getHeight();
             Dynamite dynamite = new Dynamite(x, y, this, settings);
-            if(!board.checkBoardCollision(dynamite) && !board.checkObstacleCollision(dynamite) && !board.checkDynamiteCollision(dynamite) && !board.checkTankCollision(dynamite))
+//            if(!board.checkBoardCollision(dynamite) && !board.checkObstacleCollision(dynamite) && !board.checkDynamiteCollision(dynamite) && !board.checkTankCollision(dynamite) && !board.checkBoardCollision(dynamite))
                 board.addDynamite(dynamite);
         }
 

@@ -50,8 +50,8 @@ public class GameScreen implements Screen {
         this.VM = new ViewModel(ES);
         players = new ArrayList<>();
         List<MyColor> colors = MyColor.getColorList(ES.getNumberOfPlayers());
-        if(ES.getNumberOfPlayers()>=1)players.add(new PlayerView(colors.get(0), Input.Keys.UP,Input.Keys.DOWN,Input.Keys.LEFT,Input.Keys.RIGHT,Input.Keys.CONTROL_RIGHT));
-        if(ES.getNumberOfPlayers()>=2)players.add(new PlayerView(colors.get(1), Input.Keys.W,Input.Keys.S,Input.Keys.A,Input.Keys.D,Input.Keys.SPACE));
+        if(ES.getNumberOfPlayers()>=1)players.add(new PlayerView(colors.get(0), Input.Keys.UP,Input.Keys.DOWN,Input.Keys.LEFT,Input.Keys.RIGHT,Input.Keys.CONTROL_RIGHT,Input.Keys.SLASH));
+        if(ES.getNumberOfPlayers()>=2)players.add(new PlayerView(colors.get(1), Input.Keys.W,Input.Keys.S,Input.Keys.A,Input.Keys.D,Input.Keys.SPACE,Input.Keys.E));
         text = new Textures(ES.getNumberOfPlayers());
 
         font = new BitmapFont();
@@ -110,6 +110,15 @@ public class GameScreen implements Screen {
                 player.setLastShoot(false);
                 VM.setMove(player.getColor(),Move.S,false);
             }
+            if(Gdx.input.isKeyPressed(player.getPlaceDynamite())&& player.getLastPlaceDynamite()==false){
+                player.setLastPlaceDynamite(true);
+                VM.setMove(player.getColor(),Move.P,true);
+            }
+            if(Gdx.input.isKeyPressed(player.getPlaceDynamite())==false&& player.getLastPlaceDynamite()){
+                player.setLastPlaceDynamite(false);
+                VM.setMove(player.getColor(),Move.P,false);
+            }
+
         }
 
         //camera.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
@@ -145,6 +154,9 @@ public class GameScreen implements Screen {
             painterGame.draw(new TextureRegion(text.getTankTexture(tank.getColor())),tank,1.03f);
             //game.batch.draw(region, X-H/2,Y-W/2,H/2,W/2,H+5,W,1,1,tank.getRotation());
             //game.batch.draw(texture,X-H/2,Y-W/2,H/2,W/2,H+5,W,1,1,tank.getRotation(),0,0,texture.getWidth(), texture.getHeight(), false, false);
+        }
+        for(Params dynamite : VM.getDynamites()) {
+            painterGame.draw(new TextureRegion(text.getDynamiteTexture()),dynamite);
         }
         int elapsedSeconds = (int) VM.getRemainingTime();
         font.draw(game.batch, "Czas: " + elapsedSeconds, 900, 1000);
