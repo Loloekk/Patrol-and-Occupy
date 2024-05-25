@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.MathUtils;
 public class Tank extends BodyGameObject {
     MyColor color;
     Board board;
+    Magazine magazine;
     float rideForwardSpeed = 8f;
     float rideBackwardsSpeed = 6f;
     float rotateSpeed = 4f;
@@ -20,12 +21,13 @@ public class Tank extends BodyGameObject {
     boolean isAlive;
     float lastShoot;
 
+
     public Tank(float x, float y, MyColor color, Board board, World world) {
         super(x, y, 70, 60, 0, BodyDef.BodyType.DynamicBody, world, 1f, false);
         this.color = color;
         this.board = board;
         this.isAlive = true;
-        lastShoot = 1000000;
+        this.magazine = new Magazine();
     }
 
     public void setMoveForwardState(boolean state) {
@@ -58,10 +60,10 @@ public class Tank extends BodyGameObject {
             body.setLinearVelocity(new Vector2(0f,0f));
             return;
         }
-        lastShoot += time;
-        if(makeShoot&&lastShoot >= 0.5)
+        magazine.update(time);
+
+        if(makeShoot&& magazine.shoot())
         {
-            lastShoot=0;
             float angle = getRotation() * MathUtils.degreesToRadians;
             float x = getX() + MathUtils.cos(angle) * getHeight()/2;
             float y = getY() + MathUtils.sin(angle) * getHeight()/2;
@@ -70,10 +72,20 @@ public class Tank extends BodyGameObject {
 
         Vector2 vel = body.getLinearVelocity();
         if(moveLeftState && !moveRightState) {                   //rotate left
-            body.setAngularVelocity(rotateSpeed);
+            if(moveBackwardsState && !moveForwardState){
+                body.setAngularVelocity(-rotateSpeed);
+            }
+            else {
+                body.setAngularVelocity(rotateSpeed);
+            }
         }
         else if(!moveLeftState && moveRightState) {              //rotate right
-            body.setAngularVelocity(-rotateSpeed);
+            if(moveBackwardsState && !moveForwardState){
+                body.setAngularVelocity(rotateSpeed);
+            }
+            else {
+                body.setAngularVelocity(-rotateSpeed);
+            }
         }
         else {
             body.setAngularVelocity(0.0f);
