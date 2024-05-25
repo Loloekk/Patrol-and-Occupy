@@ -1,4 +1,4 @@
-package com.pao.game.viewmodel;
+package com.pao.game.Communication;
 
 public class Params {
     float widht;

@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.Set;
 
 import com.badlogic.gdx.physics.box2d.World;
-import com.pao.game.viewmodel.*;
+import com.pao.game.Communication.ColoredParams;
+import com.pao.game.Communication.Move;
+import com.pao.game.Communication.Params;
 
 public class SimpleBoard implements Board {
     List<Tank> tankList = new ArrayList<>();
@@ -30,7 +32,7 @@ public class SimpleBoard implements Board {
         // Add players tanks
         Setup setup = Setup.getSetupList().get(settings.getMap());
 
-        for(MyColor color : MyColor.getColorList(settings.getNumberOfPlayers())){
+        for(ModelPlayer color : ModelPlayer.getColorList(settings.getNumberOfPlayers())){
             boolean foundColor = false;
             for(ColoredParams tankParams : setup.getTankParamsList()){
                 if(tankParams.getColor() == color){
@@ -101,7 +103,7 @@ public class SimpleBoard implements Board {
 
         // Color the plates
         for(Plate plate : plateList) {
-            List<MyColor> colorsSet = new ArrayList<>();
+            List<ModelPlayer> colorsSet = new ArrayList<>();
             for(Tank tank : tankList) {
                 if(tank.getIsAlive() && plate.intersects(tank)) colorsSet.add(tank.getColor());
             }
@@ -114,7 +116,7 @@ public class SimpleBoard implements Board {
             dynamite.destroy();
     }
 
-    public void setmove(MyColor color, Move move, boolean value) {
+    public void setmove(ModelPlayer color, Move move, boolean value) {
         Tank tank = null;
         for (Tank t : tankList) {
             if (color == t.getColor()) {

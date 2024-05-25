@@ -1,9 +1,9 @@
 package com.pao.game.view;
 
-import com.pao.game.model.MyColor;
+import com.pao.game.model.ModelPlayer;
 
 public class PlayerView {
-    MyColor color;
+    ModelPlayer color;
     int up;
     int down;
     int left;
@@ -16,7 +16,7 @@ public class PlayerView {
     boolean lastStateLeft;
     boolean lastStateRight;
     boolean lastPlaceDynamite;
-    public MyColor getColor(){
+    public ModelPlayer getColor(){
         return color;
     }
     public void setUp(int value){
@@ -82,7 +82,7 @@ public class PlayerView {
         return lastStateRight;
     }
     public boolean getLastPlaceDynamite(){ return lastPlaceDynamite; }
-    public PlayerView(MyColor color, int up,int down,int left,int right, int shot, int placeDynamite)
+    public PlayerView(ModelPlayer color, int up, int down, int left, int right, int shot, int placeDynamite)
     {
         this.color =color;
         this.up = up;

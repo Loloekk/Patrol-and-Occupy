@@ -8,6 +8,7 @@ public class ModelSettings {
     private int height;
     private float tankSpeed;
     private float bulletSpeed;
+    private float rotateSpeed;
     private int magazineCapacity;
     private float shootCooldown;
     private float receiveCooldown;
@@ -20,6 +21,7 @@ public class ModelSettings {
         height = 954;
         tankSpeed = 8f;
         bulletSpeed = 700f;
+        rotateSpeed = 4f;
         magazineCapacity = 5;
         shootCooldown = 0.2f;
         receiveCooldown = 2f;
@@ -40,6 +42,9 @@ public class ModelSettings {
                 break;
             case bulletSpeed:
                 this.bulletSpeed = state;
+                break;
+            case rotateSpeed:
+                this.rotateSpeed = state;
                 break;
             case magazineCapacity:
                 this.magazineCapacity = (int)state;
@@ -69,6 +74,9 @@ public class ModelSettings {
             case bulletSpeed:
                 this.bulletSpeed = (float)state;
                 break;
+            case rotateSpeed:
+                this.rotateSpeed = (float)state;
+                break;
             case magazineCapacity:
                 this.magazineCapacity = state;
                 break;
@@ -93,6 +101,7 @@ public class ModelSettings {
     public int getMap(){return map;}
     public float getTankSpeed(){return tankSpeed ;}
     public float getBulletSpeed(){return bulletSpeed;}
+    public float getRotateSpeed(){return rotateSpeed;}
     public int getMagazineCapacity(){return magazineCapacity;}
     public float getShootCooldown(){return shootCooldown;}
     public float getReceiveCooldown(){return receiveCooldown;}

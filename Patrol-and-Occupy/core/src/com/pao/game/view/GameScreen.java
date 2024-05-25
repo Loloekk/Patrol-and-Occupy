@@ -13,7 +13,10 @@ import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.pao.game.model.MyColor;
+import com.pao.game.Communication.ColoredParams;
+import com.pao.game.Communication.Move;
+import com.pao.game.Communication.Params;
+import com.pao.game.model.ModelPlayer;
 import com.pao.game.viewmodel.*;
 import com.pao.game.viewmodel.EditSettings;
 
@@ -49,7 +52,7 @@ public class GameScreen implements Screen {
         viewport = new ExtendViewport(Drop.WIDTH/PPM,Drop.HEIGHT/PPM,camera);
         this.VM = new ViewModel(ES);
         players = new ArrayList<>();
-        List<MyColor> colors = MyColor.getColorList(ES.getNumberOfPlayers());
+        List<ModelPlayer> colors = ModelPlayer.getColorList(ES.getNumberOfPlayers());
         if(ES.getNumberOfPlayers()>=1)players.add(new PlayerView(colors.get(0), Input.Keys.UP,Input.Keys.DOWN,Input.Keys.LEFT,Input.Keys.RIGHT,Input.Keys.CONTROL_RIGHT,Input.Keys.SLASH));
         if(ES.getNumberOfPlayers()>=2)players.add(new PlayerView(colors.get(1), Input.Keys.W,Input.Keys.S,Input.Keys.A,Input.Keys.D,Input.Keys.SPACE,Input.Keys.E));
         text = new Textures(ES.getNumberOfPlayers());

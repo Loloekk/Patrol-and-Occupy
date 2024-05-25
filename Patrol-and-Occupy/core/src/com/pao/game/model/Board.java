@@ -1,6 +1,7 @@
 package com.pao.game.model;
 
-import com.pao.game.viewmodel.*;
+import com.pao.game.Communication.Move;
+
 import java.util.List;
 
 public interface Board {
@@ -9,7 +10,7 @@ public interface Board {
     void setRemainingTime(float time);
     void addRemainingTime(float time);
     float getRemainingTime();
-    void setmove(MyColor color, Move move, boolean value);
+    void setmove(ModelPlayer color, Move move, boolean value);
     boolean checkBoardCollision(GameObject gameObject);
     boolean checkBulletCollision(GameObject gameObject);
     boolean checkTankCollision(GameObject gameObject);

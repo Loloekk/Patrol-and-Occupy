@@ -1,11 +1,10 @@
 package com.pao.game.model;
 
-import com.badlogic.gdx.graphics.g3d.Model;
 import com.badlogic.gdx.math.MathUtils;
 
 public class Bullet extends PolygonGameObject {
     Board board;
-    MyColor color;
+    ModelPlayer color;
     ModelSettings settings;
     Bullet(float x, float y, Tank tank,ModelSettings settings){
         super(x, y, 30, 10);
@@ -28,7 +27,7 @@ public class Bullet extends PolygonGameObject {
             throw new RuntimeException("Bullet is not present in getBulletList()");
         board.getBulletList().remove(this);
     }
-    public MyColor getColor(){
+    public ModelPlayer getColor(){
         return color;
     }
 }

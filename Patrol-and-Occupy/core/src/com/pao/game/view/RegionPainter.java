@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.pao.game.viewmodel.Params;
+import com.pao.game.Communication.Params;
 
 import static com.pao.game.model.Constants.PPM;
 

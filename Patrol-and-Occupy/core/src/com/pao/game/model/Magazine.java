@@ -1,40 +1,34 @@
 package com.pao.game.model;
 
 public class Magazine {
-    private int capacity;
     private int quantity;
-    private float shotCooldown;
-    private float receiveCooldown;
     private float lastShoot;
     private float lastReceive;
     ModelSettings settings;
 
     public Magazine(ModelSettings settings){
         this.settings = settings;
-        capacity = settings.getMagazineCapacity();
-        quantity = capacity;
-        shotCooldown = settings.getShootCooldown();
-        receiveCooldown = settings.getReceiveCooldown();
+        quantity = settings.getMagazineCapacity();
         lastShoot = Float.MAX_VALUE;
         lastReceive = Float.MAX_VALUE;
     }
     public void update(float time){
         lastReceive+=time;
         lastShoot+=time;
-        if(quantity == capacity) {
+        if(quantity == settings.getMagazineCapacity()) {
             lastReceive = 0;
         }
-        if(lastReceive >= receiveCooldown)
+        if(lastReceive >= settings.getReceiveCooldown())
         {
             lastReceive = 0;
-            if(quantity < capacity)
+            if(quantity < settings.getMagazineCapacity())
                 quantity++;
         }
     }
 
     public boolean shoot()
     {
-        if(quantity == 0 || lastShoot < shotCooldown){
+        if(quantity == 0 || lastShoot < settings.getShootCooldown()){
             return false;
         }
         quantity --;

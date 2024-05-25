@@ -1,6 +1,9 @@
 package com.pao.game.viewmodel;
 
 import com.badlogic.gdx.physics.box2d.World;
+import com.pao.game.Communication.ColoredParams;
+import com.pao.game.Communication.Move;
+import com.pao.game.Communication.Params;
 import com.pao.game.model.*;
 
 import java.util.ArrayList;
@@ -21,7 +24,7 @@ public class ViewModel{
         board = new SimpleBoard(settings, world);
     }
 
-    public void setMove(MyColor color,Move move, boolean state)
+    public void setMove(ModelPlayer color, Move move, boolean state)
     {
         board.setmove(color,move,state);
     }
@@ -64,8 +67,8 @@ public class ViewModel{
         {
             dynamitesParamsList.add(new Params(dynamite.getWidth(), dynamite.getHeight(), dynamite.getX(), dynamite.getY(), dynamite.getRotation()));
         }
-        System.out.println("Size1:" + board.getDynamiteList().size());
-        System.out.println("Size2:" + dynamitesParamsList.size());
+        //System.out.println("Size1:" + board.getDynamiteList().size());
+        //System.out.println("Size2:" + dynamitesParamsList.size());
         return dynamitesParamsList;
     }
     public float getRemainingTime()

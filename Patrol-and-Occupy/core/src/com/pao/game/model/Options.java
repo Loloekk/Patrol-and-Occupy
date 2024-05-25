@@ -8,6 +8,7 @@ public enum Options {
     height,
     tankSpeed,
     bulletSpeed,
+    rotateSpeed,
     magazineCapacity,
     shootCooldown,
     receiveCooldown;

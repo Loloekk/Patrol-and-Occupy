@@ -3,7 +3,7 @@ package com.pao.game.model;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.World;
-import com.pao.game.viewmodel.Params;
+import com.pao.game.Communication.Params;
 
 import java.util.ArrayList;
 import java.util.List;

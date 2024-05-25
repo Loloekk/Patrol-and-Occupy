@@ -6,12 +6,13 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.math.MathUtils;
 
 public class Tank extends BodyGameObject {
-    MyColor color;
+    static final int width = 70;
+    static final int height = 60;
+    public static int getSWidth(){return width;}
+    public static int getSHeight(){return height;}
+    ModelPlayer color;
     Board board;
     Magazine magazine;
-    float rideForwardSpeed;
-    float rideBackwardsSpeed = 6f;
-    float rotateSpeed = 4f;
     boolean moveForwardState;
     boolean moveLeftState;
     boolean moveRightState;
@@ -19,19 +20,16 @@ public class Tank extends BodyGameObject {
     boolean makeShoot;
     boolean placeDynamite;
     boolean isAlive;
-    float lastShoot;
 
     ModelSettings settings;
 
-    public Tank(float x, float y, MyColor color, Board board, World world, ModelSettings settings) {
-        super(x, y, 70, 60, 0, BodyDef.BodyType.DynamicBody, world, 1f, false);
+    public Tank(float x, float y, ModelPlayer color, Board board, World world, ModelSettings settings) {
+        super(x, y, width, height, 0, BodyDef.BodyType.DynamicBody, world, 1f, false);
         this.settings = settings;
         this.color = color;
         this.board = board;
         this.isAlive = true;
         this.magazine = new Magazine(settings);
-        rideForwardSpeed = settings.getTankSpeed();
-        rideBackwardsSpeed = settings.getTankSpeed()/4*3;
     }
 
     public void setMoveForwardState(boolean state) {
@@ -53,7 +51,7 @@ public class Tank extends BodyGameObject {
     public void setIsAlive(boolean state) {
         isAlive = state;
     }
-    public MyColor getColor() {
+    public ModelPlayer getColor() {
         return color;
     }
     public boolean getIsAlive() {
@@ -87,24 +85,25 @@ public class Tank extends BodyGameObject {
         Vector2 vel = body.getLinearVelocity();
         if(moveLeftState && !moveRightState) {                   //rotate left
             if(moveBackwardsState && !moveForwardState){
-                body.setAngularVelocity(-rotateSpeed);
+                body.setAngularVelocity(-settings.getRotateSpeed());
             }
             else {
-                body.setAngularVelocity(rotateSpeed);
+                body.setAngularVelocity(settings.getRotateSpeed());
             }
         }
         else if(!moveLeftState && moveRightState) {              //rotate right
             if(moveBackwardsState && !moveForwardState){
-                body.setAngularVelocity(rotateSpeed);
+                body.setAngularVelocity(settings.getRotateSpeed());
             }
             else {
-                body.setAngularVelocity(-rotateSpeed);
+                body.setAngularVelocity(-settings.getRotateSpeed());
             }
         }
         else {
             body.setAngularVelocity(0.0f);
         }
-
+        float rideForwardSpeed = settings.getTankSpeed();
+        float rideBackwardsSpeed = settings.getTankSpeed()/4*3;
         if(moveForwardState && !moveBackwardsState) {            //move forward
             vel.x = rideForwardSpeed * MathUtils.cos(body.getAngle());
             vel.y = rideForwardSpeed * MathUtils.sin(body.getAngle());
