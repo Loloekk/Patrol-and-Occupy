@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -25,23 +27,23 @@ import static com.pao.game.model.Constants.PPM;
 import static com.pao.game.model.Options.*;
 
 public class SettingsScreen implements Screen {
-    static final float BUTTON_WIDTH = 300 / PPM;
-    static final float BUTTON_HEIGHT = 200 / PPM;
-    static final float EXIT_BUTTON_Y = 700 / PPM;
     Drop game;
     Screen previousScreen;
     OrthographicCamera camera;
     EditSettings ES;
     Viewport viewport;
-    Texture exitButtonActive;
-    Texture exitButtonInactive;
-    Rectangle exitButton;
     Vector3 touchPoint;
     RegionPainter painter;
+    BitmapFont font;
     Stage stage;
     Skin skin;
     float sliderWidth = 200f;
     float sliderHeight = 20f;
+    Slider tankSpeedSlider;
+    Slider bulletSpeedSlider;
+    Slider magazineCapacitySlider;
+    Slider shootCooldownSlider;
+    Slider receiveCooldownSlider;
 
     public SettingsScreen(Drop game, EditSettings ES, Screen previousScreen) {
         this.game = game;
@@ -52,20 +54,26 @@ public class SettingsScreen implements Screen {
         viewport = new ExtendViewport(Drop.WIDTH, Drop.HEIGHT, camera);
         touchPoint = new Vector3();
         painter = new RegionPainter(game.batch,0,0,Drop.WIDTH,Drop.HEIGHT,Drop.WIDTH,Drop.HEIGHT,new Color(0.5f,0.4f,0.4f,1));
+        font = new BitmapFont();
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Roboto-Black.ttf"));
+        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameter.size = 20;
+        parameter.color = Color.WHITE;
+        font = generator.generateFont(parameter);
 
         stage = new Stage(viewport);
         Gdx.input.setInputProcessor(stage);
         skin = new Skin(Gdx.files.internal("uiskin.json"));
 
-        Slider tankSpeedSlider = makeSlider(1, 20, 1, false, Drop.WIDTH/2 - sliderWidth*3/2, 600f, tankSpeed);
+        tankSpeedSlider = makeSlider(1, 20, 1, false, Drop.WIDTH/2 - sliderWidth*3/2, 600f, tankSpeed);
         stage.addActor(tankSpeedSlider);
-        Slider bulletSpeedSlider = makeSlider(400, 1000, 50, false, Drop.WIDTH/2 + sliderWidth/2, 600f, bulletSpeed);
+        bulletSpeedSlider = makeSlider(400, 1000, 50, false, Drop.WIDTH/2 + sliderWidth/2, 600f, bulletSpeed);
         stage.addActor(bulletSpeedSlider);
-        Slider magazineCapacitySlider = makeSlider(1, 10, 1, false, Drop.WIDTH/2 - sliderWidth*3/2, 500f, magazineCapacity);
+        magazineCapacitySlider = makeSlider(1, 11, 1, false, Drop.WIDTH/2 - sliderWidth*3/2, 500f, magazineCapacity);
         stage.addActor(magazineCapacitySlider);
-        Slider shootCooldownSlider = makeSlider(0, 5, 0.5f, false, Drop.WIDTH/2 + sliderWidth/2, 500f, shootCooldown);
+        shootCooldownSlider = makeSlider(0, 5, 0.5f, false, Drop.WIDTH/2 + sliderWidth/2, 500f, shootCooldown);
         stage.addActor(shootCooldownSlider);
-        Slider receiveCooldownSlider = makeSlider(0, 5, 0.5f, false, Drop.WIDTH/2 - sliderWidth*3/2, 400f, receiveCooldown);
+        receiveCooldownSlider = makeSlider(0, 5, 0.5f, false, Drop.WIDTH/2 - sliderWidth*3/2, 400f, receiveCooldown);
         stage.addActor(receiveCooldownSlider);
     }
 
@@ -73,6 +81,7 @@ public class SettingsScreen implements Screen {
         Slider slider = new Slider(min, max, stepSize, vertical, skin);
         slider.setPosition(x, y);
         slider.setSize(sliderWidth, sliderHeight);
+        slider.setValue(slider.getMinValue() + (slider.getMaxValue() - slider.getMinValue()) / 2);
         slider.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -96,6 +105,11 @@ public class SettingsScreen implements Screen {
         game.batch.setProjectionMatrix(camera.combined);
         game.batch.begin();
         painter.fillBackground(1f);
+        font.draw(game.batch, "Predkosc czolgu", tankSpeedSlider.getX(), tankSpeedSlider.getY() + 50);
+        font.draw(game.batch, "Predkosc pocisku", bulletSpeedSlider.getX(), bulletSpeedSlider.getY() + 50);
+        font.draw(game.batch, "Wielkosc magazynku", magazineCapacitySlider.getX(), magazineCapacitySlider.getY() + 50);
+        font.draw(game.batch, "Czas miedzy pociskami", shootCooldownSlider.getX(), shootCooldownSlider.getY() + 50);
+        font.draw(game.batch, "Czas przeładowania", receiveCooldownSlider.getX(), receiveCooldownSlider.getY() + 50);
         game.batch.end();
 
         stage.act(delta);
