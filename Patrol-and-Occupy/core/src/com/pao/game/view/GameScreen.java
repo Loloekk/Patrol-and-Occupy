@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.utils.TimeUtils;
@@ -35,6 +37,8 @@ public class GameScreen implements Screen {
     RegionPainter painterRight;
     RegionPainter painterLeft;
     RegionPainter painterTop;
+    //Rectangle settingsButton;   // pozycja, wymiary
+    //Vector3 touchPoint;
 
     public GameScreen(final Drop game,int n,ViewModel VM){
         this.game=game;
@@ -104,16 +108,22 @@ public class GameScreen implements Screen {
                 VM.setMove(player.getColor(),Move.S,false);
             }
         }
+
+        //camera.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
+        if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+            game.setScreen(new SettingsScreen(game, VM, this));
+        }
     }
     public void draw() {
         ScreenUtils.clear(0f, 0f, 0f, 1);
         camera.update();
         game.batch.setProjectionMatrix(camera.combined);
+
         game.batch.begin();
-        painterLeft.fillBackground();
-        painterRight.fillBackground();
-        painterTop.fillBackground();
-        painterGame.fillBackground();
+        painterLeft.fillBackground(PPM);
+        painterRight.fillBackground(PPM);
+        painterTop.fillBackground(PPM);
+        painterGame.fillBackground(PPM);
         //game.batch.draw(ground,0,0,width,height);
         for(ColoredParams plate: VM.getPlates()) {
             painterGame.draw(new TextureRegion(text.getPlateTexture(plate.getColor())), plate);

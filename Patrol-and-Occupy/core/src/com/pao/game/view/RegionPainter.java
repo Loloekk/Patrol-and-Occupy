@@ -39,9 +39,9 @@ public class RegionPainter {
         backgroundTexture = new Texture(pixmap);
         pixmap.dispose();
     }
-    public void fillBackground()
+    public void fillBackground(float scale)
     {
-        batch.draw(new TextureRegion(backgroundTexture),originX/PPM,originY/PPM,width/PPM,height/PPM);
+        batch.draw(new TextureRegion(backgroundTexture),originX/scale,originY/scale,width/scale,height/scale);
     }
     public void draw(TextureRegion texture, float x, float y, float W, float H,float R) {
         batch.draw(texture,(x-H/2)*scaleHeight+originX,(y-W/2)*scaleWidth+originY,

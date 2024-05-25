@@ -18,7 +18,8 @@ public class MainMenuScreen implements Screen {
     static final float BUTTON_WIDTH = 300 / PPM;
     static final float BUTTON_HEIGHT = 200 / PPM;
     static final float PLAY_BUTTON_Y = 550 / PPM;
-    static final float EXIT_BUTTON_Y = 300 / PPM;
+    static final float SETTINGS_BUTTON_Y = 350 / PPM;
+    static final float EXIT_BUTTON_Y = 150 / PPM;
     Drop game;
     OrthographicCamera camera;
     int n;
@@ -26,9 +27,12 @@ public class MainMenuScreen implements Screen {
     Viewport viewport;
     Texture playButtonActive;
     Texture playButtonInactive;
+    Texture settingsButtonActive;
+    Texture settingsButtonInactive;
     Texture exitButtonActive;
     Texture exitButtonInactive;
     Rectangle playButton;
+    Rectangle settingsButton;
     Rectangle exitButton;
     Vector3 touchPoint;
     RegionPainter painter;
@@ -41,9 +45,12 @@ public class MainMenuScreen implements Screen {
         viewport = new ExtendViewport(Drop.WIDTH/PPM, Drop.HEIGHT/PPM, camera);
         playButtonActive = new Texture(Gdx.files.internal("playActive.png"));
         playButtonInactive = new Texture(Gdx.files.internal("playInactive.png"));
+        settingsButtonActive = new Texture(Gdx.files.internal("settingsActive.png"));
+        settingsButtonInactive = new Texture(Gdx.files.internal("settingsInactive.png"));
         exitButtonActive = new Texture(Gdx.files.internal("exitActive.png"));
         exitButtonInactive = new Texture(Gdx.files.internal("exitInactive.png"));
         playButton = new Rectangle(Drop.WIDTH/2/PPM - BUTTON_WIDTH/2, PLAY_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
+        settingsButton = new Rectangle(Drop.WIDTH/2/PPM - BUTTON_WIDTH/2, SETTINGS_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
         exitButton = new Rectangle(Drop.WIDTH/2/PPM - BUTTON_WIDTH/2, EXIT_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
         touchPoint = new Vector3();
         painter = new RegionPainter(game.batch,0,0,Drop.WIDTH,Drop.HEIGHT,Drop.WIDTH,Drop.HEIGHT,new Color(0.9f,0.4f,0.4f,1));
@@ -56,7 +63,7 @@ public class MainMenuScreen implements Screen {
         game.batch.setProjectionMatrix(camera.combined);
 
         game.batch.begin();
-        painter.fillBackground();
+        painter.fillBackground(PPM);
         camera.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
         if(playButton.contains(touchPoint.x, touchPoint.y)) {
             game.batch.draw(playButtonActive, Drop.WIDTH / 2 / PPM - BUTTON_WIDTH / 2, PLAY_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
@@ -67,6 +74,17 @@ public class MainMenuScreen implements Screen {
         }
         else {
             game.batch.draw(playButtonInactive, Drop.WIDTH / 2 / PPM - BUTTON_WIDTH / 2, PLAY_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
+        }
+
+        // RegionPainter--------------------------------------------------------------
+        if(settingsButton.contains(touchPoint.x, touchPoint.y)) {
+            game.batch.draw(settingsButtonActive, Drop.WIDTH / 2 / PPM - BUTTON_WIDTH / 2, SETTINGS_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
+            if(Gdx.input.isTouched()) {
+                game.setScreen(new SettingsScreen(game, VM, this));     //---------------------------------------------------
+            }
+        }
+        else {
+            game.batch.draw(settingsButtonInactive, Drop.WIDTH / 2 / PPM - BUTTON_WIDTH / 2, SETTINGS_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
         }
 
         if(exitButton.contains(touchPoint.x, touchPoint.y)) {
