@@ -1,5 +1,5 @@
 package com.pao.game.Communication;
 
 public enum Move {
-    F,B,L,R,S,P;
+    Forward,Back,Left,Right,Shoot,Dynamite;
 }

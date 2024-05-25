@@ -125,22 +125,22 @@ public class SimpleBoard implements Board {
             }
         }
         switch (move) {
-            case F:
+            case Forward:
                 tank.setMoveForwardState(value);
                 break;
-            case B:
+            case Back:
                 tank.setMoveBackwardsState(value);
                 break;
-            case L:
+            case Left:
                 tank.setMoveLeftState(value);
                 break;
-            case R:
+            case Right:
                 tank.setMoveRightState(value);
                 break;
-            case S:
+            case Shoot:
                 tank.setMakeShoot(value);
                 break;
-            case P:
+            case Dynamite:
                 tank.setPlaceDynamite(value);
                 break;
         }
