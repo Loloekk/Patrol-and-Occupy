@@ -17,6 +17,7 @@ public class Tank extends BodyGameObject {
     boolean moveRightState;
     boolean moveBackwardsState;
     boolean makeShoot;
+    boolean placeDynamite;
     boolean isAlive;
     float lastShoot;
 
@@ -65,13 +66,22 @@ public class Tank extends BodyGameObject {
         }
         magazine.update(time);
 
-        if(makeShoot&& magazine.shoot())
-        {
+        if(makeShoot && magazine.shoot()) {
             float angle = getRotation() * MathUtils.degreesToRadians;
             float x = getX() + MathUtils.cos(angle) * getHeight()/2;
             float y = getY() + MathUtils.sin(angle) * getHeight()/2;
-            board.addBullet(new Bullet(x, y, this,settings));
+            board.addBullet(new Bullet(x, y, this, settings));
         }
+
+        if(placeDynamite) {
+            float angle = getRotation() * MathUtils.degreesToRadians;
+            float x = getX() - MathUtils.cos(angle) * getHeight()/2;
+            float y = getY() - MathUtils.sin(angle) * getHeight()/2;
+            Dynamite dynamite = new Dynamite(x, y, this, settings);
+            if(!board.checkBoardCollision(dynamite) && !board.checkObstacleCollision(dynamite) && !board.checkDynamiteCollision(dynamite) && !board.checkTankCollision(dynamite))
+                board.addDynamite(dynamite);
+        }
+
 
         Vector2 vel = body.getLinearVelocity();
         if(moveLeftState && !moveRightState) {                   //rotate left

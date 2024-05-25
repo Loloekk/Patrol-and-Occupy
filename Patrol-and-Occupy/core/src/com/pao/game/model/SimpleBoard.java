@@ -13,6 +13,7 @@ public class SimpleBoard implements Board {
     List<Bullet> bulletList = new ArrayList<>();
     List<Obstacle> obstacleList = new ArrayList<>();
     List<Plate> plateList = new ArrayList<>();
+    List<Dynamite> dynamiteList = new ArrayList<>();
     float remainingTime;
     int width, height;
     ModelSettings settings;
@@ -59,6 +60,8 @@ public class SimpleBoard implements Board {
         return remainingTime;
     }
     public void update(float t) {
+        Set<Bullet> bulletsToDestroy = new HashSet<>();
+        Set<Dynamite> dynamitesToDestroy = new HashSet<>();
         remainingTime-=t;
         // Move every bullet
         if (bulletList != null) {
@@ -71,29 +74,31 @@ public class SimpleBoard implements Board {
                 tank.update(t);
         }
         // Check for destroyed bullets
-        {
-            Set<Bullet> toDestroy = new HashSet<>();
-            // Tank hits
-            if (bulletList != null) {
-                for (Bullet bullet : bulletList)
-                    if (checkTankCollision(bullet))
-                        toDestroy.add(bullet);
+        if (bulletList != null) {
+            for (Bullet bullet : bulletList) {
+                // Tank hits
+                if (checkTankCollision(bullet))
+                    bulletsToDestroy.add(bullet);
+                // Dynamite hits
+                if (checkDynamiteCollision(bullet))
+                    bulletsToDestroy.add(bullet);
+                // Obstacle hits
+                if (checkObstacleCollision(bullet))
+                    bulletsToDestroy.add(bullet);
+                // Outside the map (currently checks if it hits map boundary)
+                if (checkBoardCollision(bullet))
+                    bulletsToDestroy.add(bullet);
             }
-            // Obstacle hits
-            if (bulletList != null) {
-                for (Bullet bullet : bulletList)
-                    if (checkObstacleCollision(bullet))
-                        toDestroy.add(bullet);
-            }
-            // Outside the map (currently checks if it hits map boundary)
-            if (bulletList != null) {
-                for (Bullet bullet : bulletList)
-                    if (checkBoardCollision(bullet))
-                        toDestroy.add(bullet);
-            }
-            for (Bullet bullet : toDestroy)
-                bullet.destroy();
         }
+        // Check for destroyed dynamites
+        if (dynamiteList != null) {
+            for (Dynamite dynamite : dynamiteList) {
+                // Bullet hits
+                if (checkBulletCollision(dynamite))
+                    dynamitesToDestroy.add(dynamite);
+            }
+        }
+
         // Color the plates
         for(Plate plate : plateList) {
             List<MyColor> colorsSet = new ArrayList<>();
@@ -103,7 +108,10 @@ public class SimpleBoard implements Board {
             if(colorsSet.size() == 1) plate.setColor(colorsSet.get(0));
             else if(colorsSet.size() > 1) plate.setColor(null);
         }
-
+        for (Bullet bullet : bulletsToDestroy)
+            bullet.destroy();
+        for (Dynamite dynamite : dynamitesToDestroy)
+            dynamite.destroy();
     }
 
     public void setmove(MyColor color, Move move, boolean value) {
@@ -172,6 +180,15 @@ public class SimpleBoard implements Board {
                 return true;
         return false;
     }
+
+    public boolean checkDynamiteCollision(GameObject gameObject) {
+        if (getObstacleList() == null)
+            return false;
+        for (Dynamite dynamite : getDynamiteList())
+            if (gameObject != dynamite && gameObject.intersects(dynamite))
+                return true;
+        return false;
+    }
     public List<Tank> getTankList() {
         return tankList;
     }
@@ -184,6 +201,7 @@ public class SimpleBoard implements Board {
         return obstacleList;
     }
     public List<Plate> getPlateList() { return plateList; }
+    public List<Dynamite> getDynamiteList(){ return dynamiteList; }
 
     public int getWidth() {
         return width;
@@ -195,5 +213,9 @@ public class SimpleBoard implements Board {
 
     public void addBullet(Bullet bullet) {
         bulletList.add(bullet);
+    }
+
+    public void addDynamite(Dynamite dynamite) {
+        dynamiteList.add(dynamite);
     }
 }
