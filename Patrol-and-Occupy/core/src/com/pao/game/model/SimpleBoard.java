@@ -15,6 +15,7 @@ public class SimpleBoard implements Board {
     List<Plate> plateList = new ArrayList<>();
     float remainingTime;
     int width, height;
+    ModelSettings settings;
 
     private SimpleBoard(int width, int height) {
         this.width = width;
@@ -22,10 +23,13 @@ public class SimpleBoard implements Board {
         remainingTime = 60;
     }
 
-    public SimpleBoard(int width, int height, List<MyColor> players, Setup setup, World world){
-        this(width, height);
+    public SimpleBoard(ModelSettings settings, World world){
+        this(settings.getWidth(), settings.getHeight());
+        this.settings = settings;
         // Add players tanks
-        for(MyColor color : players){
+        Setup setup = Setup.getSetupList().get(settings.getMap());
+
+        for(MyColor color : MyColor.getColorList(settings.getNumberOfPlayers())){
             boolean foundColor = false;
             for(ColoredParams tankParams : setup.getTankParamsList()){
                 if(tankParams.getColor() == color){
@@ -109,9 +113,6 @@ public class SimpleBoard implements Board {
                 tank = t;
                 break;
             }
-        }
-        if (tank == null) {
-            throw new RuntimeException("Unknown color");
         }
         switch (move) {
             case F:

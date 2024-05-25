@@ -16,6 +16,7 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.pao.game.viewmodel.*;
+import com.pao.game.viewmodel.EditSettings;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,20 +38,22 @@ public class GameScreen implements Screen {
     RegionPainter painterRight;
     RegionPainter painterLeft;
     RegionPainter painterTop;
+    EditSettings ES;
     //Rectangle settingsButton;   // pozycja, wymiary
     //Vector3 touchPoint;
 
-    public GameScreen(final Drop game,int n,ViewModel VM){
+    public GameScreen(final Drop game,EditSettings ES){
         this.game=game;
+        this.ES = ES;
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Drop.WIDTH/PPM,Drop.HEIGHT/PPM);
         viewport = new ExtendViewport(Drop.WIDTH/PPM,Drop.HEIGHT/PPM,camera);
-        this.VM=VM;
+        this.VM = new ViewModel(ES);
         players = new ArrayList<>();
-        List<MyColor> colors = MyColor.getColorList(n);
-        if(n>=1)players.add(new PlayerView(colors.get(0), Input.Keys.UP,Input.Keys.DOWN,Input.Keys.LEFT,Input.Keys.RIGHT,Input.Keys.CONTROL_RIGHT));
-        if(n>=2)players.add(new PlayerView(colors.get(1), Input.Keys.W,Input.Keys.S,Input.Keys.A,Input.Keys.D,Input.Keys.SPACE));
-        text = new Textures(n);
+        List<MyColor> colors = MyColor.getColorList(ES.getNumberOfPlayers());
+        if(ES.getNumberOfPlayers()>=1)players.add(new PlayerView(colors.get(0), Input.Keys.UP,Input.Keys.DOWN,Input.Keys.LEFT,Input.Keys.RIGHT,Input.Keys.CONTROL_RIGHT));
+        if(ES.getNumberOfPlayers()>=2)players.add(new PlayerView(colors.get(1), Input.Keys.W,Input.Keys.S,Input.Keys.A,Input.Keys.D,Input.Keys.SPACE));
+        text = new Textures(ES.getNumberOfPlayers());
 
         font = new BitmapFont();
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Roboto-Black.ttf"));
@@ -59,12 +62,13 @@ public class GameScreen implements Screen {
         parameter.color = com.badlogic.gdx.graphics.Color.RED;
         font = generator.generateFont(parameter);
         startTime = TimeUtils.nanoTime();
-        painterGame = new RegionPainter(game.batch,100,0,Drop.WIDTH-200,Drop.HEIGHT-100,1920,1080,new Color(0.9f,0.9f,0.4f,1));
+        painterGame = new RegionPainter(game.batch,100,0,Drop.WIDTH-200,Drop.HEIGHT-100,1720,954,new Color(0.9f,0.9f,0.4f,1));
         painterLeft = new RegionPainter(game.batch,0,0,100,Drop.HEIGHT-100,100,Drop.HEIGHT-100,new Color(0f,1f,0f,1));
         painterRight = new RegionPainter(game.batch,Drop.WIDTH-100,0,100,Drop.HEIGHT-100,100,Drop.HEIGHT-100,new Color(0f,1f,0f,1));
         painterTop = new RegionPainter(game.batch,0,Drop.HEIGHT-100,Drop.WIDTH,100,Drop.WIDTH,100,new Color(0f,0f,1f,1));
     }
-    public void update() {
+    public void update(float time) {
+        VM.update(time);
         for(PlayerView player : players)
         {
             if(Gdx.input.isKeyPressed(player.getUp()) && player.getLastStateUp() == false){
@@ -111,7 +115,7 @@ public class GameScreen implements Screen {
 
         //camera.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
         if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-            game.setScreen(new SettingsScreen(game, VM, this));
+            game.setScreen(new SettingsScreen(game, ES, this));
         }
     }
     public void draw() {
@@ -149,7 +153,7 @@ public class GameScreen implements Screen {
     }
     @Override
     public void render(float delta){
-        update();
+        update(delta);
         draw();
     }
     public void resize(int width, int height) {

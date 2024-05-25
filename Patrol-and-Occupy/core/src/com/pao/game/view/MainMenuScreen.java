@@ -10,7 +10,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.pao.game.viewmodel.ViewModel;
+import com.pao.game.viewmodel.EditSettings;
 
 import static com.pao.game.model.Constants.PPM;
 
@@ -22,8 +22,6 @@ public class MainMenuScreen implements Screen {
     static final float EXIT_BUTTON_Y = 150 / PPM;
     Drop game;
     OrthographicCamera camera;
-    int n;
-    ViewModel VM;
     Viewport viewport;
     Texture playButtonActive;
     Texture playButtonInactive;
@@ -36,10 +34,11 @@ public class MainMenuScreen implements Screen {
     Rectangle exitButton;
     Vector3 touchPoint;
     RegionPainter painter;
-    public MainMenuScreen(Drop game, int n, ViewModel VM) {
+    EditSettings ES;
+
+    public MainMenuScreen(Drop game) {
         this.game = game;
-        this.n = n;
-        this.VM = VM;
+        ES = new EditSettings();
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Drop.WIDTH/PPM, Drop.HEIGHT/PPM);
         viewport = new ExtendViewport(Drop.WIDTH/PPM, Drop.HEIGHT/PPM, camera);
@@ -69,7 +68,7 @@ public class MainMenuScreen implements Screen {
             game.batch.draw(playButtonActive, Drop.WIDTH / 2 / PPM - BUTTON_WIDTH / 2, PLAY_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
             if(Gdx.input.isTouched()) {
                 //this.dispose();
-                game.setScreen(new GameScreen(game, n, VM));
+                game.setScreen(new GameScreen(game,ES));
             }
         }
         else {
@@ -80,7 +79,7 @@ public class MainMenuScreen implements Screen {
         if(settingsButton.contains(touchPoint.x, touchPoint.y)) {
             game.batch.draw(settingsButtonActive, Drop.WIDTH / 2 / PPM - BUTTON_WIDTH / 2, SETTINGS_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
             if(Gdx.input.isTouched()) {
-                game.setScreen(new SettingsScreen(game, VM, this));     //---------------------------------------------------
+                game.setScreen(new SettingsScreen(game, ES, this));     //---------------------------------------------------
             }
         }
         else {

@@ -13,25 +13,14 @@ public class ViewModel{
     Board board;
     World world;
     ModelSettings settings;
-    public ViewModel(int n)
+    public ViewModel(EditSettings ES)
     {
-        settings = new ModelSettings();
-    }
-
-    public void start()
-    {
+        settings = ES.getSettings();
         world = new World(GRAVITY, true);
         BodyCreator.setEdges(0,0, settings.getWidth(), settings.getHeight(), world);
         board = new SimpleBoard(settings, world);
     }
-    public void setOption(Options o, float state)
-    {
-        settings.setOption(o,state);
-    }
-    public void setOption(Options o, int state)
-    {
-        settings.setOption(o,state);
-    }
+
     public void setMove(MyColor color,Move move, boolean state)
     {
         board.setmove(color,move,state);
@@ -73,5 +62,8 @@ public class ViewModel{
     {
         return board.getRemainingTime();
     }
-    public void update(float time) {board.update(time);}
+    public void update(float time) {
+        world.step((float)(time), VELOCITY_ITERATION, POSITION_ITERATION);
+        board.update(time);
+    }
 }

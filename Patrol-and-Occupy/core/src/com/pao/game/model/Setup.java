@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Setup {
-    static int width = 1920;
-    static int height = 1080;
-    public static List<Setup> setupList = new ArrayList<>();
+    static int width = 1720;
+    static int height = 954;
+    private static List<Setup> setupList = new ArrayList<>();
     static{
         // Setup 0. (Empty)
         {
@@ -108,5 +108,9 @@ public class Setup {
     public List<Plate> getPlateList() { return plateList; }
     public List<ColoredParams> getTankParamsList(){
         return tankParamsList;
+    }
+    public static List<Setup> getSetupList()
+    {
+        return setupList;
     }
 }

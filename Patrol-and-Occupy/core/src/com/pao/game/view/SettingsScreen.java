@@ -18,6 +18,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.pao.game.model.Options;
+import com.pao.game.viewmodel.EditSettings;
 import com.pao.game.viewmodel.ViewModel;
 
 import static com.pao.game.model.Constants.PPM;
@@ -30,7 +31,7 @@ public class SettingsScreen implements Screen {
     Drop game;
     Screen previousScreen;
     OrthographicCamera camera;
-    ViewModel VM;
+    EditSettings ES;
     Viewport viewport;
     Texture exitButtonActive;
     Texture exitButtonInactive;
@@ -42,9 +43,9 @@ public class SettingsScreen implements Screen {
     float sliderWidth = 200f;
     float sliderHeight = 20f;
 
-    public SettingsScreen(Drop game, ViewModel VM, Screen previousScreen) {
+    public SettingsScreen(Drop game, EditSettings ES, Screen previousScreen) {
         this.game = game;
-        this.VM = VM;
+        this.ES = ES;
         this.previousScreen = previousScreen;
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Drop.WIDTH, Drop.HEIGHT);
@@ -76,7 +77,7 @@ public class SettingsScreen implements Screen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 float value = slider.getValue();
-                VM.setOption(o, value);
+                ES.setOption(o, value);
                 System.out.println(value);
             }
         });
