@@ -7,7 +7,7 @@ public class Plate extends PolygonGameObject {
     PolygonGameObject heart;
     public Plate(float x, float y) {
         super(x, y, 80, 80);
-        heart = new PolygonGameObject(x,y,10,10){};
+        heart = new PolygonGameObject(x,y,0,0){};
         this.color = null;
     }
     @Override
