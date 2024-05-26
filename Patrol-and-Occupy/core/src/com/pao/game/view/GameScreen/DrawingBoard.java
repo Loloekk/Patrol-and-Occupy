@@ -2,7 +2,6 @@ package com.pao.game.view.GameScreen;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
@@ -10,10 +9,8 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.pao.game.Communication.ColoredParams;
 import com.pao.game.Communication.Params;
 import com.pao.game.view.Drop;
-import com.pao.game.view.PlayerView;
 import com.pao.game.view.RegionPainter;
 import com.pao.game.view.Textures;
-import com.pao.game.viewmodel.EditSettings;
 import com.pao.game.viewmodel.ViewModel;
 
 import java.util.List;
@@ -54,6 +51,9 @@ public class DrawingBoard {
         painterTop.fillBackground(1f);
         painterGame.fillBackground(1f);
         //game.batch.draw(ground,0,0,width,height);
+        for(ColoredParams spawn : VM.getSpawns()) {
+            painterGame.drawTexture(new TextureRegion(text.getSpawnTexture(spawn.getColor())), spawn);
+        }
         for(ColoredParams plate: VM.getPlates()) {
             painterGame.drawTexture(new TextureRegion(text.getPlateTexture(plate.getColor())), plate);
         }
