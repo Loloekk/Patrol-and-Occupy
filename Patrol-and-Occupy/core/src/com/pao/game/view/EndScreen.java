@@ -22,7 +22,6 @@ public class EndScreen implements Screen {
     Drop game;
     OrthographicCamera camera;
     EditSettings ES;
-    GameScreen gameScreen;
     Viewport viewport;
     Texture startButtonActive;
     Texture startButtonInactive;
@@ -34,10 +33,9 @@ public class EndScreen implements Screen {
     RegionPainter painter;
     BitmapFont font;
 
-    public EndScreen(Drop game, EditSettings ES, GameScreen gameScreen) {
+    public EndScreen(Drop game, EditSettings ES) {
         this.game = game;
         this.ES = ES;
-        this.gameScreen = gameScreen;
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Drop.WIDTH, Drop.HEIGHT);
         viewport = new ExtendViewport(Drop.WIDTH, Drop.HEIGHT, camera);

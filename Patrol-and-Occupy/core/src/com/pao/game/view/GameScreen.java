@@ -162,6 +162,7 @@ public class GameScreen implements Screen {
         }
         int elapsedSeconds = (int) VM.getRemainingTime();
         font.draw(game.batch, "Czas: " + elapsedSeconds, 900, 1000);
+        if(elapsedSeconds == 0) game.setScreen(new EndScreen(game, ES));
         game.batch.end();
     }
     @Override
