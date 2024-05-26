@@ -49,7 +49,9 @@ public class SimpleBoard implements Board {
             obstacleList.add(new Obstacle(obstacleParams.getX(), obstacleParams.getY(), obstacleParams.getWidht(), obstacleParams.getHeight(), obstacleParams.getRotation(), world));
         }
         // Add plates
-        plateList.addAll(setup.getPlateList());
+        for(Params plateParams : setup.getPlateList()){
+            plateList.add(new Plate(plateParams.getX(), plateParams.getY()));
+        }
     }
 
     public void setRemainingTime(float time) {

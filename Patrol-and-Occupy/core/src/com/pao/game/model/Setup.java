@@ -13,7 +13,7 @@ public class Setup {
     static{
         // Setup 0. (Empty)
         {
-            List<Plate> plateList = new ArrayList<>();
+            List<Params> plateList = new ArrayList<>();
 
             List<Params> obstacleList = new ArrayList<>();
 
@@ -28,11 +28,11 @@ public class Setup {
         }
         // Setup 1.
         {
-            List<Plate> plateList = new ArrayList<>();
-            plateList.add(new Plate(300, 200));
-            plateList.add(new Plate(1000, 500));
-            plateList.add(new Plate(1500, 300));
-            plateList.add(new Plate(450, 900));
+            List<Params> plateList = new ArrayList<>();
+            plateList.add(new Params(300, 200));
+            plateList.add(new Params(1000, 500));
+            plateList.add(new Params(1500, 300));
+            plateList.add(new Params(450, 900));
 
             List<Params> obstacleList = new ArrayList<>();
             obstacleList.addAll(Obstacle.rectangleObstacle(400, 700, 50, 2, 6, 30));
@@ -52,8 +52,8 @@ public class Setup {
         }
         // Setup 2.
         {
-            List<Plate> plateList = new ArrayList<>();
-            plateList.add(new Plate(300, 200));
+            List<Params> plateList = new ArrayList<>();
+            plateList.add(new Params(300, 200));
 
             List<Params> obstacleList = new ArrayList<>();
             obstacleList.addAll(Obstacle.rectangleObstacle(500, 500, 80, 1, 5, 0));
@@ -72,8 +72,8 @@ public class Setup {
         }
         // Setup 3.
         {
-            List<Plate> plateList = new ArrayList<>();
-            plateList.add(new Plate(300, 200));
+            List<Params> plateList = new ArrayList<>();
+            plateList.add(new Params(300, 200));
 
             List<Params> obstacleList = new ArrayList<>();
             obstacleList.addAll(Obstacle.rectangleObstacle((float) width /2, (float) height /2, 500, 1, 1, 0));
@@ -89,10 +89,10 @@ public class Setup {
         }
     }
     List<Params> obstacleList;
-    List<Plate> plateList;
+    List<Params> plateList;
     List<ColoredParams> tankParamsList;
 
-    public Setup(List<ColoredParams> tankParamsList, List<Params> obstacleList, List<Plate> plateList){
+    public Setup(List<ColoredParams> tankParamsList, List<Params> obstacleList, List<Params> plateList){
         this.tankParamsList = tankParamsList;
         this.obstacleList = obstacleList;
         this.plateList = plateList;
@@ -104,7 +104,7 @@ public class Setup {
     public List<Params> getObstacleList(){
         return obstacleList;
     }
-    public List<Plate> getPlateList() { return plateList; }
+    public List<Params> getPlateList() { return plateList; }
     public List<ColoredParams> getTankParamsList(){
         return tankParamsList;
     }

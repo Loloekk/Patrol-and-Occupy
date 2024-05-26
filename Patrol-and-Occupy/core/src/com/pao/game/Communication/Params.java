@@ -13,6 +13,10 @@ public class Params {
         this.y=y;
         this.rotation=rotation;
     }
+    public Params(float x, float y){
+        this.x=x;
+        this.y=y;
+    }
     public float getX() {
         return x;
     }
