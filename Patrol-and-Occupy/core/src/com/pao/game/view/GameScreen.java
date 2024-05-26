@@ -23,7 +23,6 @@ import com.pao.game.viewmodel.EditSettings;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.pao.game.model.Constants.PPM;
 
 
 public class GameScreen implements Screen {
@@ -48,8 +47,8 @@ public class GameScreen implements Screen {
         this.game=game;
         this.ES = ES;
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, Drop.WIDTH/PPM,Drop.HEIGHT/PPM);
-        viewport = new ExtendViewport(Drop.WIDTH/PPM,Drop.HEIGHT/PPM,camera);
+        camera.setToOrtho(false, Drop.WIDTH,Drop.HEIGHT);
+        viewport = new ExtendViewport(Drop.WIDTH,Drop.HEIGHT,camera);
         this.VM = new ViewModel(ES);
         players = new ArrayList<>();
         List<ModelPlayer> colors = ModelPlayer.getColorList(ES.getNumberOfPlayers());
@@ -135,10 +134,10 @@ public class GameScreen implements Screen {
         game.batch.setProjectionMatrix(camera.combined);
 
         game.batch.begin();
-        painterLeft.fillBackground(PPM);
-        painterRight.fillBackground(PPM);
-        painterTop.fillBackground(PPM);
-        painterGame.fillBackground(PPM);
+        painterLeft.fillBackground(1f);
+        painterRight.fillBackground(1f);
+        painterTop.fillBackground(1f);
+        painterGame.fillBackground(1f);
         //game.batch.draw(ground,0,0,width,height);
         for(ColoredParams plate: VM.getPlates()) {
             painterGame.draw(new TextureRegion(text.getPlateTexture(plate.getColor())), plate);
