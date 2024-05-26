@@ -28,13 +28,10 @@ public class Dynamite extends BodyGameObject {
             if (distance <= 300)
                 tank.setIsAlive(false);
         }
-        System.err.println("DYNAMITE: " + this);
-        System.err.println("Dynamite list size: " + board.getDynamiteList().size());
         List<Dynamite> dynamites = new ArrayList<>(board.getDynamiteList());
         for (Dynamite dynamite : dynamites) {
             if(!board.getDynamiteList().contains(dynamite))
                 continue;
-            System.err.println(" another dynamite:" + dynamite);
             double distance = Math.sqrt((this.getX() - dynamite.getX()) * (this.getX() - dynamite.getX()) + (this.getY() - dynamite.getY()) * (this.getY() - dynamite.getY()));
             if (distance <= 300)
                 dynamite.destroy();

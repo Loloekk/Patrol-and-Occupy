@@ -67,9 +67,15 @@ public class ViewModel{
         {
             dynamitesParamsList.add(new Params(dynamite.getWidth(), dynamite.getHeight(), dynamite.getX(), dynamite.getY(), dynamite.getRotation()));
         }
-        //System.out.println("Size1:" + board.getDynamiteList().size());
-        //System.out.println("Size2:" + dynamitesParamsList.size());
         return dynamitesParamsList;
+    }
+    public List<ColoredParams> getSpawns(){
+        List<ColoredParams> spawnsParamsList = new ArrayList<>();
+        for(Spawn spawn : board.getSpawnList())
+        {
+            spawnsParamsList.add(new ColoredParams(spawn.getColor(), spawn.getWidth(), spawn.getHeight(), spawn.getX(), spawn.getY(), spawn.getRotation()));
+        }
+        return spawnsParamsList;
     }
     public float getRemainingTime()
     {

@@ -14,11 +14,13 @@ public interface Board {
     boolean checkTankCollision(GameObject gameObject);
     boolean checkObstacleCollision(GameObject gameObject);
     boolean checkDynamiteCollision(GameObject gameObject);
+    boolean checkSpawnCollision(GameObject gameObject);
     List<Tank> getTankList();
     List<Bullet> getBulletList();
     List<Obstacle> getObstacleList();
     List<Plate> getPlateList();
     List<Dynamite> getDynamiteList();
+    List<Spawn> getSpawnList();
     int getWidth();
     int getHeight();
     void addBullet(Bullet bullet);

@@ -9,7 +9,7 @@ import java.util.List;
 public class Setup {
     static int width = 1720;
     static int height = 954;
-    private static List<Setup> setupList = new ArrayList<>();
+    private static final List<Setup> setupList = new ArrayList<>();
     static{
         // Setup 0. (Empty)
         {
@@ -18,13 +18,13 @@ public class Setup {
             List<Params> obstacleList = new ArrayList<>();
 
             final float off = 200;
-            List<ColoredParams> tankParamsList = new ArrayList<>();
-            tankParamsList.add(new ColoredParams(ModelPlayer.Player4, Tank.getSWidth(), Tank.getSHeight(), width-off, off,0));
-            tankParamsList.add(new ColoredParams(ModelPlayer.Player2,Tank.getSWidth(), Tank.getSHeight(), width-off, height-off,0));
-            tankParamsList.add(new ColoredParams(ModelPlayer.Player3,Tank.getSWidth(), Tank.getSHeight(), off, height-off,0));
-            tankParamsList.add(new ColoredParams(ModelPlayer.Player1,Tank.getSWidth(), Tank.getSHeight(), off, off,0));
+            List<ColoredParams> spawnParamsList = new ArrayList<>();
+            spawnParamsList.add(new ColoredParams(ModelPlayer.Player4, 0, 0, width-off, off,0));
+            spawnParamsList.add(new ColoredParams(ModelPlayer.Player2, 0, 0, width-off, height-off,0));
+            spawnParamsList.add(new ColoredParams(ModelPlayer.Player3, 0, 0, off, height-off,0));
+            spawnParamsList.add(new ColoredParams(ModelPlayer.Player1, 0, 0, off, off,0));
 
-            setupList.add(new Setup(tankParamsList, obstacleList, plateList));
+            setupList.add(new Setup(spawnParamsList, obstacleList, plateList));
         }
         // Setup 1.
         {
@@ -42,13 +42,13 @@ public class Setup {
             obstacleList.addAll(Obstacle.rectangleObstacle(900, 600, 50, 2, 1, 0));
 
             final float off = 200;
-            List<ColoredParams> tankParamsList = new ArrayList<>();
-            tankParamsList.add(new ColoredParams(ModelPlayer.Player4, Tank.getSWidth(), Tank.getSHeight(), width-off, off,0));
-            tankParamsList.add(new ColoredParams(ModelPlayer.Player2,Tank.getSWidth(), Tank.getSHeight(), width-off, height-off,0));
-            tankParamsList.add(new ColoredParams(ModelPlayer.Player3,Tank.getSWidth(), Tank.getSHeight(), off, height-off,0));
-            tankParamsList.add(new ColoredParams(ModelPlayer.Player1,Tank.getSWidth(), Tank.getSHeight(), off, off,0));
+            List<ColoredParams> spawnParamsList = new ArrayList<>();
+            spawnParamsList.add(new ColoredParams(ModelPlayer.Player4, 0, 0, width-off, off,0));
+            spawnParamsList.add(new ColoredParams(ModelPlayer.Player2, 0, 0, width-off, height-off,0));
+            spawnParamsList.add(new ColoredParams(ModelPlayer.Player3, 0, 0, off, height-off,0));
+            spawnParamsList.add(new ColoredParams(ModelPlayer.Player1, 0, 0, off, off,0));
 
-            setupList.add(new Setup(tankParamsList, obstacleList, plateList));
+            setupList.add(new Setup(spawnParamsList, obstacleList, plateList));
         }
         // Setup 2.
         {
@@ -62,13 +62,13 @@ public class Setup {
             obstacleList.addAll(Obstacle.rectangleObstacle(200, 600, 80, 1, 5, 0));
 
             final float off = 300;
-            List<ColoredParams> tankParamsList = new ArrayList<>();
-            tankParamsList.add(new ColoredParams(ModelPlayer.Player4, Tank.getSWidth(), Tank.getSHeight(), width-off, off,0));
-            tankParamsList.add(new ColoredParams(ModelPlayer.Player2,Tank.getSWidth(), Tank.getSHeight(), width-off, height-off,0));
-            tankParamsList.add(new ColoredParams(ModelPlayer.Player3,Tank.getSWidth(), Tank.getSHeight(), off, height-off,0));
-            tankParamsList.add(new ColoredParams(ModelPlayer.Player1,Tank.getSWidth(), Tank.getSHeight(), off, off,0));
+            List<ColoredParams> spawnParamsList = new ArrayList<>();
+            spawnParamsList.add(new ColoredParams(ModelPlayer.Player4, 0, 0, width-off, off,0));
+            spawnParamsList.add(new ColoredParams(ModelPlayer.Player2, 0, 0, width-off, height-off,0));
+            spawnParamsList.add(new ColoredParams(ModelPlayer.Player3, 0, 0, off, height-off,0));
+            spawnParamsList.add(new ColoredParams(ModelPlayer.Player1, 0, 0, off, off,0));
 
-            setupList.add(new Setup(tankParamsList, obstacleList, plateList));
+            setupList.add(new Setup(spawnParamsList, obstacleList, plateList));
         }
         // Setup 3.
         {
@@ -79,24 +79,24 @@ public class Setup {
             obstacleList.addAll(Obstacle.rectangleObstacle((float) width /2, (float) height /2, 500, 1, 1, 0));
 
             final float off = 200;
-            List<ColoredParams> tankParamsList = new ArrayList<>();
-            tankParamsList.add(new ColoredParams(ModelPlayer.Player4, Tank.getSWidth(), Tank.getSHeight(), width-off, off,0));
-            tankParamsList.add(new ColoredParams(ModelPlayer.Player2,Tank.getSWidth(), Tank.getSHeight(), width-off, height-off,0));
-            tankParamsList.add(new ColoredParams(ModelPlayer.Player3,Tank.getSWidth(), Tank.getSHeight(), off, height-off,0));
-            tankParamsList.add(new ColoredParams(ModelPlayer.Player1,Tank.getSWidth(), Tank.getSHeight(), off, off,0));
+            List<ColoredParams> spawnParamsList = new ArrayList<>();
+            spawnParamsList.add(new ColoredParams(ModelPlayer.Player4, 0, 0, width-off, off,0));
+            spawnParamsList.add(new ColoredParams(ModelPlayer.Player2, 0, 0, width-off, height-off,0));
+            spawnParamsList.add(new ColoredParams(ModelPlayer.Player3, 0, 0, off, height-off,0));
+            spawnParamsList.add(new ColoredParams(ModelPlayer.Player1, 0, 0, off, off,0));
 
-            setupList.add(new Setup(tankParamsList, obstacleList, plateList));
+            setupList.add(new Setup(spawnParamsList, obstacleList, plateList));
         }
     }
     List<Params> obstacleList;
     List<Params> plateList;
-    List<ColoredParams> tankParamsList;
+    List<ColoredParams> spawnParamsList;
 
-    public Setup(List<ColoredParams> tankParamsList, List<Params> obstacleList, List<Params> plateList){
-        this.tankParamsList = tankParamsList;
+    public Setup(List<ColoredParams> spawnParamsList, List<Params> obstacleList, List<Params> plateList){
+        this.spawnParamsList = spawnParamsList;
         this.obstacleList = obstacleList;
         this.plateList = plateList;
-        if(tankParamsList==null) this.tankParamsList = new ArrayList<>();
+        if(spawnParamsList==null) this.spawnParamsList = new ArrayList<>();
         if(obstacleList==null) this.obstacleList = new ArrayList<>();
         if(plateList==null) this.plateList = new ArrayList<>();
     }
@@ -105,8 +105,8 @@ public class Setup {
         return obstacleList;
     }
     public List<Params> getPlateList() { return plateList; }
-    public List<ColoredParams> getTankParamsList(){
-        return tankParamsList;
+    public List<ColoredParams> getSpawnParamsList(){
+        return spawnParamsList;
     }
     public static List<Setup> getSetupList()
     {
