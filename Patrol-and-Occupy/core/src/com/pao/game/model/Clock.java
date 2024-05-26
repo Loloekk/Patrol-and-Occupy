@@ -22,5 +22,8 @@ public class Clock {
     public void update(float time)
     {
         remainingTime -=time;
+        if(remainingTime < 0f){
+            remainingTime = 0f;
+        }
     }
 }
