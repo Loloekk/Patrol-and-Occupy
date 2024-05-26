@@ -5,6 +5,8 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.math.MathUtils;
 
+import static com.pao.game.model.Constants.PPM;
+
 public class Tank extends BodyGameObject {
     static final int width = 70;
     static final int height = 60;
@@ -51,6 +53,7 @@ public class Tank extends BodyGameObject {
     public void setIsAlive(boolean state) {
         isAlive = state;
     }
+    public void setPosition(float x, float y) { body.setTransform(x/PPM,y/PPM, 0);}
     public ModelPlayer getColor() {
         return color;
     }
@@ -102,8 +105,8 @@ public class Tank extends BodyGameObject {
         else {
             body.setAngularVelocity(0.0f);
         }
-        float rideForwardSpeed = settings.getTankSpeed();
-        float rideBackwardsSpeed = settings.getTankSpeed()/4*3;
+        float rideForwardSpeed = settings.getTankSpeed()/PPM;
+        float rideBackwardsSpeed = rideForwardSpeed/4*3;
         if(moveForwardState && !moveBackwardsState) {            //move forward
             vel.x = rideForwardSpeed * MathUtils.cos(body.getAngle());
             vel.y = rideForwardSpeed * MathUtils.sin(body.getAngle());

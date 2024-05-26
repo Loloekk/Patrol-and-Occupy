@@ -128,9 +128,8 @@ public class SimpleBoard implements Board {
         for (Tank tank : tanksToRevive) {
             for (ColoredParams spawnParams : setup.getSpawnParamsList()) {
                 if (tank.getColor() == spawnParams.getColor()) {
-                    World world = tank.body.getWorld();
-                    tankList.remove(tank);
-                    tankList.add(new Tank(spawnParams.getX(), spawnParams.getY(), tank.getColor(), this, world,settings));
+                    tank.setPosition(spawnParams.getX(), spawnParams.getY());
+                    tank.setIsAlive(true);
                     break;
                 }
             }
