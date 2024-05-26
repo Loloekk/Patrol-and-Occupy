@@ -10,9 +10,8 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.pao.game.view.GameScreen.GameScreen;
 import com.pao.game.viewmodel.EditSettings;
-
-import static com.pao.game.model.Constants.PPM;
 
 public class MainMenuScreen implements Screen {
     static final float BUTTON_WIDTH = 300 ;

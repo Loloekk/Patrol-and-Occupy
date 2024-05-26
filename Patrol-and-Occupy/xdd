@@ -130,6 +130,9 @@ public class GameScreen implements Screen {
         painterTop.fillBackground(1f);
         painterGame.fillBackground(1f);
         //game.batch.draw(ground,0,0,width,height);
+        for(ColoredParams spawn : VM.getSpawns()) {
+            painterGame.drawTexture(new TextureRegion(text.getSpawnTexture(spawn.getColor())), spawn);
+        }
         for(ColoredParams plate: VM.getPlates()) {
             painterGame.drawTexture(new TextureRegion(text.getPlateTexture(plate.getColor())), plate);
         }
@@ -137,6 +140,9 @@ public class GameScreen implements Screen {
             painterGame.drawTexture(new TextureRegion(text.getObstacleTexture()),obstacle,1.03f);
             //game.batch.draw(textureRegion,X-H/2,Y-W/2,H/2,W/2,H,W,1,1,obstacle.getRotation());
             //game.batch.draw(texture,X-H/2,Y-W/2,H/2,W/2,H,W,1,1,obstacle.getRotation(),0,0,texture.getWidth(), texture.getHeight(), false, false);
+        }
+        for(Params dynamite : VM.getDynamites()) {
+            painterGame.drawTexture(new TextureRegion(text.getDynamiteTexture()),dynamite);
         }
         for(ColoredParams bullet : VM.getBullets()) {
             painterGame.drawTexture(new TextureRegion(text.getBulletTexture()),bullet);
@@ -148,9 +154,8 @@ public class GameScreen implements Screen {
             //game.batch.draw(region, X-H/2,Y-W/2,H/2,W/2,H+5,W,1,1,tank.getRotation());
             //game.batch.draw(texture,X-H/2,Y-W/2,H/2,W/2,H+5,W,1,1,tank.getRotation(),0,0,texture.getWidth(), texture.getHeight(), false, false);
         }
-        for(Params dynamite : VM.getDynamites()) {
-            painterGame.drawTexture(new TextureRegion(text.getDynamiteTexture()),dynamite);
-        }
+
+
         int elapsedSeconds = (int) VM.getRemainingTime();
         painterTop.drowWriting(2, "Czas: " + elapsedSeconds, 960, 50);
         if(elapsedSeconds == 0) game.setScreen(new EndScreen(game, ES));

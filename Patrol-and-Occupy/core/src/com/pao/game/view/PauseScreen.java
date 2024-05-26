@@ -1,7 +1,6 @@
 package com.pao.game.view;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -13,10 +12,8 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.pao.game.view.GameScreen.GameScreen;
 import com.pao.game.viewmodel.EditSettings;
-
-import static com.pao.game.model.Constants.PPM;
-import static com.pao.game.model.Options.*;
 
 public class PauseScreen implements Screen {
     static final float BUTTON_WIDTH = 400;

@@ -12,6 +12,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.pao.game.view.GameScreen.GameScreen;
 import com.pao.game.viewmodel.EditSettings;
 
 public class EndScreen implements Screen {
