@@ -226,8 +226,8 @@ public class SimpleBoard implements Board {
             return false;
         for (Spawn spawn : getSpawnList())
             if (gameObject != spawn && gameObject.intersects(spawn)
-                    && !(gameObject instanceof Tank && ((Tank)gameObject).getColor()!=spawn.getColor())
-                    && !(gameObject instanceof Bullet && ((Bullet)gameObject).getColor()!=spawn.getColor()))
+                    && !(gameObject instanceof Tank && ((Tank)gameObject).getColor()==spawn.getColor())
+                    && !(gameObject instanceof Bullet && ((Bullet)gameObject).getColor()==spawn.getColor()))
                 return true;
         return false;
     }
