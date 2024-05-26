@@ -13,6 +13,7 @@ public class Textures {
     Texture obstacle;
     Map<ModelPlayer, Texture> plates;
     Texture dynamite;
+    Map<ModelPlayer, Texture> spawns;
     public Textures(int n)
     {
         tanks = new HashMap<>();
@@ -34,6 +35,13 @@ public class Textures {
             if(color == ModelPlayer.Player1) plates.put(color,new Texture(Gdx.files.internal("plate_yellow.png")));
         }
         dynamite = new Texture(Gdx.files.internal("dynamite.jpeg"));
+        spawns = new HashMap<>();
+        for(ModelPlayer color : ModelPlayer.getColorList(n)){
+            if(color == ModelPlayer.Player4) spawns.put(color,new Texture(Gdx.files.internal("spawn_red.png")));
+            if(color == ModelPlayer.Player3) spawns.put(color,new Texture(Gdx.files.internal("spawn_blue.png")));
+            if(color == ModelPlayer.Player2) spawns.put(color,new Texture(Gdx.files.internal("spawn_green.png")));
+            if(color == ModelPlayer.Player1) spawns.put(color,new Texture(Gdx.files.internal("spawn_yellow.png")));
+        }
     }
     public Texture getTankTexture(ModelPlayer color)
     {
@@ -43,10 +51,13 @@ public class Textures {
     public Texture getObstacleTexture() { return obstacle; }
     public Texture getPlateTexture(ModelPlayer color) { return plates.get(color); }
     public Texture getDynamiteTexture() { return dynamite; }
+    public Texture getSpawnTexture(ModelPlayer color) { return spawns.get(color); }
     public void dispose() {
         for (Texture texture : tanks.values())
             texture.dispose();
         for (Texture texture : plates.values())
+            texture.dispose();
+        for (Texture texture : spawns.values())
             texture.dispose();
         bullet.dispose();
         obstacle.dispose();

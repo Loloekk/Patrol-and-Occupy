@@ -16,6 +16,8 @@ public class SimpleBoard implements Board {
     List<Obstacle> obstacleList = new ArrayList<>();
     List<Plate> plateList = new ArrayList<>();
     List<Dynamite> dynamiteList = new ArrayList<>();
+    List<Spawn> spawnList = new ArrayList<>();
+    float remainingTime;
     int width, height;
     ModelSettings settings;
     Clock clock;
@@ -33,10 +35,11 @@ public class SimpleBoard implements Board {
         clock = new Clock(settings);
         for(ModelPlayer color : ModelPlayer.getColorList(settings.getNumberOfPlayers())){
             boolean foundColor = false;
-            for(ColoredParams tankParams : setup.getTankParamsList()){
-                if(tankParams.getColor() == color){
+            for(ColoredParams spawnParams : setup.getSpawnParamsList()){
+                if(spawnParams.getColor() == color){
                     foundColor = true;
-                    tankList.add(new Tank(tankParams.getX(), tankParams.getY(), color, this, world,settings));
+                    spawnList.add(new Spawn(spawnParams.getX(), spawnParams.getY(), color));
+                    tankList.add(new Tank(spawnParams.getX(), spawnParams.getY(), color, this, world,settings));
                     break;
                 }
             }
@@ -52,10 +55,23 @@ public class SimpleBoard implements Board {
             plateList.add(new Plate(plateParams.getX(), plateParams.getY()));
         }
     }
+
+    public void setRemainingTime(float time) {
+        remainingTime = time;
+    }
+    public void addRemainingTime(float time) {
+        remainingTime += time;
+    }
     public void update(float t) {
         clock.update(t);
         Set<Bullet> bulletsToDestroy = new HashSet<>();
         Set<Dynamite> dynamitesToDestroy = new HashSet<>();
+        // Revive all tanks
+        List<Tank> tanksToRevive = new ArrayList<>();
+        for (Tank tank : tankList)
+            if(!tank.getIsAlive())
+                tanksToRevive.add(tank);
+
         // Move every bullet
         if (bulletList != null) {
             for (Bullet bullet : bulletList)
@@ -81,6 +97,9 @@ public class SimpleBoard implements Board {
                 // Outside the map (currently checks if it hits map boundary)
                 if (checkBoardCollision(bullet))
                     bulletsToDestroy.add(bullet);
+                // Enemy spawn hits
+                if (checkSpawnCollision(bullet))
+                    bulletsToDestroy.add(bullet);
             }
         }
         // Check for destroyed dynamites
@@ -105,6 +124,17 @@ public class SimpleBoard implements Board {
             bullet.destroy();
         for (Dynamite dynamite : dynamitesToDestroy)
             dynamite.destroy();
+        Setup setup = Setup.getSetupList().get(settings.getMap());
+        for (Tank tank : tanksToRevive) {
+            for (ColoredParams spawnParams : setup.getSpawnParamsList()) {
+                if (tank.getColor() == spawnParams.getColor()) {
+                    World world = tank.body.getWorld();
+                    tankList.remove(tank);
+                    tankList.add(new Tank(spawnParams.getX(), spawnParams.getY(), tank.getColor(), this, world,settings));
+                    break;
+                }
+            }
+        }
     }
 
     @Override
@@ -190,6 +220,17 @@ public class SimpleBoard implements Board {
                 return true;
         return false;
     }
+
+    public boolean checkSpawnCollision(GameObject gameObject) {
+        if(getSpawnList() == null)
+            return false;
+        for (Spawn spawn : getSpawnList())
+            if (gameObject != spawn && gameObject.intersects(spawn)
+                    && !(gameObject instanceof Tank && ((Tank)gameObject).getColor()!=spawn.getColor())
+                    && !(gameObject instanceof Bullet && ((Bullet)gameObject).getColor()!=spawn.getColor()))
+                return true;
+        return false;
+    }
     public List<Tank> getTankList() {
         return tankList;
     }
@@ -202,7 +243,8 @@ public class SimpleBoard implements Board {
         return obstacleList;
     }
     public List<Plate> getPlateList() { return plateList; }
-    public List<Dynamite> getDynamiteList(){ return dynamiteList; }
+    public List<Dynamite> getDynamiteList() { return dynamiteList; }
+    public List<Spawn> getSpawnList() { return spawnList; }
 
     public int getWidth() {
         return width;
