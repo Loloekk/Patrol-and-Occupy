@@ -36,9 +36,10 @@ public class MainMenuScreen implements Screen {
     RegionPainter painter;
     EditSettings ES;
 
-    public MainMenuScreen(Drop game) {
+    public MainMenuScreen(Drop game, EditSettings ES) {
         this.game = game;
-        ES = new EditSettings();
+        this.ES = ES;
+        //ES = new EditSettings();
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Drop.WIDTH/PPM, Drop.HEIGHT/PPM);
         viewport = new ExtendViewport(Drop.WIDTH/PPM, Drop.HEIGHT/PPM, camera);
@@ -79,7 +80,7 @@ public class MainMenuScreen implements Screen {
         if(settingsButton.contains(touchPoint.x, touchPoint.y)) {
             game.batch.draw(settingsButtonActive, Drop.WIDTH / 2 / PPM - BUTTON_WIDTH / 2, SETTINGS_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
             if(Gdx.input.isTouched()) {
-                game.setScreen(new SettingsScreen(game, ES, this));     //---------------------------------------------------
+                game.setScreen(new SettingsScreen(game, ES));     //---------------------------------------------------
             }
         }
         else {

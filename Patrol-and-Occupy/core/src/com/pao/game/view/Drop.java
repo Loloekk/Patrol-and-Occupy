@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.pao.game.viewmodel.EditSettings;
 import com.pao.game.viewmodel.ViewModel;
 
 public class Drop extends Game {
@@ -19,7 +20,7 @@ public class Drop extends Game {
         //font = new BitmapFont();
 //        tmp = new GameScreen(this,n,VM);
 //        this.setScreen(tmp);
-        this.setScreen(new MainMenuScreen(this));
+        this.setScreen(new MainMenuScreen(this, new EditSettings()));
     }
 
     public void render() {

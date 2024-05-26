@@ -126,7 +126,7 @@ public class GameScreen implements Screen {
 
         //camera.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
         if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-            game.setScreen(new SettingsScreen(game, ES, this));
+            game.setScreen(new PauseScreen(game, ES, this));
         }
     }
     public void draw() {

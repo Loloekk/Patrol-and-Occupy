@@ -28,7 +28,6 @@ import static com.pao.game.model.Options.*;
 
 public class SettingsScreen implements Screen {
     Drop game;
-    Screen previousScreen;
     OrthographicCamera camera;
     EditSettings ES;
     Viewport viewport;
@@ -45,10 +44,9 @@ public class SettingsScreen implements Screen {
     Slider shootCooldownSlider;
     Slider receiveCooldownSlider;
 
-    public SettingsScreen(Drop game, EditSettings ES, Screen previousScreen) {
+    public SettingsScreen(Drop game, EditSettings ES) {
         this.game = game;
         this.ES = ES;
-        this.previousScreen = previousScreen;
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Drop.WIDTH, Drop.HEIGHT);
         viewport = new ExtendViewport(Drop.WIDTH, Drop.HEIGHT, camera);
@@ -121,7 +119,7 @@ public class SettingsScreen implements Screen {
         stage.draw();
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-            game.setScreen(previousScreen);
+            game.setScreen(new MainMenuScreen(game, ES));
         }
     }
 
