@@ -14,7 +14,7 @@ public class ModelSettings {
     private float receiveCooldown;
     public ModelSettings()
     {
-        gameTime = 120f;
+        gameTime = 15f;
         numberOfPlayers = 2;
         map = 1;
         width = 1720;

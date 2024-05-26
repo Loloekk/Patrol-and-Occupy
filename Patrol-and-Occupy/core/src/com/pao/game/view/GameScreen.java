@@ -33,8 +33,6 @@ public class GameScreen implements Screen {
     Textures text;
     Viewport viewport;
     Texture ground;
-    BitmapFont font;
-    long startTime;
     RegionPainter painterGame;
     RegionPainter painterRight;
     RegionPainter painterLeft;
@@ -55,18 +53,11 @@ public class GameScreen implements Screen {
         if(ES.getNumberOfPlayers()>=1)players.add(new PlayerView(colors.get(0), Input.Keys.UP,Input.Keys.DOWN,Input.Keys.LEFT,Input.Keys.RIGHT,Input.Keys.CONTROL_RIGHT,Input.Keys.SLASH));
         if(ES.getNumberOfPlayers()>=2)players.add(new PlayerView(colors.get(1), Input.Keys.W,Input.Keys.S,Input.Keys.A,Input.Keys.D,Input.Keys.SPACE,Input.Keys.E));
         text = new Textures(ES.getNumberOfPlayers());
-
-        font = new BitmapFont();
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Roboto-Black.ttf"));
-        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        parameter.size = 40;
-        parameter.color = com.badlogic.gdx.graphics.Color.RED;
-        font = generator.generateFont(parameter);
-        startTime = TimeUtils.nanoTime();
         painterGame = new RegionPainter(game.batch,100,0,Drop.WIDTH-200,Drop.HEIGHT-100,1720,954,new Color(0.9f,0.9f,0.4f,1));
         painterLeft = new RegionPainter(game.batch,0,0,100,Drop.HEIGHT-100,100,Drop.HEIGHT-100,new Color(0f,1f,0f,1));
         painterRight = new RegionPainter(game.batch,Drop.WIDTH-100,0,100,Drop.HEIGHT-100,100,Drop.HEIGHT-100,new Color(0f,1f,0f,1));
         painterTop = new RegionPainter(game.batch,0,Drop.HEIGHT-100,Drop.WIDTH,100,Drop.WIDTH,100,new Color(0f,0f,1f,1));
+        painterTop.addFont(40,Color.RED);
     }
     public void update(float time) {
         VM.update(time);
@@ -140,28 +131,28 @@ public class GameScreen implements Screen {
         painterGame.fillBackground(1f);
         //game.batch.draw(ground,0,0,width,height);
         for(ColoredParams plate: VM.getPlates()) {
-            painterGame.draw(new TextureRegion(text.getPlateTexture(plate.getColor())), plate);
+            painterGame.drawTexture(new TextureRegion(text.getPlateTexture(plate.getColor())), plate);
         }
         for(Params obstacle : VM.getObstacles()) {
-            painterGame.draw(new TextureRegion(text.getObstacleTexture()),obstacle,1.03f);
+            painterGame.drawTexture(new TextureRegion(text.getObstacleTexture()),obstacle,1.03f);
             //game.batch.draw(textureRegion,X-H/2,Y-W/2,H/2,W/2,H,W,1,1,obstacle.getRotation());
             //game.batch.draw(texture,X-H/2,Y-W/2,H/2,W/2,H,W,1,1,obstacle.getRotation(),0,0,texture.getWidth(), texture.getHeight(), false, false);
         }
         for(ColoredParams bullet : VM.getBullets()) {
-            painterGame.draw(new TextureRegion(text.getBulletTexture()),bullet);
+            painterGame.drawTexture(new TextureRegion(text.getBulletTexture()),bullet);
             //game.batch.draw(textureRegion,X-H/2,Y-W/2,H/2,W/2,H,W,1,1,bullet.getRotation());
             //game.batch.draw(texture,X-H/2,Y-W/2,H/2,W/2,H,W,1,1,bullet.getRotation(),0,0,texture.getWidth(), texture.getHeight(), false, false);
         }
         for(ColoredParams tank : VM.getTanks()) {
-            painterGame.draw(new TextureRegion(text.getTankTexture(tank.getColor())),tank,1.03f);
+            painterGame.drawTexture(new TextureRegion(text.getTankTexture(tank.getColor())),tank,1.03f);
             //game.batch.draw(region, X-H/2,Y-W/2,H/2,W/2,H+5,W,1,1,tank.getRotation());
             //game.batch.draw(texture,X-H/2,Y-W/2,H/2,W/2,H+5,W,1,1,tank.getRotation(),0,0,texture.getWidth(), texture.getHeight(), false, false);
         }
         for(Params dynamite : VM.getDynamites()) {
-            painterGame.draw(new TextureRegion(text.getDynamiteTexture()),dynamite);
+            painterGame.drawTexture(new TextureRegion(text.getDynamiteTexture()),dynamite);
         }
         int elapsedSeconds = (int) VM.getRemainingTime();
-        font.draw(game.batch, "Czas: " + elapsedSeconds, 900, 1000);
+        painterTop.drowWriting(2, "Czas: " + elapsedSeconds, 960, 50);
         if(elapsedSeconds == 0) game.setScreen(new EndScreen(game, ES));
         game.batch.end();
     }
@@ -194,7 +185,6 @@ public class GameScreen implements Screen {
     public void dispose() {
         text.dispose();
         ground.dispose();
-        font.dispose();
         painterGame.dispose();
     }
 
