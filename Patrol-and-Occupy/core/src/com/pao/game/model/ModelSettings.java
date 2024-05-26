@@ -14,17 +14,7 @@ public class ModelSettings {
     private float receiveCooldown;
     public ModelSettings()
     {
-        gameTime = 15f;
-        numberOfPlayers = 2;
-        map = 1;
-        width = 1720;
-        height = 954;
-        tankSpeed = 8f;
-        bulletSpeed = 700f;
-        rotateSpeed = 4f;
-        magazineCapacity = 5;
-        shootCooldown = 0.2f;
-        receiveCooldown = 2f;
+        setDefault();
     }
     public void setOption(Options option, float state){
         switch (option){
@@ -87,6 +77,20 @@ public class ModelSettings {
                 this.receiveCooldown = (float)state;
                 break;
         }
+    }
+    public void setDefault()
+    {
+        gameTime = 120f;
+        numberOfPlayers = 2;
+        map = 1;
+        width = 1720;
+        height = 954;
+        tankSpeed = 200f;
+        bulletSpeed = 700f;
+        rotateSpeed = 4f;
+        magazineCapacity = 5;
+        shootCooldown = 0.2f;
+        receiveCooldown = 2f;
     }
     /*public void setGameTime(float state){gameTime = state;}
     public void setNumberOfPlayers(int state){numberOfPlayers = state;}
