@@ -7,8 +7,6 @@ import java.util.List;
 public interface Board {
 
     void update(float t);
-    void setRemainingTime(float time);
-    void addRemainingTime(float time);
     float getRemainingTime();
     void setmove(ModelPlayer color, Move move, boolean value);
     boolean checkBoardCollision(GameObject gameObject);

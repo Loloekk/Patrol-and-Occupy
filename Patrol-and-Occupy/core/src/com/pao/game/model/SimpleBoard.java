@@ -16,14 +16,13 @@ public class SimpleBoard implements Board {
     List<Obstacle> obstacleList = new ArrayList<>();
     List<Plate> plateList = new ArrayList<>();
     List<Dynamite> dynamiteList = new ArrayList<>();
-    float remainingTime;
     int width, height;
     ModelSettings settings;
+    Clock clock;
 
     private SimpleBoard(int width, int height) {
         this.width = width;
         this.height = height;
-        remainingTime = 60;
     }
 
     public SimpleBoard(ModelSettings settings, World world){
@@ -31,7 +30,7 @@ public class SimpleBoard implements Board {
         this.settings = settings;
         // Add players tanks
         Setup setup = Setup.getSetupList().get(settings.getMap());
-
+        clock = new Clock(settings);
         for(ModelPlayer color : ModelPlayer.getColorList(settings.getNumberOfPlayers())){
             boolean foundColor = false;
             for(ColoredParams tankParams : setup.getTankParamsList()){
@@ -53,20 +52,10 @@ public class SimpleBoard implements Board {
             plateList.add(new Plate(plateParams.getX(), plateParams.getY()));
         }
     }
-
-    public void setRemainingTime(float time) {
-        remainingTime = time;
-    }
-    public void addRemainingTime(float time) {
-        remainingTime += time;
-    }
-    public float getRemainingTime(){
-        return remainingTime;
-    }
     public void update(float t) {
+        clock.update(t);
         Set<Bullet> bulletsToDestroy = new HashSet<>();
         Set<Dynamite> dynamitesToDestroy = new HashSet<>();
-        remainingTime-=t;
         // Move every bullet
         if (bulletList != null) {
             for (Bullet bullet : bulletList)
@@ -116,6 +105,11 @@ public class SimpleBoard implements Board {
             bullet.destroy();
         for (Dynamite dynamite : dynamitesToDestroy)
             dynamite.destroy();
+    }
+
+    @Override
+    public float getRemainingTime() {
+        return clock.getRemainingTime();
     }
 
     public void setmove(ModelPlayer color, Move move, boolean value) {
