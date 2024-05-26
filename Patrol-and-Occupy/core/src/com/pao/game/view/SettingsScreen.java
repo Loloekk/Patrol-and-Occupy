@@ -66,14 +66,19 @@ public class SettingsScreen implements Screen {
         skin = new Skin(Gdx.files.internal("uiskin.json"));
 
         tankSpeedSlider = makeSlider(1, 20, 1, false, Drop.WIDTH/2 - sliderWidth*3/2, 600f, tankSpeed);
+        tankSpeedSlider.setValue(ES.getTankSpeed());
         stage.addActor(tankSpeedSlider);
         bulletSpeedSlider = makeSlider(400, 1000, 50, false, Drop.WIDTH/2 + sliderWidth/2, 600f, bulletSpeed);
+        bulletSpeedSlider.setValue(ES.getBulletSpeed());
         stage.addActor(bulletSpeedSlider);
         magazineCapacitySlider = makeSlider(1, 11, 1, false, Drop.WIDTH/2 - sliderWidth*3/2, 500f, magazineCapacity);
+        magazineCapacitySlider.setValue(ES.getMagazineCapacity());
         stage.addActor(magazineCapacitySlider);
         shootCooldownSlider = makeSlider(0, 5, 0.5f, false, Drop.WIDTH/2 + sliderWidth/2, 500f, shootCooldown);
+        shootCooldownSlider.setValue(ES.getShootCooldown());
         stage.addActor(shootCooldownSlider);
         receiveCooldownSlider = makeSlider(0, 5, 0.5f, false, Drop.WIDTH/2 - sliderWidth*3/2, 400f, receiveCooldown);
+        receiveCooldownSlider.setValue(ES.getReceiveCooldown());
         stage.addActor(receiveCooldownSlider);
     }
 
@@ -81,7 +86,7 @@ public class SettingsScreen implements Screen {
         Slider slider = new Slider(min, max, stepSize, vertical, skin);
         slider.setPosition(x, y);
         slider.setSize(sliderWidth, sliderHeight);
-        slider.setValue(slider.getMinValue() + (slider.getMaxValue() - slider.getMinValue()) / 2);
+        //slider.setValue(slider.getMinValue() + (slider.getMaxValue() - slider.getMinValue()) / 2);
         slider.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
