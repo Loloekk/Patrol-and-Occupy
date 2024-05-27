@@ -15,14 +15,12 @@ import static com.pao.game.model.Constants.*;
 public class ViewModel{
     Board board;
     World world;
-    ModelSettings settings;
-    public ViewModel(EditSettings ES)
+    public ViewModel()
     {
-        settings = ES.getSettings();
         world = new World(GRAVITY, true);
         world.setContactListener(new TankSpawnContactListener());
-        BodyCreator.setEdges(0,0, settings.getWidth(), settings.getHeight(), world);
-        board = new SimpleBoard(settings, world);
+        BodyCreator.setEdges(0,0, ModelSettings.getWidth(), ModelSettings.getHeight(), world);
+        board = new SimpleBoard(world);
     }
 
     public void setMove(ModelPlayer color, Move move, boolean state)

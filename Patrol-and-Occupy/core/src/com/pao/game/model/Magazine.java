@@ -4,32 +4,29 @@ public class Magazine {
     private int quantity;
     private float lastShoot;
     private float lastReceive;
-    ModelSettings settings;
-
-    public Magazine(ModelSettings settings){
-        this.settings = settings;
-        quantity = settings.getMagazineCapacity();
+    public Magazine(){
+        quantity = ModelSettings.getMagazineCapacity();
         lastShoot = Float.MAX_VALUE;
         lastReceive = Float.MAX_VALUE;
     }
     public void update(float time){
         lastReceive+=time;
         lastShoot+=time;
-        if(quantity == settings.getMagazineCapacity()) {
+        if(quantity == ModelSettings.getMagazineCapacity()) {
             lastReceive = 0;
         }
-        if(lastReceive >= settings.getReceiveCooldown())
+        if(lastReceive >= ModelSettings.getReceiveCooldown())
         {
             lastReceive = 0;
-            if(quantity < settings.getMagazineCapacity())
+            if(quantity < ModelSettings.getMagazineCapacity())
                 quantity++;
         }
     }
 
     public boolean shoot()
     {
-        if(quantity == 0 || lastShoot < settings.getShootCooldown()){
-            System.out.println(settings.getShootCooldown());
+        if(quantity == 0 || lastShoot < ModelSettings.getShootCooldown()){
+            System.out.println(ModelSettings.getShootCooldown());
             return false;
         }
         quantity --;

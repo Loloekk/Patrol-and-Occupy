@@ -25,16 +25,13 @@ public class Tank extends BodyGameObject {
     boolean placeDynamite;
     boolean isAlive;
 
-    ModelSettings settings;
-
-    public Tank(float x, float y, ModelPlayer color, Board board, World world, ModelSettings settings) {
+    public Tank(float x, float y, ModelPlayer color, Board board, World world) {
         super(x, y, width, height, 0, BodyDef.BodyType.DynamicBody, world, 1f, false);
         body.setUserData(this);
-        this.settings = settings;
         this.color = color;
         this.board = board;
         this.isAlive = true;
-        this.magazine = new Magazine(settings);
+        this.magazine = new Magazine();
         this.lastPlaceDynamite = 0f;
     }
 
@@ -77,14 +74,14 @@ public class Tank extends BodyGameObject {
             float angle = getRotation() * MathUtils.degreesToRadians;
             float x = getX() + MathUtils.cos(angle) * getHeight()/2;
             float y = getY() + MathUtils.sin(angle) * getHeight()/2;
-            board.addBullet(new Bullet(x, y, this, settings));
+            board.addBullet(new Bullet(x, y, this));
         }
 
         if(placeDynamite && lastPlaceDynamite >= 10.0f) {
             float angle = getRotation() * MathUtils.degreesToRadians;
             float x = getX() - MathUtils.cos(angle) * getHeight();
             float y = getY() - MathUtils.sin(angle) * getHeight();
-            Dynamite dynamite = new Dynamite(x, y, this, settings);
+            Dynamite dynamite = new Dynamite(x, y, this);
             board.addDynamite(dynamite);
             if(board.checkBoardCollision(dynamite) || board.checkObstacleCollision(dynamite) || board.checkDynamiteCollision(dynamite) || board.checkSpawnCollision(dynamite) || board.checkTankCollision(dynamite)){
                 board.getDynamiteList().remove(dynamite);
@@ -98,24 +95,24 @@ public class Tank extends BodyGameObject {
         Vector2 vel = body.getLinearVelocity();
         if(moveLeftState && !moveRightState) {                   //rotate left
             if(moveBackwardsState && !moveForwardState){
-                body.setAngularVelocity(-settings.getRotateSpeed());
+                body.setAngularVelocity(-ModelSettings.getRotateSpeed());
             }
             else {
-                body.setAngularVelocity(settings.getRotateSpeed());
+                body.setAngularVelocity(ModelSettings.getRotateSpeed());
             }
         }
         else if(!moveLeftState && moveRightState) {              //rotate right
             if(moveBackwardsState && !moveForwardState){
-                body.setAngularVelocity(settings.getRotateSpeed());
+                body.setAngularVelocity(ModelSettings.getRotateSpeed());
             }
             else {
-                body.setAngularVelocity(-settings.getRotateSpeed());
+                body.setAngularVelocity(-ModelSettings.getRotateSpeed());
             }
         }
         else {
             body.setAngularVelocity(0.0f);
         }
-        float rideForwardSpeed = settings.getTankSpeed();
+        float rideForwardSpeed = ModelSettings.getTankSpeed();
         float rideBackwardsSpeed = rideForwardSpeed*3/4;
         if(moveForwardState && !moveBackwardsState) {            //move forward
             vel.x = rideForwardSpeed * MathUtils.cos(body.getAngle());

@@ -22,7 +22,6 @@ public class EndScreen implements Screen {
     static final float EXIT_BUTTON_Y = 200;
     Drop game;
     OrthographicCamera camera;
-    EditSettings ES;
     Viewport viewport;
     Texture startButtonActive;
     Texture startButtonInactive;
@@ -34,9 +33,8 @@ public class EndScreen implements Screen {
     RegionPainter painter;
     BitmapFont font;
 
-    public EndScreen(Drop game, EditSettings ES) {
+    public EndScreen(Drop game) {
         this.game = game;
-        this.ES = ES;
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Drop.WIDTH, Drop.HEIGHT);
         viewport = new ExtendViewport(Drop.WIDTH, Drop.HEIGHT, camera);
@@ -70,11 +68,13 @@ public class EndScreen implements Screen {
         painter.fillBackground(1f);
         camera.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
 
+        font.draw(game.batch, "WINNER:", Drop.WIDTH/2, 900);
+
         if(startButton.contains(touchPoint.x, touchPoint.y)) {
             game.batch.draw(startButtonActive, Drop.WIDTH / 2 - BUTTON_WIDTH / 2, START_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
             if(Gdx.input.justTouched()) {
                 //this.dispose();
-                game.setScreen(new GameScreen(game, ES));
+                game.setScreen(new GameScreen(game));
             }
         }
         else {
@@ -85,7 +85,7 @@ public class EndScreen implements Screen {
             game.batch.draw(exitButtonActive, Drop.WIDTH / 2 - BUTTON_WIDTH / 2, EXIT_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
             if(Gdx.input.justTouched()) {
                 //this.dispose();
-                game.setScreen(new MainMenuScreen(game,ES));
+                game.setScreen(new MainMenuScreen(game));
             }
         }
         else {

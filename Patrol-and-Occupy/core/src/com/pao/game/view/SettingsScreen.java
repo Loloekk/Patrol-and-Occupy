@@ -30,7 +30,6 @@ import static com.pao.game.model.Options.*;
 public class SettingsScreen implements Screen {
     Drop game;
     OrthographicCamera camera;
-    EditSettings ES;
     Viewport viewport;
     Vector3 touchPoint;
     RegionPainter painter;
@@ -46,9 +45,8 @@ public class SettingsScreen implements Screen {
     Slider receiveCooldownSlider;
     Slider gameTimeSlider;
 
-    public SettingsScreen(Drop game, EditSettings ES) {
+    public SettingsScreen(Drop game) {
         this.game = game;
-        this.ES = ES;
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Drop.WIDTH, Drop.HEIGHT);
         viewport = new ExtendViewport(Drop.WIDTH, Drop.HEIGHT, camera);
@@ -66,22 +64,22 @@ public class SettingsScreen implements Screen {
         skin = new Skin(Gdx.files.internal("uiskin.json"));
 
         tankSpeedSlider = makeSlider(1, 20, 1, false, Drop.WIDTH/2 - sliderWidth*3/2, 700f, tankSpeed);
-        tankSpeedSlider.setValue(ES.getTankSpeed());
+        tankSpeedSlider.setValue(EditSettings.getTankSpeed());
         stage.addActor(tankSpeedSlider);
         bulletSpeedSlider = makeSlider(1, 40, 1, false, Drop.WIDTH/2 + sliderWidth/2, 700f, bulletSpeed);
-        bulletSpeedSlider.setValue(ES.getBulletSpeed());
+        bulletSpeedSlider.setValue(EditSettings.getBulletSpeed());
         stage.addActor(bulletSpeedSlider);
         magazineCapacitySlider = makeSlider(1, 10, 1, false, Drop.WIDTH/2 - sliderWidth*3/2, 550f, magazineCapacity);
-        magazineCapacitySlider.setValue(ES.getMagazineCapacity());
+        magazineCapacitySlider.setValue(EditSettings.getMagazineCapacity());
         stage.addActor(magazineCapacitySlider);
         shootCooldownSlider = makeSlider(0, 5, 0.5f, false, Drop.WIDTH/2 + sliderWidth/2, 550f, shootCooldown);
-        shootCooldownSlider.setValue(ES.getShootCooldown());
+        shootCooldownSlider.setValue(EditSettings.getShootCooldown());
         stage.addActor(shootCooldownSlider);
         receiveCooldownSlider = makeSlider(0, 5, 0.5f, false, Drop.WIDTH/2 - sliderWidth*3/2, 400f, receiveCooldown);
-        receiveCooldownSlider.setValue(ES.getReceiveCooldown());
+        receiveCooldownSlider.setValue(EditSettings.getReceiveCooldown());
         stage.addActor(receiveCooldownSlider);
         gameTimeSlider = makeSlider(10, 200, 10f, false, Drop.WIDTH/2 + sliderWidth/2, 400f, gameTime);
-        gameTimeSlider.setValue(ES.getGameTime());
+        gameTimeSlider.setValue(EditSettings.getGameTime());
         stage.addActor(gameTimeSlider);
 
     }
@@ -101,7 +99,7 @@ public class SettingsScreen implements Screen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 float value = slider.getValue();
-                ES.setOption(o, value);
+                EditSettings.setOption(o, value);
             }
         });
         return slider;
@@ -131,7 +129,7 @@ public class SettingsScreen implements Screen {
         stage.draw();
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-            game.setScreen(new MainMenuScreen(game, ES));
+            game.setScreen(new MainMenuScreen(game));
         }
     }
 

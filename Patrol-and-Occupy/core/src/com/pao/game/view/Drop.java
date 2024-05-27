@@ -18,7 +18,7 @@ public class Drop extends Game {
         //font = new BitmapFont();
 //        tmp = new GameScreen(this,n,VM);
 //        this.setScreen(tmp);
-        this.setScreen(new MainMenuScreen(this, new EditSettings()));
+        this.setScreen(new MainMenuScreen(this));
     }
 
     public void render() {

@@ -7,11 +7,9 @@ import java.util.List;
 
 public class Dynamite extends BodyGameObject {
     Board board;
-    ModelSettings settings;
 
-    public Dynamite(float x, float y, Tank tank, ModelSettings settings) {
+    public Dynamite(float x, float y, Tank tank) {
         super(x, y, 40, 40, 0, BodyDef.BodyType.DynamicBody, tank.body.getWorld(), 0.7f, false);
-        this.settings = settings;
         this.board = tank.board;
     }
 

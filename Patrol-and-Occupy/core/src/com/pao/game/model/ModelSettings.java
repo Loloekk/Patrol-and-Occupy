@@ -1,84 +1,84 @@
 package com.pao.game.model;
 
 public class ModelSettings {
-    private float gameTime;
-    private int numberOfPlayers;
-    private int map;
-    private int width;
-    private int height;
-    private float tankSpeed;
-    private float bulletSpeed;
-    private float rotateSpeed;
-    private int magazineCapacity;
-    private float shootCooldown;
-    private float receiveCooldown;
-    public ModelSettings()
-    {
+    private static float gameTime;
+    private static int numberOfPlayers;
+    private static int map;
+    private static int width;
+    private static int height;
+    private static float tankSpeed;
+    private static float bulletSpeed;
+    private static float rotateSpeed;
+    private static int magazineCapacity;
+    private static float shootCooldown;
+    private static float receiveCooldown;
+
+    static {
         setDefault();
     }
-    public void setOption(Options option, float state){
+    public static void setOption(Options option, float state){
         switch (option){
             case gameTime:
-                this.gameTime = state;
+                gameTime = state;
                 break;
             case numberOfPlayers:
-                this.numberOfPlayers = (int)state;
+                numberOfPlayers = (int)state;
                 break;
             case map:
-                this.map=(int) state;
+                map=(int) state;
                 break;
             case tankSpeed:
-                this.tankSpeed = state;
+                tankSpeed = state;
                 break;
             case bulletSpeed:
-                this.bulletSpeed = state;
+                bulletSpeed = state;
                 break;
             case rotateSpeed:
-                this.rotateSpeed = state;
+                rotateSpeed = state;
                 break;
             case magazineCapacity:
-                this.magazineCapacity = (int)state;
+                magazineCapacity = (int)state;
                 break;
             case shootCooldown:
-                this.shootCooldown = state;
+                shootCooldown = state;
                 break;
             case receiveCooldown:
-                this.receiveCooldown = state;
+                receiveCooldown = state;
                 break;
         }
     }
-    public void setOption(Options option, int state){
+    public static void setOption(Options option, int state){
         switch (option){
             case gameTime:
-                this.gameTime = (float)state;
+                gameTime = (float)state;
                 break;
             case numberOfPlayers:
-                this.numberOfPlayers = state;
+                numberOfPlayers = state;
                 break;
             case map:
-                this.map= state;
+                map= state;
                 break;
             case tankSpeed:
-                this.tankSpeed = (float)state;
+                tankSpeed = (float)state;
                 break;
             case bulletSpeed:
-                this.bulletSpeed = (float)state;
+                bulletSpeed = (float)state;
                 break;
             case rotateSpeed:
-                this.rotateSpeed = (float)state;
+                rotateSpeed = (float)state;
                 break;
             case magazineCapacity:
-                this.magazineCapacity = state;
+                magazineCapacity = state;
                 break;
             case shootCooldown:
-                this.shootCooldown = (float)state;
+                shootCooldown = (float)state;
                 break;
             case receiveCooldown:
-                this.receiveCooldown = (float)state;
+                receiveCooldown = (float)state;
                 break;
         }
     }
-    public void setDefault()
+    public static void setDefault()
     {
         gameTime = 120f;
         numberOfPlayers = 2;
@@ -100,16 +100,16 @@ public class ModelSettings {
     public void setMagazineCapacity(int state){magazineCapacity = state;}
     public void setShootCooldown(float state){shootCooldown = state;}
     public void setReceiveCooldown(float state){receiveCooldown = state;}*/
-    public float getGameTime(){return gameTime;}
-    public int getNumberOfPlayers(){return numberOfPlayers;}
-    public int getMap(){return map;}
-    public float getTankSpeed(){return tankSpeed ;}
-    public float getBulletSpeed(){return bulletSpeed;}
-    public float getRotateSpeed(){return rotateSpeed;}
-    public int getMagazineCapacity(){return magazineCapacity;}
-    public float getShootCooldown(){return shootCooldown;}
-    public float getReceiveCooldown(){return receiveCooldown;}
-    public int getWidth(){return width;}
-    public int getHeight(){return height;}
+    public static float getGameTime(){return gameTime;}
+    public static int getNumberOfPlayers(){return numberOfPlayers;}
+    public static int getMap(){return map;}
+    public static float getTankSpeed(){return tankSpeed ;}
+    public static float getBulletSpeed(){return bulletSpeed;}
+    public static float getRotateSpeed(){return rotateSpeed;}
+    public static int getMagazineCapacity(){return magazineCapacity;}
+    public static float getShootCooldown(){return shootCooldown;}
+    public static float getReceiveCooldown(){return receiveCooldown;}
+    public static int getWidth(){return width;}
+    public static int getHeight(){return height;}
 
 }

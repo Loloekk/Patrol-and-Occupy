@@ -4,29 +4,25 @@ import com.pao.game.model.ModelSettings;
 import com.pao.game.model.Options;
 
 public class EditSettings {
-    ModelSettings settings;
-    public EditSettings()
-    {
-        settings = new ModelSettings();
-    }
-    public void setOption(Options o, float state)
+    static ModelSettings settings;
+    public static void setOption(Options o, float state)
     {
         settings.setOption(o,state);
     }
-    public void setOption(Options o, int state)
+    public static void setOption(Options o, int state)
     {
         settings.setOption(o,state);
     }
-    public float getGameTime(){return settings.getGameTime();}
-    public int getNumberOfPlayers(){return settings.getNumberOfPlayers();}
-    public int getMap(){return settings.getMap();}
-    public float getTankSpeed(){return settings.getTankSpeed();}
-    public float getBulletSpeed(){return settings.getBulletSpeed();}
-    public int getMagazineCapacity(){return settings.getMagazineCapacity();}
-    public float getShootCooldown(){return settings.getShootCooldown();}
-    public float getReceiveCooldown(){return settings.getReceiveCooldown();}
-    public int getWidth(){return settings.getWidth();}
-    public int getHeight(){return settings.getHeight();}
-    public ModelSettings getSettings(){return settings;}
+    public static float getGameTime(){return settings.getGameTime();}
+    public static int getNumberOfPlayers(){return settings.getNumberOfPlayers();}
+    public static int getMap(){return settings.getMap();}
+    public static float getTankSpeed(){return settings.getTankSpeed();}
+    public static float getBulletSpeed(){return settings.getBulletSpeed();}
+    public static int getMagazineCapacity(){return settings.getMagazineCapacity();}
+    public static float getShootCooldown(){return settings.getShootCooldown();}
+    public static float getReceiveCooldown(){return settings.getReceiveCooldown();}
+    public static int getWidth(){return settings.getWidth();}
+    public static int getHeight(){return settings.getHeight();}
+    public static ModelSettings getSettings(){return settings;}
 
 }

@@ -33,12 +33,9 @@ public class MainMenuScreen implements Screen {
     Rectangle exitButton;
     Vector3 touchPoint;
     RegionPainter painter;
-    EditSettings ES;
 
-    public MainMenuScreen(Drop game, EditSettings ES) {
+    public MainMenuScreen(Drop game) {
         this.game = game;
-        this.ES = ES;
-        //ES = new EditSettings();
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Drop.WIDTH, Drop.HEIGHT);
         viewport = new ExtendViewport(Drop.WIDTH, Drop.HEIGHT, camera);
@@ -68,7 +65,7 @@ public class MainMenuScreen implements Screen {
             game.batch.draw(playButtonActive, Drop.WIDTH / 2  - BUTTON_WIDTH / 2, PLAY_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
             if(Gdx.input.justTouched()) {
                 //this.dispose();
-                game.setScreen(new GameScreen(game,ES));
+                game.setScreen(new GameScreen(game));
             }
         }
         else {
@@ -79,7 +76,7 @@ public class MainMenuScreen implements Screen {
         if(settingsButton.contains(touchPoint.x, touchPoint.y)) {
             game.batch.draw(settingsButtonActive, Drop.WIDTH / 2  - BUTTON_WIDTH / 2, SETTINGS_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
             if(Gdx.input.justTouched()) {
-                game.setScreen(new SettingsScreen(game, ES));     //---------------------------------------------------
+                game.setScreen(new SettingsScreen(game));     //---------------------------------------------------
             }
         }
         else {

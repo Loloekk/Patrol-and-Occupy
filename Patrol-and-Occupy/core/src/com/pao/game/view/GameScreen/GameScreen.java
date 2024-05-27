@@ -10,26 +10,24 @@ import com.pao.game.viewmodel.EditSettings;
 public class GameScreen implements Screen {
     final Drop game;
     ViewModel VM;
-    EditSettings ES;
     DrawingBoard drawingBoard;
     UpdatingBoard updatingBoard;
     //Rectangle settingsButton;   // pozycja, wymiary
     //Vector3 touchPoint;
 
-    public GameScreen(final Drop game,EditSettings ES){
+    public GameScreen(final Drop game){
         this.game=game;
-        this.ES = ES;
-        this.VM = new ViewModel(ES);
-        drawingBoard = new DrawingBoard(game,VM,ES.getNumberOfPlayers());
-        updatingBoard = new UpdatingBoard(VM,ES.getNumberOfPlayers());
+        this.VM = new ViewModel();
+        drawingBoard = new DrawingBoard(game,VM,EditSettings.getNumberOfPlayers());
+        updatingBoard = new UpdatingBoard(VM,EditSettings.getNumberOfPlayers());
     }
     private void screenChanege()
     {
         if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-            game.setScreen(new PauseScreen(game, ES, this));
+            game.setScreen(new PauseScreen(game, this));
         }
         if(VM.getRemainingTime() == 0f) {
-            game.setScreen(new EndScreen(game, ES));
+            game.setScreen(new EndScreen(game));
         }
     }
     @Override

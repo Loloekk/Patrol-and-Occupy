@@ -19,7 +19,6 @@ public class SimpleBoard implements Board {
     List<Spawn> spawnList = new ArrayList<>();
     float remainingTime;
     int width, height;
-    ModelSettings settings;
     Clock clock;
 
     private SimpleBoard(int width, int height) {
@@ -27,19 +26,18 @@ public class SimpleBoard implements Board {
         this.height = height;
     }
 
-    public SimpleBoard(ModelSettings settings, World world){
-        this(settings.getWidth(), settings.getHeight());
-        this.settings = settings;
+    public SimpleBoard(World world){
+        this(ModelSettings.getWidth(), ModelSettings.getHeight());
         // Add players tanks
-        Setup setup = Setup.getSetupList().get(settings.getMap());
-        clock = new Clock(settings);
-        for(ModelPlayer color : ModelPlayer.getColorList(settings.getNumberOfPlayers())){
+        Setup setup = Setup.getSetupList().get(ModelSettings.getMap());
+        clock = new Clock();
+        for(ModelPlayer color : ModelPlayer.getColorList(ModelSettings.getNumberOfPlayers())){
             boolean foundColor = false;
             for(ColoredParams spawnParams : setup.getSpawnParamsList()){
                 if(spawnParams.getColor() == color){
                     foundColor = true;
                     spawnList.add(new Spawn(spawnParams.getX(), spawnParams.getY(), color, world));
-                    tankList.add(new Tank(spawnParams.getX(), spawnParams.getY(), color, this, world,settings));
+                    tankList.add(new Tank(spawnParams.getX(), spawnParams.getY(), color, this, world));
                     break;
                 }
             }
@@ -124,7 +122,7 @@ public class SimpleBoard implements Board {
             bullet.destroy();
         for (Dynamite dynamite : dynamitesToDestroy)
             dynamite.destroy();
-        Setup setup = Setup.getSetupList().get(settings.getMap());
+        Setup setup = Setup.getSetupList().get(ModelSettings.getMap());
         for (Tank tank : tanksToRevive) {
             for (ColoredParams spawnParams : setup.getSpawnParamsList()) {
                 if (tank.getColor() == spawnParams.getColor()) {

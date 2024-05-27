@@ -23,7 +23,6 @@ public class PauseScreen implements Screen {
     static final float EXIT_BUTTON_Y = 200;
     Drop game;
     OrthographicCamera camera;
-    EditSettings ES;
     GameScreen gameScreen;
     Viewport viewport;
     Texture resumeButtonActive;
@@ -39,9 +38,8 @@ public class PauseScreen implements Screen {
     RegionPainter painter;
     BitmapFont font;
 
-    public PauseScreen(Drop game, EditSettings ES, GameScreen gameScreen) {
+    public PauseScreen(Drop game, GameScreen gameScreen) {
         this.game = game;
-        this.ES = ES;
         this.gameScreen = gameScreen;
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Drop.WIDTH, Drop.HEIGHT);
@@ -94,7 +92,7 @@ public class PauseScreen implements Screen {
             game.batch.draw(restartButtonActive, Drop.WIDTH / 2 - BUTTON_WIDTH / 2, RESTART_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
             if(Gdx.input.justTouched()) {
                 //this.dispose();
-                game.setScreen(new GameScreen(game, ES));
+                game.setScreen(new GameScreen(game));
             }
         }
         else {
@@ -105,7 +103,7 @@ public class PauseScreen implements Screen {
             game.batch.draw(exitButtonActive, Drop.WIDTH / 2 - BUTTON_WIDTH / 2, EXIT_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
             if(Gdx.input.justTouched()) {
                 //this.dispose();
-                game.setScreen(new MainMenuScreen(game,ES));
+                game.setScreen(new MainMenuScreen(game));
             }
         }
         else {

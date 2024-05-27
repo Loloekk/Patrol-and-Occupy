@@ -4,11 +4,9 @@ import jdk.internal.icu.text.NormalizerBase;
 
 public class Clock {
     float remainingTime;
-    ModelSettings settings;
-    public Clock(ModelSettings settings)
+    public Clock()
     {
-        this.settings = settings;
-        remainingTime = settings.getGameTime();
+        remainingTime = ModelSettings.getGameTime();
     }
     public void setRemainingTime(float time) {
         remainingTime = time;
