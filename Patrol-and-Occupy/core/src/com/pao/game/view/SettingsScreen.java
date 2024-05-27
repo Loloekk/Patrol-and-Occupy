@@ -108,11 +108,11 @@ public class SettingsScreen implements Screen {
         game.batch.setProjectionMatrix(camera.combined);
         game.batch.begin();
         painter.fillBackground(1f);
-        font.draw(game.batch, "Predkosc czolgu", tankSpeedSlider.getX(), tankSpeedSlider.getY() + 50);
-        font.draw(game.batch, "Predkosc pocisku", bulletSpeedSlider.getX(), bulletSpeedSlider.getY() + 50);
-        font.draw(game.batch, "Wielkosc magazynku", magazineCapacitySlider.getX(), magazineCapacitySlider.getY() + 50);
-        font.draw(game.batch, "Czas miedzy pociskami", shootCooldownSlider.getX(), shootCooldownSlider.getY() + 50);
-        font.draw(game.batch, "Czas przeładowania", receiveCooldownSlider.getX(), receiveCooldownSlider.getY() + 50);
+        font.draw(game.batch, "Tank speed", tankSpeedSlider.getX(), tankSpeedSlider.getY() + 50);
+        font.draw(game.batch, "Bullet speed", bulletSpeedSlider.getX(), bulletSpeedSlider.getY() + 50);
+        font.draw(game.batch, "Magazine capacity", magazineCapacitySlider.getX(), magazineCapacitySlider.getY() + 50);
+        font.draw(game.batch, "Shoot cool down", shootCooldownSlider.getX(), shootCooldownSlider.getY() + 50);
+        font.draw(game.batch, "Reload time", receiveCooldownSlider.getX(), receiveCooldownSlider.getY() + 50);
         game.batch.end();
 
         stage.act(delta);
