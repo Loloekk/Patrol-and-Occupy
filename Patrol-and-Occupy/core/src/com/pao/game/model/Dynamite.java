@@ -9,7 +9,7 @@ public class Dynamite extends BodyGameObject {
     Board board;
 
     public Dynamite(float x, float y, Tank tank) {
-        super(x, y, 40, 40, 0, BodyDef.BodyType.DynamicBody, tank.body.getWorld(), 0.7f, false);
+        super(x, y, 40, 40, tank.getRotation(), BodyDef.BodyType.DynamicBody, tank.body.getWorld(), 0.7f, false);
         this.board = tank.board;
     }
 
