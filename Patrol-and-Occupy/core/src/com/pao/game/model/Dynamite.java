@@ -20,11 +20,16 @@ public class Dynamite extends BodyGameObject {
             return;
         if (!board.getDynamiteList().contains(this))
             throw new RuntimeException("Dynamite is not present in getDynamiteList()");
+        double X = this.getX();
+        double Y = this.getY();
         board.getDynamiteList().remove(this);
+        this.body.getWorld().destroyBody(this.body);
 
         // Boom, destroys every Tank & Dynamite  in given range
         for (Tank tank : board.getTankList()) {
-            double distance = Math.sqrt((this.getX() - tank.getX()) * (this.getX() - tank.getX()) + (this.getY() - tank.getY()) * (this.getY() - tank.getY()));
+            double tX = tank.getX();
+            double tY = tank.getY();
+            double distance = Math.sqrt((X-tX) * (X-tX) + (Y-tY) * (Y-tY));
             if (distance <= 300)
                 tank.setIsAlive(false);
         }
@@ -32,7 +37,9 @@ public class Dynamite extends BodyGameObject {
         for (Dynamite dynamite : dynamites) {
             if(!board.getDynamiteList().contains(dynamite))
                 continue;
-            double distance = Math.sqrt((this.getX() - dynamite.getX()) * (this.getX() - dynamite.getX()) + (this.getY() - dynamite.getY()) * (this.getY() - dynamite.getY()));
+            double dX = dynamite.getX();
+            double dY = dynamite.getY();
+            double distance = Math.sqrt((X-dX) * (X-dX) + (Y-dY) * (Y-dY));
             if (distance <= 300)
                 dynamite.destroy();
         }
