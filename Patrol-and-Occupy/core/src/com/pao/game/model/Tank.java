@@ -127,10 +127,6 @@ public class Tank extends BodyGameObject {
             vel.y = 0;
         }
         body.setLinearVelocity(vel);
-
-        if(board.checkBulletCollision(this)) {
-            isAlive = false;
-        }
     }
     public Spawn getSpawn(){
         for(Spawn spawn : board.getSpawnList())

@@ -91,6 +91,10 @@ public class SimpleBoard implements Board {
             for ( Dynamite dynamite : dynamiteList)
                 dynamite.update(t);
 
+        // Check for tank collision
+        for(Tank tank : tankList) {
+            if(checkBulletCollision(tank)) tank.setIsAlive(false);
+        }
         // Check for destroyed bullets
         if (bulletList != null) {
             for (Bullet bullet : bulletList) {
