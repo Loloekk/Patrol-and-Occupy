@@ -212,7 +212,7 @@ public class SimpleBoard implements Board {
     }
 
     public boolean checkDynamiteCollision(GameObject gameObject) {
-        if (getObstacleList() == null)
+        if (getDynamiteList() == null)
             return false;
         for (Dynamite dynamite : getDynamiteList())
             if (gameObject != dynamite && gameObject.intersects(dynamite))
