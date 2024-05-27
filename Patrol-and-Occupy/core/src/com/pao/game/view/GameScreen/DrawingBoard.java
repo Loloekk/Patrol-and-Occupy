@@ -57,7 +57,7 @@ public class DrawingBoard {
             //game.batch.draw(texture,X-H/2,Y-W/2,H/2,W/2,H,W,1,1,obstacle.getRotation(),0,0,texture.getWidth(), texture.getHeight(), false, false);
         }
         for(Params breakableObstacle : VM.getBreakableObstacles()) {
-            painterGame.drawTexture(new TextureRegion(text.getObstacleTexture()),breakableObstacle,1.03f);
+            painterGame.drawTexture(new TextureRegion(text.getBreakableObstacleTexture()),breakableObstacle,1.03f);
         }
 
         for(ColoredParams bullet : VM.getBullets()) {

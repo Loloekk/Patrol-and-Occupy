@@ -1,6 +1,7 @@
 package com.pao.game.model;
 
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.pao.game.Communication.Params;
@@ -8,10 +9,13 @@ import com.pao.game.Communication.Params;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BreakableObstacle extends PolygonGameObject {
+public class BreakableObstacle extends BodyGameObject {
+
     public BreakableObstacle(float x, float y, float width, float height, float degree, World world) {
-        super(x, y, width, height);
+        super(x, y, width, height, degree, BodyDef.BodyType.StaticBody, world, 1f, false);
+        body.setUserData(this);
     }
+
     public static List<Params> rectangleObstacle(float x, float y, float side, int numberOfRows, int numberOfColumns, float degree) {
         List<Params> breakableObstacleList = new ArrayList<>();
         float y1 = y - (numberOfRows - 1) / 2.0f * side;
@@ -36,5 +40,6 @@ public class BreakableObstacle extends PolygonGameObject {
         double X = this.getX();
         double Y = this.getY();
         board.getBreakableObstacleList().remove(this);
+        this.body.getWorld().destroyBody(this.body);
     }
 }

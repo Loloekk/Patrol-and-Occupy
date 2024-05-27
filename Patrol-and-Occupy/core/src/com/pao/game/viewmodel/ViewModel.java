@@ -18,6 +18,7 @@ public class ViewModel{
     public ViewModel()
     {
         world = new World(GRAVITY, true);
+        world.setContactListener(new TankBreakableObstacleContactListener());
         world.setContactListener(new TankSpawnContactListener());
         BodyCreator.setEdges(0,0, ModelSettings.getWidth(), ModelSettings.getHeight(), world);
         board = new SimpleBoard(world);
