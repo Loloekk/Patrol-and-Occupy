@@ -38,7 +38,7 @@ public class SimpleBoard implements Board {
             for(ColoredParams spawnParams : setup.getSpawnParamsList()){
                 if(spawnParams.getColor() == color){
                     foundColor = true;
-                    spawnList.add(new Spawn(spawnParams.getX(), spawnParams.getY(), color));
+                    spawnList.add(new Spawn(spawnParams.getX(), spawnParams.getY(), color, world));
                     tankList.add(new Tank(spawnParams.getX(), spawnParams.getY(), color, this, world,settings));
                     break;
                 }
