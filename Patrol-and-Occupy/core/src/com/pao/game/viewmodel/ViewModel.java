@@ -20,6 +20,7 @@ public class ViewModel{
     {
         settings = ES.getSettings();
         world = new World(GRAVITY, true);
+        world.setContactListener(new TankSpawnContactListener());
         BodyCreator.setEdges(0,0, settings.getWidth(), settings.getHeight(), world);
         board = new SimpleBoard(settings, world);
     }

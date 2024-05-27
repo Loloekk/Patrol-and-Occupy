@@ -9,7 +9,8 @@ public class Spawn extends BodyGameObject{
     static final int height = 160;
     ModelPlayer color;
     public Spawn(float x, float y, ModelPlayer color, World world) {
-        super(x, y, width, height, 0, BodyDef.BodyType.StaticBody, world, 1f, true);
+        super(x, y, width, height, 0, BodyDef.BodyType.StaticBody, world, 1f, false);
+        body.setUserData(this);
         this.color = color;
     }
 

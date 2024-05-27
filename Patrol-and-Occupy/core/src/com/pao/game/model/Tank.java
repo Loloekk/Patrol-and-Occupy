@@ -27,6 +27,7 @@ public class Tank extends BodyGameObject {
 
     public Tank(float x, float y, ModelPlayer color, Board board, World world, ModelSettings settings) {
         super(x, y, width, height, 0, BodyDef.BodyType.DynamicBody, world, 1f, false);
+        body.setUserData(this);
         this.settings = settings;
         this.color = color;
         this.board = board;
