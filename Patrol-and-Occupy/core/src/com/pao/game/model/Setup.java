@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Setup {
-    static int width = 1720;
-    static int height = 954;
+    static int width = ModelSettings.getWidth();
+    static int height = ModelSettings.getHeight();
     private static final List<Setup> setupList = new ArrayList<>();
     static{
         // Setup 0. (Empty)
