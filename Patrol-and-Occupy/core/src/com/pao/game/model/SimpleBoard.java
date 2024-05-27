@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.badlogic.gdx.math.Octree;
 import com.badlogic.gdx.physics.box2d.World;
 import com.pao.game.Communication.ColoredParams;
 import com.pao.game.Communication.Move;
@@ -12,6 +13,7 @@ import com.pao.game.Communication.Params;
 import com.pao.game.viewmodel.GlobalStatistics;
 
 public class SimpleBoard implements Board {
+    BoardCollider collider;
     List<Tank> tankList = new ArrayList<>();
     List<Bullet> bulletList = new ArrayList<>();
     List<Obstacle> obstacleList = new ArrayList<>();
@@ -26,6 +28,7 @@ public class SimpleBoard implements Board {
     private SimpleBoard(int width, int height) {
         this.width = width;
         this.height = height;
+        this.collider = new BoardCollider(this);
     }
 
     public SimpleBoard(World world){
@@ -188,66 +191,30 @@ public class SimpleBoard implements Board {
     }
 
     public boolean checkBoardCollision(GameObject gameObject) {
-        final int offset = 12;
-        double X = gameObject.getX();
-        double Y = gameObject.getY();
-        return X >= width + offset || X <= -offset || Y >= height + offset || Y <= -offset;
+        return collider.checkBoardCollision(gameObject);
     }
 
     public boolean checkBulletCollision(GameObject gameObject) {
-        if (getBulletList() == null)
-            return false;
-        for (Bullet bullet : getBulletList())
-            if (gameObject != bullet && gameObject.intersects(bullet) && !(gameObject instanceof Tank && ((Tank) gameObject).color == bullet.color)) {
-                return true;
-            }
-        return false;
+        return collider.checkBulletCollision(gameObject);
     }
 
     public boolean checkTankCollision(GameObject gameObject) {
-        if (getTankList() == null)
-            return false;
-        for (Tank tank : getTankList())
-            if (gameObject != tank && gameObject.intersects(tank) && !(gameObject instanceof Bullet && ((Bullet) gameObject).color == tank.color))
-                return true;
-        return false;
+        return collider.checkTankCollision(gameObject);
     }
 
     public boolean checkObstacleCollision(GameObject gameObject) {
-        if (getObstacleList() == null)
-            return false;
-        for (Obstacle obstacle : getObstacleList())
-            if (gameObject != obstacle && gameObject.intersects(obstacle))
-                return true;
-        return false;
+        return collider.checkObstacleCollision(gameObject);
     }
 
     public boolean checkDynamiteCollision(GameObject gameObject) {
-        if (getDynamiteList() == null)
-            return false;
-        for (Dynamite dynamite : getDynamiteList())
-            if (gameObject != dynamite && gameObject.intersects(dynamite))
-                return true;
-        return false;
+        return collider.checkDynamiteCollision(gameObject);
     }
 
     public boolean checkSpawnCollision(GameObject gameObject) {
-        if(getSpawnList() == null)
-            return false;
-        for (Spawn spawn : getSpawnList())
-            if (gameObject != spawn && gameObject.intersects(spawn)
-                    && !(gameObject instanceof Tank && ((Tank)gameObject).getColor()==spawn.getColor())
-                    && !(gameObject instanceof Bullet && ((Bullet)gameObject).getColor()==spawn.getColor()))
-                return true;
-        return false;
+        return collider.checkSpawnCollision(gameObject);
     }
     public boolean checkBreakableObstacleCollision(GameObject gameObject){
-        if(getBreakableObstacleList() == null)
-            return false;
-        for (BreakableObstacle breakableObstacle: getBreakableObstacleList())
-            if (gameObject != breakableObstacle && gameObject.intersects(breakableObstacle))
-                return true;
-        return false;
+        return collider.checkBreakableObstacleCollision(gameObject);
     }
     public List<Tank> getTankList() {
         return tankList;
