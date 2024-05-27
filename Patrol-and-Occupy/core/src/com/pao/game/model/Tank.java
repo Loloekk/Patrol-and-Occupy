@@ -106,8 +106,8 @@ public class Tank extends BodyGameObject {
         else {
             body.setAngularVelocity(0.0f);
         }
-        float rideForwardSpeed = settings.getTankSpeed()/PPM;
-        float rideBackwardsSpeed = rideForwardSpeed/4*3;
+        float rideForwardSpeed = settings.getTankSpeed();
+        float rideBackwardsSpeed = rideForwardSpeed*3/4;
         if(moveForwardState && !moveBackwardsState) {            //move forward
             vel.x = rideForwardSpeed * MathUtils.cos(body.getAngle());
             vel.y = rideForwardSpeed * MathUtils.sin(body.getAngle());

@@ -85,7 +85,7 @@ public class ModelSettings {
         map = 1;
         width = 1720;
         height = 954;
-        tankSpeed = 200f;
+        tankSpeed = 8f;
         bulletSpeed = 700f;
         rotateSpeed = 4f;
         magazineCapacity = 5;

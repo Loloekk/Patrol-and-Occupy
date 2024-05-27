@@ -64,7 +64,7 @@ public class SettingsScreen implements Screen {
         Gdx.input.setInputProcessor(stage);
         skin = new Skin(Gdx.files.internal("uiskin.json"));
 
-        tankSpeedSlider = makeSlider(50, 1000, 1, false, Drop.WIDTH/2 - sliderWidth*3/2, 700f, tankSpeed);
+        tankSpeedSlider = makeSlider(1, 20, 1, false, Drop.WIDTH/2 - sliderWidth*3/2, 700f, tankSpeed);
         tankSpeedSlider.setValue(ES.getTankSpeed());
         stage.addActor(tankSpeedSlider);
         bulletSpeedSlider = makeSlider(400, 1000, 50, false, Drop.WIDTH/2 + sliderWidth/2, 700f, bulletSpeed);
