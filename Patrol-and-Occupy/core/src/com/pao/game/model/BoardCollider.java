@@ -12,14 +12,14 @@ public class BoardCollider {
         return X >= board.getWidth() + offset || X <= -offset || Y >= board.getHeight() + offset || Y <= -offset;
     }
 
-    public boolean checkBulletCollision(GameObject gameObject) {
+    public ModelPlayer checkBulletCollision(GameObject gameObject) {
         if (board.getBulletList() == null)
-            return false;
+            return null;
         for (Bullet bullet : board.getBulletList())
             if (gameObject != bullet && gameObject.intersects(bullet) && !(gameObject instanceof Tank && ((Tank) gameObject).color == bullet.color)) {
-                return true;
+                return bullet.getColor();
             }
-        return false;
+        return null;
     }
     public boolean checkTankCollision(GameObject gameObject) {
         if (board.getTankList() == null)

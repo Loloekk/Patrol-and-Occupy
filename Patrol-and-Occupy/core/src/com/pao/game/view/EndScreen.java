@@ -16,6 +16,7 @@ import com.pao.game.viewmodel.GlobalStatistics;
 import com.pao.game.model.ModelPlayer;
 import com.pao.game.view.GameScreen.GameScreen;
 import com.pao.game.viewmodel.EditSettings;
+import com.pao.game.viewmodel.ViewModel;
 
 public class EndScreen implements Screen {
     static final float BUTTON_WIDTH = 400;
@@ -23,6 +24,7 @@ public class EndScreen implements Screen {
     static final float START_BUTTON_Y = 400;
     static final float EXIT_BUTTON_Y = 200;
     Drop game;
+    GlobalStatistics globalStatistics;
     OrthographicCamera camera;
     Viewport viewport;
     Texture startButtonActive;
@@ -35,8 +37,9 @@ public class EndScreen implements Screen {
     RegionPainter painter;
     BitmapFont font;
 
-    public EndScreen(Drop game) {
+    public EndScreen(Drop game, GlobalStatistics globalStatistics) {
         this.game = game;
+        this.globalStatistics = globalStatistics;
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Drop.WIDTH, Drop.HEIGHT);
         viewport = new ExtendViewport(Drop.WIDTH, Drop.HEIGHT, camera);
@@ -104,9 +107,9 @@ public class EndScreen implements Screen {
     }
 
     public void displayPlayerStatistics(float x, float y, ModelPlayer color) {
-        font.draw(game.batch, "#plates: " + GlobalStatistics.getNumberOfPlates(color), x, y);
-        font.draw(game.batch, "#kills: " + GlobalStatistics.getKillNumber(color), x, y - 20);
-        font.draw(game.batch, "#deads: " + GlobalStatistics.getDeadNumber(color), x, y - 40);
+        font.draw(game.batch, "#plates: " + globalStatistics.getNumberOfPlates(color), x, y);
+        font.draw(game.batch, "#kills: " + globalStatistics.getKillNumber(color), x, y - 20);
+        font.draw(game.batch, "#deads: " + globalStatistics.getDeadNumber(color), x, y - 40);
     }
 
     @Override

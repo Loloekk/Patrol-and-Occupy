@@ -1,5 +1,6 @@
 package com.pao.game.model;
 
+import com.badlogic.gdx.graphics.g3d.Model;
 import com.pao.game.Communication.Move;
 
 import java.util.List;
@@ -10,7 +11,7 @@ public interface Board {
     float getRemainingTime();
     void setmove(ModelPlayer color, Move move, boolean value);
     boolean checkBoardCollision(GameObject gameObject);
-    boolean checkBulletCollision(GameObject gameObject);
+    ModelPlayer checkBulletCollision(GameObject gameObject);
     boolean checkTankCollision(GameObject gameObject);
     boolean checkObstacleCollision(GameObject gameObject);
     boolean checkDynamiteCollision(GameObject gameObject);
@@ -23,6 +24,7 @@ public interface Board {
     List<Dynamite> getDynamiteList();
     List<Spawn> getSpawnList();
     List<BreakableObstacle> getBreakableObstacleList();
+    Tank getTank(ModelPlayer color);
     int getWidth();
     int getHeight();
     void addBullet(Bullet bullet);

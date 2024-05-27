@@ -16,6 +16,7 @@ public class Tank extends BodyGameObject {
     ModelPlayer color;
     Board board;
     Magazine magazine;
+    PlayerStatistics playerStatistics;
     float lastPlaceDynamite;
     boolean moveForwardState;
     boolean moveLeftState;
@@ -33,6 +34,7 @@ public class Tank extends BodyGameObject {
         this.isAlive = true;
         this.magazine = new Magazine();
         this.lastPlaceDynamite = 0f;
+        this.playerStatistics = new PlayerStatistics();
     }
 
     public void setMoveForwardState(boolean state) {
@@ -51,12 +53,25 @@ public class Tank extends BodyGameObject {
         makeShoot = state;
     }
     public void setPlaceDynamite(boolean state) { placeDynamite = state; }
-    public void setIsAlive(boolean state) {
-        isAlive = state;
+    public void revive() {
+        isAlive = true;
+    }
+    public void kill(ModelPlayer killer)
+    {
+        if(isAlive == true)
+        {
+            playerStatistics.incrementDeadNumber();
+            board.getTank(killer).getStatistics().incrementKillNumber();
+            isAlive = false;
+        }
     }
     public void setPosition(float x, float y) { body.setTransform(x/PPM,y/PPM, 0);}
     public ModelPlayer getColor() {
         return color;
+    }
+    public PlayerStatistics getStatistics()
+    {
+        return playerStatistics;
     }
     public boolean getIsAlive() {
         return isAlive;

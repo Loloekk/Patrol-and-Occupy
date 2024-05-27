@@ -1,12 +1,13 @@
 package com.pao.game.model;
 
 public class PlayerStatistics {
-    ModelPlayer color;
     int numberOfPlates;
     int killNumber;
     int deadNumber;
-    public PlayerStatistics(ModelPlayer color) {
-        this.color = color;
+    public PlayerStatistics() {
+        numberOfPlates = 0;
+        killNumber = 0;
+        deadNumber = 0;
     }
     public void incrementNumberOfPlates() { numberOfPlates++; }
     public void decrementNumberOfPlates() { numberOfPlates--; }

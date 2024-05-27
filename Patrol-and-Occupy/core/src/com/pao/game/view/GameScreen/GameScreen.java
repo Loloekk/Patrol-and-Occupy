@@ -27,7 +27,7 @@ public class GameScreen implements Screen {
             game.setScreen(new PauseScreen(game, this));
         }
         if(VM.getRemainingTime() == 0f) {
-            game.setScreen(new EndScreen(game));
+            game.setScreen(new EndScreen(game,VM.getStatistics()));
         }
     }
     @Override

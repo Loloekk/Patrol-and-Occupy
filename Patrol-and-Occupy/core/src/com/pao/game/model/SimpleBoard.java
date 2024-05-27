@@ -1,9 +1,6 @@
 package com.pao.game.model;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import com.badlogic.gdx.math.Octree;
 import com.badlogic.gdx.physics.box2d.World;
@@ -11,6 +8,7 @@ import com.pao.game.Communication.ColoredParams;
 import com.pao.game.Communication.Move;
 import com.pao.game.Communication.Params;
 import com.pao.game.viewmodel.GlobalStatistics;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 
 public class SimpleBoard implements Board {
     BoardCollider collider;
@@ -21,7 +19,6 @@ public class SimpleBoard implements Board {
     List<Dynamite> dynamiteList = new ArrayList<>();
     List<Spawn> spawnList = new ArrayList<>();
     List<BreakableObstacle> breakableObstacleList = new ArrayList<>();
-    float remainingTime;
     int width, height;
     Clock clock;
 
@@ -36,7 +33,6 @@ public class SimpleBoard implements Board {
         // Add players tanks
         Setup setup = Setup.getSetupList().get(ModelSettings.getMap());
         clock = new Clock();
-        GlobalStatistics.addPlayers(ModelPlayer.getColorList(ModelSettings.getNumberOfPlayers()));
         for(ModelPlayer color : ModelPlayer.getColorList(ModelSettings.getNumberOfPlayers())){
             boolean foundColor = false;
             for(ColoredParams spawnParams : setup.getSpawnParamsList()){
@@ -60,17 +56,10 @@ public class SimpleBoard implements Board {
         for(Params plateParams : setup.getPlateList())
             plateList.add(new Plate(plateParams.getX(), plateParams.getY()));
     }
-
-    public void setRemainingTime(float time) {
-        remainingTime = time;
-    }
-    public void addRemainingTime(float time) {
-        remainingTime += time;
-    }
     public void update(float t) {
         clock.update(t);
         Set<Bullet> bulletsToDestroy = new HashSet<>();
-        Set<Dynamite> dynamitesToDestroy = new HashSet<>();
+        Set<Map.Entry<Dynamite, ModelPlayer>> dynamitesToDestroy = new HashSet<>();
         Set<BreakableObstacle> breakableObstaclesToDestroy = new HashSet<>();
         // Revive all tanks
         List<Tank> tanksToRevive = new ArrayList<>();
@@ -96,7 +85,10 @@ public class SimpleBoard implements Board {
 
         // Check for tank collision
         for(Tank tank : tankList) {
-            if(checkBulletCollision(tank)) tank.setIsAlive(false);
+            ModelPlayer killer = checkBulletCollision(tank);
+            if(killer!= null){
+                tank.kill(killer);
+            }
         }
         // Check for destroyed bullets
         if (bulletList != null) {
@@ -122,8 +114,9 @@ public class SimpleBoard implements Board {
         if (dynamiteList != null) {
             for (Dynamite dynamite : dynamiteList) {
                 // Bullet hits
-                if (checkBulletCollision(dynamite))
-                    dynamitesToDestroy.add(dynamite);
+                ModelPlayer killer = checkBulletCollision(dynamite);
+                if (killer != null)
+                    dynamitesToDestroy.add(new AbstractMap.SimpleEntry<>(dynamite, killer));
             }
         }
 
@@ -133,13 +126,19 @@ public class SimpleBoard implements Board {
             for(Tank tank : tankList) {
                 if(tank.getIsAlive() && plate.intersects(tank)) colorsSet.add(tank.getColor());
             }
-            if(colorsSet.size() == 1) plate.setColor(colorsSet.get(0));
+            if(colorsSet.size() == 1) {
+                if(plate.getColor() != null){
+                    getTank(plate.getColor()).getStatistics().decrementNumberOfPlates();
+                }
+                plate.setColor(colorsSet.get(0));
+                getTank(colorsSet.get(0)).getStatistics().incrementNumberOfPlates();
+            }
             else if(colorsSet.size() > 1) plate.setColor(null);
         }
         for (Bullet bullet : bulletsToDestroy)
             bullet.destroy();
-        for (Dynamite dynamite : dynamitesToDestroy)
-            dynamite.destroy();
+        for (Map.Entry<Dynamite, ModelPlayer> dynamite : dynamitesToDestroy)
+            dynamite.getKey().destroy(dynamite.getValue());
         for (BreakableObstacle breakableObstacle : breakableObstaclesToDestroy)
             breakableObstacle.destroy(this);
 
@@ -148,7 +147,7 @@ public class SimpleBoard implements Board {
             for (ColoredParams spawnParams : setup.getSpawnParamsList()) {
                 if (tank.getColor() == spawnParams.getColor()) {
                     tank.setPosition(spawnParams.getX(), spawnParams.getY());
-                    tank.setIsAlive(true);
+                    tank.revive();
                     break;
                 }
             }
@@ -194,7 +193,7 @@ public class SimpleBoard implements Board {
         return collider.checkBoardCollision(gameObject);
     }
 
-    public boolean checkBulletCollision(GameObject gameObject) {
+    public ModelPlayer checkBulletCollision(GameObject gameObject) {
         return collider.checkBulletCollision(gameObject);
     }
 
@@ -219,7 +218,15 @@ public class SimpleBoard implements Board {
     public List<Tank> getTankList() {
         return tankList;
     }
-
+    public Tank getTank(ModelPlayer color){
+        for(Tank tank : tankList)
+        {
+            if(tank.getColor() == color){
+                return tank;
+            }
+        }
+        return null;
+    }
     public List<Bullet> getBulletList() {
         return bulletList;
     }

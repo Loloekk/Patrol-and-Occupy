@@ -13,7 +13,7 @@ public class Dynamite extends BodyGameObject {
         this.board = tank.board;
     }
 
-    public void destroy() {
+    public void destroy(ModelPlayer killer) {
         if (board.getDynamiteList() == null)
             return;
         if (!board.getDynamiteList().contains(this))
@@ -31,8 +31,9 @@ public class Dynamite extends BodyGameObject {
             double sX = tank.getSpawn().getX();
             double sY = tank.getSpawn().getY();
             double tankSpawnDistance = Math.sqrt((sX-tX) * (sX-tX) + (sY-tY) * (sY-tY));
-            if (distance <= 300 && tankSpawnDistance>60)
-                tank.setIsAlive(false);
+            if (distance <= 300 && tankSpawnDistance>60) {
+                tank.kill(killer);
+            }
         }
         List<Dynamite> dynamites = new ArrayList<>(board.getDynamiteList());
         for (Dynamite dynamite : dynamites) {
@@ -42,7 +43,7 @@ public class Dynamite extends BodyGameObject {
             double dY = dynamite.getY();
             double distance = Math.sqrt((X-dX) * (X-dX) + (Y-dY) * (Y-dY));
             if (distance <= 300)
-                dynamite.destroy();
+                dynamite.destroy(killer);
         }
     }
 

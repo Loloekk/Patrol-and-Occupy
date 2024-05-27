@@ -19,6 +19,7 @@ public class ViewModel{
     Board board;
     World world;
     MultiContactListener multiContactListener;
+    GlobalStatistics globalStatistics;
     public ViewModel()
     {
         world = new World(GRAVITY, true);
@@ -28,6 +29,7 @@ public class ViewModel{
         multiContactListener.addListener(new TankSpawnContactListener());
         BodyCreator.setEdges(0,0, ModelSettings.getWidth(), ModelSettings.getHeight(), world);
         board = new SimpleBoard(world);
+        globalStatistics = new GlobalStatistics(this);
     }
 
     public void setMove(ModelPlayer color, Move move, boolean state)
@@ -42,6 +44,9 @@ public class ViewModel{
             tanksParamsList.add(new ColoredParams(tank.getIsAlive() ? tank.getColor() : null,tank.getWidth(),tank.getHeight(),tank.getX(),tank.getY(),tank.getRotation()));
         }
         return tanksParamsList;
+    }
+    public Tank getTank(ModelPlayer color){
+        return board.getTank(color);
     }
     public List<ColoredParams> getBullets() {
         List<ColoredParams> bulletsParamsList = new ArrayList<>();
@@ -95,6 +100,9 @@ public class ViewModel{
     public float getRemainingTime()
     {
         return board.getRemainingTime();
+    }
+    public GlobalStatistics getStatistics() {
+        return globalStatistics;
     }
     public void update(float time) {
         world.step((float)(time), VELOCITY_ITERATION, POSITION_ITERATION);
