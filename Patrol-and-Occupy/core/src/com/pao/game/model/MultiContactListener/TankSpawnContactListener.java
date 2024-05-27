@@ -1,6 +1,8 @@
-package com.pao.game.model;
+package com.pao.game.model.MultiContactListener;
 
 import com.badlogic.gdx.physics.box2d.*;
+import com.pao.game.model.Spawn;
+import com.pao.game.model.Tank;
 
 public class TankSpawnContactListener implements ContactListener {
     @Override

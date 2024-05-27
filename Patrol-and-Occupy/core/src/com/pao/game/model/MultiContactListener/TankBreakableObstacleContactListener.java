@@ -1,6 +1,8 @@
-package com.pao.game.model;
+package com.pao.game.model.MultiContactListener;
 
 import com.badlogic.gdx.physics.box2d.*;
+import com.pao.game.model.BreakableObstacle;
+import com.pao.game.model.Tank;
 
 
 public class TankBreakableObstacleContactListener implements ContactListener {
@@ -8,12 +10,10 @@ public class TankBreakableObstacleContactListener implements ContactListener {
     public void beginContact(Contact contact) {
 
     }
-
     @Override
     public void endContact(Contact contact) {
 
     }
-
     @Override
     public void preSolve(Contact contact, Manifold manifold) {
         Fixture fixtureA = contact.getFixtureA();
@@ -28,7 +28,6 @@ public class TankBreakableObstacleContactListener implements ContactListener {
             contact.setEnabled(true);
         }
     }
-
     @Override
     public void postSolve(Contact contact, ContactImpulse contactImpulse) {
 

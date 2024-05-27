@@ -5,6 +5,9 @@ import com.pao.game.Communication.ColoredParams;
 import com.pao.game.Communication.Move;
 import com.pao.game.Communication.Params;
 import com.pao.game.model.*;
+import com.pao.game.model.MultiContactListener.MultiContactListener;
+import com.pao.game.model.MultiContactListener.TankBreakableObstacleContactListener;
+import com.pao.game.model.MultiContactListener.TankSpawnContactListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,11 +18,14 @@ import static com.pao.game.model.Constants.*;
 public class ViewModel{
     Board board;
     World world;
+    MultiContactListener multiContactListener;
     public ViewModel()
     {
         world = new World(GRAVITY, true);
-        world.setContactListener(new TankBreakableObstacleContactListener());
-        world.setContactListener(new TankSpawnContactListener());
+        multiContactListener = new MultiContactListener();
+        world.setContactListener(multiContactListener);
+        multiContactListener.addListener(new TankBreakableObstacleContactListener());
+        multiContactListener.addListener(new TankSpawnContactListener());
         BodyCreator.setEdges(0,0, ModelSettings.getWidth(), ModelSettings.getHeight(), world);
         board = new SimpleBoard(world);
     }
