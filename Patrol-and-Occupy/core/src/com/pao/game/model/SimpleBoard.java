@@ -17,6 +17,7 @@ public class SimpleBoard implements Board {
     List<Plate> plateList = new ArrayList<>();
     List<Dynamite> dynamiteList = new ArrayList<>();
     List<Spawn> spawnList = new ArrayList<>();
+    List<BreakableObstacle> breakableObstacleList = new ArrayList<>();
     float remainingTime;
     int width, height;
     Clock clock;
@@ -45,13 +46,14 @@ public class SimpleBoard implements Board {
                 throw new RuntimeException("Setup does not contain info about all players");
         }
         // Add obstacles
-        for(Params obstacleParams : setup.getObstacleList()) {
+        for(Params obstacleParams : setup.getObstacleList())
             obstacleList.add(new Obstacle(obstacleParams.getX(), obstacleParams.getY(), obstacleParams.getWidht(), obstacleParams.getHeight(), obstacleParams.getRotation(), world));
-        }
+        // Add breakable obstacles
+        for(Params breakableObstacleParams : setup.getBreakableObstacleList())
+            breakableObstacleList.add(new BreakableObstacle(breakableObstacleParams.getX(), breakableObstacleParams.getY(), breakableObstacleParams.getWidht(), breakableObstacleParams.getHeight(), breakableObstacleParams.getRotation(), world));
         // Add plates
-        for(Params plateParams : setup.getPlateList()){
+        for(Params plateParams : setup.getPlateList())
             plateList.add(new Plate(plateParams.getX(), plateParams.getY()));
-        }
     }
 
     public void setRemainingTime(float time) {
@@ -64,6 +66,7 @@ public class SimpleBoard implements Board {
         clock.update(t);
         Set<Bullet> bulletsToDestroy = new HashSet<>();
         Set<Dynamite> dynamitesToDestroy = new HashSet<>();
+        Set<BreakableObstacle> breakableObstaclesToDestroy = new HashSet<>();
         // Revive all tanks
         List<Tank> tanksToRevive = new ArrayList<>();
         for (Tank tank : tankList)
@@ -76,6 +79,11 @@ public class SimpleBoard implements Board {
         // Try to move every tank
         for (Tank tank : tankList)
             tank.update(t);
+        // Destroy every BreakableObstacle if Tank is nearby
+        if(breakableObstacleList != null)
+            for (BreakableObstacle breakableObstacle : breakableObstacleList)
+                if (checkTankCollision(breakableObstacle))
+                    breakableObstaclesToDestroy.add(breakableObstacle);
         // Update state of every dynamite
         if(dynamiteList != null)
             for ( Dynamite dynamite : dynamiteList)
@@ -90,8 +98,8 @@ public class SimpleBoard implements Board {
                 // Dynamite hits
                 if (checkDynamiteCollision(bullet))
                     bulletsToDestroy.add(bullet);
-                // Obstacle hits
-                if (checkObstacleCollision(bullet))
+                // Obstacle (breakable or not) hits
+                if (checkObstacleCollision(bullet) || checkBreakableObstacleCollision(bullet))
                     bulletsToDestroy.add(bullet);
                 // Outside the map (currently checks if it hits map boundary)
                 if (checkBoardCollision(bullet))
@@ -123,6 +131,9 @@ public class SimpleBoard implements Board {
             bullet.destroy();
         for (Dynamite dynamite : dynamitesToDestroy)
             dynamite.destroy();
+        for (BreakableObstacle breakableObstacle : breakableObstaclesToDestroy)
+            breakableObstacle.destroy(this);
+
         Setup setup = Setup.getSetupList().get(ModelSettings.getMap());
         for (Tank tank : tanksToRevive) {
             for (ColoredParams spawnParams : setup.getSpawnParamsList()) {
@@ -224,6 +235,14 @@ public class SimpleBoard implements Board {
                 return true;
         return false;
     }
+    public boolean checkBreakableObstacleCollision(GameObject gameObject){
+        if(getBreakableObstacleList() == null)
+            return false;
+        for (BreakableObstacle breakableObstacle: getBreakableObstacleList())
+            if (gameObject != breakableObstacle && gameObject.intersects(breakableObstacle))
+                return true;
+        return false;
+    }
     public List<Tank> getTankList() {
         return tankList;
     }
@@ -235,9 +254,18 @@ public class SimpleBoard implements Board {
     public List<Obstacle> getObstacleList() {
         return obstacleList;
     }
-    public List<Plate> getPlateList() { return plateList; }
-    public List<Dynamite> getDynamiteList() { return dynamiteList; }
-    public List<Spawn> getSpawnList() { return spawnList; }
+    public List<Plate> getPlateList() {
+        return plateList;
+    }
+    public List<Dynamite> getDynamiteList() {
+        return dynamiteList;
+    }
+    public List<Spawn> getSpawnList() {
+        return spawnList;
+    }
+    public List<BreakableObstacle> getBreakableObstacleList() {
+        return breakableObstacleList;
+    }
 
     public int getWidth() {
         return width;

@@ -27,4 +27,15 @@ public class BreakableObstacle extends BodyGameObject {
         }
         return breakableObstacleList;
     }
+
+    public void destroy(Board board){
+        if (board.getBreakableObstacleList() == null)
+            return;
+        if (!board.getBreakableObstacleList().contains(this))
+            return;
+        double X = this.getX();
+        double Y = this.getY();
+        board.getBreakableObstacleList().remove(this);
+        this.body.getWorld().destroyBody(this.body);
+    }
 }
