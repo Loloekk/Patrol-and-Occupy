@@ -23,6 +23,7 @@ public class EndScreen implements Screen {
     static final float BUTTON_HEIGHT = 200;
     static final float START_BUTTON_Y = 400;
     static final float EXIT_BUTTON_Y = 200;
+    static final float STATISTICS_WIDTH = 200;
     Drop game;
     GlobalStatistics globalStatistics;
     OrthographicCamera camera;
@@ -75,11 +76,10 @@ public class EndScreen implements Screen {
 
         font.draw(game.batch, "WINNER:", Drop.WIDTH/2, 900);
 
-        int w = 200;
-        int x1 = -w * EditSettings.getNumberOfPlayers() / 2;
+        float x1 = -STATISTICS_WIDTH * EditSettings.getNumberOfPlayers() / 2;
         for(ModelPlayer color : GlobalStatistics.getPlayers()) {
             displayPlayerStatistics(Drop.WIDTH / 2 + x1, 800, color);
-            x1 += w;
+            x1 += STATISTICS_WIDTH;
         }
 
         if(startButton.contains(touchPoint.x, touchPoint.y)) {
@@ -107,6 +107,10 @@ public class EndScreen implements Screen {
     }
 
     public void displayPlayerStatistics(float x, float y, ModelPlayer color) {
+        if(color == ModelPlayer.Player1) font.setColor(Color.YELLOW);
+        if(color == ModelPlayer.Player2) font.setColor(Color.GREEN);
+        if(color == ModelPlayer.Player3) font.setColor(Color.BLUE);
+        if(color == ModelPlayer.Player4) font.setColor(Color.RED);
         font.draw(game.batch, "#plates: " + globalStatistics.getNumberOfPlates(color), x, y);
         font.draw(game.batch, "#kills: " + globalStatistics.getKillNumber(color), x, y - 20);
         font.draw(game.batch, "#deads: " + globalStatistics.getDeadNumber(color), x, y - 40);
