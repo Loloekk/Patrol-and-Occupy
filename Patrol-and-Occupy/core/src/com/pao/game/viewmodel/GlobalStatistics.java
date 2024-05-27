@@ -1,4 +1,7 @@
-package com.pao.game.model;
+package com.pao.game.viewmodel;
+
+import com.pao.game.model.ModelPlayer;
+import com.pao.game.model.PlayerStatistics;
 
 import java.util.ArrayList;
 import java.util.HashMap;

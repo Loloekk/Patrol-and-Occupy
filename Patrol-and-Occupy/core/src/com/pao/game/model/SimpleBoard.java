@@ -9,6 +9,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.pao.game.Communication.ColoredParams;
 import com.pao.game.Communication.Move;
 import com.pao.game.Communication.Params;
+import com.pao.game.viewmodel.GlobalStatistics;
 
 public class SimpleBoard implements Board {
     List<Tank> tankList = new ArrayList<>();
