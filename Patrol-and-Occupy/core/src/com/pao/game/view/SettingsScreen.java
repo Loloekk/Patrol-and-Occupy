@@ -44,6 +44,7 @@ public class SettingsScreen implements Screen {
     Slider magazineCapacitySlider;
     Slider shootCooldownSlider;
     Slider receiveCooldownSlider;
+    Slider gameTimeSlider;
 
     public SettingsScreen(Drop game, EditSettings ES) {
         this.game = game;
@@ -79,6 +80,9 @@ public class SettingsScreen implements Screen {
         receiveCooldownSlider = makeSlider(0, 5, 0.5f, false, Drop.WIDTH/2 - sliderWidth*3/2, 400f, receiveCooldown);
         receiveCooldownSlider.setValue(ES.getReceiveCooldown());
         stage.addActor(receiveCooldownSlider);
+        gameTimeSlider = makeSlider(10, 200, 10f, false, Drop.WIDTH/2 + sliderWidth/2, 400f, gameTime);
+        gameTimeSlider.setValue(ES.getGameTime());
+        stage.addActor(gameTimeSlider);
 
     }
 
@@ -120,6 +124,7 @@ public class SettingsScreen implements Screen {
         font.draw(game.batch, "Magazine capacity: " + magazineCapacitySlider.getValue(), magazineCapacitySlider.getX(), magazineCapacitySlider.getY() + 50);
         font.draw(game.batch, "Shoot cool down: " + shootCooldownSlider.getValue(), shootCooldownSlider.getX(), shootCooldownSlider.getY() + 50);
         font.draw(game.batch, "Reload time: " + receiveCooldownSlider.getValue(), receiveCooldownSlider.getX(), receiveCooldownSlider.getY() + 50);
+        font.draw(game.batch, "Game time: " + gameTimeSlider.getValue(), gameTimeSlider.getX(), gameTimeSlider.getY() + 50);
         game.batch.end();
 
         stage.act(delta);
