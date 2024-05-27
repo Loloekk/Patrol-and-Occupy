@@ -32,6 +32,7 @@ public class SimpleBoard implements Board {
         // Add players tanks
         Setup setup = Setup.getSetupList().get(ModelSettings.getMap());
         clock = new Clock();
+        GlobalStatistics.addPlayers(ModelPlayer.getColorList(ModelSettings.getNumberOfPlayers()));
         for(ModelPlayer color : ModelPlayer.getColorList(ModelSettings.getNumberOfPlayers())){
             boolean foundColor = false;
             for(ColoredParams spawnParams : setup.getSpawnParamsList()){

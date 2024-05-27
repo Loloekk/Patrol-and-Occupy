@@ -72,8 +72,8 @@ public class EndScreen implements Screen {
 
         font.draw(game.batch, "WINNER:", Drop.WIDTH/2, 900);
 
-        int w = 100;
-        int x1 = GlobalStatistics.getPlayers().size() / 2;
+        int w = 200;
+        int x1 = -w * EditSettings.getNumberOfPlayers() / 2;
         for(ModelPlayer color : GlobalStatistics.getPlayers()) {
             displayPlayerStatistics(Drop.WIDTH / 2 + x1, 800, color);
             x1 += w;
