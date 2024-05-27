@@ -11,6 +11,7 @@ public class Textures {
     Map<ModelPlayer, Texture> tanks;
     Texture bullet;
     Texture obstacle;
+    Texture breakableObstacle;
     Map<ModelPlayer, Texture> plates;
     Texture dynamite;
     Map<ModelPlayer, Texture> spawns;
@@ -26,6 +27,7 @@ public class Textures {
         }
         bullet = new Texture(Gdx.files.internal("bullet.png"));
         obstacle = new Texture(Gdx.files.internal("rock.png"));
+        breakableObstacle = new Texture(Gdx.files.internal("rock_breakable.png"));
         plates = new HashMap<>();
         plates.put(null, new Texture(Gdx.files.internal("plate_gray.png")));
         for(ModelPlayer color : ModelPlayer.getColorList(n)){
@@ -49,6 +51,8 @@ public class Textures {
     }
     public Texture getBulletTexture() { return bullet; }
     public Texture getObstacleTexture() { return obstacle; }
+    public Texture getBreakableObstacleTexture() { return breakableObstacle; }
+
     public Texture getPlateTexture(ModelPlayer color) { return plates.get(color); }
     public Texture getDynamiteTexture() { return dynamite; }
     public Texture getSpawnTexture(ModelPlayer color) { return spawns.get(color); }
@@ -62,5 +66,6 @@ public class Textures {
         bullet.dispose();
         obstacle.dispose();
         dynamite.dispose();
+        breakableObstacle.dispose();
     }
 }

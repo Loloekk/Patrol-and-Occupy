@@ -52,6 +52,15 @@ public class ViewModel{
         }
         return obstaclesParamsList;
     }
+    public List<Params> getBreakableObstacles() {
+        List<Params> breakableObstaclesParamsList = new ArrayList<>();
+        for(BreakableObstacle breakableObstacle : board.getBreakableObstacleList())
+        {
+            breakableObstaclesParamsList.add(new Params(breakableObstacle.getWidth(), breakableObstacle.getHeight(), breakableObstacle.getX(), breakableObstacle.getY(), breakableObstacle.getRotation()));
+        }
+        return breakableObstaclesParamsList;
+    }
+
     public List<ColoredParams> getPlates() {
         List<ColoredParams> platesParamsList = new ArrayList<>();
         for(Plate plate : board.getPlateList())
