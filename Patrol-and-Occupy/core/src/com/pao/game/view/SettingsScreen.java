@@ -13,6 +13,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
@@ -63,34 +64,40 @@ public class SettingsScreen implements Screen {
         Gdx.input.setInputProcessor(stage);
         skin = new Skin(Gdx.files.internal("uiskin.json"));
 
-        tankSpeedSlider = makeSlider(50, 1000, 1, false, Drop.WIDTH/2 - sliderWidth*3/2, 600f, tankSpeed);
+        tankSpeedSlider = makeSlider(50, 1000, 1, false, Drop.WIDTH/2 - sliderWidth*3/2, 700f, tankSpeed);
         tankSpeedSlider.setValue(ES.getTankSpeed());
         stage.addActor(tankSpeedSlider);
-        bulletSpeedSlider = makeSlider(400, 1000, 50, false, Drop.WIDTH/2 + sliderWidth/2, 600f, bulletSpeed);
+        bulletSpeedSlider = makeSlider(400, 1000, 50, false, Drop.WIDTH/2 + sliderWidth/2, 700f, bulletSpeed);
         bulletSpeedSlider.setValue(ES.getBulletSpeed());
         stage.addActor(bulletSpeedSlider);
-        magazineCapacitySlider = makeSlider(1, 11, 1, false, Drop.WIDTH/2 - sliderWidth*3/2, 500f, magazineCapacity);
+        magazineCapacitySlider = makeSlider(1, 11, 1, false, Drop.WIDTH/2 - sliderWidth*3/2, 550f, magazineCapacity);
         magazineCapacitySlider.setValue(ES.getMagazineCapacity());
         stage.addActor(magazineCapacitySlider);
-        shootCooldownSlider = makeSlider(0, 5, 0.5f, false, Drop.WIDTH/2 + sliderWidth/2, 500f, shootCooldown);
+        shootCooldownSlider = makeSlider(0, 5, 0.5f, false, Drop.WIDTH/2 + sliderWidth/2, 550f, shootCooldown);
         shootCooldownSlider.setValue(ES.getShootCooldown());
         stage.addActor(shootCooldownSlider);
         receiveCooldownSlider = makeSlider(0, 5, 0.5f, false, Drop.WIDTH/2 - sliderWidth*3/2, 400f, receiveCooldown);
         receiveCooldownSlider.setValue(ES.getReceiveCooldown());
         stage.addActor(receiveCooldownSlider);
+
     }
 
     public Slider makeSlider(float min, float max, float stepSize, boolean vertical, float x, float y, Options o) {
         Slider slider = new Slider(min, max, stepSize, vertical, skin);
         slider.setPosition(x, y);
         slider.setSize(sliderWidth, sliderHeight);
+        Label minValueLabel = new Label("0", skin);
+        minValueLabel.setPosition(x - 3, y - 25);
+        stage.addActor(minValueLabel);
+        Label maxValueLabel = new Label("100", skin);
+        maxValueLabel.setPosition(x + sliderWidth - 25, y - 25);
+        stage.addActor(maxValueLabel);
         //slider.setValue(slider.getMinValue() + (slider.getMaxValue() - slider.getMinValue()) / 2);
         slider.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 float value = slider.getValue();
                 ES.setOption(o, value);
-                System.out.println(value);
             }
         });
         return slider;
@@ -108,11 +115,11 @@ public class SettingsScreen implements Screen {
         game.batch.setProjectionMatrix(camera.combined);
         game.batch.begin();
         painter.fillBackground(1f);
-        font.draw(game.batch, "Tank speed", tankSpeedSlider.getX(), tankSpeedSlider.getY() + 50);
-        font.draw(game.batch, "Bullet speed", bulletSpeedSlider.getX(), bulletSpeedSlider.getY() + 50);
-        font.draw(game.batch, "Magazine capacity", magazineCapacitySlider.getX(), magazineCapacitySlider.getY() + 50);
-        font.draw(game.batch, "Shoot cool down", shootCooldownSlider.getX(), shootCooldownSlider.getY() + 50);
-        font.draw(game.batch, "Reload time", receiveCooldownSlider.getX(), receiveCooldownSlider.getY() + 50);
+        font.draw(game.batch, "Tank speed: " + tankSpeedSlider.getValue(), tankSpeedSlider.getX(), tankSpeedSlider.getY() + 50);
+        font.draw(game.batch, "Bullet speed: " + bulletSpeedSlider.getValue(), bulletSpeedSlider.getX(), bulletSpeedSlider.getY() + 50);
+        font.draw(game.batch, "Magazine capacity: " + magazineCapacitySlider.getValue(), magazineCapacitySlider.getX(), magazineCapacitySlider.getY() + 50);
+        font.draw(game.batch, "Shoot cool down: " + shootCooldownSlider.getValue(), shootCooldownSlider.getX(), shootCooldownSlider.getY() + 50);
+        font.draw(game.batch, "Reload time: " + receiveCooldownSlider.getValue(), receiveCooldownSlider.getX(), receiveCooldownSlider.getY() + 50);
         game.batch.end();
 
         stage.act(delta);
