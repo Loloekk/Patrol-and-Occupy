@@ -8,9 +8,9 @@ import com.pao.game.Communication.Params;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BreakableObstacle extends BodyGameObject {
+public class BreakableObstacle extends PolygonGameObject {
     public BreakableObstacle(float x, float y, float width, float height, float degree, World world) {
-        super(x, y, width, height, degree, BodyDef.BodyType.StaticBody, world, 1f, false);
+        super(x, y, width, height);
     }
     public static List<Params> rectangleObstacle(float x, float y, float side, int numberOfRows, int numberOfColumns, float degree) {
         List<Params> breakableObstacleList = new ArrayList<>();
@@ -36,6 +36,5 @@ public class BreakableObstacle extends BodyGameObject {
         double X = this.getX();
         double Y = this.getY();
         board.getBreakableObstacleList().remove(this);
-        this.body.getWorld().destroyBody(this.body);
     }
 }
