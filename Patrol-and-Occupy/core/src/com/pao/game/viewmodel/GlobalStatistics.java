@@ -38,4 +38,11 @@ public class GlobalStatistics {
         }
         return tank.getStatistics().getDeadNumber();
     }
+    public ModelPlayer getWinner() {
+        List<ModelPlayer> players = getPlayers();
+        players.sort((p1, p2) -> Integer.compare(getNumberOfPlates(p1), getNumberOfPlates(p2)));
+        players.sort((p1, p2) -> Integer.compare(getKillNumber(p1), getKillNumber(p2)));
+        players.sort((p1, p2) -> Integer.compare(getDeadNumber(p2), getDeadNumber(p1)));
+        return players.get(players.size()-1);
+    }
 }

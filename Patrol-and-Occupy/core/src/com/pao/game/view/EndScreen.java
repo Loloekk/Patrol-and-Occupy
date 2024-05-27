@@ -74,7 +74,11 @@ public class EndScreen implements Screen {
         painter.fillBackground(1f);
         camera.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
 
-        font.draw(game.batch, "WINNER:", Drop.WIDTH/2, 900);
+        if(globalStatistics.getWinner() == ModelPlayer.Player1) font.setColor(Color.YELLOW);
+        if(globalStatistics.getWinner() == ModelPlayer.Player2) font.setColor(Color.GREEN);
+        if(globalStatistics.getWinner() == ModelPlayer.Player3) font.setColor(Color.BLUE);
+        if(globalStatistics.getWinner() == ModelPlayer.Player4) font.setColor(Color.RED);
+        font.draw(game.batch, "WINNER", Drop.WIDTH/2, 900);
 
         float x1 = -STATISTICS_WIDTH * EditSettings.getNumberOfPlayers() / 2;
         for(ModelPlayer color : GlobalStatistics.getPlayers()) {
