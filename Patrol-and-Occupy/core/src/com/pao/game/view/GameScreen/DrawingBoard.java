@@ -22,8 +22,6 @@ public class DrawingBoard {
     final ViewModel VM;
     Textures text;
     RegionPainter painterGame;
-    RegionPainter painterRight;
-    RegionPainter painterLeft;
     RegionPainter painterTop;
 
     public DrawingBoard(final Drop game,final ViewModel VM, int n)
@@ -34,9 +32,7 @@ public class DrawingBoard {
         camera.setToOrtho(false, Drop.WIDTH,Drop.HEIGHT);
         viewport = new ExtendViewport(Drop.WIDTH,Drop.HEIGHT,camera);
         text = new Textures(n);
-        painterGame = new RegionPainter(game.batch,100,0,Drop.WIDTH-200,Drop.HEIGHT-100,1720,954,new Color(0.9f,0.9f,0.4f,1));
-        painterLeft = new RegionPainter(game.batch,0,0,100,Drop.HEIGHT-100,100,Drop.HEIGHT-100,new Color(0f,1f,0f,1));
-        painterRight = new RegionPainter(game.batch,Drop.WIDTH-100,0,100,Drop.HEIGHT-100,100,Drop.HEIGHT-100,new Color(0f,1f,0f,1));
+        painterGame = new RegionPainter(game.batch,0,0,Drop.WIDTH,Drop.HEIGHT-100,1920,954,new Color(0.9f,0.9f,0.4f,1));
         painterTop = new RegionPainter(game.batch,0,Drop.HEIGHT-100,Drop.WIDTH,100,Drop.WIDTH,100,new Color(0f,0f,1f,1));
         painterTop.addFont("Czas",40,Color.RED);
     }
@@ -46,8 +42,6 @@ public class DrawingBoard {
         game.batch.setProjectionMatrix(camera.combined);
 
         game.batch.begin();
-        painterLeft.fillBackground(1f);
-        painterRight.fillBackground(1f);
         painterTop.fillBackground(1f);
         painterGame.fillBackground(1f);
         //game.batch.draw(ground,0,0,width,height);

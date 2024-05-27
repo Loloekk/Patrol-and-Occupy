@@ -83,7 +83,7 @@ public class ModelSettings {
         gameTime = 120f;
         numberOfPlayers = 2;
         map = 1;
-        width = 1720;
+        width = 1920;
         height = 954;
         tankSpeed = 8f;
         bulletSpeed = 14f;
