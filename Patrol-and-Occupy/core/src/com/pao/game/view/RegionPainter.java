@@ -79,8 +79,8 @@ public class RegionPainter {
         fonts.get(fontName).draw(batch,text,(x-textWidth/2)*scaleHeight+originX,(y+textHeight/2)*scaleWidth+originY);
     }
     public void drawTexture(TextureRegion texture, float x, float y, float W, float H,float R) {
-        batch.draw(texture,(x-H/2)*scaleHeight+originX,(y-W/2)*scaleWidth+originY,
-                H/2*scaleHeight,W/2*scaleWidth,H*scaleHeight,W*scaleWidth,1,1,R);
+        batch.draw(texture,(x-W/2)*scaleHeight+originX,(y-H/2)*scaleWidth+originY,
+                W/2*scaleHeight,H/2*scaleWidth,W*scaleHeight,H*scaleWidth,1,1,R);
     }
     public void drawTexture(TextureRegion texture, Params object) {
         batch.draw(texture,(object.getX()- object.getWidht()/2)*scaleWidth+originX,(object.getY()- object.getHeight()/2)*scaleHeight+originY,

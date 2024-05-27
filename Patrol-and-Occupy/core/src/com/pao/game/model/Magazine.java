@@ -33,5 +33,9 @@ public class Magazine {
         lastShoot = 0;
         return true;
     }
+    public int getQuantity()
+    {
+        return quantity;
+    }
 
 }

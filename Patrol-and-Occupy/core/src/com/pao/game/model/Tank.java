@@ -149,4 +149,8 @@ public class Tank extends BodyGameObject {
                 return spawn;
         throw new RuntimeException("Spawn not found");
     }
+    public int getBullets()
+    {
+        return magazine.getQuantity();
+    }
 }

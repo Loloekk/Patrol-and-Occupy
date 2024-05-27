@@ -8,9 +8,12 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.pao.game.Communication.ColoredParams;
 import com.pao.game.Communication.Params;
+import com.pao.game.Communication.TankParams;
+import com.pao.game.model.ModelPlayer;
 import com.pao.game.view.Drop;
 import com.pao.game.view.RegionPainter;
 import com.pao.game.view.Textures;
+import com.pao.game.viewmodel.GlobalStatistics;
 import com.pao.game.viewmodel.ViewModel;
 
 import java.util.List;
@@ -18,8 +21,8 @@ import java.util.List;
 public class DrawingBoard {
     final Drop game;
     final OrthographicCamera camera;
-    Viewport viewport;
     final ViewModel VM;
+    Viewport viewport;
     Textures text;
     RegionPainter painterGame;
     RegionPainter painterTop;
@@ -35,6 +38,7 @@ public class DrawingBoard {
         painterGame = new RegionPainter(game.batch,0,0,Drop.WIDTH,Drop.HEIGHT-100,1920,954,new Color(0.9f,0.9f,0.4f,1));
         painterTop = new RegionPainter(game.batch,0,Drop.HEIGHT-100,Drop.WIDTH,100,Drop.WIDTH,100,new Color(0f,0f,1f,1));
         painterTop.addFont("Czas",40,Color.RED);
+        painterTop.addFont("Magazines",35,Color.BLACK);
     }
     public void draw(){
         ScreenUtils.clear(0f, 0f, 0f, 1);
@@ -65,16 +69,45 @@ public class DrawingBoard {
             //game.batch.draw(textureRegion,X-H/2,Y-W/2,H/2,W/2,H,W,1,1,bullet.getRotation());
             //game.batch.draw(texture,X-H/2,Y-W/2,H/2,W/2,H,W,1,1,bullet.getRotation(),0,0,texture.getWidth(), texture.getHeight(), false, false);
         }
-        for(ColoredParams tank : VM.getTanks()) {
+        List<TankParams> tanksParams = VM.getTanks();
+        for(TankParams tank : tanksParams) {
             painterGame.drawTexture(new TextureRegion(text.getTankTexture(tank.getColor())),tank,1.03f);
             //game.batch.draw(region, X-H/2,Y-W/2,H/2,W/2,H+5,W,1,1,tank.getRotation());
             //game.batch.draw(texture,X-H/2,Y-W/2,H/2,W/2,H+5,W,1,1,tank.getRotation(),0,0,texture.getWidth(), texture.getHeight(), false, false);
+            ModelPlayer pl = tank.getColor();
+            float x = 100,y = 50;
+            if(pl == ModelPlayer.Player1) {
+                x = 227.5f;
+                pl=ModelPlayer.Player1;
+            }
+            if(pl == ModelPlayer.Player2) {
+                x = 682.5f;
+                pl = ModelPlayer.Player2;
+            }
+            if(pl == ModelPlayer.Player3) {
+                x = 1692.5f;
+                pl = ModelPlayer.Player3;
+            }
+            if(pl == ModelPlayer.Player4) {
+                x = 1237.5f;
+                pl = ModelPlayer.Player4;
+            }
+            pl=ModelPlayer.Player1;
+            painterTop.drawTexture(new TextureRegion(text.getMagazineTexture(pl)),x,y,300,95,0);
+            painterTop.drawTexture(new TextureRegion(text.getPlateTexture(null)),x-80,y,80,80,0);
+            painterTop.drawTexture(new TextureRegion(text.getBulletTexture()),x+60,y,150,50,0);
+            painterTop.drowWriting("Magazines",((Integer)tank.getPlates()).toString(),x-80,y);
+            painterTop.drowWriting("Magazines",((Integer)tank.getBullets()).toString(),x+30,y);
+
         }
         for(Params dynamite : VM.getDynamites()) {
             painterGame.drawTexture(new TextureRegion(text.getDynamiteTexture()),dynamite);
         }
-        int elapsedSeconds = (int) VM.getRemainingTime();
-        painterTop.drowWriting("Czas", "Czas: " + elapsedSeconds, 960, 50);
+        painterTop.drowWriting("Czas", "Czas: " + (int)VM.getRemainingTime(), 960, 50);
+        for(TankParams params : tanksParams)
+        {
+
+        }
         game.batch.end();
     }
     public void resize(int width, int height) {

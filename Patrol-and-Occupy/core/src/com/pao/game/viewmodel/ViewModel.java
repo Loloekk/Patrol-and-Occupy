@@ -4,6 +4,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.pao.game.Communication.ColoredParams;
 import com.pao.game.Communication.Move;
 import com.pao.game.Communication.Params;
+import com.pao.game.Communication.TankParams;
 import com.pao.game.model.*;
 import com.pao.game.model.MultiContactListener.MultiContactListener;
 import com.pao.game.model.MultiContactListener.TankBreakableObstacleContactListener;
@@ -36,12 +37,14 @@ public class ViewModel{
     {
         board.setmove(color,move,state);
     }
-    public List<ColoredParams> getTanks()
+    public List<TankParams> getTanks()
     {
-        List<ColoredParams> tanksParamsList = new ArrayList<>();
+        List<TankParams> tanksParamsList = new ArrayList<>();
         for(Tank tank : board.getTankList())
         {
-            tanksParamsList.add(new ColoredParams(tank.getIsAlive() ? tank.getColor() : null,tank.getWidth(),tank.getHeight(),tank.getX(),tank.getY(),tank.getRotation()));
+            tanksParamsList.add(new TankParams(tank.getIsAlive() ? tank.getColor() : null,
+                    tank.getWidth(),tank.getHeight(),tank.getX(),tank.getY(),
+                    tank.getRotation(),tank.getBullets(),tank.getStatistics().getNumberOfPlates()));
         }
         return tanksParamsList;
     }

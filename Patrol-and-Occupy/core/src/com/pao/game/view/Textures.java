@@ -13,6 +13,7 @@ public class Textures {
     Texture obstacle;
     Texture breakableObstacle;
     Map<ModelPlayer, Texture> plates;
+    Map<ModelPlayer, Texture> magazines;
     Texture dynamite;
     Map<ModelPlayer, Texture> spawns;
     public Textures(int n)
@@ -44,6 +45,13 @@ public class Textures {
             if(color == ModelPlayer.Player2) spawns.put(color,new Texture(Gdx.files.internal("spawn_green.png")));
             if(color == ModelPlayer.Player1) spawns.put(color,new Texture(Gdx.files.internal("spawn_yellow.png")));
         }
+        magazines = new HashMap<>();
+        for(ModelPlayer color : ModelPlayer.getColorList(n)){
+            if(color == ModelPlayer.Player4) magazines.put(color,new Texture(Gdx.files.internal("magazine_red.png")));
+            if(color == ModelPlayer.Player3) magazines.put(color,new Texture(Gdx.files.internal("magazine_blue.png")));
+            if(color == ModelPlayer.Player2) magazines.put(color,new Texture(Gdx.files.internal("magazine_green.png")));
+            if(color == ModelPlayer.Player1) magazines.put(color,new Texture(Gdx.files.internal("magazine_yellow.png")));
+        }
     }
     public Texture getTankTexture(ModelPlayer color)
     {
@@ -54,6 +62,7 @@ public class Textures {
     public Texture getBreakableObstacleTexture() { return breakableObstacle; }
 
     public Texture getPlateTexture(ModelPlayer color) { return plates.get(color); }
+    public Texture getMagazineTexture(ModelPlayer color) { return magazines.get(color); }
     public Texture getDynamiteTexture() { return dynamite; }
     public Texture getSpawnTexture(ModelPlayer color) { return spawns.get(color); }
     public void dispose() {
