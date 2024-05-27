@@ -12,6 +12,8 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.pao.game.model.GlobalStatistics;
+import com.pao.game.model.ModelPlayer;
 import com.pao.game.view.GameScreen.GameScreen;
 import com.pao.game.viewmodel.EditSettings;
 
@@ -70,6 +72,13 @@ public class EndScreen implements Screen {
 
         font.draw(game.batch, "WINNER:", Drop.WIDTH/2, 900);
 
+        int w = 100;
+        int x1 = GlobalStatistics.getPlayers().size() / 2;
+        for(ModelPlayer color : GlobalStatistics.getPlayers()) {
+            displayPlayerStatistics(Drop.WIDTH / 2 + x1, 800, color);
+            x1 += w;
+        }
+
         if(startButton.contains(touchPoint.x, touchPoint.y)) {
             game.batch.draw(startButtonActive, Drop.WIDTH / 2 - BUTTON_WIDTH / 2, START_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
             if(Gdx.input.justTouched()) {
@@ -92,6 +101,12 @@ public class EndScreen implements Screen {
             game.batch.draw(exitButtonInactive, Drop.WIDTH / 2 - BUTTON_WIDTH / 2, EXIT_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
         }
         game.batch.end();
+    }
+
+    public void displayPlayerStatistics(float x, float y, ModelPlayer color) {
+        font.draw(game.batch, "#plates: " + GlobalStatistics.getNumberOfPlates(color), x, y);
+        font.draw(game.batch, "#kills: " + GlobalStatistics.getKillNumber(color), x, y - 20);
+        font.draw(game.batch, "#deads: " + GlobalStatistics.getDeadNumber(color), x, y - 40);
     }
 
     @Override
