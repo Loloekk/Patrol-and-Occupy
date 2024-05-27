@@ -67,21 +67,19 @@ public class SimpleBoard implements Board {
             if(!tank.getIsAlive())
                 tanksToRevive.add(tank);
         // Move every bullet
-        if (bulletList != null)
-            for (Bullet bullet : bulletList)
-                bullet.update(t);
+        for (Bullet bullet : bulletList)
+            bullet.update(t);
         // Try to move every tank
         for (Tank tank : tankList)
             tank.update(t);
         // Destroy every BreakableObstacle if Tank is nearby
-        if(breakableObstacleList != null)
-            for (BreakableObstacle breakableObstacle : breakableObstacleList)
-                if (checkTankCollision(breakableObstacle))
-                    breakableObstaclesToDestroy.add(breakableObstacle);
+        //if(breakableObstacleList != null)
+        for (BreakableObstacle breakableObstacle : breakableObstacleList)
+            if (checkTankCollision(breakableObstacle))
+                breakableObstaclesToDestroy.add(breakableObstacle);
         // Update state of every dynamite
-        if(dynamiteList != null)
-            for ( Dynamite dynamite : dynamiteList)
-                dynamite.update(t);
+        for (Dynamite dynamite : dynamiteList)
+            dynamite.update(t);
 
         // Check for tank collision
         for(Tank tank : tankList) {
@@ -91,33 +89,29 @@ public class SimpleBoard implements Board {
             }
         }
         // Check for destroyed bullets
-        if (bulletList != null) {
-            for (Bullet bullet : bulletList) {
-                // Tank hits
-                if (checkTankCollision(bullet))
-                    bulletsToDestroy.add(bullet);
-                // Dynamite hits
-                if (checkDynamiteCollision(bullet))
-                    bulletsToDestroy.add(bullet);
-                // Obstacle (breakable or not) hits
-                if (checkObstacleCollision(bullet) || checkBreakableObstacleCollision(bullet))
-                    bulletsToDestroy.add(bullet);
-                // Outside the map (currently checks if it hits map boundary)
-                if (checkBoardCollision(bullet))
-                    bulletsToDestroy.add(bullet);
-                // Enemy spawn hits
-                if (checkSpawnCollision(bullet))
-                    bulletsToDestroy.add(bullet);
-            }
+        for (Bullet bullet : bulletList) {
+            // Tank hits
+            if (checkTankCollision(bullet))
+                bulletsToDestroy.add(bullet);
+            // Dynamite hits
+            if (checkDynamiteCollision(bullet))
+                bulletsToDestroy.add(bullet);
+            // Obstacle (breakable or not) hits
+            if (checkObstacleCollision(bullet) || checkBreakableObstacleCollision(bullet))
+                bulletsToDestroy.add(bullet);
+            // Outside the map (currently checks if it hits map boundary)
+            if (checkBoardCollision(bullet))
+                bulletsToDestroy.add(bullet);
+            // Enemy spawn hits
+            if (checkSpawnCollision(bullet))
+                bulletsToDestroy.add(bullet);
         }
         // Check for destroyed dynamites
-        if (dynamiteList != null) {
-            for (Dynamite dynamite : dynamiteList) {
-                // Bullet hits
-                ModelPlayer killer = checkBulletCollision(dynamite);
-                if (killer != null)
-                    dynamitesToDestroy.add(new AbstractMap.SimpleEntry<>(dynamite, killer));
-            }
+        for (Dynamite dynamite : dynamiteList) {
+            // Bullet hits
+            ModelPlayer killer = checkBulletCollision(dynamite);
+            if (killer != null)
+                dynamitesToDestroy.add(new AbstractMap.SimpleEntry<>(dynamite, killer));
         }
 
         // Color the plates
@@ -189,35 +183,14 @@ public class SimpleBoard implements Board {
         }
     }
 
-    public boolean checkBoardCollision(GameObject gameObject) {
-        return collider.checkBoardCollision(gameObject);
-    }
-
-    public ModelPlayer checkBulletCollision(GameObject gameObject) {
-        return collider.checkBulletCollision(gameObject);
-    }
-
-    public boolean checkTankCollision(GameObject gameObject) {
-        return collider.checkTankCollision(gameObject);
-    }
-
-    public boolean checkObstacleCollision(GameObject gameObject) {
-        return collider.checkObstacleCollision(gameObject);
-    }
-
-    public boolean checkDynamiteCollision(GameObject gameObject) {
-        return collider.checkDynamiteCollision(gameObject);
-    }
-
-    public boolean checkSpawnCollision(GameObject gameObject) {
-        return collider.checkSpawnCollision(gameObject);
-    }
-    public boolean checkBreakableObstacleCollision(GameObject gameObject){
-        return collider.checkBreakableObstacleCollision(gameObject);
-    }
-    public List<Tank> getTankList() {
-        return tankList;
-    }
+    public boolean checkBoardCollision(GameObject gameObject) { return collider.checkBoardCollision(gameObject); }
+    public ModelPlayer checkBulletCollision(GameObject gameObject) { return collider.checkBulletCollision(gameObject); }
+    public boolean checkTankCollision(GameObject gameObject) { return collider.checkTankCollision(gameObject); }
+    public boolean checkObstacleCollision(GameObject gameObject) { return collider.checkObstacleCollision(gameObject); }
+    public boolean checkDynamiteCollision(GameObject gameObject) { return collider.checkDynamiteCollision(gameObject); }
+    public boolean checkSpawnCollision(GameObject gameObject) { return collider.checkSpawnCollision(gameObject); }
+    public boolean checkBreakableObstacleCollision(GameObject gameObject){ return collider.checkBreakableObstacleCollision(gameObject); }
+    public List<Tank> getTankList() { return tankList; }
     public Tank getTank(ModelPlayer color){
         for(Tank tank : tankList)
         {
@@ -227,39 +200,14 @@ public class SimpleBoard implements Board {
         }
         return null;
     }
-    public List<Bullet> getBulletList() {
-        return bulletList;
-    }
-
-    public List<Obstacle> getObstacleList() {
-        return obstacleList;
-    }
-    public List<Plate> getPlateList() {
-        return plateList;
-    }
-    public List<Dynamite> getDynamiteList() {
-        return dynamiteList;
-    }
-    public List<Spawn> getSpawnList() {
-        return spawnList;
-    }
-    public List<BreakableObstacle> getBreakableObstacleList() {
-        return breakableObstacleList;
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public void addBullet(Bullet bullet) {
-        bulletList.add(bullet);
-    }
-
-    public void addDynamite(Dynamite dynamite) {
-        dynamiteList.add(dynamite);
-    }
+    public List<Bullet> getBulletList() { return bulletList; }
+    public List<Obstacle> getObstacleList() { return obstacleList; }
+    public List<Plate> getPlateList() { return plateList; }
+    public List<Dynamite> getDynamiteList() { return dynamiteList; }
+    public List<Spawn> getSpawnList() { return spawnList; }
+    public List<BreakableObstacle> getBreakableObstacleList() { return breakableObstacleList; }
+    public int getWidth() { return width; }
+    public int getHeight() { return height; }
+    public void addBullet(Bullet bullet) { bulletList.add(bullet); }
+    public void addDynamite(Dynamite dynamite) { dynamiteList.add(dynamite); }
 }
