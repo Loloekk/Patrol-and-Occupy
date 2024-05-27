@@ -42,9 +42,9 @@ public class ViewModel{
         List<TankParams> tanksParamsList = new ArrayList<>();
         for(Tank tank : board.getTankList())
         {
-            tanksParamsList.add(new TankParams(tank.getIsAlive() ? tank.getColor() : null,
+            tanksParamsList.add(new TankParams(tank.getColor(),
                     tank.getWidth(),tank.getHeight(),tank.getX(),tank.getY(),
-                    tank.getRotation(),tank.getBullets(),tank.getStatistics().getNumberOfPlates()));
+                    tank.getRotation(),tank.getBullets(),tank.getStatistics().getNumberOfPlates(),tank.getIsAlive()));
         }
         return tanksParamsList;
     }

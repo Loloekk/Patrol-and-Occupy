@@ -71,7 +71,7 @@ public class DrawingBoard {
         }
         List<TankParams> tanksParams = VM.getTanks();
         for(TankParams tank : tanksParams) {
-            painterGame.drawTexture(new TextureRegion(text.getTankTexture(tank.getColor())),tank,1.03f);
+            painterGame.drawTexture(new TextureRegion(text.getTankTexture(tank.getIsAlive() ? tank.getColor(): null)),tank,1.03f);
             //game.batch.draw(region, X-H/2,Y-W/2,H/2,W/2,H+5,W,1,1,tank.getRotation());
             //game.batch.draw(texture,X-H/2,Y-W/2,H/2,W/2,H+5,W,1,1,tank.getRotation(),0,0,texture.getWidth(), texture.getHeight(), false, false);
             ModelPlayer pl = tank.getColor();
@@ -92,7 +92,8 @@ public class DrawingBoard {
                 x = 1237.5f;
                 pl = ModelPlayer.Player4;
             }
-            pl=ModelPlayer.Player1;
+            if(pl == null) return;
+            System.out.println(pl);
             painterTop.drawTexture(new TextureRegion(text.getMagazineTexture(pl)),x,y,300,95,0);
             painterTop.drawTexture(new TextureRegion(text.getPlateTexture(null)),x-80,y,80,80,0);
             painterTop.drawTexture(new TextureRegion(text.getBulletTexture()),x+60,y,150,50,0);
