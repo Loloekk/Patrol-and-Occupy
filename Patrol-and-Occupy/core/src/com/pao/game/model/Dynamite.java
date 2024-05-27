@@ -19,7 +19,8 @@ public class Dynamite extends BodyGameObject {
         if (board.getDynamiteList() == null)
             return;
         if (!board.getDynamiteList().contains(this))
-            throw new RuntimeException("Dynamite is not present in getDynamiteList()");
+            return;
+//            throw new RuntimeException("Dynamite is not present in getDynamiteList()");
         double X = this.getX();
         double Y = this.getY();
         board.getDynamiteList().remove(this);
@@ -30,7 +31,10 @@ public class Dynamite extends BodyGameObject {
             double tX = tank.getX();
             double tY = tank.getY();
             double distance = Math.sqrt((X-tX) * (X-tX) + (Y-tY) * (Y-tY));
-            if (distance <= 300)
+            double sX = tank.getSpawn().getX();
+            double sY = tank.getSpawn().getY();
+            double tankSpawnDistance = Math.sqrt((sX-tX) * (sX-tX) + (sY-tY) * (sY-tY));
+            if (distance <= 300 && tankSpawnDistance>60)
                 tank.setIsAlive(false);
         }
         List<Dynamite> dynamites = new ArrayList<>(board.getDynamiteList());

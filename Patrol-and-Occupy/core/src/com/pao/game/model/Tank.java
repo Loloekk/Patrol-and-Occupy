@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.math.MathUtils;
+import com.pao.game.Communication.ColoredParams;
 
 import static com.pao.game.model.Constants.PPM;
 
@@ -125,5 +126,11 @@ public class Tank extends BodyGameObject {
         if(board.checkBulletCollision(this)) {
             isAlive = false;
         }
+    }
+    public Spawn getSpawn(){
+        for(Spawn spawn : board.getSpawnList())
+            if(this.color == spawn.color)
+                return spawn;
+        throw new RuntimeException("Spawn not found");
     }
 }
