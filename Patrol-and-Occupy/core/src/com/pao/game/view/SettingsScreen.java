@@ -70,7 +70,7 @@ public class SettingsScreen implements Screen {
         bulletSpeedSlider = makeSlider(400, 1000, 50, false, Drop.WIDTH/2 + sliderWidth/2, 700f, bulletSpeed);
         bulletSpeedSlider.setValue(ES.getBulletSpeed());
         stage.addActor(bulletSpeedSlider);
-        magazineCapacitySlider = makeSlider(1, 11, 1, false, Drop.WIDTH/2 - sliderWidth*3/2, 550f, magazineCapacity);
+        magazineCapacitySlider = makeSlider(1, 10, 1, false, Drop.WIDTH/2 - sliderWidth*3/2, 550f, magazineCapacity);
         magazineCapacitySlider.setValue(ES.getMagazineCapacity());
         stage.addActor(magazineCapacitySlider);
         shootCooldownSlider = makeSlider(0, 5, 0.5f, false, Drop.WIDTH/2 + sliderWidth/2, 550f, shootCooldown);
@@ -86,11 +86,11 @@ public class SettingsScreen implements Screen {
         Slider slider = new Slider(min, max, stepSize, vertical, skin);
         slider.setPosition(x, y);
         slider.setSize(sliderWidth, sliderHeight);
-        Label minValueLabel = new Label("0", skin);
+        Label minValueLabel = new Label(String.valueOf((int)min), skin);
         minValueLabel.setPosition(x - 3, y - 25);
         stage.addActor(minValueLabel);
-        Label maxValueLabel = new Label("100", skin);
-        maxValueLabel.setPosition(x + sliderWidth - 25, y - 25);
+        Label maxValueLabel = new Label(String.valueOf((int)max), skin);
+        maxValueLabel.setPosition(x + sliderWidth - 15, y - 25);
         stage.addActor(maxValueLabel);
         //slider.setValue(slider.getMinValue() + (slider.getMaxValue() - slider.getMinValue()) / 2);
         slider.addListener(new ChangeListener() {
