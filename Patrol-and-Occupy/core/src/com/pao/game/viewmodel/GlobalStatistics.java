@@ -1,8 +1,6 @@
 package com.pao.game.viewmodel;
 
-import com.pao.game.model.Board;
 import com.pao.game.model.ModelPlayer;
-import com.pao.game.model.PlayerStatistics;
 import com.pao.game.model.Tank;
 
 import java.util.*;

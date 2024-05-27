@@ -1,4 +1,7 @@
-package com.pao.game.model;
+package com.pao.game.model.Boards;
+
+import com.pao.game.model.*;
+import com.pao.game.model.Boards.Board;
 
 public class BoardCollider {
     Board board;
@@ -16,7 +19,7 @@ public class BoardCollider {
         if (board.getBulletList() == null)
             return null;
         for (Bullet bullet : board.getBulletList())
-            if (gameObject != bullet && gameObject.intersects(bullet) && !(gameObject instanceof Tank && ((Tank) gameObject).color == bullet.color)) {
+            if (gameObject != bullet && gameObject.intersects(bullet) && !(gameObject instanceof Tank && ((Tank) gameObject).getColor() == bullet.getColor())) {
                 return bullet.getColor();
             }
         return null;
@@ -25,7 +28,7 @@ public class BoardCollider {
         if (board.getTankList() == null)
             return false;
         for (Tank tank : board.getTankList())
-            if (gameObject != tank && gameObject.intersects(tank) && !(gameObject instanceof Bullet && ((Bullet) gameObject).color == tank.color))
+            if (gameObject != tank && gameObject.intersects(tank) && !(gameObject instanceof Bullet && ((Bullet) gameObject).getColor() == tank.getColor()))
                 return true;
         return false;
     }

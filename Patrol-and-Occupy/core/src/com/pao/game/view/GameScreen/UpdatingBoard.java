@@ -2,7 +2,7 @@ package com.pao.game.view.GameScreen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.pao.game.Communication.Move;
+import com.pao.game.communication.Move;
 import com.pao.game.model.ModelPlayer;
 import com.pao.game.view.PlayerView;
 import com.pao.game.viewmodel.ViewModel;

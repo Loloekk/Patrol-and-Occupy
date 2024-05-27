@@ -1,6 +1,7 @@
 package com.pao.game.model;
 
 import com.badlogic.gdx.math.MathUtils;
+import com.pao.game.model.Boards.Board;
 
 import static com.pao.game.model.Constants.PPM;
 

@@ -1,11 +1,13 @@
 package com.pao.game.viewmodel;
 
 import com.badlogic.gdx.physics.box2d.World;
-import com.pao.game.Communication.ColoredParams;
-import com.pao.game.Communication.Move;
-import com.pao.game.Communication.Params;
-import com.pao.game.Communication.TankParams;
+import com.pao.game.communication.ColoredParams;
+import com.pao.game.communication.Move;
+import com.pao.game.communication.Params;
+import com.pao.game.communication.TankParams;
 import com.pao.game.model.*;
+import com.pao.game.model.Boards.Board;
+import com.pao.game.model.Boards.SimpleBoard;
 import com.pao.game.model.MultiContactListener.MultiContactListener;
 import com.pao.game.model.MultiContactListener.TankBreakableObstacleContactListener;
 import com.pao.game.model.MultiContactListener.TankSpawnContactListener;

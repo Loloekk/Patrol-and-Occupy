@@ -1,7 +1,7 @@
-package com.pao.game.model;
+package com.pao.game.model.Boards;
 
-import com.badlogic.gdx.graphics.g3d.Model;
-import com.pao.game.Communication.Move;
+import com.pao.game.communication.Move;
+import com.pao.game.model.*;
 
 import java.util.List;
 

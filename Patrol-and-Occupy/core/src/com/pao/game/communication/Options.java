@@ -1,4 +1,4 @@
-package com.pao.game.model;
+package com.pao.game.communication;
 
 public enum Options {
     gameTime,

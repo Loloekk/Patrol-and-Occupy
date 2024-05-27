@@ -6,14 +6,13 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.pao.game.Communication.ColoredParams;
-import com.pao.game.Communication.Params;
-import com.pao.game.Communication.TankParams;
+import com.pao.game.communication.ColoredParams;
+import com.pao.game.communication.Params;
+import com.pao.game.communication.TankParams;
 import com.pao.game.model.ModelPlayer;
 import com.pao.game.view.Drop;
 import com.pao.game.view.RegionPainter;
 import com.pao.game.view.Textures;
-import com.pao.game.viewmodel.GlobalStatistics;
 import com.pao.game.viewmodel.ViewModel;
 
 import java.util.List;

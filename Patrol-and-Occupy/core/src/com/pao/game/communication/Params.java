@@ -1,4 +1,4 @@
-package com.pao.game.Communication;
+package com.pao.game.communication;
 
 public class Params {
     float widht;

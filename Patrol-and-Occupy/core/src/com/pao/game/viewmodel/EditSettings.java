@@ -1,7 +1,7 @@
 package com.pao.game.viewmodel;
 
 import com.pao.game.model.ModelSettings;
-import com.pao.game.model.Options;
+import com.pao.game.communication.Options;
 
 public class EditSettings {
     public static void setOption(Options o, float state)

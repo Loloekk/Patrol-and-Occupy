@@ -1,14 +1,12 @@
-package com.pao.game.model;
+package com.pao.game.model.Boards;
 
 import java.util.*;
 
-import com.badlogic.gdx.math.Octree;
 import com.badlogic.gdx.physics.box2d.World;
-import com.pao.game.Communication.ColoredParams;
-import com.pao.game.Communication.Move;
-import com.pao.game.Communication.Params;
-import com.pao.game.viewmodel.GlobalStatistics;
-import com.sun.org.apache.xpath.internal.operations.Mod;
+import com.pao.game.communication.ColoredParams;
+import com.pao.game.communication.Move;
+import com.pao.game.communication.Params;
+import com.pao.game.model.*;
 
 public class SimpleBoard implements Board {
     BoardCollider collider;

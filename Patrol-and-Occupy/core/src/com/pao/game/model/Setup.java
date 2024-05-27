@@ -1,7 +1,7 @@
 package com.pao.game.model;
 
-import com.pao.game.Communication.ColoredParams;
-import com.pao.game.Communication.Params;
+import com.pao.game.communication.ColoredParams;
+import com.pao.game.communication.Params;
 
 import java.util.ArrayList;
 import java.util.List;

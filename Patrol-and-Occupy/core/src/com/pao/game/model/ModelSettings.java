@@ -1,5 +1,7 @@
 package com.pao.game.model;
 
+import com.pao.game.communication.Options;
+
 public class ModelSettings {
     private static float gameTime;
     private static int numberOfPlayers;
