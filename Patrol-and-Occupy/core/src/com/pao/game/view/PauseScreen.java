@@ -81,7 +81,7 @@ public class PauseScreen implements Screen {
 
         if(resumeButton.contains(touchPoint.x, touchPoint.y)) {
             game.batch.draw(resumeButtonActive, Drop.WIDTH / 2 - BUTTON_WIDTH / 2, RESUME_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
-            if(Gdx.input.isTouched()) {
+            if(Gdx.input.justTouched()) {
                 //this.dispose();
                 game.setScreen(gameScreen);
             }
@@ -92,7 +92,7 @@ public class PauseScreen implements Screen {
 
         if(restartButton.contains(touchPoint.x, touchPoint.y)) {
             game.batch.draw(restartButtonActive, Drop.WIDTH / 2 - BUTTON_WIDTH / 2, RESTART_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
-            if(Gdx.input.isTouched()) {
+            if(Gdx.input.justTouched()) {
                 //this.dispose();
                 game.setScreen(new GameScreen(game, ES));
             }
@@ -103,7 +103,7 @@ public class PauseScreen implements Screen {
 
         if(exitButton.contains(touchPoint.x, touchPoint.y)) {
             game.batch.draw(exitButtonActive, Drop.WIDTH / 2 - BUTTON_WIDTH / 2, EXIT_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
-            if(Gdx.input.isTouched()) {
+            if(Gdx.input.justTouched()) {
                 //this.dispose();
                 game.setScreen(new MainMenuScreen(game,ES));
             }

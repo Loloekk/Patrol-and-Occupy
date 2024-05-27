@@ -72,7 +72,7 @@ public class EndScreen implements Screen {
 
         if(startButton.contains(touchPoint.x, touchPoint.y)) {
             game.batch.draw(startButtonActive, Drop.WIDTH / 2 - BUTTON_WIDTH / 2, START_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
-            if(Gdx.input.isTouched()) {
+            if(Gdx.input.justTouched()) {
                 //this.dispose();
                 game.setScreen(new GameScreen(game, ES));
             }
@@ -83,7 +83,7 @@ public class EndScreen implements Screen {
 
         if(exitButton.contains(touchPoint.x, touchPoint.y)) {
             game.batch.draw(exitButtonActive, Drop.WIDTH / 2 - BUTTON_WIDTH / 2, EXIT_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
-            if(Gdx.input.isTouched()) {
+            if(Gdx.input.justTouched()) {
                 //this.dispose();
                 game.setScreen(new MainMenuScreen(game,ES));
             }

@@ -66,7 +66,7 @@ public class MainMenuScreen implements Screen {
         camera.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
         if(playButton.contains(touchPoint.x, touchPoint.y)) {
             game.batch.draw(playButtonActive, Drop.WIDTH / 2  - BUTTON_WIDTH / 2, PLAY_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
-            if(Gdx.input.isTouched()) {
+            if(Gdx.input.justTouched()) {
                 //this.dispose();
                 game.setScreen(new GameScreen(game,ES));
             }
@@ -78,7 +78,7 @@ public class MainMenuScreen implements Screen {
         // RegionPainter--------------------------------------------------------------
         if(settingsButton.contains(touchPoint.x, touchPoint.y)) {
             game.batch.draw(settingsButtonActive, Drop.WIDTH / 2  - BUTTON_WIDTH / 2, SETTINGS_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
-            if(Gdx.input.isTouched()) {
+            if(Gdx.input.justTouched()) {
                 game.setScreen(new SettingsScreen(game, ES));     //---------------------------------------------------
             }
         }
@@ -88,7 +88,7 @@ public class MainMenuScreen implements Screen {
 
         if(exitButton.contains(touchPoint.x, touchPoint.y)) {
             game.batch.draw(exitButtonActive, Drop.WIDTH / 2  - BUTTON_WIDTH / 2, EXIT_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
-            if(Gdx.input.isTouched()) {
+            if(Gdx.input.justTouched()) {
                 Gdx.app.exit();
             }
         }
