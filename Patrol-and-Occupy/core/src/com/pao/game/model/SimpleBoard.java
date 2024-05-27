@@ -172,15 +172,10 @@ public class SimpleBoard implements Board {
     }
 
     public boolean checkBoardCollision(GameObject gameObject) {
-        float[] Vertices = gameObject.getVertices();
-        final int offset = 6;
-        for (int i = 0; i < Vertices.length; i += 2) {
-            float X = Vertices[i];
-            float Y = Vertices[i + 1];
-            if (X >= width + offset || X <= -offset || Y >= height + offset || Y <= -offset)
-                return true;
-        }
-        return false;
+        final int offset = 12;
+        double X = gameObject.getX();
+        double Y = gameObject.getY();
+        return X >= width + offset || X <= -offset || Y >= height + offset || Y <= -offset;
     }
 
     public boolean checkBulletCollision(GameObject gameObject) {

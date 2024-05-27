@@ -20,7 +20,6 @@ public class Dynamite extends BodyGameObject {
             return;
         if (!board.getDynamiteList().contains(this))
             return;
-//            throw new RuntimeException("Dynamite is not present in getDynamiteList()");
         double X = this.getX();
         double Y = this.getY();
         board.getDynamiteList().remove(this);
