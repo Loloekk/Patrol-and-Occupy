@@ -69,17 +69,18 @@ public class SimpleBoard implements Board {
         for (Tank tank : tankList)
             if(!tank.getIsAlive())
                 tanksToRevive.add(tank);
-
         // Move every bullet
-        if (bulletList != null) {
+        if (bulletList != null)
             for (Bullet bullet : bulletList)
                 bullet.update(t);
-        }
         // Try to move every tank
-        if (tankList != null) {
-            for (Tank tank : tankList)
-                tank.update(t);
-        }
+        for (Tank tank : tankList)
+            tank.update(t);
+        // Update state of every dynamite
+        if(dynamiteList != null)
+            for ( Dynamite dynamite : dynamiteList)
+                dynamite.update(t);
+
         // Check for destroyed bullets
         if (bulletList != null) {
             for (Bullet bullet : bulletList) {

@@ -45,4 +45,12 @@ public class Dynamite extends BodyGameObject {
                 dynamite.destroy();
         }
     }
+
+    public void update(float t){
+        float vx = body.getLinearVelocity().x;
+        float vy = body.getLinearVelocity().y;
+        body.setLinearVelocity((float) (vx * Math.pow(0.01,t)), (float) (vy * Math.pow(0.01,t)));
+        float va = body.getAngularVelocity();
+        body.setAngularVelocity((float) (va * Math.pow(0.01,t)));
+    }
 }
