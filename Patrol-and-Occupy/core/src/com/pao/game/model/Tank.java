@@ -79,8 +79,8 @@ public class Tank extends BodyGameObject {
 
         if(placeDynamite && lastPlaceDynamite >= 10.0f) {
             float angle = getRotation() * MathUtils.degreesToRadians;
-            float x = getX() - MathUtils.cos(angle) * getHeight();
-            float y = getY() - MathUtils.sin(angle) * getHeight();
+            float x = getX() - MathUtils.cos(angle) * getHeight() * 1.1f;
+            float y = getY() - MathUtils.sin(angle) * getHeight() * 1.1f;
             Dynamite dynamite = new Dynamite(x, y, this);
             board.addDynamite(dynamite);
             if(board.checkBoardCollision(dynamite) || board.checkObstacleCollision(dynamite) || board.checkDynamiteCollision(dynamite) || board.checkSpawnCollision(dynamite) || board.checkTankCollision(dynamite)){
