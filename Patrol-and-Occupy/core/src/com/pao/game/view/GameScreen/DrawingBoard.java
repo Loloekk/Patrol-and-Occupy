@@ -81,11 +81,11 @@ public class DrawingBoard {
                 pl=ModelPlayer.Player1;
             }
             if(pl == ModelPlayer.Player2) {
-                x = 682.5f;
+                x = 1692.5f;
                 pl = ModelPlayer.Player2;
             }
             if(pl == ModelPlayer.Player3) {
-                x = 1692.5f;
+                x = 682.5f;
                 pl = ModelPlayer.Player3;
             }
             if(pl == ModelPlayer.Player4) {
