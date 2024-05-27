@@ -16,6 +16,7 @@ public class Tank extends BodyGameObject {
     ModelPlayer color;
     Board board;
     Magazine magazine;
+    float lastPlaceDynamite;
     boolean moveForwardState;
     boolean moveLeftState;
     boolean moveRightState;
@@ -34,6 +35,7 @@ public class Tank extends BodyGameObject {
         this.board = board;
         this.isAlive = true;
         this.magazine = new Magazine(settings);
+        this.lastPlaceDynamite = 0f;
     }
 
     public void setMoveForwardState(boolean state) {
@@ -63,6 +65,7 @@ public class Tank extends BodyGameObject {
         return isAlive;
     }
     public void update(float time) {
+        lastPlaceDynamite += time;
         if(!isAlive) {
             body.setAngularVelocity(0f);
             body.setLinearVelocity(new Vector2(0f,0f));
@@ -77,7 +80,7 @@ public class Tank extends BodyGameObject {
             board.addBullet(new Bullet(x, y, this, settings));
         }
 
-        if(placeDynamite) {
+        if(placeDynamite && lastPlaceDynamite >= 10.0f) {
             float angle = getRotation() * MathUtils.degreesToRadians;
             float x = getX() - MathUtils.cos(angle) * getHeight();
             float y = getY() - MathUtils.sin(angle) * getHeight();
@@ -86,6 +89,8 @@ public class Tank extends BodyGameObject {
             if(board.checkBoardCollision(dynamite) || board.checkObstacleCollision(dynamite) || board.checkDynamiteCollision(dynamite) || board.checkSpawnCollision(dynamite) || board.checkTankCollision(dynamite)){
                 board.getDynamiteList().remove(dynamite);
                 dynamite.body.getWorld().destroyBody(dynamite.body);
+            }else{
+                lastPlaceDynamite = 0;
             }
         }
 
