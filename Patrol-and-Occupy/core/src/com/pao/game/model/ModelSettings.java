@@ -86,7 +86,7 @@ public class ModelSettings {
         width = 1720;
         height = 954;
         tankSpeed = 8f;
-        bulletSpeed = 700f;
+        bulletSpeed = 14f;
         rotateSpeed = 4f;
         magazineCapacity = 5;
         shootCooldown = 0.2f;

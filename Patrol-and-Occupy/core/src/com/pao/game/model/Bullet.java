@@ -2,6 +2,8 @@ package com.pao.game.model;
 
 import com.badlogic.gdx.math.MathUtils;
 
+import static com.pao.game.model.Constants.PPM;
+
 public class Bullet extends PolygonGameObject {
     Board board;
     ModelPlayer color;
@@ -14,7 +16,7 @@ public class Bullet extends PolygonGameObject {
         this.settings = settings;
     }
     public void update(float t){
-        final float speed = settings.getBulletSpeed();
+        final float speed = settings.getBulletSpeed()*PPM;
         float angle = polygon.getRotation() * MathUtils.degreesToRadians;
         float dx = MathUtils.cos(angle) * speed * t;
         float dy = MathUtils.sin(angle) * speed * t;

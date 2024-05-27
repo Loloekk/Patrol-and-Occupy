@@ -29,6 +29,7 @@ public class Magazine {
     public boolean shoot()
     {
         if(quantity == 0 || lastShoot < settings.getShootCooldown()){
+            System.out.println(settings.getShootCooldown());
             return false;
         }
         quantity --;
