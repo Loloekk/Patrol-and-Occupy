@@ -38,7 +38,7 @@ public class DrawingBoard {
         painterLeft = new RegionPainter(game.batch,0,0,100,Drop.HEIGHT-100,100,Drop.HEIGHT-100,new Color(0f,1f,0f,1));
         painterRight = new RegionPainter(game.batch,Drop.WIDTH-100,0,100,Drop.HEIGHT-100,100,Drop.HEIGHT-100,new Color(0f,1f,0f,1));
         painterTop = new RegionPainter(game.batch,0,Drop.HEIGHT-100,Drop.WIDTH,100,Drop.WIDTH,100,new Color(0f,0f,1f,1));
-        painterTop.addFont(40,Color.RED);
+        painterTop.addFont("Czas",40,Color.RED);
     }
     public void draw(){
         ScreenUtils.clear(0f, 0f, 0f, 1);
@@ -76,7 +76,7 @@ public class DrawingBoard {
             painterGame.drawTexture(new TextureRegion(text.getDynamiteTexture()),dynamite);
         }
         int elapsedSeconds = (int) VM.getRemainingTime();
-        painterTop.drowWriting(2, "Czas: " + elapsedSeconds, 960, 50);
+        painterTop.drowWriting("Czas", "Czas: " + elapsedSeconds, 960, 50);
         game.batch.end();
     }
     public void resize(int width, int height) {

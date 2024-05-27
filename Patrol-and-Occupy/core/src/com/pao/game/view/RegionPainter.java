@@ -12,6 +12,8 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.pao.game.Communication.Params;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.List;
 
 import static com.pao.game.model.Constants.PPM;
@@ -28,7 +30,7 @@ public class RegionPainter {
     float scaleHeight;
     Color backgorundColor;
     Texture backgroundTexture;
-    List<BitmapFont> fonts;
+    Map<String,BitmapFont> fonts;
     public RegionPainter(Batch batch, float originX, float originY, float width, float height, float painterWidth, float painterHeight, Color color)
     {
         this.batch = batch;
@@ -46,36 +48,35 @@ public class RegionPainter {
         pixmap.fillRectangle(0, 0, (int)width, (int)height);
         backgroundTexture = new Texture(pixmap);
         pixmap.dispose();
-        fonts = new ArrayList<>();
+        fonts = new HashMap<>();
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Roboto-Black.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
         parameter.size = 20;
         parameter.color = com.badlogic.gdx.graphics.Color.BLACK;
-        fonts.add(generator.generateFont(parameter));
+        fonts.put("default",generator.generateFont(parameter));
         generator.dispose();
     }
-    public void addFont(int size, Color color)
+    public void addFont(String name,int size, Color color)
     {
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Roboto-Black.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
         parameter.size = size;
         parameter.color = color;
-        fonts.add(generator.generateFont(parameter));
+        fonts.put(name,generator.generateFont(parameter));
         generator.dispose();
     }
     public void fillBackground(float scale)
     {
         batch.draw(new TextureRegion(backgroundTexture),originX/scale,originY/scale,width/scale,height/scale);
     }
-    public void drowWriting(int id,String text,float x, float y)
+    public void drowWriting(String fontName,String text,float x, float y)
     {
-        if(id<0||id>fonts.size()){id=1;}
-        id--;
+        if(!fonts.containsKey(fontName)){fontName = "default";}
         GlyphLayout layout = new GlyphLayout();
-        layout.setText(fonts.get(id),text);
+        layout.setText(fonts.get(fontName),text);
         float textWidth = layout.width;
         float textHeight = layout.height;
-        fonts.get(id).draw(batch,text,(x-textWidth/2)*scaleHeight+originX,(y+textHeight/2)*scaleWidth+originY);
+        fonts.get(fontName).draw(batch,text,(x-textWidth/2)*scaleHeight+originX,(y+textHeight/2)*scaleWidth+originY);
     }
     public void drawTexture(TextureRegion texture, float x, float y, float W, float H,float R) {
         batch.draw(texture,(x-H/2)*scaleHeight+originX,(y-W/2)*scaleWidth+originY,
@@ -92,7 +93,7 @@ public class RegionPainter {
     public void dispose()
     {
         backgroundTexture.dispose();
-        for(BitmapFont font : fonts){
+        for(BitmapFont font : fonts.values()){
             font.dispose();
         }
     }
