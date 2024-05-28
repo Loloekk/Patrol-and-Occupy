@@ -77,22 +77,16 @@ public class DrawingBoard {
             float x = 100,y = 50;
             if(pl == ModelPlayer.Player1) {
                 x = 227.5f;
-                pl=ModelPlayer.Player1;
             }
             if(pl == ModelPlayer.Player2) {
                 x = 1692.5f;
-                pl = ModelPlayer.Player2;
             }
             if(pl == ModelPlayer.Player3) {
                 x = 682.5f;
-                pl = ModelPlayer.Player3;
             }
             if(pl == ModelPlayer.Player4) {
                 x = 1237.5f;
-                pl = ModelPlayer.Player4;
             }
-            if(pl == null) return;
-            System.out.println(pl);
             painterTop.drawTexture(new TextureRegion(text.getMagazineTexture(pl)),x,y,300,95,0);
             painterTop.drawTexture(new TextureRegion(text.getPlateTexture(null)),x-80,y,80,80,0);
             painterTop.drawTexture(new TextureRegion(text.getBulletTexture()),x+60,y,150,50,0);

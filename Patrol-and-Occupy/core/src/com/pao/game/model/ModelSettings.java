@@ -94,14 +94,6 @@ public class ModelSettings {
         shootCooldown = 0.2f;
         receiveCooldown = 2f;
     }
-    /*public void setGameTime(float state){gameTime = state;}
-    public void setNumberOfPlayers(int state){numberOfPlayers = state;}
-    public void setMap(int state){map = state;}
-    public void setTankSpeed(float state){tankSpeed = state;}
-    public void setBulletSpeed(float state){bulletSpeed = state;}
-    public void setMagazineCapacity(int state){magazineCapacity = state;}
-    public void setShootCooldown(float state){shootCooldown = state;}
-    public void setReceiveCooldown(float state){receiveCooldown = state;}*/
     public static float getGameTime(){return gameTime;}
     public static int getNumberOfPlayers(){return numberOfPlayers;}
     public static int getMap(){return map;}
