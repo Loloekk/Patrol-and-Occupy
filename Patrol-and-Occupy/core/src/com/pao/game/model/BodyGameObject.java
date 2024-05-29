@@ -30,7 +30,6 @@ public abstract class BodyGameObject implements GameObject {
     public float getHeight() { return height; }
     public float getRotation() {
         return body.getAngle() * MathUtils.radiansToDegrees;
-        //return getPolygon().getRotation();
     }
     public float[] getVertices() {
         return getPolygon().getVertices();
@@ -38,4 +37,5 @@ public abstract class BodyGameObject implements GameObject {
     public Polygon getPolygon() {
         return PolygonBody.getPolygonFromBody(body);
     }
+    public Body getBody() { return body; }
 }

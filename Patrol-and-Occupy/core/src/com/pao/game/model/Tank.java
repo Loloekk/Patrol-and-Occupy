@@ -11,10 +11,9 @@ import static com.pao.game.model.Constants.PPM;
 public class Tank extends BodyGameObject {
     static final int width = 70;
     static final int height = 60;
-    public static int getSWidth(){return width;}
-    public static int getSHeight(){return height;}
     ModelPlayer color;
     Board board;
+    World world;
     Magazine magazine;
     PlayerStatistics playerStatistics;
     float lastPlaceDynamite;
@@ -31,6 +30,7 @@ public class Tank extends BodyGameObject {
         body.setUserData(this);
         this.color = color;
         this.board = board;
+        this.world = world;
         this.isAlive = true;
         this.magazine = new Magazine();
         this.lastPlaceDynamite = 0f;
@@ -58,7 +58,7 @@ public class Tank extends BodyGameObject {
     }
     public void kill(ModelPlayer killer)
     {
-        if(isAlive == true)
+        if(isAlive)
         {
             playerStatistics.incrementDeadNumber();
             board.getTank(killer).getStatistics().incrementKillNumber();
@@ -89,7 +89,7 @@ public class Tank extends BodyGameObject {
             float angle = getRotation() * MathUtils.degreesToRadians;
             float x = getX() + MathUtils.cos(angle) * getHeight()/2;
             float y = getY() + MathUtils.sin(angle) * getHeight()/2;
-            board.addBullet(new Bullet(x, y, this));
+            board.addBullet(new Bullet(x, y, this, world));
         }
 
         if(placeDynamite && lastPlaceDynamite >= 10.0f) {
@@ -98,12 +98,12 @@ public class Tank extends BodyGameObject {
             float y = getY() - MathUtils.sin(angle) * getHeight() * 1.1f;
             Dynamite dynamite = new Dynamite(x, y, this);
             board.addDynamite(dynamite);
-            if(board.checkBoardCollision(dynamite) || board.checkObstacleCollision(dynamite) || board.checkDynamiteCollision(dynamite) || board.checkSpawnCollision(dynamite) || board.checkTankCollision(dynamite) || board.checkBreakableObstacleCollision(dynamite)){
-                board.getDynamiteList().remove(dynamite);
-                dynamite.body.getWorld().destroyBody(dynamite.body);
-            }else{
+//            if(board.checkBoardCollision(dynamite) || board.checkObstacleCollision(dynamite) || board.checkDynamiteCollision(dynamite) || board.checkSpawnCollision(dynamite) || board.checkTankCollision(dynamite) || board.checkBreakableObstacleCollision(dynamite)){
+//                board.getDynamiteList().remove(dynamite);
+//                dynamite.body.getWorld().destroyBody(dynamite.body);
+//            }else{
                 lastPlaceDynamite = 0;
-            }
+//            }
         }
 
 

@@ -6,17 +6,9 @@ import com.pao.game.model.*;
 import java.util.List;
 
 public interface Board {
-
     void update(float t);
     float getRemainingTime();
     void setmove(ModelPlayer color, Move move, boolean value);
-    boolean checkBoardCollision(GameObject gameObject);
-    ModelPlayer checkBulletCollision(GameObject gameObject);
-    boolean checkTankCollision(GameObject gameObject);
-    boolean checkObstacleCollision(GameObject gameObject);
-    boolean checkDynamiteCollision(GameObject gameObject);
-    boolean checkSpawnCollision(GameObject gameObject);
-    boolean checkBreakableObstacleCollision(GameObject gameObject);
     List<Tank> getTankList();
     List<Bullet> getBulletList();
     List<Obstacle> getObstacleList();
@@ -29,4 +21,8 @@ public interface Board {
     int getHeight();
     void addBullet(Bullet bullet);
     void addDynamite(Dynamite dynamite);
+    void destroyTank(Tank tank, ModelPlayer killer);
+    void destroyBullet(Bullet bullet);
+    void destroyBreakableObstacle(BreakableObstacle breakableObstacle);
+    void destroyDynamite(Dynamite dynamite, ModelPlayer killer);
 }

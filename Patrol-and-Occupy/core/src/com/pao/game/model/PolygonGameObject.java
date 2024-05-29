@@ -10,7 +10,6 @@ public abstract class PolygonGameObject implements GameObject{
     public PolygonGameObject(float x, float y, float width, float height) {
         float[] vertices = {-width/2,-height/2 , -width/2, height/2, width/2, height/2,width/2 ,-height/2};
         polygon = new Polygon(vertices);
-        //polygon.setOrigin(x, y);
         polygon.setPosition(x, y);
         this.width = width;
         this.height = height;

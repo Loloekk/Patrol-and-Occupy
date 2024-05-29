@@ -25,12 +25,8 @@ public class BodyCreator {
 
         body.createFixture(fdef);
 
-        //
         body.setTransform(x/PPM, y/PPM, degree * MathUtils.degreesToRadians);
-        //
-
         shape.dispose();
-
         return body;
     }
     public static void createEdgeBody(float x1, float y1, float x2, float y2, World world) {

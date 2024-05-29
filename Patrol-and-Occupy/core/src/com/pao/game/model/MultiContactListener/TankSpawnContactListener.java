@@ -6,13 +6,9 @@ import com.pao.game.model.Tank;
 
 public class TankSpawnContactListener implements ContactListener {
     @Override
-    public void beginContact(Contact contact) {
-
-    }
+    public void beginContact(Contact contact) {}
     @Override
-    public void endContact(Contact contact) {
-
-    }
+    public void endContact(Contact contact) {}
     @Override
     public void preSolve(Contact contact, Manifold oldManifold) {
         Fixture fixtureA = contact.getFixtureA();
@@ -22,17 +18,15 @@ public class TankSpawnContactListener implements ContactListener {
         Object userDataB = fixtureB.getBody().getUserData();
 
         if (userDataA instanceof Tank && userDataB instanceof Spawn) {
-            handleTankBaseContact((Tank) userDataA, (Spawn) userDataB, contact);
+            handleTankSpawnContact((Tank) userDataA, (Spawn) userDataB, contact);
         }
         else if (userDataA instanceof Spawn && userDataB instanceof Tank) {
-            handleTankBaseContact((Tank) userDataB, (Spawn) userDataA, contact);
+            handleTankSpawnContact((Tank) userDataB, (Spawn) userDataA, contact);
         }
     }
     @Override
-    public void postSolve(Contact contact, ContactImpulse impulse) {
-
-    }
-    private void handleTankBaseContact(Tank tank, Spawn spawn, Contact contact) {
+    public void postSolve(Contact contact, ContactImpulse impulse) {}
+    private void handleTankSpawnContact(Tank tank, Spawn spawn, Contact contact) {
         if (tank.getColor() == spawn.getColor()) {
             contact.setEnabled(false);
         }

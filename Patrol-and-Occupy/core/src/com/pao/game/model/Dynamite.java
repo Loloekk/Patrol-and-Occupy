@@ -11,6 +11,7 @@ public class Dynamite extends BodyGameObject {
 
     public Dynamite(float x, float y, Tank tank) {
         super(x, y, 40, 40, tank.getRotation(), BodyDef.BodyType.DynamicBody, tank.body.getWorld(), 0.7f, false);
+        body.setUserData(this);
         this.board = tank.board;
     }
 

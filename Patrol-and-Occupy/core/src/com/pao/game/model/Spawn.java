@@ -3,7 +3,6 @@ package com.pao.game.model;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.World;
 
-//public class Spawn extends BodyGameObject{
 public class Spawn extends BodyGameObject{
     static final int width = 160;
     static final int height = 160;

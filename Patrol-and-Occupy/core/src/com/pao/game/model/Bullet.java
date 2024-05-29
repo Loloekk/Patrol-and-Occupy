@@ -1,25 +1,29 @@
 package com.pao.game.model;
 
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.World;
 import com.pao.game.model.Boards.Board;
 
 import static com.pao.game.model.Constants.PPM;
 
-public class Bullet extends PolygonGameObject {
+public class Bullet extends BodyGameObject {
+    static final int width = 30;
+    static final int height = 10;
     Board board;
     ModelPlayer color;
-    Bullet(float x, float y, Tank tank){
-        super(x, y, 30, 10);
-        polygon.setRotation(tank.getRotation());
+    Bullet(float x, float y, Tank tank, World world){
+        super(x, y, width, height, tank.getRotation(), BodyDef.BodyType.DynamicBody, world, 1f, false);
+        body.setUserData(this);
         color = tank.getColor();
         board = tank.board;
     }
     public void update(float t){
-        final float speed = ModelSettings.getBulletSpeed()*PPM;
-        float angle = polygon.getRotation() * MathUtils.degreesToRadians;
-        float dx = MathUtils.cos(angle) * speed * t;
-        float dy = MathUtils.sin(angle) * speed * t;
-        polygon.translate(dx, dy);
+        Vector2 vel = body.getLinearVelocity();
+        vel.x = ModelSettings.getBulletSpeed() * MathUtils.cos(body.getAngle());
+        vel.y = ModelSettings.getBulletSpeed() * MathUtils.sin(body.getAngle());
+        body.setLinearVelocity(vel);
     }
     public void destroy(){
         if(board.getBulletList() == null)
