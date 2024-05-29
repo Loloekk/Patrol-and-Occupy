@@ -28,7 +28,6 @@ public class SimpleBoard implements Board {
         this.width = width;
         this.height = height;
     }
-
     public SimpleBoard(World world){
         this(ModelSettings.getWidth(), ModelSettings.getHeight());
         this.world = world;
@@ -74,11 +73,6 @@ public class SimpleBoard implements Board {
         // Update state of every dynamite
         for (Dynamite dynamite : dynamiteList)
             dynamite.update(t);
-        // Destroy tanks
-        for(Map.Entry<Tank, ModelPlayer> tank : tanksToDestroy) {
-            tank.getKey().kill(tank.getValue());
-        }
-        tanksToDestroy.clear();
 
         // Color the plates
         for(Plate plate : plateList) {
@@ -95,11 +89,15 @@ public class SimpleBoard implements Board {
             }
             else if(colorsSet.size() > 1) plate.setColor(null);
         }
+        // Destroy tanks
+        for(Map.Entry<Tank, ModelPlayer> tank : tanksToDestroy) {
+            tank.getKey().kill(tank.getValue());
+        }
+        tanksToDestroy.clear();
         // Destroy bullets
         for(Bullet bullet : bulletsToDestroy) {
             world.destroyBody(bullet.getBody());
             bulletList.remove(bullet);
-            System.out.println("1");
         }
         bulletsToDestroy.clear();
         // Destroy dynamites
@@ -160,13 +158,10 @@ public class SimpleBoard implements Board {
     }
     public List<Tank> getTankList() { return tankList; }
     public Tank getTank(ModelPlayer color){
-        for(Tank tank : tankList)
-        {
-            if(tank.getColor() == color){
-                return tank;
-            }
-        }
-        return null;
+        return tankList.stream()
+                .filter(tank -> tank.getColor() == color)
+                .findFirst()
+                .orElse(null);
     }
     public List<Bullet> getBulletList() { return bulletList; }
     public List<Obstacle> getObstacleList() { return obstacleList; }
