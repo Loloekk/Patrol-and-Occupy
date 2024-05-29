@@ -10,8 +10,7 @@ import com.pao.game.model.Boards.Board;
 import com.pao.game.model.Boards.SimpleBoard;
 import com.pao.game.model.MultiContactListener.BulletContactListener;
 import com.pao.game.model.MultiContactListener.MultiContactListener;
-import com.pao.game.model.MultiContactListener.TankBreakableObstacleContactListener;
-import com.pao.game.model.MultiContactListener.TankSpawnContactListener;
+import com.pao.game.model.MultiContactListener.TankContactListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,8 +29,7 @@ public class ViewModel{
         board = new SimpleBoard(world);
         multiContactListener = new MultiContactListener();
         world.setContactListener(multiContactListener);
-        multiContactListener.addListener(new TankBreakableObstacleContactListener(board));
-        multiContactListener.addListener(new TankSpawnContactListener());
+        multiContactListener.addListener(new TankContactListener(board));
         multiContactListener.addListener(new BulletContactListener(board));
         BodyCreator.setEdges(0,0, ModelSettings.getWidth(), ModelSettings.getHeight(), world);
         globalStatistics = new GlobalStatistics(this);
