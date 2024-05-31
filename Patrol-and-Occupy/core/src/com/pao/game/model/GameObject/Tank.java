@@ -99,14 +99,8 @@ public class Tank extends BodyGameObject {
             float y = getY() - MathUtils.sin(angle) * getHeight() * 1.1f;
             Dynamite dynamite = new Dynamite(x, y, this);
             board.addDynamite(dynamite);
-//            if(board.checkBoardCollision(dynamite) || board.checkObstacleCollision(dynamite) || board.checkDynamiteCollision(dynamite) || board.checkSpawnCollision(dynamite) || board.checkTankCollision(dynamite) || board.checkBreakableObstacleCollision(dynamite)){
-//                board.getDynamiteList().remove(dynamite);
-//                dynamite.body.getWorld().destroyBody(dynamite.body);
-//            }else{
-                lastPlaceDynamite = 0;
-//            }
+            lastPlaceDynamite = 0;
         }
-
 
         Vector2 vel = body.getLinearVelocity();
         if(moveLeftState && !moveRightState) {                   //rotate left
