@@ -1,7 +1,8 @@
-package com.pao.game.model;
+package com.pao.game.model.GameObject;
 
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.pao.game.model.Boards.Board;
+import com.pao.game.model.ModelPlayer;
 
 import java.util.ArrayList;
 import java.util.List;

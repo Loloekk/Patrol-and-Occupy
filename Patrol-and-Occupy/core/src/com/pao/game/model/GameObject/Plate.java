@@ -1,8 +1,8 @@
-package com.pao.game.model;
+package com.pao.game.model.GameObject;
 
-import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.World;
+import com.pao.game.model.ModelPlayer;
 
 public class Plate extends BodyGameObject {
     static final int width = 80;

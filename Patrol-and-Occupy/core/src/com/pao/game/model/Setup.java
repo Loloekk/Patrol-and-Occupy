@@ -2,6 +2,8 @@ package com.pao.game.model;
 
 import com.pao.game.communication.ColoredParams;
 import com.pao.game.communication.Params;
+import com.pao.game.model.GameObject.BreakableObstacle;
+import com.pao.game.model.GameObject.Obstacle;
 
 import java.util.ArrayList;
 import java.util.List;

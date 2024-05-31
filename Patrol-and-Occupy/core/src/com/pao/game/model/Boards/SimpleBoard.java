@@ -7,6 +7,7 @@ import com.pao.game.communication.ColoredParams;
 import com.pao.game.communication.Move;
 import com.pao.game.communication.Params;
 import com.pao.game.model.*;
+import com.pao.game.model.GameObject.*;
 
 public class SimpleBoard implements Board {
     List<Tank> tankList = new ArrayList<>();

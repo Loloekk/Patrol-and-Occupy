@@ -1,9 +1,10 @@
-package com.pao.game.model;
+package com.pao.game.model.GameObject;
 
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.World;
+import com.pao.game.model.ModelPlayer;
 
-public class Spawn extends BodyGameObject{
+public class Spawn extends BodyGameObject {
     static final int width = 160;
     static final int height = 160;
     ModelPlayer color;

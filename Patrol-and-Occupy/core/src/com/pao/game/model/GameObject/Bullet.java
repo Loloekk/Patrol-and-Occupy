@@ -1,19 +1,19 @@
-package com.pao.game.model;
+package com.pao.game.model.GameObject;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.pao.game.model.Boards.Board;
-
-import static com.pao.game.model.Constants.PPM;
+import com.pao.game.model.ModelPlayer;
+import com.pao.game.model.ModelSettings;
 
 public class Bullet extends BodyGameObject {
     static final int width = 30;
     static final int height = 10;
     Board board;
     ModelPlayer color;
-    Bullet(float x, float y, Tank tank, World world){
+    public Bullet(float x, float y, Tank tank, World world){
         super(x, y, width, height, tank.getRotation(), BodyDef.BodyType.DynamicBody, world, 1f, false);
         body.setUserData(this);
         color = tank.getColor();

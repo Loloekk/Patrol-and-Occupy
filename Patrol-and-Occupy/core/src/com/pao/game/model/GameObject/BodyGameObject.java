@@ -1,9 +1,11 @@
-package com.pao.game.model;
+package com.pao.game.model.GameObject;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.World;
+import com.pao.game.model.BodyCreator;
+import com.pao.game.model.GameObject.GameObject;
 
 import static com.pao.game.model.Constants.PPM;
 

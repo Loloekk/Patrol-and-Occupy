@@ -2,10 +2,9 @@ package com.pao.game.model.MultiContactListener;
 
 import com.badlogic.gdx.physics.box2d.*;
 import com.pao.game.model.Boards.Board;
-import com.pao.game.model.Bullet;
-import com.pao.game.model.Dynamite;
-import com.pao.game.model.Spawn;
-import com.pao.game.model.Tank;
+import com.pao.game.model.GameObject.Bullet;
+import com.pao.game.model.GameObject.Dynamite;
+import com.pao.game.model.GameObject.Tank;
 
 public class BulletContactListener implements ContactListener {
     Board board;

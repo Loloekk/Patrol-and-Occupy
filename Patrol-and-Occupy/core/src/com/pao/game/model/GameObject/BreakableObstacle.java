@@ -1,4 +1,4 @@
-package com.pao.game.model;
+package com.pao.game.model.GameObject;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.physics.box2d.BodyDef;

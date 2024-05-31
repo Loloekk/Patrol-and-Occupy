@@ -2,6 +2,7 @@ package com.pao.game.model.Boards;
 
 import com.pao.game.communication.Move;
 import com.pao.game.model.*;
+import com.pao.game.model.GameObject.*;
 
 import java.util.List;
 

@@ -2,10 +2,10 @@ package com.pao.game.model.MultiContactListener;
 
 import com.badlogic.gdx.physics.box2d.*;
 import com.pao.game.model.Boards.Board;
-import com.pao.game.model.BreakableObstacle;
-import com.pao.game.model.Plate;
-import com.pao.game.model.Spawn;
-import com.pao.game.model.Tank;
+import com.pao.game.model.GameObject.BreakableObstacle;
+import com.pao.game.model.GameObject.Plate;
+import com.pao.game.model.GameObject.Spawn;
+import com.pao.game.model.GameObject.Tank;
 
 
 public class TankContactListener implements ContactListener {

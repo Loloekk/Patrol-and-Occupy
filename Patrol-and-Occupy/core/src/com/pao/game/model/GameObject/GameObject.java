@@ -1,4 +1,4 @@
-package com.pao.game.model;
+package com.pao.game.model.GameObject;
 
 public interface GameObject {
     float getX();

@@ -1,9 +1,10 @@
-package com.pao.game.model;
+package com.pao.game.model.GameObject;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.math.MathUtils;
+import com.pao.game.model.*;
 import com.pao.game.model.Boards.Board;
 
 import static com.pao.game.model.Constants.PPM;
@@ -12,7 +13,7 @@ public class Tank extends BodyGameObject {
     static final int width = 70;
     static final int height = 60;
     ModelPlayer color;
-    Board board;
+    public Board board;
     World world;
     Magazine magazine;
     PlayerStatistics playerStatistics;
@@ -145,7 +146,7 @@ public class Tank extends BodyGameObject {
     }
     public Spawn getSpawn(){
         for(Spawn spawn : board.getSpawnList())
-            if(this.color == spawn.color)
+            if(this.color == spawn.getColor())
                 return spawn;
         throw new RuntimeException("Spawn not found");
     }

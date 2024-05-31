@@ -8,6 +8,7 @@ import com.pao.game.communication.TankParams;
 import com.pao.game.model.*;
 import com.pao.game.model.Boards.Board;
 import com.pao.game.model.Boards.SimpleBoard;
+import com.pao.game.model.GameObject.*;
 import com.pao.game.model.MultiContactListener.BulletContactListener;
 import com.pao.game.model.MultiContactListener.MultiContactListener;
 import com.pao.game.model.MultiContactListener.TankContactListener;
