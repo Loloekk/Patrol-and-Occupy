@@ -1,11 +1,11 @@
 package com.pao.game.model;
 
-import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.World;
+
+import static com.pao.game.model.Constants.PPM;
 
 public abstract class BodyGameObject implements GameObject {
     Body body;
@@ -16,26 +16,14 @@ public abstract class BodyGameObject implements GameObject {
         this.width = width;
         this.height = height;
     }
-
-    public boolean intersects(GameObject gameObject) {
-        return Intersector.overlapConvexPolygons(PolygonBody.getPolygonFromBody(body), gameObject.getPolygon());
-    }
-    public float getX() {
-        return getPolygon().getX();
-    }
+    public float getX() { return PPM * body.getPosition().x; }
     public float getY() {
-        return getPolygon().getY();
+        return PPM * body.getPosition().y;
     }
     public float getWidth() { return width; }
     public float getHeight() { return height; }
     public float getRotation() {
         return body.getAngle() * MathUtils.radiansToDegrees;
-    }
-    public float[] getVertices() {
-        return getPolygon().getVertices();
-    }
-    public Polygon getPolygon() {
-        return PolygonBody.getPolygonFromBody(body);
     }
     public Body getBody() { return body; }
 }
