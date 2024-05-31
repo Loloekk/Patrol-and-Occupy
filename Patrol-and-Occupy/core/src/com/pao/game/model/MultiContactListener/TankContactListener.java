@@ -3,6 +3,7 @@ package com.pao.game.model.MultiContactListener;
 import com.badlogic.gdx.physics.box2d.*;
 import com.pao.game.model.Boards.Board;
 import com.pao.game.model.BreakableObstacle;
+import com.pao.game.model.Plate;
 import com.pao.game.model.Spawn;
 import com.pao.game.model.Tank;
 
@@ -13,7 +14,20 @@ public class TankContactListener implements ContactListener {
         this.board = board;
     }
     @Override
-    public void beginContact(Contact contact) {}
+    public void beginContact(Contact contact) {
+        Fixture fixtureA = contact.getFixtureA();
+        Fixture fixtureB = contact.getFixtureB();
+
+        Object userDataA = fixtureA.getBody().getUserData();
+        Object userDataB = fixtureB.getBody().getUserData();
+
+        if (userDataA instanceof Tank && userDataB instanceof Plate) {
+            board.changePlateOwner((Plate) userDataB, (Tank) userDataA);
+        }
+        else if(userDataA instanceof Plate && userDataB instanceof Tank) {
+            board.changePlateOwner((Plate) userDataA, (Tank) userDataB);
+        }
+    }
     @Override
     public void endContact(Contact contact) {}
     @Override

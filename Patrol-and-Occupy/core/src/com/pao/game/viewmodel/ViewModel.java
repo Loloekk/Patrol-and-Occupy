@@ -37,7 +37,7 @@ public class ViewModel{
 
     public void setMove(ModelPlayer color, Move move, boolean state)
     {
-        board.setmove(color,move,state);
+        board.setMove(color,move,state);
     }
     public List<TankParams> getTanks()
     {

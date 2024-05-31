@@ -8,7 +8,7 @@ import java.util.List;
 public interface Board {
     void update(float t);
     float getRemainingTime();
-    void setmove(ModelPlayer color, Move move, boolean value);
+    void setMove(ModelPlayer color, Move move, boolean value);
     List<Tank> getTankList();
     List<Bullet> getBulletList();
     List<Obstacle> getObstacleList();
@@ -25,4 +25,5 @@ public interface Board {
     void destroyBullet(Bullet bullet);
     void destroyBreakableObstacle(BreakableObstacle breakableObstacle);
     void destroyDynamite(Dynamite dynamite, ModelPlayer killer);
+    void changePlateOwner(Plate plate, Tank owner);
 }

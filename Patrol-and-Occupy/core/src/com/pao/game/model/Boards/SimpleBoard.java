@@ -55,7 +55,7 @@ public class SimpleBoard implements Board {
             breakableObstacleList.add(new BreakableObstacle(breakableObstacleParams.getX(), breakableObstacleParams.getY(), breakableObstacleParams.getWidht(), breakableObstacleParams.getHeight(), breakableObstacleParams.getRotation(), world));
         // Add plates
         for(Params plateParams : setup.getPlateList())
-            plateList.add(new Plate(plateParams.getX(), plateParams.getY()));
+            plateList.add(new Plate(plateParams.getX(), plateParams.getY(), world));
     }
     public void update(float t) {
         clock.update(t);
@@ -74,21 +74,6 @@ public class SimpleBoard implements Board {
         for (Dynamite dynamite : dynamiteList)
             dynamite.update(t);
 
-        // Color the plates
-        for(Plate plate : plateList) {
-            List<ModelPlayer> colorsSet = new ArrayList<>();
-            for(Tank tank : tankList) {
-                if(tank.getIsAlive() && plate.intersects(tank)) colorsSet.add(tank.getColor());
-            }
-            if(colorsSet.size() == 1) {
-                if(plate.getColor() != null){
-                    getTank(plate.getColor()).getStatistics().decrementNumberOfPlates();
-                }
-                plate.setColor(colorsSet.get(0));
-                getTank(colorsSet.get(0)).getStatistics().incrementNumberOfPlates();
-            }
-            else if(colorsSet.size() > 1) plate.setColor(null);
-        }
         // Destroy tanks
         for(Map.Entry<Tank, ModelPlayer> tank : tanksToDestroy) {
             tank.getKey().kill(tank.getValue());
@@ -127,7 +112,7 @@ public class SimpleBoard implements Board {
     public float getRemainingTime() {
         return clock.getRemainingTime();
     }
-    public void setmove(ModelPlayer color, Move move, boolean value) {
+    public void setMove(ModelPlayer color, Move move, boolean value) {
         Tank tank = null;
         for (Tank t : tankList) {
             if (color == t.getColor()) {
@@ -177,4 +162,13 @@ public class SimpleBoard implements Board {
     public void destroyBullet(Bullet bullet) { bulletsToDestroy.add(bullet); }
     public void destroyBreakableObstacle(BreakableObstacle breakableObstacle) { breakableObstaclesToDestroy.add(breakableObstacle); }
     public void destroyDynamite(Dynamite dynamite, ModelPlayer killer) { dynamitesToDestroy.add(new AbstractMap.SimpleEntry<>(dynamite, killer)); }
+    public void changePlateOwner(Plate plate, Tank owner) {
+        if(owner.getIsAlive()) {
+            if(plate.getColor() != null) {
+                getTank(plate.getColor()).getStatistics().decrementNumberOfPlates();
+            }
+            plate.setColor(owner.getColor());
+            owner.getStatistics().incrementNumberOfPlates();
+        }
+    }
 }
