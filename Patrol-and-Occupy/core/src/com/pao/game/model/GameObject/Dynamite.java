@@ -9,7 +9,6 @@ import java.util.List;
 
 public class Dynamite extends BodyGameObject {
     Board board;
-
     public Dynamite(float x, float y, Tank tank) {
         super(x, y, 40, 40, tank.getRotation(), BodyDef.BodyType.DynamicBody, tank.body.getWorld(), 0.7f, false);
         body.setUserData(this);
@@ -49,7 +48,6 @@ public class Dynamite extends BodyGameObject {
                 dynamite.destroy(killer);
         }
     }
-
     public void update(float t){
         float vx = body.getLinearVelocity().x;
         float vy = body.getLinearVelocity().y;
