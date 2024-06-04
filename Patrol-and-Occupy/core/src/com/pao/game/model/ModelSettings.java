@@ -82,7 +82,7 @@ public class ModelSettings {
     }
     public static void setDefault()
     {
-        gameTime = 20f;
+        gameTime = 40f;
         numberOfPlayers = 2;
         map = 1;
         width = 1920;

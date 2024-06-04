@@ -17,6 +17,7 @@ public interface Board {
     List<Dynamite> getDynamiteList();
     List<Spawn> getSpawnList();
     List<BreakableObstacle> getBreakableObstacleList();
+    List<Explosion> getExplosionList();
     Tank getTank(ModelPlayer color);
     int getWidth();
     int getHeight();

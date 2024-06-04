@@ -1,13 +1,13 @@
 package com.pao.game.communication;
 
 public class Params {
-    float widht;
+    float width;
     float height;
     float x;
     float y;
     float rotation;
-    public Params(float widht, float height, float x, float y, float rotation){
-        this.widht=widht;
+    public Params(float width, float height, float x, float y, float rotation){
+        this.width=width;
         this.height=height;
         this.x=x;
         this.y=y;
@@ -23,8 +23,8 @@ public class Params {
     public float getY() {
         return y;
     }
-    public float getWidht() {
-        return widht;
+    public float getWidth() {
+        return width;
     }
     public float getHeight() {
         return height;

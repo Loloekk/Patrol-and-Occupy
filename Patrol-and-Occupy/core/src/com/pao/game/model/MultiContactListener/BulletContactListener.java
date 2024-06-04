@@ -29,9 +29,11 @@ public class BulletContactListener implements ContactListener {
         }
         else if (userDataA instanceof Bullet && userDataB instanceof Dynamite) {
             board.destroyDynamite((Dynamite) userDataB, ((Bullet) userDataA).getColor());
+            board.destroyBullet((Bullet) userDataA);
         }
         else if (userDataA instanceof Dynamite && userDataB instanceof Bullet) {
             board.destroyDynamite((Dynamite) userDataA, ((Bullet) userDataB).getColor());
+            board.destroyBullet((Bullet) userDataB);
         }
         else if (userDataA instanceof Bullet) {
             board.destroyBullet((Bullet) userDataA);

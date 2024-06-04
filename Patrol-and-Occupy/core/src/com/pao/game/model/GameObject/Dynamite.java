@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Dynamite extends BodyGameObject {
+    static final int RANGE = 75;
     Board board;
     public Dynamite(float x, float y, Tank tank) {
         super(x, y, 40, 40, tank.getRotation(), BodyDef.BodyType.DynamicBody, tank.body.getWorld(), 0.7f, false);
@@ -33,7 +34,7 @@ public class Dynamite extends BodyGameObject {
             double sX = tank.getSpawn().getX();
             double sY = tank.getSpawn().getY();
             double tankSpawnDistance = Math.sqrt((sX-tX) * (sX-tX) + (sY-tY) * (sY-tY));
-            if (distance <= 300 && tankSpawnDistance>60) {
+            if (distance <= RANGE && tankSpawnDistance>60) {
                 tank.kill(killer);
             }
         }
@@ -44,7 +45,7 @@ public class Dynamite extends BodyGameObject {
             double dX = dynamite.getX();
             double dY = dynamite.getY();
             double distance = Math.sqrt((X-dX) * (X-dX) + (Y-dY) * (Y-dY));
-            if (distance <= 300)
+            if (distance <= RANGE)
                 dynamite.destroy(killer);
         }
     }

@@ -93,7 +93,7 @@ public class Tank extends BodyGameObject {
             board.addBullet(new Bullet(x, y, this, world));
         }
 
-        if(placeDynamite && lastPlaceDynamite >= 10.0f) {
+        if(placeDynamite && lastPlaceDynamite >= 5.0f) {
             float angle = getRotation() * MathUtils.degreesToRadians;
             float x = getX() - MathUtils.cos(angle) * getHeight() * 1.1f;
             float y = getY() - MathUtils.sin(angle) * getHeight() * 1.1f;

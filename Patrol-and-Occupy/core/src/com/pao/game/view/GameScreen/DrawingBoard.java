@@ -9,6 +9,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.pao.game.communication.ColoredParams;
 import com.pao.game.communication.Params;
 import com.pao.game.communication.TankParams;
+import com.pao.game.model.Explosion;
 import com.pao.game.model.ModelPlayer;
 import com.pao.game.view.Drop;
 import com.pao.game.view.RegionPainter;
@@ -97,6 +98,11 @@ public class DrawingBoard {
         for(Params dynamite : VM.getDynamites()) {
             painterGame.drawTexture(new TextureRegion(text.getDynamiteTexture()),dynamite);
         }
+        //---------------------------------------------------------------------------------------------------------------------------------------------------------
+        for(Explosion explosion : VM.board.getExplosionList()) {
+            explosion.draw(game.batch);
+        }
+        //---------------------------------------------------------------------------------------------------------------------------------------------------------
         painterTop.drowWriting("Czas", "Czas: " + (int)VM.getRemainingTime(), 960, 50);
         for(TankParams params : tanksParams)
         {

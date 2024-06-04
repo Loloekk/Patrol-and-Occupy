@@ -15,6 +15,7 @@ public class Textures {
     Map<ModelPlayer, Texture> plates;
     Map<ModelPlayer, Texture> magazines;
     Texture dynamite;
+    Texture explosion;
     Map<ModelPlayer, Texture> spawns;
     public Textures(int n)
     {
@@ -38,6 +39,7 @@ public class Textures {
             if(color == ModelPlayer.Player1) plates.put(color,new Texture(Gdx.files.internal("plate_yellow.png")));
         }
         dynamite = new Texture(Gdx.files.internal("dynamite.jpeg"));
+        explosion = new Texture(Gdx.files.internal("explosion.png"));
         spawns = new HashMap<>();
         for(ModelPlayer color : ModelPlayer.getColorList(n)){
             if(color == ModelPlayer.Player4) spawns.put(color,new Texture(Gdx.files.internal("spawn_red.png")));
@@ -64,6 +66,7 @@ public class Textures {
     public Texture getPlateTexture(ModelPlayer color) { return plates.get(color); }
     public Texture getMagazineTexture(ModelPlayer color) { return magazines.get(color); }
     public Texture getDynamiteTexture() { return dynamite; }
+    public Texture getExplosionTexture() { return explosion; }
     public Texture getSpawnTexture(ModelPlayer color) { return spawns.get(color); }
     public void dispose() {
         for (Texture texture : tanks.values())

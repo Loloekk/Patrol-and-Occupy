@@ -17,6 +17,7 @@ public class SimpleBoard implements Board {
     List<Dynamite> dynamiteList = new ArrayList<>();
     List<Spawn> spawnList = new ArrayList<>();
     List<BreakableObstacle> breakableObstacleList = new ArrayList<>();
+    List<Explosion> explosionList = new ArrayList<>();
     int width, height;
     Clock clock;
     World world;
@@ -50,16 +51,16 @@ public class SimpleBoard implements Board {
         }
         // Add obstacles
         for(Params obstacleParams : setup.getObstacleList())
-            obstacleList.add(new Obstacle(obstacleParams.getX(), obstacleParams.getY(), obstacleParams.getWidht(), obstacleParams.getHeight(), obstacleParams.getRotation(), world));
+            obstacleList.add(new Obstacle(obstacleParams.getX(), obstacleParams.getY(), obstacleParams.getWidth(), obstacleParams.getHeight(), obstacleParams.getRotation(), world));
         // Add breakable obstacles
         for(Params breakableObstacleParams : setup.getBreakableObstacleList())
-            breakableObstacleList.add(new BreakableObstacle(breakableObstacleParams.getX(), breakableObstacleParams.getY(), breakableObstacleParams.getWidht(), breakableObstacleParams.getHeight(), breakableObstacleParams.getRotation(), world));
+            breakableObstacleList.add(new BreakableObstacle(breakableObstacleParams.getX(), breakableObstacleParams.getY(), breakableObstacleParams.getWidth(), breakableObstacleParams.getHeight(), breakableObstacleParams.getRotation(), world));
         // Add plates
         for(Params plateParams : setup.getPlateList())
             plateList.add(new Plate(plateParams.getX(), plateParams.getY(), world));
     }
-    public void update(float t) {
-        clock.update(t);
+    public void update(float time) {
+        clock.update(time);
         // Revive all tanks
         List<Tank> tanksToRevive = new ArrayList<>();
         for (Tank tank : tankList)
@@ -67,14 +68,22 @@ public class SimpleBoard implements Board {
                 tanksToRevive.add(tank);
         // Move every bullet
         for (Bullet bullet : bulletList)
-            bullet.update(t);
+            bullet.update(time);
         // Try to move every tank
         for (Tank tank : tankList)
-            tank.update(t);
+            tank.update(time);
         // Update state of every dynamite
         for (Dynamite dynamite : dynamiteList)
-            dynamite.update(t);
-
+            dynamite.update(time);
+        // Update explosions
+        List<Explosion> explosionsToDestroy = new ArrayList<>();
+        for(Explosion explosion : explosionList) {
+            explosion.update(time);
+            if(explosion.isFinished()) {
+                explosionsToDestroy.add(explosion);
+            }
+        }
+        explosionList.removeAll(explosionsToDestroy);
         // Destroy tanks
         for(Map.Entry<Tank, ModelPlayer> tank : tanksToDestroy) {
             tank.getKey().kill(tank.getValue());
@@ -155,6 +164,7 @@ public class SimpleBoard implements Board {
     public List<Dynamite> getDynamiteList() { return dynamiteList; }
     public List<Spawn> getSpawnList() { return spawnList; }
     public List<BreakableObstacle> getBreakableObstacleList() { return breakableObstacleList; }
+    public List<Explosion> getExplosionList() { return explosionList; }
     public int getWidth() { return width; }
     public int getHeight() { return height; }
     public void addBullet(Bullet bullet) { bulletList.add(bullet); }
@@ -162,7 +172,10 @@ public class SimpleBoard implements Board {
     public void destroyTank(Tank tank, ModelPlayer killer) { tanksToDestroy.add(new AbstractMap.SimpleEntry<>(tank, killer)); }
     public void destroyBullet(Bullet bullet) { bulletsToDestroy.add(bullet); }
     public void destroyBreakableObstacle(BreakableObstacle breakableObstacle) { breakableObstaclesToDestroy.add(breakableObstacle); }
-    public void destroyDynamite(Dynamite dynamite, ModelPlayer killer) { dynamitesToDestroy.add(new AbstractMap.SimpleEntry<>(dynamite, killer)); }
+    public void destroyDynamite(Dynamite dynamite, ModelPlayer killer) {
+        dynamitesToDestroy.add(new AbstractMap.SimpleEntry<>(dynamite, killer));
+        explosionList.add(new Explosion(dynamite.getX(), dynamite.getY()));
+    }
     public void changePlateOwner(Plate plate, Tank owner) {
         if(owner.getIsAlive()) {
             if(plate.getColor() != null) {

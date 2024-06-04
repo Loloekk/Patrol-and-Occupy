@@ -20,7 +20,7 @@ import static com.pao.game.model.Constants.*;
 
 
 public class ViewModel{
-    Board board;
+    public Board board;
     World world;
     MultiContactListener multiContactListener;
     GlobalStatistics globalStatistics;
