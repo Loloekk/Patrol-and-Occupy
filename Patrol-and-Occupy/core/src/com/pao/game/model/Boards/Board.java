@@ -23,9 +23,6 @@ public interface Board {
     int getHeight();
     void addBullet(Bullet bullet);
     void addDynamite(Dynamite dynamite);
-    void destroyTank(Tank tank, ModelPlayer killer);
-    void destroyBullet(Bullet bullet);
-    void destroyBreakableObstacle(BreakableObstacle breakableObstacle);
-    void destroyDynamite(Dynamite dynamite, ModelPlayer killer);
+    void addExplosion(Explosion explosion);
     void changePlateOwner(Plate plate, Tank owner);
 }

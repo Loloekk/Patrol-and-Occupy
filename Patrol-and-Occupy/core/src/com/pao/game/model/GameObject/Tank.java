@@ -57,7 +57,7 @@ public class Tank extends BodyGameObject {
     public void revive() {
         isAlive = true;
     }
-    public void kill(ModelPlayer killer)
+    public void takeDamage(ModelPlayer killer)
     {
         if(isAlive)
         {
@@ -97,8 +97,7 @@ public class Tank extends BodyGameObject {
             float angle = getRotation() * MathUtils.degreesToRadians;
             float x = getX() - MathUtils.cos(angle) * getHeight() * 1.1f;
             float y = getY() - MathUtils.sin(angle) * getHeight() * 1.1f;
-            Dynamite dynamite = new Dynamite(x, y, this);
-            board.addDynamite(dynamite);
+            board.addDynamite(new Dynamite(x, y, this));
             lastPlaceDynamite = 0;
         }
 

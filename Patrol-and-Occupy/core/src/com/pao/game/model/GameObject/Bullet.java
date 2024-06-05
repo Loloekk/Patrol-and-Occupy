@@ -13,6 +13,7 @@ public class Bullet extends BodyGameObject {
     static final int height = 10;
     Board board;
     ModelPlayer color;
+    boolean isAlive = true;
     public Bullet(float x, float y, Tank tank, World world){
         super(x, y, width, height, tank.getRotation(), BodyDef.BodyType.DynamicBody, world, 1f, false);
         body.setUserData(this);
@@ -25,14 +26,11 @@ public class Bullet extends BodyGameObject {
         vel.y = ModelSettings.getBulletSpeed() * MathUtils.sin(body.getAngle());
         body.setLinearVelocity(vel);
     }
-    public void destroy(){
-        if(board.getBulletList() == null)
-            return;
-        if(!board.getBulletList().contains(this))
-            throw new RuntimeException("Bullet is not present in getBulletList()");
-        board.getBulletList().remove(this);
+    public void takeDamage(){
+        isAlive = false;
     }
     public ModelPlayer getColor(){
         return color;
     }
+    public boolean getIsAlive() { return isAlive; }
 }

@@ -45,10 +45,10 @@ public class TankContactListener implements ContactListener {
             handleTankSpawnContact((Tank) userDataB, (Spawn) userDataA, contact);
         }
         else if (userDataA instanceof Tank && userDataB instanceof BreakableObstacle) {
-            board.destroyBreakableObstacle((BreakableObstacle) userDataB);
+            ((BreakableObstacle) userDataB).takeDamage();
         }
         else if(userDataA instanceof BreakableObstacle && userDataB instanceof Tank) {
-            board.destroyBreakableObstacle((BreakableObstacle) userDataA);
+            ((BreakableObstacle) userDataA).takeDamage();
         }
     }
     @Override

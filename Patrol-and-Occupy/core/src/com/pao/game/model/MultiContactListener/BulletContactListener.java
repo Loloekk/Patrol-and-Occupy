@@ -28,18 +28,18 @@ public class BulletContactListener implements ContactListener {
             handleBulletTankContact((Bullet) userDataB, (Tank) userDataA, contact);
         }
         else if (userDataA instanceof Bullet && userDataB instanceof Dynamite) {
-            board.destroyDynamite((Dynamite) userDataB, ((Bullet) userDataA).getColor());
-            board.destroyBullet((Bullet) userDataA);
+            ((Dynamite) userDataB).takeDamage(((Bullet) userDataA).getColor());
+            ((Bullet) userDataA).takeDamage();
         }
         else if (userDataA instanceof Dynamite && userDataB instanceof Bullet) {
-            board.destroyDynamite((Dynamite) userDataA, ((Bullet) userDataB).getColor());
-            board.destroyBullet((Bullet) userDataB);
+            ((Dynamite) userDataA).takeDamage(((Bullet) userDataB).getColor());
+            ((Bullet) userDataB).takeDamage();
         }
         else if (userDataA instanceof Bullet) {
-            board.destroyBullet((Bullet) userDataA);
+            ((Bullet) userDataA).takeDamage();
         }
         else if (userDataB instanceof Bullet) {
-            board.destroyBullet((Bullet) userDataB);
+            ((Bullet) userDataB).takeDamage();
         }
     }
     @Override
@@ -49,8 +49,8 @@ public class BulletContactListener implements ContactListener {
             contact.setEnabled(false);
         }
         else {
-            board.destroyBullet(bullet);
-            board.destroyTank(tank, bullet.getColor());
+            bullet.takeDamage();
+            tank.takeDamage(bullet.getColor());
         }
     }
 }

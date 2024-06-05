@@ -6,4 +6,5 @@ public interface GameObject {
     float getWidth();
     float getHeight();
     float getRotation();
+    void takeDamage();
 }

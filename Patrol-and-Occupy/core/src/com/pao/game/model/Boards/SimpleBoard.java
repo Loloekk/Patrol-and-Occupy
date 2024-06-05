@@ -21,10 +21,6 @@ public class SimpleBoard implements Board {
     int width, height;
     Clock clock;
     World world;
-    List<Map.Entry<Tank, ModelPlayer>> tanksToDestroy = new ArrayList<>();
-    List<Bullet> bulletsToDestroy = new ArrayList<>();
-    List<BreakableObstacle> breakableObstaclesToDestroy = new ArrayList<>();
-    List<Map.Entry<Dynamite, ModelPlayer>> dynamitesToDestroy = new ArrayList<>();
 
     private SimpleBoard(int width, int height) {
         this.width = width;
@@ -61,20 +57,24 @@ public class SimpleBoard implements Board {
     }
     public void update(float time) {
         clock.update(time);
-        // Revive all tanks
+        // Update tanks
         List<Tank> tanksToRevive = new ArrayList<>();
-        for (Tank tank : tankList)
-            if(!tank.getIsAlive())
-                tanksToRevive.add(tank);
-        // Move every bullet
-        for (Bullet bullet : bulletList)
-            bullet.update(time);
-        // Try to move every tank
-        for (Tank tank : tankList)
+        for (Tank tank : tankList) {
             tank.update(time);
-        // Update state of every dynamite
-        for (Dynamite dynamite : dynamiteList)
-            dynamite.update(time);
+            if (!tank.getIsAlive()) {
+                tanksToRevive.add(tank);
+            }
+        }
+        // Update bullets
+        List<Bullet> bulletsToDestroy = new ArrayList<>();
+        for (Bullet bullet : bulletList) {
+            bullet.update(time);
+            if(!bullet.getIsAlive()) {
+                bulletsToDestroy.add(bullet);
+                world.destroyBody(bullet.getBody());
+            }
+        }
+        bulletList.removeAll(bulletsToDestroy);
         // Update explosions
         List<Explosion> explosionsToDestroy = new ArrayList<>();
         for(Explosion explosion : explosionList) {
@@ -84,28 +84,25 @@ public class SimpleBoard implements Board {
             }
         }
         explosionList.removeAll(explosionsToDestroy);
-        // Destroy tanks
-        for(Map.Entry<Tank, ModelPlayer> tank : tanksToDestroy) {
-            tank.getKey().kill(tank.getValue());
+        // Update dynamites
+        List<Dynamite> dynamitesToDestroy = new ArrayList<>();
+        for (Dynamite dynamite : dynamiteList) {
+            dynamite.update(time);
+            if(!dynamite.getIsAlive()) {
+                dynamitesToDestroy.add(dynamite);
+                world.destroyBody(dynamite.getBody());
+            }
         }
-        tanksToDestroy.clear();
-        // Destroy bullets
-        for(Bullet bullet : bulletsToDestroy) {
-            world.destroyBody(bullet.getBody());
-            bulletList.remove(bullet);
-        }
-        bulletsToDestroy.clear();
-        // Destroy dynamites
-        for (Map.Entry<Dynamite, ModelPlayer> dynamite : dynamitesToDestroy) {
-            dynamite.getKey().destroy(dynamite.getValue());
-        }
-        dynamitesToDestroy.clear();
+        dynamiteList.removeAll(dynamitesToDestroy);
         // Destroy breakableObstacles
-        for(BreakableObstacle breakableObstacle : breakableObstaclesToDestroy) {
-            world.destroyBody(breakableObstacle.getBody());
-            breakableObstacleList.remove(breakableObstacle);
+        List<BreakableObstacle> breakableObstaclesToDestroy = new ArrayList<>();
+        for(BreakableObstacle breakableObstacle : breakableObstacleList) {
+            if(!breakableObstacle.getIsAlive()) {
+                breakableObstaclesToDestroy.add(breakableObstacle);
+                world.destroyBody(breakableObstacle.getBody());
+            }
         }
-        breakableObstaclesToDestroy.clear();
+        breakableObstacleList.removeAll(breakableObstaclesToDestroy);
 
         Setup setup = Setup.getSetupList().get(ModelSettings.getMap());
         for (Tank tank : tanksToRevive) {
@@ -169,13 +166,7 @@ public class SimpleBoard implements Board {
     public int getHeight() { return height; }
     public void addBullet(Bullet bullet) { bulletList.add(bullet); }
     public void addDynamite(Dynamite dynamite) { dynamiteList.add(dynamite); }
-    public void destroyTank(Tank tank, ModelPlayer killer) { tanksToDestroy.add(new AbstractMap.SimpleEntry<>(tank, killer)); }
-    public void destroyBullet(Bullet bullet) { bulletsToDestroy.add(bullet); }
-    public void destroyBreakableObstacle(BreakableObstacle breakableObstacle) { breakableObstaclesToDestroy.add(breakableObstacle); }
-    public void destroyDynamite(Dynamite dynamite, ModelPlayer killer) {
-        dynamitesToDestroy.add(new AbstractMap.SimpleEntry<>(dynamite, killer));
-        explosionList.add(new Explosion(dynamite.getX(), dynamite.getY()));
-    }
+    public void addExplosion(Explosion explosion) { explosionList.add(explosion); }
     public void changePlateOwner(Plate plate, Tank owner) {
         if(owner.getIsAlive()) {
             if(plate.getColor() != null) {
