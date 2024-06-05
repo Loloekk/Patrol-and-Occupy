@@ -7,10 +7,12 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.pao.game.communication.ColoredParams;
+import com.pao.game.communication.ExplosionParams;
 import com.pao.game.communication.Params;
 import com.pao.game.communication.TankParams;
 import com.pao.game.model.Explosion;
 import com.pao.game.model.ModelPlayer;
+import com.pao.game.view.Animations;
 import com.pao.game.view.Drop;
 import com.pao.game.view.RegionPainter;
 import com.pao.game.view.Textures;
@@ -24,6 +26,7 @@ public class DrawingBoard {
     final ViewModel VM;
     Viewport viewport;
     Textures text;
+    Animations animations;
     RegionPainter painterGame;
     RegionPainter painterTop;
 
@@ -35,6 +38,7 @@ public class DrawingBoard {
         camera.setToOrtho(false, Drop.WIDTH,Drop.HEIGHT);
         viewport = new ExtendViewport(Drop.WIDTH,Drop.HEIGHT,camera);
         text = new Textures(n);
+        animations = new Animations();
         painterGame = new RegionPainter(game.batch,0,0,Drop.WIDTH,Drop.HEIGHT-100,1920,954,new Color(0.9f,0.9f,0.4f,1));
         painterTop = new RegionPainter(game.batch,0,Drop.HEIGHT-100,Drop.WIDTH,100,Drop.WIDTH,100,new Color(0f,0f,1f,1));
         painterTop.addFont("Czas",40,Color.RED);
@@ -98,11 +102,9 @@ public class DrawingBoard {
         for(Params dynamite : VM.getDynamites()) {
             painterGame.drawTexture(new TextureRegion(text.getDynamiteTexture()),dynamite);
         }
-        //---------------------------------------------------------------------------------------------------------------------------------------------------------
-        for(Explosion explosion : VM.board.getExplosionList()) {
-            explosion.draw(game.batch);
+        for(ExplosionParams explosion : VM.getExplosions()) {
+            painterGame.drawTexture(animations.getExplosionAnimation().getKeyFrame(explosion.getStateTime()), explosion);
         }
-        //---------------------------------------------------------------------------------------------------------------------------------------------------------
         painterTop.drowWriting("Czas", "Czas: " + (int)VM.getRemainingTime(), 960, 50);
         for(TankParams params : tanksParams)
         {
