@@ -19,6 +19,7 @@ public interface Board {
     List<BreakableObstacle> getBreakableObstacleList();
     List<DynamiteExplosion> getDynamiteExplosionList();
     List<BulletShoot> getBulletShootList();
+    List<BulletExplosion> getBulletExplosionList();
     Tank getTank(ModelPlayer color);
     int getWidth();
     int getHeight();
@@ -26,5 +27,6 @@ public interface Board {
     void addDynamite(Dynamite dynamite);
     void addDynamiteExplosion(DynamiteExplosion dynamiteExplosion);
     void addBulletShoot(BulletShoot bulletShoot);
+    void addBulletExplosion(BulletExplosion bulletExplosion);
     void changePlateOwner(Plate plate, Tank owner);
 }

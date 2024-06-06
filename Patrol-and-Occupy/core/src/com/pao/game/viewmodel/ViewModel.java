@@ -105,6 +105,13 @@ public class ViewModel{
         }
         return bulletShootsParamsList;
     }
+    public List<ExplosionParams> getBulletExplosions() {
+        List<ExplosionParams> bulletExplosionsParamsList = new ArrayList<>();
+        for(BulletExplosion bulletExplosion : board.getBulletExplosionList()) {
+            bulletExplosionsParamsList.add(new ExplosionParams(bulletExplosion.getWidth(), bulletExplosion.getHeight(), bulletExplosion.getX(), bulletExplosion.getY(), bulletExplosion.getRotation(), bulletExplosion.getStateTime()));
+        }
+        return bulletExplosionsParamsList;
+    }
     public float getRemainingTime()
     {
         return board.getRemainingTime();

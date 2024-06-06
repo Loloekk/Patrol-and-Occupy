@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.pao.game.model.Boards.Board;
+import com.pao.game.model.BulletExplosion;
 import com.pao.game.model.ModelPlayer;
 import com.pao.game.model.ModelSettings;
 
@@ -27,6 +28,7 @@ public class Bullet extends BodyGameObject {
         body.setLinearVelocity(vel);
     }
     public void takeDamage(){
+        board.addBulletExplosion(new BulletExplosion(getX(), getY(), getRotation()));
         isAlive = false;
     }
     public ModelPlayer getColor(){

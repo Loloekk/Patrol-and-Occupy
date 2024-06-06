@@ -19,6 +19,7 @@ public class SimpleBoard implements Board {
     List<BreakableObstacle> breakableObstacleList = new ArrayList<>();
     List<DynamiteExplosion> dynamiteExplosionList = new ArrayList<>();
     List<BulletShoot> bulletShootList = new ArrayList<>();
+    List<BulletExplosion> bulletExplosionList = new ArrayList<>();
     int width, height;
     Clock clock;
     World world;
@@ -94,6 +95,15 @@ public class SimpleBoard implements Board {
             }
         }
         bulletShootList.removeAll(bulletShootsToDestroy);
+        // Update explosions
+        List<BulletExplosion> bulletExplosionsToDestroy = new ArrayList<>();
+        for(BulletExplosion bulletExplosion : bulletExplosionList) {
+            bulletExplosion.update(time);
+            if(bulletExplosion.isFinished()) {
+                bulletExplosionsToDestroy.add(bulletExplosion);
+            }
+        }
+        bulletExplosionList.removeAll(bulletExplosionsToDestroy);
         // Update dynamites
         List<Dynamite> dynamitesToDestroy = new ArrayList<>();
         for (Dynamite dynamite : dynamiteList) {
@@ -173,12 +183,14 @@ public class SimpleBoard implements Board {
     public List<BreakableObstacle> getBreakableObstacleList() { return breakableObstacleList; }
     public List<DynamiteExplosion> getDynamiteExplosionList() { return dynamiteExplosionList; }
     public List<BulletShoot> getBulletShootList() { return bulletShootList; }
+    public List<BulletExplosion> getBulletExplosionList() { return bulletExplosionList; }
     public int getWidth() { return width; }
     public int getHeight() { return height; }
     public void addBullet(Bullet bullet) { bulletList.add(bullet); }
     public void addDynamite(Dynamite dynamite) { dynamiteList.add(dynamite); }
     public void addDynamiteExplosion(DynamiteExplosion dynamiteExplosion) { dynamiteExplosionList.add(dynamiteExplosion); }
     public void addBulletShoot(BulletShoot bulletShoot) { bulletShootList.add(bulletShoot); }
+    public void addBulletExplosion(BulletExplosion bulletExplosion) { bulletExplosionList.add(bulletExplosion); }
     public void changePlateOwner(Plate plate, Tank owner) {
         if(owner.getIsAlive()) {
             if(plate.getColor() != null) {

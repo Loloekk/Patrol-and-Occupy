@@ -6,16 +6,20 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class Animations {
-    Texture explosion;
+    Texture dynamiteExplosion;
     Animation<TextureRegion> dynamiteExplosionAnimation;
     Texture bulletShoot;
     Animation<TextureRegion> bulletShootAnimation;
+    Texture bulletExplosion;
+    Animation<TextureRegion> bulletExplosionAnimation;
 
     public Animations() {
-        explosion = new Texture(Gdx.files.internal("explosion.png"));
-        dynamiteExplosionAnimation = loadAnimation(explosion, 200, 200, 0.1f);
+        dynamiteExplosion = new Texture(Gdx.files.internal("dynamiteExplosion.png"));
+        dynamiteExplosionAnimation = loadAnimation(dynamiteExplosion, 200, 200, 0.1f);
         bulletShoot = new Texture(Gdx.files.internal("bulletShoot.png"));
         bulletShootAnimation = loadAnimation(bulletShoot, 150, 112, 0.05f);
+        bulletExplosion = new Texture(Gdx.files.internal("bulletExplosion.png"));
+        bulletExplosionAnimation = loadAnimation(bulletExplosion, 192, 192, 0.05f);
     }
 
     private Animation<TextureRegion> loadAnimation(Texture texture, int width, int height, float frameDuration) {
@@ -31,4 +35,5 @@ public class Animations {
     }
     public Animation<TextureRegion> getDynamiteExplosionAnimation() { return dynamiteExplosionAnimation; }
     public Animation<TextureRegion> getBulletShootAnimation() { return bulletShootAnimation; }
+    public Animation<TextureRegion> getBulletExplosionAnimation() { return bulletExplosionAnimation; }
 }

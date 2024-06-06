@@ -108,6 +108,9 @@ public class DrawingBoard {
         for(ExplosionParams bulletShoot : VM.getBulletShoots()) {
             painterGame.drawTexture(animations.getBulletShootAnimation().getKeyFrame(bulletShoot.getStateTime()), bulletShoot);
         }
+        for(ExplosionParams bulletExplosion : VM.getBulletExplosions()) {
+            painterGame.drawTexture(animations.getBulletExplosionAnimation().getKeyFrame(bulletExplosion.getStateTime()), bulletExplosion);
+        }
         painterTop.drowWriting("Czas", "Czas: " + (int)VM.getRemainingTime(), 960, 50);
         for(TankParams params : tanksParams)
         {
