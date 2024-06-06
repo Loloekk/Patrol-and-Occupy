@@ -102,8 +102,11 @@ public class DrawingBoard {
         for(Params dynamite : VM.getDynamites()) {
             painterGame.drawTexture(new TextureRegion(text.getDynamiteTexture()),dynamite);
         }
-        for(ExplosionParams explosion : VM.getExplosions()) {
-            painterGame.drawTexture(animations.getExplosionAnimation().getKeyFrame(explosion.getStateTime()), explosion);
+        for(ExplosionParams dynamiteExplosion : VM.getDynamiteExplosions()) {
+            painterGame.drawTexture(animations.getDynamiteExplosionAnimation().getKeyFrame(dynamiteExplosion.getStateTime()), dynamiteExplosion);
+        }
+        for(ExplosionParams bulletShoot : VM.getBulletShoots()) {
+            painterGame.drawTexture(animations.getBulletShootAnimation().getKeyFrame(bulletShoot.getStateTime()), bulletShoot);
         }
         painterTop.drowWriting("Czas", "Czas: " + (int)VM.getRemainingTime(), 960, 50);
         for(TankParams params : tanksParams)

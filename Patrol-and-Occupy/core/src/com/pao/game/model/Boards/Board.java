@@ -17,12 +17,14 @@ public interface Board {
     List<Dynamite> getDynamiteList();
     List<Spawn> getSpawnList();
     List<BreakableObstacle> getBreakableObstacleList();
-    List<Explosion> getExplosionList();
+    List<DynamiteExplosion> getDynamiteExplosionList();
+    List<BulletShoot> getBulletShootList();
     Tank getTank(ModelPlayer color);
     int getWidth();
     int getHeight();
     void addBullet(Bullet bullet);
     void addDynamite(Dynamite dynamite);
-    void addExplosion(Explosion explosion);
+    void addDynamiteExplosion(DynamiteExplosion dynamiteExplosion);
+    void addBulletShoot(BulletShoot bulletShoot);
     void changePlateOwner(Plate plate, Tank owner);
 }

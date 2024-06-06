@@ -20,7 +20,7 @@ public class Bullet extends BodyGameObject {
         color = tank.getColor();
         board = tank.board;
     }
-    public void update(float t){
+    public void update(float time){
         Vector2 vel = body.getLinearVelocity();
         vel.x = ModelSettings.getBulletSpeed() * MathUtils.cos(body.getAngle());
         vel.y = ModelSettings.getBulletSpeed() * MathUtils.sin(body.getAngle());

@@ -17,7 +17,8 @@ public class SimpleBoard implements Board {
     List<Dynamite> dynamiteList = new ArrayList<>();
     List<Spawn> spawnList = new ArrayList<>();
     List<BreakableObstacle> breakableObstacleList = new ArrayList<>();
-    List<Explosion> explosionList = new ArrayList<>();
+    List<DynamiteExplosion> dynamiteExplosionList = new ArrayList<>();
+    List<BulletShoot> bulletShootList = new ArrayList<>();
     int width, height;
     Clock clock;
     World world;
@@ -76,14 +77,23 @@ public class SimpleBoard implements Board {
         }
         bulletList.removeAll(bulletsToDestroy);
         // Update explosions
-        List<Explosion> explosionsToDestroy = new ArrayList<>();
-        for(Explosion explosion : explosionList) {
-            explosion.update(time);
-            if(explosion.isFinished()) {
-                explosionsToDestroy.add(explosion);
+        List<DynamiteExplosion> dynamiteExplosionsToDestroy = new ArrayList<>();
+        for(DynamiteExplosion dynamiteExplosion : dynamiteExplosionList) {
+            dynamiteExplosion.update(time);
+            if(dynamiteExplosion.isFinished()) {
+                dynamiteExplosionsToDestroy.add(dynamiteExplosion);
             }
         }
-        explosionList.removeAll(explosionsToDestroy);
+        dynamiteExplosionList.removeAll(dynamiteExplosionsToDestroy);
+        // Update explosions
+        List<BulletShoot> bulletShootsToDestroy = new ArrayList<>();
+        for(BulletShoot bulletShoot : bulletShootList) {
+            bulletShoot.update(time);
+            if(bulletShoot.isFinished()) {
+                bulletShootsToDestroy.add(bulletShoot);
+            }
+        }
+        bulletShootList.removeAll(bulletShootsToDestroy);
         // Update dynamites
         List<Dynamite> dynamitesToDestroy = new ArrayList<>();
         for (Dynamite dynamite : dynamiteList) {
@@ -161,12 +171,14 @@ public class SimpleBoard implements Board {
     public List<Dynamite> getDynamiteList() { return dynamiteList; }
     public List<Spawn> getSpawnList() { return spawnList; }
     public List<BreakableObstacle> getBreakableObstacleList() { return breakableObstacleList; }
-    public List<Explosion> getExplosionList() { return explosionList; }
+    public List<DynamiteExplosion> getDynamiteExplosionList() { return dynamiteExplosionList; }
+    public List<BulletShoot> getBulletShootList() { return bulletShootList; }
     public int getWidth() { return width; }
     public int getHeight() { return height; }
     public void addBullet(Bullet bullet) { bulletList.add(bullet); }
     public void addDynamite(Dynamite dynamite) { dynamiteList.add(dynamite); }
-    public void addExplosion(Explosion explosion) { explosionList.add(explosion); }
+    public void addDynamiteExplosion(DynamiteExplosion dynamiteExplosion) { dynamiteExplosionList.add(dynamiteExplosion); }
+    public void addBulletShoot(BulletShoot bulletShoot) { bulletShootList.add(bulletShoot); }
     public void changePlateOwner(Plate plate, Tank owner) {
         if(owner.getIsAlive()) {
             if(plate.getColor() != null) {

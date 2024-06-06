@@ -2,6 +2,7 @@ package com.pao.game.model.GameObject;
 
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.pao.game.model.Boards.Board;
+import com.pao.game.model.DynamiteExplosion;
 import com.pao.game.model.Explosion;
 import com.pao.game.model.ModelPlayer;
 
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Dynamite extends BodyGameObject {
-    static final int RANGE = 75;
+    static final int RANGE = 75;    // = explosion.width / 4
     Board board;
     boolean isAlive = true;
     public Dynamite(float x, float y, Tank tank) {
@@ -20,7 +21,7 @@ public class Dynamite extends BodyGameObject {
 
     public void takeDamage(ModelPlayer killer) {
         isAlive = false;
-        board.addExplosion(new Explosion(getX(), getY()));
+        board.addDynamiteExplosion(new DynamiteExplosion(getX(), getY()));
         double X = this.getX();
         double Y = this.getY();
 

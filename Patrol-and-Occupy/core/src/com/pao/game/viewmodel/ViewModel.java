@@ -15,7 +15,6 @@ import java.util.List;
 
 import static com.pao.game.model.Constants.*;
 
-
 public class ViewModel{
     Board board;
     World world;
@@ -92,12 +91,19 @@ public class ViewModel{
         }
         return spawnsParamsList;
     }
-    public List<ExplosionParams> getExplosions() {
-        List<ExplosionParams> explosionsParamsList = new ArrayList<>();
-        for(Explosion explosion : board.getExplosionList()) {
-            explosionsParamsList.add(new ExplosionParams(explosion.getWidth(), explosion.getHeight(), explosion.getX(), explosion.getY(), 0, explosion.getStateTime()));
+    public List<ExplosionParams> getDynamiteExplosions() {
+        List<ExplosionParams> dynamiteExplosionsParamsList = new ArrayList<>();
+        for(Explosion explosion : board.getDynamiteExplosionList()) {
+            dynamiteExplosionsParamsList.add(new ExplosionParams(explosion.getWidth(), explosion.getHeight(), explosion.getX(), explosion.getY(), explosion.getRotation(), explosion.getStateTime()));
         }
-        return explosionsParamsList;
+        return dynamiteExplosionsParamsList;
+    }
+    public List<ExplosionParams> getBulletShoots() {
+        List<ExplosionParams> bulletShootsParamsList = new ArrayList<>();
+        for(BulletShoot bulletShoot : board.getBulletShootList()) {
+            bulletShootsParamsList.add(new ExplosionParams(bulletShoot.getWidth(), bulletShoot.getHeight(), bulletShoot.getX(), bulletShoot.getY(), bulletShoot.getRotation(), bulletShoot.getStateTime()));
+        }
+        return bulletShootsParamsList;
     }
     public float getRemainingTime()
     {
