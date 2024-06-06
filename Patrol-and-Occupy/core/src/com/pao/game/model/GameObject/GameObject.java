@@ -7,4 +7,5 @@ public interface GameObject {
     float getHeight();
     float getRotation();
     void takeDamage();
+    boolean getIsActive();
 }

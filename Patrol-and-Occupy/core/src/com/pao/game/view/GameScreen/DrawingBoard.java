@@ -113,10 +113,6 @@ public class DrawingBoard {
         }
 
         painterTop.drowWriting("Czas", "Czas: " + (int)VM.getRemainingTime(), 960, 50);
-        for(TankParams params : tanksParams)
-        {
-
-        }
         game.batch.end();
     }
     public void resize(int width, int height) {

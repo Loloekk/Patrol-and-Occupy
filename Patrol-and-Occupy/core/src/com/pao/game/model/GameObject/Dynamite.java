@@ -25,7 +25,7 @@ public class Dynamite extends BodyGameObject {
         double X = this.getX();
         double Y = this.getY();
 
-        // Boom, destroys every Tank & Dynamite  in given range
+         //Boom, destroys every Tank & Dynamite  in given range
         for (Tank tank : board.getTankList()) {
             double tX = tank.getX();
             double tY = tank.getY();
@@ -42,7 +42,7 @@ public class Dynamite extends BodyGameObject {
             double dX = dynamite.getX();
             double dY = dynamite.getY();
             double distance = Math.sqrt((X-dX) * (X-dX) + (Y-dY) * (Y-dY));
-            if (distance <= RANGE  &&  dynamite != this)
+            if (distance <= RANGE  &&  dynamite.getIsAlive())
                 dynamite.takeDamage(killer);
         }
     }
