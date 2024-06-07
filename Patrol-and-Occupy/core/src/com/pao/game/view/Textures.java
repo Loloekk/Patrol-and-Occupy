@@ -16,6 +16,14 @@ public class Textures {
     Map<ModelPlayer, Texture> magazines;
     Texture dynamite;
     Map<ModelPlayer, Texture> spawns;
+    Texture startButtonActive;
+    Texture startButtonInactive;
+    Texture exitButtonActive;
+    Texture exitButtonInactive;
+    Texture playButtonActive;
+    Texture playButtonInactive;
+    Texture settingsButtonActive;
+    Texture settingsButtonInactive;
     public Textures(int n) {
         tanks = new HashMap<>();
         tanks.put(null,new Texture(Gdx.files.internal("tank_gray.png")));
@@ -51,6 +59,14 @@ public class Textures {
             if(color == ModelPlayer.Player2) magazines.put(color,new Texture(Gdx.files.internal("magazine_green.png")));
             if(color == ModelPlayer.Player1) magazines.put(color,new Texture(Gdx.files.internal("magazine_yellow.png")));
         }
+        startButtonActive = new Texture(Gdx.files.internal("startActive.png"));
+        startButtonInactive = new Texture(Gdx.files.internal("startInactive.png"));
+        exitButtonActive = new Texture(Gdx.files.internal("exitActive.png"));
+        exitButtonInactive = new Texture(Gdx.files.internal("exitInactive.png"));
+        playButtonActive = new Texture(Gdx.files.internal("playActive.png"));
+        playButtonInactive = new Texture(Gdx.files.internal("playInactive.png"));
+        settingsButtonActive = new Texture(Gdx.files.internal("settingsActive.png"));
+        settingsButtonInactive = new Texture(Gdx.files.internal("settingsInactive.png"));
     }
     public Texture getTankTexture(ModelPlayer color)
     {

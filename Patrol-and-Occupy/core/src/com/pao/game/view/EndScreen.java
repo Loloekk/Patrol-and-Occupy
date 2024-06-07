@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
@@ -28,15 +29,12 @@ public class EndScreen implements Screen {
     GlobalStatistics globalStatistics;
     OrthographicCamera camera;
     Viewport viewport;
-    Texture startButtonActive;
-    Texture startButtonInactive;
-    Texture exitButtonActive;
-    Texture exitButtonInactive;
     Rectangle startButton;
     Rectangle exitButton;
     Vector3 touchPoint;
     RegionPainter painter;
     BitmapFont font;
+    Textures textures;
 
     public EndScreen(Drop game, GlobalStatistics globalStatistics) {
         this.game = game;
@@ -44,10 +42,7 @@ public class EndScreen implements Screen {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Drop.WIDTH, Drop.HEIGHT);
         viewport = new ExtendViewport(Drop.WIDTH, Drop.HEIGHT, camera);
-        startButtonActive = new Texture(Gdx.files.internal("startActive.png"));
-        startButtonInactive = new Texture(Gdx.files.internal("startInactive.png"));
-        exitButtonActive = new Texture(Gdx.files.internal("exitActive.png"));
-        exitButtonInactive = new Texture(Gdx.files.internal("exitInactive.png"));
+        textures = new Textures(1);
         startButton = new Rectangle(Drop.WIDTH/2- BUTTON_WIDTH/2, START_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
         exitButton = new Rectangle(Drop.WIDTH/2 - BUTTON_WIDTH/2, EXIT_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
         touchPoint = new Vector3();
@@ -87,25 +82,25 @@ public class EndScreen implements Screen {
         }
 
         if(startButton.contains(touchPoint.x, touchPoint.y)) {
-            game.batch.draw(startButtonActive, Drop.WIDTH / 2 - BUTTON_WIDTH / 2, START_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
+            painter.drawTexture(new TextureRegion(textures.startButtonActive), Drop.WIDTH / 2, START_BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT, 0);
             if(Gdx.input.justTouched()) {
                 //this.dispose();
                 game.setScreen(new GameScreen(game));
             }
         }
         else {
-            game.batch.draw(startButtonInactive, Drop.WIDTH / 2 - BUTTON_WIDTH / 2, START_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
+            painter.drawTexture(new TextureRegion(textures.startButtonInactive), Drop.WIDTH / 2, START_BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT, 0);
         }
 
         if(exitButton.contains(touchPoint.x, touchPoint.y)) {
-            game.batch.draw(exitButtonActive, Drop.WIDTH / 2 - BUTTON_WIDTH / 2, EXIT_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
+            painter.drawTexture(new TextureRegion(textures.exitButtonActive), Drop.WIDTH / 2, EXIT_BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT, 0);
             if(Gdx.input.justTouched()) {
                 //this.dispose();
                 game.setScreen(new MainMenuScreen(game));
             }
         }
         else {
-            game.batch.draw(exitButtonInactive, Drop.WIDTH / 2 - BUTTON_WIDTH / 2, EXIT_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
+            painter.drawTexture(new TextureRegion(textures.exitButtonInactive), Drop.WIDTH / 2, EXIT_BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT, 0);
         }
         game.batch.end();
     }
