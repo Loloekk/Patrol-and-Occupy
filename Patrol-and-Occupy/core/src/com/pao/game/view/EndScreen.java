@@ -82,25 +82,25 @@ public class EndScreen implements Screen {
         }
 
         if(startButton.contains(touchPoint.x, touchPoint.y)) {
-            painter.drawTexture(new TextureRegion(textures.startButtonActive), Drop.WIDTH / 2, START_BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT, 0);
+            painter.drawTexture(new TextureRegion(textures.getStartButtonActive()), Drop.WIDTH / 2, START_BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT, 0);
             if(Gdx.input.justTouched()) {
                 //this.dispose();
                 game.setScreen(new GameScreen(game));
             }
         }
         else {
-            painter.drawTexture(new TextureRegion(textures.startButtonInactive), Drop.WIDTH / 2, START_BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT, 0);
+            painter.drawTexture(new TextureRegion(textures.getStartButtonInactive()), Drop.WIDTH / 2, START_BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT, 0);
         }
 
         if(exitButton.contains(touchPoint.x, touchPoint.y)) {
-            painter.drawTexture(new TextureRegion(textures.exitButtonActive), Drop.WIDTH / 2, EXIT_BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT, 0);
+            painter.drawTexture(new TextureRegion(textures.getExitButtonActive()), Drop.WIDTH / 2, EXIT_BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT, 0);
             if(Gdx.input.justTouched()) {
                 //this.dispose();
                 game.setScreen(new MainMenuScreen(game));
             }
         }
         else {
-            painter.drawTexture(new TextureRegion(textures.exitButtonInactive), Drop.WIDTH / 2, EXIT_BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT, 0);
+            painter.drawTexture(new TextureRegion(textures.getExitButtonInactive()), Drop.WIDTH / 2, EXIT_BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT, 0);
         }
         game.batch.end();
     }

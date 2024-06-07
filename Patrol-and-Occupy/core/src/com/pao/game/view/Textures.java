@@ -75,11 +75,19 @@ public class Textures {
     public Texture getBulletTexture() { return bullet; }
     public Texture getObstacleTexture() { return obstacle; }
     public Texture getBreakableObstacleTexture() { return breakableObstacle; }
-
     public Texture getPlateTexture(ModelPlayer color) { return plates.get(color); }
     public Texture getMagazineTexture(ModelPlayer color) { return magazines.get(color); }
     public Texture getDynamiteTexture() { return dynamite; }
     public Texture getSpawnTexture(ModelPlayer color) { return spawns.get(color); }
+    public Texture getStartButtonActive() { return startButtonActive; }
+    public Texture getStartButtonInactive() { return startButtonInactive; }
+    public Texture getExitButtonActive() { return exitButtonActive; }
+    public Texture getExitButtonInactive() { return exitButtonInactive; }
+    public Texture getPlayButtonActive() { return playButtonActive; }
+    public Texture getPlayButtonInactive() { return playButtonInactive; }
+    public Texture getSettingsButtonActive() { return settingsButtonActive; }
+    public Texture getSettingsButtonInactive() { return settingsButtonInactive; }
+
     public void dispose() {
         for (Texture texture : tanks.values())
             texture.dispose();
