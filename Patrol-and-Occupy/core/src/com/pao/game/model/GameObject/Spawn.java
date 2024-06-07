@@ -26,6 +26,7 @@ public class Spawn extends BodyGameObject {
         if(cooldown > COOLDOWN)
         {
             cooldown = 0;
+            tank.setPosition(getX(),getY());
             tank.revive();
         }
     }

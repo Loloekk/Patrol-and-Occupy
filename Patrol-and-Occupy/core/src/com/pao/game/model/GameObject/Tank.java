@@ -96,7 +96,6 @@ public class Tank extends BodyGameObject {
         magazine.update(time);
 
         if(!isAlive) {
-            setPosition(spawn.getX(),spawn.getY());
             body.setAngularVelocity(0f);
             body.setLinearVelocity(new Vector2(0f,0f));
             return;

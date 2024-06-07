@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Dynamite extends BodyGameObject {
-    static final int RANGE = 75;    // = explosion.width / 4
+    static final int RANGE = 200;    // = explosion.width / 4
     Board board;
     ModelPlayer killer = null;
     boolean isActive = true;
