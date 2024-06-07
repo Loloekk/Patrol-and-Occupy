@@ -41,7 +41,7 @@ public class Magazine {
     }
     public boolean hasDynamite()
     {
-        if(lastPlaceDynamite > 5.0f){
+        if(lastPlaceDynamite > 3.0f){
             return true;
         }
         return false;

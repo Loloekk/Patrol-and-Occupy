@@ -106,7 +106,7 @@ public class SimpleBoard implements Board {
                 dynamiteExplosionsToDestroy.add(dynamiteExplosion);
             }
         }
-        bodyObjects.removeAll(dynamiteExplosionsToDestroy);
+        dynamiteExplosionList.removeAll(dynamiteExplosionsToDestroy);
         // Update explosions
         List<BulletShoot> bulletShootsToDestroy = new ArrayList<>();
         for(BulletShoot bulletShoot : bulletShootList) {
@@ -115,7 +115,7 @@ public class SimpleBoard implements Board {
                 bulletShootsToDestroy.add(bulletShoot);
             }
         }
-        bodyObjects.removeAll(bulletShootsToDestroy);
+        bulletShootList.removeAll(bulletShootsToDestroy);
         // Update explosions
         List<BulletExplosion> bulletExplosionsToDestroy = new ArrayList<>();
         for(BulletExplosion bulletExplosion : bulletExplosionList) {
@@ -124,7 +124,7 @@ public class SimpleBoard implements Board {
                 bulletExplosionsToDestroy.add(bulletExplosion);
             }
         }
-        bodyObjects.removeAll(bulletExplosionsToDestroy);
+        bulletExplosionList.removeAll(bulletExplosionsToDestroy);
 //        // Update dynamites
 //        List<Dynamite> dynamitesToDestroy = new ArrayList<>();
 //        for (Dynamite dynamite : bodyObjects) {
