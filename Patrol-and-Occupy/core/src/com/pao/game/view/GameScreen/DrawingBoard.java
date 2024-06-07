@@ -52,7 +52,6 @@ public class DrawingBoard {
         game.batch.begin();
         painterTop.fillBackground(1f);
         painterGame.fillBackground(1f);
-        //game.batch.draw(ground,0,0,width,height);
         for(ColoredParams spawn : VM.getSpawns()) {
             painterGame.drawTexture(new TextureRegion(text.getSpawnTexture(spawn.getColor())), spawn);
         }
@@ -61,8 +60,6 @@ public class DrawingBoard {
         }
         for(Params obstacle : VM.getObstacles()) {
             painterGame.drawTexture(new TextureRegion(text.getObstacleTexture()),obstacle,1.03f);
-            //game.batch.draw(textureRegion,X-H/2,Y-W/2,H/2,W/2,H,W,1,1,obstacle.getRotation());
-            //game.batch.draw(texture,X-H/2,Y-W/2,H/2,W/2,H,W,1,1,obstacle.getRotation(),0,0,texture.getWidth(), texture.getHeight(), false, false);
         }
         for(Params breakableObstacle : VM.getBreakableObstacles()) {
             painterGame.drawTexture(new TextureRegion(text.getBreakableObstacleTexture()),breakableObstacle,1.03f);
@@ -70,14 +67,10 @@ public class DrawingBoard {
 
         for(ColoredParams bullet : VM.getBullets()) {
             painterGame.drawTexture(new TextureRegion(text.getBulletTexture()),bullet);
-            //game.batch.draw(textureRegion,X-H/2,Y-W/2,H/2,W/2,H,W,1,1,bullet.getRotation());
-            //game.batch.draw(texture,X-H/2,Y-W/2,H/2,W/2,H,W,1,1,bullet.getRotation(),0,0,texture.getWidth(), texture.getHeight(), false, false);
         }
         List<TankParams> tanksParams = VM.getTanks();
         for(TankParams tank : tanksParams) {
             painterGame.drawTexture(new TextureRegion(text.getTankTexture(tank.getIsAlive() ? tank.getColor(): null)),tank,1.03f);
-            //game.batch.draw(region, X-H/2,Y-W/2,H/2,W/2,H+5,W,1,1,tank.getRotation());
-            //game.batch.draw(texture,X-H/2,Y-W/2,H/2,W/2,H+5,W,1,1,tank.getRotation(),0,0,texture.getWidth(), texture.getHeight(), false, false);
             ModelPlayer pl = tank.getColor();
             float x = 100,y = 50;
             if(pl == ModelPlayer.Player1) {

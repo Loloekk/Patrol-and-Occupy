@@ -43,7 +43,6 @@ public class MainMenuScreen implements Screen {
     }
     @Override
     public void render(float delta) {
-        //Gdx.gl.glClear();
         ScreenUtils.clear(0f, 0f, 0f, 1);
         camera.update();
         game.batch.setProjectionMatrix(camera.combined);
@@ -62,11 +61,10 @@ public class MainMenuScreen implements Screen {
             painter.drawTexture(new TextureRegion(textures.getPlayButtonInactive()), Drop.WIDTH / 2, PLAY_BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT, 0);
         }
 
-        // RegionPainter--------------------------------------------------------------
         if(settingsButton.contains(touchPoint.x, touchPoint.y)) {
             painter.drawTexture(new TextureRegion(textures.getSettingsButtonActive()), Drop.WIDTH / 2, SETTINGS_BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT, 0);
             if(Gdx.input.justTouched()) {
-                game.setScreen(new SettingsScreen(game));     //---------------------------------------------------
+                game.setScreen(new SettingsScreen(game));
             }
         }
         else {
