@@ -22,13 +22,7 @@ public class ViewModel{
     GlobalStatistics globalStatistics;
     public ViewModel()
     {
-        world = new World(GRAVITY, true);
-        board = new SimpleBoard(world);
-        multiContactListener = new MultiContactListener();
-        world.setContactListener(multiContactListener);
-        multiContactListener.addListener(new TankContactListener(board));
-        multiContactListener.addListener(new BulletContactListener(board));
-        BodyCreator.setEdges(0,0, ModelSettings.getWidth(), ModelSettings.getHeight(), world);
+        board = new SimpleBoard();
         globalStatistics = new GlobalStatistics(this);
     }
 
@@ -38,10 +32,10 @@ public class ViewModel{
     }
     public List<TankParams> getTanks() {
         List<TankParams> tanksParamsList = new ArrayList<>();
-        for(Tank tank : board.getTankList()) {
-            tanksParamsList.add(new TankParams(tank.getColor(),
+        for(BodyGameObject tank : board.getBodyObjects()) if(tank instanceof Tank){
+            tanksParamsList.add(new TankParams(((Tank) tank).getColor(),
                     tank.getWidth(),tank.getHeight(),tank.getX(),tank.getY(),
-                    tank.getRotation(),tank.getBullets(),tank.getStatistics().getNumberOfPlates(),tank.getIsAlive()));
+                    tank.getRotation(), ((Tank) tank).getMagazine().getQuantity(), ((Tank) tank).getStatistics().getNumberOfPlates(), ((Tank) tank).getIsAlive(),((Tank) tank).getMagazine().hasDynamite()));
         }
         return tanksParamsList;
     }
@@ -50,21 +44,21 @@ public class ViewModel{
     }
     public List<ColoredParams> getBullets() {
         List<ColoredParams> bulletsParamsList = new ArrayList<>();
-        for(Bullet bullet : board.getBulletList()) {
-            bulletsParamsList.add(new ColoredParams(bullet.getColor(), bullet.getWidth(), bullet.getHeight(), bullet.getX(), bullet.getY(), bullet.getRotation()));
+        for(BodyGameObject bullet : board.getBodyObjects()) if(bullet instanceof Bullet) {
+            bulletsParamsList.add(new ColoredParams(((Bullet) bullet).getColor(), bullet.getWidth(), bullet.getHeight(), bullet.getX(), bullet.getY(), bullet.getRotation()));
         }
         return bulletsParamsList;
     }
     public List<Params> getObstacles() {
         List<Params> obstaclesParamsList = new ArrayList<>();
-        for(Obstacle obstacle : board.getObstacleList()) {
-            obstaclesParamsList.add(new Params(obstacle.getWidth(), obstacle.getHeight(), obstacle.getX(), obstacle.getY(), obstacle.getRotation()));
+        for(BodyGameObject unbreakableObstacle : board.getBodyObjects()) if(unbreakableObstacle instanceof UnbreakableObstacle){
+            obstaclesParamsList.add(new Params(unbreakableObstacle.getWidth(), unbreakableObstacle.getHeight(), unbreakableObstacle.getX(), unbreakableObstacle.getY(), unbreakableObstacle.getRotation()));
         }
         return obstaclesParamsList;
     }
     public List<Params> getBreakableObstacles() {
         List<Params> breakableObstaclesParamsList = new ArrayList<>();
-        for(BreakableObstacle breakableObstacle : board.getBreakableObstacleList()) {
+        for(BodyGameObject breakableObstacle : board.getBodyObjects()) if(breakableObstacle instanceof BreakableObstacle) {
             breakableObstaclesParamsList.add(new Params(breakableObstacle.getWidth(), breakableObstacle.getHeight(), breakableObstacle.getX(), breakableObstacle.getY(), breakableObstacle.getRotation()));
         }
         return breakableObstaclesParamsList;
@@ -72,22 +66,22 @@ public class ViewModel{
 
     public List<ColoredParams> getPlates() {
         List<ColoredParams> platesParamsList = new ArrayList<>();
-        for(Plate plate : board.getPlateList()) {
-            platesParamsList.add(new ColoredParams(plate.getColor(), plate.getWidth(), plate.getHeight(), plate.getX(), plate.getY(), plate.getRotation()));
+        for(BodyGameObject plate : board.getBodyObjects()) if(plate instanceof Plate){
+            platesParamsList.add(new ColoredParams(((Plate) plate).getColor(), plate.getWidth(), plate.getHeight(), plate.getX(), plate.getY(), plate.getRotation()));
         }
         return platesParamsList;
     }
     public List<Params> getDynamites() {
         List<Params> dynamitesParamsList = new ArrayList<>();
-        for(Dynamite dynamite : board.getDynamiteList()) {
+        for(BodyGameObject dynamite : board.getBodyObjects()) if(dynamite instanceof Dynamite){
             dynamitesParamsList.add(new Params(dynamite.getWidth(), dynamite.getHeight(), dynamite.getX(), dynamite.getY(), dynamite.getRotation()));
         }
         return dynamitesParamsList;
     }
     public List<ColoredParams> getSpawns() {
         List<ColoredParams> spawnsParamsList = new ArrayList<>();
-        for(Spawn spawn : board.getSpawnList()) {
-            spawnsParamsList.add(new ColoredParams(spawn.getColor(), spawn.getWidth(), spawn.getHeight(), spawn.getX(), spawn.getY(), spawn.getRotation()));
+        for(BodyGameObject spawn : board.getBodyObjects()) if(spawn instanceof Spawn) {
+            spawnsParamsList.add(new ColoredParams(((Spawn) spawn).getColor(), spawn.getWidth(), spawn.getHeight(), spawn.getX(), spawn.getY(), spawn.getRotation()));
         }
         return spawnsParamsList;
     }
@@ -120,7 +114,6 @@ public class ViewModel{
         return globalStatistics;
     }
     public void update(float time) {
-        world.step((float)(time), VELOCITY_ITERATION, POSITION_ITERATION);
         board.update(time);
     }
 }

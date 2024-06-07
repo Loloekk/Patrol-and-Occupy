@@ -2,9 +2,7 @@ package com.pao.game.model.MultiContactListener;
 
 import com.badlogic.gdx.physics.box2d.*;
 import com.pao.game.model.Boards.Board;
-import com.pao.game.model.GameObject.Bullet;
-import com.pao.game.model.GameObject.Dynamite;
-import com.pao.game.model.GameObject.Tank;
+import com.pao.game.model.GameObject.*;
 
 public class BulletContactListener implements ContactListener {
     Board board;
@@ -27,19 +25,11 @@ public class BulletContactListener implements ContactListener {
         else if (userDataA instanceof Tank && userDataB instanceof Bullet) {
             handleBulletTankContact((Bullet) userDataB, (Tank) userDataA, contact);
         }
-        else if (userDataA instanceof Bullet && userDataB instanceof Dynamite) {
-            ((Dynamite) userDataB).takeDamage(((Bullet) userDataA).getColor());
-            ((Bullet) userDataA).takeDamage();
+        if (userDataA instanceof Bullet && userDataB instanceof Spawn) {
+            handleBulletSpawnContact((Bullet) userDataA, (Spawn) userDataB, contact);
         }
-        else if (userDataA instanceof Dynamite && userDataB instanceof Bullet) {
-            ((Dynamite) userDataA).takeDamage(((Bullet) userDataB).getColor());
-            ((Bullet) userDataB).takeDamage();
-        }
-        else if (userDataA instanceof Bullet) {
-            ((Bullet) userDataA).takeDamage();
-        }
-        else if (userDataB instanceof Bullet) {
-            ((Bullet) userDataB).takeDamage();
+        else if (userDataA instanceof Spawn && userDataB instanceof Bullet) {
+            handleBulletSpawnContact((Bullet) userDataB, (Spawn) userDataA, contact);
         }
     }
     @Override
@@ -48,9 +38,10 @@ public class BulletContactListener implements ContactListener {
         if (bullet.getColor() == tank.getColor()) {
             contact.setEnabled(false);
         }
-        else {
-            bullet.takeDamage();
-            tank.takeDamage(bullet.getColor());
+    }
+    private void handleBulletSpawnContact(Bullet bullet, Spawn spawn, Contact contact) {
+        if (bullet.getColor() == spawn.getColor()) {
+            contact.setEnabled(false);
         }
     }
 }

@@ -14,9 +14,9 @@ public class Bullet extends BodyGameObject {
     static final int height = 10;
     Board board;
     ModelPlayer color;
-    boolean isAlive = true;
-    public Bullet(float x, float y, Tank tank, World world){
-        super(x, y, width, height, tank.getRotation(), BodyDef.BodyType.DynamicBody, world, 1f, false);
+    boolean isActive = true;
+    public Bullet(float x, float y, Tank tank){
+        super(x, y, width, height, tank.getRotation(), BodyDef.BodyType.DynamicBody, tank.getBody().getWorld(), 1f, false);
         body.setUserData(this);
         color = tank.getColor();
         board = tank.board;
@@ -27,12 +27,15 @@ public class Bullet extends BodyGameObject {
         vel.y = ModelSettings.getBulletSpeed() * MathUtils.sin(body.getAngle());
         body.setLinearVelocity(vel);
     }
-    public void takeDamage(){
+    public void takeDamage(BodyGameObject killer){
+        if(killer instanceof Tank && ((Tank) killer).getColor() == color) return;
+        if(killer instanceof Spawn && ((Spawn) killer).getColor() == color) return;
+        if(killer instanceof Plate) return;
         board.addBulletExplosion(new BulletExplosion(getX(), getY(), getRotation()));
-        isAlive = false;
+        isActive = false;
     }
     public ModelPlayer getColor(){
         return color;
     }
-    public boolean getIsAlive() { return isAlive; }
+    public boolean getIsActive() { return isActive; }
 }

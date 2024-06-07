@@ -4,17 +4,21 @@ import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
+import com.pao.game.model.Boards.Board;
+import com.pao.game.model.GameObject.Tank;
+import com.sun.org.apache.xpath.internal.operations.Mult;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MultiContactListener implements ContactListener {
     List<ContactListener> listeners = new ArrayList<>();
-    public void addListener(ContactListener listener) {
-        listeners.add(listener);
-    }
-    public void removeListener(ContactListener listener) {
-        listeners.remove(listener);
+    Board board;
+    public MultiContactListener()
+    {
+        listeners.add(new DefaultContactListener(board));
+        listeners.add(new TankContactListener(board));
+        listeners.add(new BulletContactListener(board));
     }
     @Override
     public void beginContact(Contact contact) {

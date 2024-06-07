@@ -15,18 +15,6 @@ public class TankContactListener implements ContactListener {
     }
     @Override
     public void beginContact(Contact contact) {
-        Fixture fixtureA = contact.getFixtureA();
-        Fixture fixtureB = contact.getFixtureB();
-
-        Object userDataA = fixtureA.getBody().getUserData();
-        Object userDataB = fixtureB.getBody().getUserData();
-
-        if (userDataA instanceof Tank && userDataB instanceof Plate) {
-            board.changePlateOwner((Plate) userDataB, (Tank) userDataA);
-        }
-        else if(userDataA instanceof Plate && userDataB instanceof Tank) {
-            board.changePlateOwner((Plate) userDataA, (Tank) userDataB);
-        }
     }
     @Override
     public void endContact(Contact contact) {}
@@ -43,12 +31,6 @@ public class TankContactListener implements ContactListener {
         }
         else if (userDataA instanceof Spawn && userDataB instanceof Tank) {
             handleTankSpawnContact((Tank) userDataB, (Spawn) userDataA, contact);
-        }
-        else if (userDataA instanceof Tank && userDataB instanceof BreakableObstacle) {
-            ((BreakableObstacle) userDataB).takeDamage();
-        }
-        else if(userDataA instanceof BreakableObstacle && userDataB instanceof Tank) {
-            ((BreakableObstacle) userDataA).takeDamage();
         }
     }
     @Override

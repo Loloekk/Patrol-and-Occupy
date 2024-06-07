@@ -94,9 +94,12 @@ public class DrawingBoard {
             }
             painterTop.drawTexture(new TextureRegion(text.getMagazineTexture(pl)),x,y,300,95,0);
             painterTop.drawTexture(new TextureRegion(text.getPlateTexture(null)),x-80,y,80,80,0);
-            painterTop.drawTexture(new TextureRegion(text.getBulletTexture()),x+60,y,150,50,0);
+            painterTop.drawTexture(new TextureRegion(text.getBulletTexture()),x+60,y-10,150,50,0);
+            if(tank.hasDynamite()){
+                painterTop.drawTexture(new TextureRegion(text.getDynamiteTexture()),x+120,y+25,30,30,0);
+            }
             painterTop.drowWriting("Magazines",((Integer)tank.getPlates()).toString(),x-80,y);
-            painterTop.drowWriting("Magazines",((Integer)tank.getBullets()).toString(),x+30,y);
+            painterTop.drowWriting("Magazines",((Integer)tank.getBullets()).toString(),x+30,y-10);
 
         }
         for(Params dynamite : VM.getDynamites()) {

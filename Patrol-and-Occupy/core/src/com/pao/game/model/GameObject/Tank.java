@@ -13,11 +13,11 @@ public class Tank extends BodyGameObject {
     static final int width = 70;
     static final int height = 60;
     ModelPlayer color;
-    public Board board;
+    Board board;
     World world;
     Magazine magazine;
     PlayerStatistics playerStatistics;
-    float lastPlaceDynamite;
+    Spawn spawn;
     boolean moveForwardState;
     boolean moveLeftState;
     boolean moveRightState;
@@ -26,16 +26,17 @@ public class Tank extends BodyGameObject {
     boolean placeDynamite;
     boolean isAlive;
 
-    public Tank(float x, float y, ModelPlayer color, Board board, World world) {
-        super(x, y, width, height, 0, BodyDef.BodyType.DynamicBody, world, 1f, false);
+    public Tank(float x, float y, ModelPlayer color, Board board) {
+        super(x, y, width, height, 0, BodyDef.BodyType.DynamicBody, board.getWorld(), 1f, false);
         body.setUserData(this);
         this.color = color;
         this.board = board;
-        this.world = world;
+        this.world = board.getWorld();
         this.isAlive = true;
         this.magazine = new Magazine();
-        this.lastPlaceDynamite = 0f;
         this.playerStatistics = new PlayerStatistics();
+        this.spawn = new Spawn(x,y,this);
+        board.addObject(spawn);
     }
 
     public void setMoveForwardState(boolean state) {
@@ -57,14 +58,27 @@ public class Tank extends BodyGameObject {
     public void revive() {
         isAlive = true;
     }
-    public void takeDamage(ModelPlayer killer)
+    public void takeDamage(BodyGameObject killer)
     {
-        if(isAlive)
-        {
-            playerStatistics.incrementDeadNumber();
-            board.getTank(killer).getStatistics().incrementKillNumber();
-            isAlive = false;
+        if(!isAlive) return;
+        double sX = spawn.getX();
+        double sY = spawn.getY();
+        double tankSpawnDistance = Math.sqrt((sX-this.getX()) * (sX-this.getX()) + (sY-this.getY()) * (sY-this.getY()));
+        if(tankSpawnDistance <= 60) return;
+
+        if(!(killer instanceof Bullet || (killer instanceof Dynamite && (!((Dynamite) killer).getIsActive())))) return;
+        ModelPlayer md = null;
+        if(killer instanceof Bullet){
+            md = ((Bullet) killer).getColor();
         }
+        if(killer instanceof Dynamite){
+            md=((Dynamite) killer).getColor();
+        }
+        if(killer instanceof Bullet && ((Bullet) killer).getColor() == color) return;
+        playerStatistics.incrementDeadNumber();
+        board.getTank(md).getStatistics().incrementKillNumber();
+        isAlive = false;
+
     }
     public void setPosition(float x, float y) { body.setTransform(x/PPM,y/PPM, 0);}
     public ModelPlayer getColor() {
@@ -77,29 +91,31 @@ public class Tank extends BodyGameObject {
     public boolean getIsAlive() {
         return isAlive;
     }
+    public boolean getIsActive(){return true;}
     public void update(float time) {
-        lastPlaceDynamite += time;
+        magazine.update(time);
+
         if(!isAlive) {
+            setPosition(spawn.getX(),spawn.getY());
             body.setAngularVelocity(0f);
             body.setLinearVelocity(new Vector2(0f,0f));
             return;
         }
-        magazine.update(time);
 
         if(makeShoot && magazine.shoot()) {
             float angle = getRotation() * MathUtils.degreesToRadians;
             float x = getX() + MathUtils.cos(angle) * getHeight()/2;
             float y = getY() + MathUtils.sin(angle) * getHeight()/2;
-            board.addBullet(new Bullet(x, y, this, world));
+            board.addObject(new Bullet(x, y, this));
             board.addBulletShoot(new BulletShoot(x, y, this));
         }
 
-        if(placeDynamite && lastPlaceDynamite >= 5.0f) {
+        if(placeDynamite && magazine.hasDynamite()) {
             float angle = getRotation() * MathUtils.degreesToRadians;
             float x = getX() - MathUtils.cos(angle) * getHeight() * 1.1f;
             float y = getY() - MathUtils.sin(angle) * getHeight() * 1.1f;
-            board.addDynamite(new Dynamite(x, y, this));
-            lastPlaceDynamite = 0;
+            board.addObject(new Dynamite(x, y, this));
+            magazine.placeDynamite();
         }
 
         Vector2 vel = body.getLinearVelocity();
@@ -138,14 +154,8 @@ public class Tank extends BodyGameObject {
         }
         body.setLinearVelocity(vel);
     }
-    public Spawn getSpawn(){
-        for(Spawn spawn : board.getSpawnList())
-            if(this.color == spawn.getColor())
-                return spawn;
-        throw new RuntimeException("Spawn not found");
-    }
-    public int getBullets()
+    public Magazine getMagazine()
     {
-        return magazine.getQuantity();
+        return magazine;
     }
 }

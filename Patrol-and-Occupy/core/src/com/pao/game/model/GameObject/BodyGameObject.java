@@ -22,6 +22,7 @@ public abstract class BodyGameObject implements GameObject {
     public float getHeight() { return height; }
     public float getRotation() { return body.getAngle() * MathUtils.radiansToDegrees; }
     public Body getBody() { return body; }
-    public void takeDamage() {}
-    public boolean getIsActive(){return false;}
+    public void update(float t){}
+    public void takeDamage(BodyGameObject obj) {}
+    public boolean getIsActive(){return true;}
 }

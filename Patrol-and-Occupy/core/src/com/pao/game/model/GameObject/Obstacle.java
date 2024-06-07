@@ -8,7 +8,7 @@ import com.pao.game.communication.Params;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Obstacle extends BodyGameObject {
+public abstract class Obstacle extends BodyGameObject {
     public Obstacle(float x, float y, float width, float height, float degree, World world) {
         super(x, y, width, height, degree, BodyDef.BodyType.StaticBody, world, 1f, false);
     }

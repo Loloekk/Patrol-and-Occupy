@@ -4,14 +4,17 @@ public class Magazine {
     private int quantity;
     private float lastShoot;
     private float lastReceive;
+    float lastPlaceDynamite;
     public Magazine(){
         quantity = ModelSettings.getMagazineCapacity();
         lastShoot = Float.MAX_VALUE;
         lastReceive = Float.MAX_VALUE;
+        lastPlaceDynamite = 0;
     }
     public void update(float time){
         lastReceive+=time;
         lastShoot+=time;
+        lastPlaceDynamite+=time;
         if(quantity == ModelSettings.getMagazineCapacity()) {
             lastReceive = 0;
         }
@@ -35,6 +38,17 @@ public class Magazine {
     public int getQuantity()
     {
         return quantity;
+    }
+    public boolean hasDynamite()
+    {
+        if(lastPlaceDynamite > 5.0f){
+            return true;
+        }
+        return false;
+    }
+    public void placeDynamite()
+    {
+        lastPlaceDynamite = 0;
     }
 
 }
