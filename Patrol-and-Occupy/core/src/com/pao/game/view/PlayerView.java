@@ -20,31 +20,31 @@ public class PlayerView {
         return color;
     }
     public void setUp(int value){
-         up = value;
+        up = value;
     }
     public int getUp(){
-         return up;
+        return up;
     }
     public void setDown(int value){
-         down= value;
+        down= value;
     }
     public int getDown(){
         return down;
     }
     public void setLeft(int value){
-         left = value;
+        left = value;
     }
     public int getLeft(){
         return left;
     }
     public void setRight(int value){
-         right = value;
+        right = value;
     }
     public int getRight(){
         return right;
     }
     public void setShoot(int value){
-         shoot = value;
+        shoot = value;
     }
     public int getShoot(){
         return shoot;

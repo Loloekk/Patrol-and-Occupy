@@ -4,6 +4,10 @@ import com.pao.game.model.ModelSettings;
 import com.pao.game.communication.Options;
 
 public class EditSettings {
+    private EditSettings()
+    {
+        throw new UnsupportedOperationException("Cannot instantiate EditSettings class, Nunu");
+    }
     public static void setOption(Options o, float state)
     {
         ModelSettings.setOption(o,state);

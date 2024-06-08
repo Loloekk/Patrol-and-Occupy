@@ -5,15 +5,21 @@ import com.pao.game.communication.*;
 import com.pao.game.model.*;
 import com.pao.game.model.Boards.Board;
 import com.pao.game.model.Boards.SimpleBoard;
-import com.pao.game.model.GameObject.*;
-import com.pao.game.model.MultiContactListener.BulletContactListener;
+import com.pao.game.model.GameObject.Bodies.BodyGameObject;
+import com.pao.game.model.GameObject.Others.Bullet.Bullet;
+import com.pao.game.model.GameObject.Others.Dynamite.Dynamite;
+import com.pao.game.model.GameObject.Explosions.BulletExplosion.BulletExplosion;
+import com.pao.game.model.GameObject.Explosions.BulletShoot.BulletShoot;
+import com.pao.game.model.GameObject.Explosions.DynamiteExplosion.DynamiteExplosion;
+import com.pao.game.model.GameObject.Obstacles.BreakableObstacle.BreakableObstacle;
+import com.pao.game.model.GameObject.Obstacles.UnbreakableObstacle.UnbreakableObstacle;
+import com.pao.game.model.GameObject.Others.Plate.Plate;
+import com.pao.game.model.GameObject.Others.Spawn.Spawn;
+import com.pao.game.model.GameObject.Others.Tank.Tank;
 import com.pao.game.model.MultiContactListener.MultiContactListener;
-import com.pao.game.model.MultiContactListener.TankContactListener;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.pao.game.model.Constants.*;
 
 public class ViewModel{
     Board board;
@@ -87,22 +93,23 @@ public class ViewModel{
     }
     public List<ExplosionParams> getDynamiteExplosions() {
         List<ExplosionParams> dynamiteExplosionsParamsList = new ArrayList<>();
-        for(Explosion explosion : board.getDynamiteExplosionList()) {
-            dynamiteExplosionsParamsList.add(new ExplosionParams(explosion.getWidth(), explosion.getHeight(), explosion.getX(), explosion.getY(), explosion.getRotation(), explosion.getStateTime()));
+        for(BodyGameObject dynamiteExplosion : board.getBodyObjects()) if(dynamiteExplosion instanceof DynamiteExplosion)
+        {
+            dynamiteExplosionsParamsList.add(new ExplosionParams(dynamiteExplosion.getWidth(), dynamiteExplosion.getHeight(), dynamiteExplosion.getX(), dynamiteExplosion.getY(), dynamiteExplosion.getRotation(), ((DynamiteExplosion)dynamiteExplosion).getStateTime()));
         }
         return dynamiteExplosionsParamsList;
     }
     public List<ExplosionParams> getBulletShoots() {
         List<ExplosionParams> bulletShootsParamsList = new ArrayList<>();
-        for(BulletShoot bulletShoot : board.getBulletShootList()) {
-            bulletShootsParamsList.add(new ExplosionParams(bulletShoot.getWidth(), bulletShoot.getHeight(), bulletShoot.getX(), bulletShoot.getY(), bulletShoot.getRotation(), bulletShoot.getStateTime()));
+        for(BodyGameObject bulletShoot : board.getBodyObjects()) if(bulletShoot instanceof BulletShoot){
+            bulletShootsParamsList.add(new ExplosionParams(bulletShoot.getWidth(), bulletShoot.getHeight(), bulletShoot.getX(), bulletShoot.getY(), bulletShoot.getRotation(), ((BulletShoot)bulletShoot).getStateTime()));
         }
         return bulletShootsParamsList;
     }
     public List<ExplosionParams> getBulletExplosions() {
         List<ExplosionParams> bulletExplosionsParamsList = new ArrayList<>();
-        for(BulletExplosion bulletExplosion : board.getBulletExplosionList()) {
-            bulletExplosionsParamsList.add(new ExplosionParams(bulletExplosion.getWidth(), bulletExplosion.getHeight(), bulletExplosion.getX(), bulletExplosion.getY(), bulletExplosion.getRotation(), bulletExplosion.getStateTime()));
+        for(BodyGameObject bulletExplosion : board.getBodyObjects()) if(bulletExplosion instanceof BulletExplosion){
+            bulletExplosionsParamsList.add(new ExplosionParams(bulletExplosion.getWidth(), bulletExplosion.getHeight(), bulletExplosion.getX(), bulletExplosion.getY(), bulletExplosion.getRotation(), ((BulletExplosion)bulletExplosion).getStateTime()));
         }
         return bulletExplosionsParamsList;
     }

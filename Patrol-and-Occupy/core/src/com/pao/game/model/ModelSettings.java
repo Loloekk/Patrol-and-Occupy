@@ -14,6 +14,11 @@ public class ModelSettings {
     private static int magazineCapacity;
     private static float shootCooldown;
     private static float receiveCooldown;
+    private ModelSettings()
+    {
+        throw new UnsupportedOperationException("Cannot instantiate ModelSettings class, Nunu");
+    }
+
 
     static {
         setDefault();
@@ -82,7 +87,7 @@ public class ModelSettings {
     }
     public static void setDefault()
     {
-        gameTime = 40f;
+        gameTime = 60f;
         numberOfPlayers = 2;
         map = 1;
         width = 1920;

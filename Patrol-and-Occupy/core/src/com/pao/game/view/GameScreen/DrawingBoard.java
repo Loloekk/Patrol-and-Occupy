@@ -10,12 +10,12 @@ import com.pao.game.communication.ColoredParams;
 import com.pao.game.communication.ExplosionParams;
 import com.pao.game.communication.Params;
 import com.pao.game.communication.TankParams;
-import com.pao.game.model.Explosion;
 import com.pao.game.model.ModelPlayer;
 import com.pao.game.view.Animations;
 import com.pao.game.view.Drop;
 import com.pao.game.view.RegionPainter;
 import com.pao.game.view.Textures;
+import com.pao.game.viewmodel.EditSettings;
 import com.pao.game.viewmodel.ViewModel;
 
 import java.util.List;
@@ -40,9 +40,10 @@ public class DrawingBoard {
         text = new Textures(n);
         animations = new Animations();
         painterGame = new RegionPainter(game.batch,0,0,Drop.WIDTH,Drop.HEIGHT-100,1920,954,new Color(0.9f,0.9f,0.4f,1));
-        painterTop = new RegionPainter(game.batch,0,Drop.HEIGHT-100,Drop.WIDTH,100,Drop.WIDTH,100,new Color(0f,0f,1f,1));
-        painterTop.addFont("Czas",40,Color.RED);
-        painterTop.addFont("Magazines",35,Color.BLACK);
+        painterTop = new RegionPainter(game.batch,0,Drop.HEIGHT-100,Drop.WIDTH,100,Drop.WIDTH,100,new Color(0.274f,0.0f,0.305f,1));
+        painterTop.addFont("Time",40,new Color(0.9f,0.9f,0.4f,1));
+        painterTop.addFont("Plates",40,Color.BLACK);
+        painterTop.addFont("Magazines",28,Color.BLACK);
     }
     public void draw(){
         ScreenUtils.clear(0f, 0f, 0f, 1);
@@ -91,8 +92,8 @@ public class DrawingBoard {
             if(tank.hasDynamite()){
                 painterTop.drawTexture(new TextureRegion(text.getDynamiteTexture()),x+120,y+25,30,30,0);
             }
-            painterTop.drowWriting("Magazines",((Integer)tank.getPlates()).toString(),x-80,y);
-            painterTop.drowWriting("Magazines",((Integer)tank.getBullets()).toString(),x+30,y-10);
+            painterTop.drowWriting("Plates",((Integer)tank.getPlates()).toString(),x-80,y);
+            painterTop.drowWriting("Magazines",(Integer)tank.getBullets()+"/"+ EditSettings.getMagazineCapacity(),x+35,y-10);
 
         }
         for(Params dynamite : VM.getDynamites()) {
@@ -108,7 +109,7 @@ public class DrawingBoard {
             painterGame.drawTexture(animations.getBulletShootAnimation().getKeyFrame(bulletShoot.getStateTime()), bulletShoot);
         }
 
-        painterTop.drowWriting("Czas", "Czas: " + (int)VM.getRemainingTime(), 960, 50);
+        painterTop.drowWriting("Time", "Time: " + (int)VM.getRemainingTime(), 960, 50);
         game.batch.end();
     }
     public void resize(int width, int height) {

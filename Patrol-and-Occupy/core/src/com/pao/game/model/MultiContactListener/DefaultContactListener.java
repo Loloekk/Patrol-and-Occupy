@@ -1,12 +1,9 @@
 package com.pao.game.model.MultiContactListener;
 
 import com.badlogic.gdx.physics.box2d.*;
-import com.pao.game.model.Boards.Board;
-import com.pao.game.model.GameObject.*;
+import com.pao.game.model.GameObject.Bodies.BodyGameObject;
 
 public class DefaultContactListener implements ContactListener {
-    Board board;
-    public DefaultContactListener(Board board) { this.board = board; }
     @Override
     public void beginContact(Contact contact) {
         Fixture fixtureA = contact.getFixtureA();

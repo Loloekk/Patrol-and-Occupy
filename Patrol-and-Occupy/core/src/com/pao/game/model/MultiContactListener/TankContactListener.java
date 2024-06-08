@@ -1,18 +1,10 @@
 package com.pao.game.model.MultiContactListener;
 
 import com.badlogic.gdx.physics.box2d.*;
-import com.pao.game.model.Boards.Board;
-import com.pao.game.model.GameObject.BreakableObstacle;
-import com.pao.game.model.GameObject.Plate;
-import com.pao.game.model.GameObject.Spawn;
-import com.pao.game.model.GameObject.Tank;
-
+import com.pao.game.model.GameObject.Others.Spawn.Spawn;
+import com.pao.game.model.GameObject.Others.Tank.Tank;
 
 public class TankContactListener implements ContactListener {
-    Board board;
-    public TankContactListener(Board board) {
-        this.board = board;
-    }
     @Override
     public void beginContact(Contact contact) {
     }
@@ -38,9 +30,6 @@ public class TankContactListener implements ContactListener {
     private void handleTankSpawnContact(Tank tank, Spawn spawn, Contact contact) {
         if (tank.getColor() == spawn.getColor()) {
             contact.setEnabled(false);
-        }
-        else {
-            contact.setEnabled(true);
         }
     }
 }

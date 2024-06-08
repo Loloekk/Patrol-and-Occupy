@@ -3,7 +3,6 @@ package com.pao.game.view;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.pao.game.view.GameScreen.GameScreen;
-import com.pao.game.viewmodel.EditSettings;
 
 public class Drop extends Game {
     public SpriteBatch batch;

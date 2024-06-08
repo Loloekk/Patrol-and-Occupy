@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
@@ -12,7 +11,6 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.pao.game.view.GameScreen.GameScreen;
-import com.pao.game.viewmodel.EditSettings;
 
 public class MainMenuScreen implements Screen {
     static final float BUTTON_WIDTH = 300 ;
@@ -43,6 +41,7 @@ public class MainMenuScreen implements Screen {
     }
     @Override
     public void render(float delta) {
+        //game.setScreen(new GameScreen(game));
         ScreenUtils.clear(0f, 0f, 0f, 1);
         camera.update();
         game.batch.setProjectionMatrix(camera.combined);
