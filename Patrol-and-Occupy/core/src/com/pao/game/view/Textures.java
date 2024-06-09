@@ -34,6 +34,7 @@ public class Textures {
     static Texture twoPlayers;
     static Texture threePlayers;
     static Texture fourPlayers;
+    static Texture medal;
     public static void load() {
         tanks = new HashMap<>();
         tanks.put(null,new Texture(Gdx.files.internal("tank_gray.png")));
@@ -86,6 +87,7 @@ public class Textures {
         twoPlayers = new Texture(Gdx.files.internal("twoPlayers.png"));
         threePlayers = new Texture(Gdx.files.internal("threePlayers.png"));
         fourPlayers = new Texture(Gdx.files.internal("fourPlayers.png"));
+        medal = new Texture(Gdx.files.internal("medal.png"));
     }
     public static Texture getTankTexture(ModelPlayer color)
     {
@@ -115,6 +117,7 @@ public class Textures {
     public static Texture getTwoPlayers() { return twoPlayers; }
     public static Texture getThreePlayers() { return threePlayers; }
     public static Texture getFourPlayers() { return fourPlayers; }
+    public static Texture getMedal() { return medal; }
     public static void dispose() {
         for (Texture texture : tanks.values())
             texture.dispose();

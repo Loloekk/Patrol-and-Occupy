@@ -23,6 +23,8 @@ public class EndScreen implements Screen {
     static final float START_BUTTON_Y = 400;
     static final float EXIT_BUTTON_Y = 200;
     static final float STATISTICS_WIDTH = 400;
+    static final float MEDAL_WIDTH = 100;
+    static final float MEDAL_HEIGHT = 100;
     Drop game;
     GlobalStatistics globalStatistics;
     OrthographicCamera camera;
@@ -61,11 +63,12 @@ public class EndScreen implements Screen {
         painter.fillBackground();
         camera.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
 
-        displayResult(Drop.WIDTH/2, 900);
-
         float x1 = -STATISTICS_WIDTH * (EditSettings.getNumberOfPlayers() - 1) / 2.0f;
-        for(ModelPlayer color : GlobalStatistics.getPlayers()) {
-            displayPlayerStatistics(Drop.WIDTH / 2 + x1, 800, color);
+        for(ModelPlayer player : GlobalStatistics.getPlayers()) {
+            if(globalStatistics.getWinners().contains(player)) {
+                painter.drawTexture(new TextureRegion(Textures.getMedal()), Drop.WIDTH/2+x1, 900, MEDAL_WIDTH, MEDAL_HEIGHT, 0);
+            }
+            displayPlayerStatistics(Drop.WIDTH / 2 + x1, 800, player);
             x1 += STATISTICS_WIDTH;
         }
 
@@ -76,13 +79,6 @@ public class EndScreen implements Screen {
         if(exitButton.contains(touchPoint.x, touchPoint.y) && Gdx.input.justTouched()) game.setScreen(new MainMenuScreen(game));
 
         game.batch.end();
-    }
-    public void displayResult(float x, float y) {
-//        if(globalStatistics.getWinner() == ModelPlayer.Player1) font.setColor(Color.YELLOW);
-//        if(globalStatistics.getWinner() == ModelPlayer.Player2) font.setColor(Color.GREEN);
-//        if(globalStatistics.getWinner() == ModelPlayer.Player3) font.setColor(Color.BLUE);
-//        if(globalStatistics.getWinner() == ModelPlayer.Player4) font.setColor(Color.RED);
-//        painter.drowWriting("WINNER", "WINNER", x, y);
     }
     public void displayPlayerStatistics(float x, float y, ModelPlayer color) {
         String player = "";

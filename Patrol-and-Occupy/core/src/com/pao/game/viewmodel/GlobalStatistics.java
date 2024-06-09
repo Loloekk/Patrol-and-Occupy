@@ -4,6 +4,7 @@ import com.pao.game.model.ModelPlayer;
 import com.pao.game.model.GameObject.Others.Tank.Tank;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class GlobalStatistics {
     ViewModel VM;
@@ -33,9 +34,13 @@ public class GlobalStatistics {
         }
         return tank.getStatistics().getDeadNumber();
     }
-    public ModelPlayer getWinner() {
+    public List<ModelPlayer> getWinners() {
         List<ModelPlayer> players = getPlayers();
         players.sort(Comparator.comparing(this::getNumberOfPlates).thenComparing(this::getKillNumber).thenComparing(Comparator.comparing(this::getDeadNumber).reversed()));
-        return players.get(players.size()-1);
+        ModelPlayer first = players.get(players.size()-1);
+        return players.stream().filter(p -> getNumberOfPlates(p) == getNumberOfPlates(first)
+                                        &&  getKillNumber(p) == getKillNumber(first)
+                                        &&  getDeadNumber(p) == getDeadNumber(first))
+                               .collect(Collectors.toList());
     }
 }
