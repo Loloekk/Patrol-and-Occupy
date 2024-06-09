@@ -4,7 +4,7 @@ import com.pao.game.model.GameObject.CreatingParams.CreatingParams;
 import com.pao.game.model.GameObject.Obstacles.BrakeObstacle.BrakeObstacle;
 import com.pao.game.model.GameObject.Obstacles.AbstractObstacle.Obstacle;
 import com.pao.game.model.GameObject.Obstacles.BrakeObstacle.BrakeObstacleFactory;
-import com.pao.game.model.GameObject.Obstacles.UnbreakableObstacle.StoneObstacleFactory;
+import com.pao.game.model.GameObject.Obstacles.StoneObstacle.StoneObstacleFactory;
 import com.pao.game.model.GameObject.Others.Plate.PlateCreatingParams;
 import com.pao.game.model.GameObject.Others.Spawn.SpawnCreatingParams;
 import com.pao.game.model.GameObject.Others.Tank.TankCreatingParams;

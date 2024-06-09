@@ -1,4 +1,4 @@
-package com.pao.game.model.GameObject.Obstacles.UnbreakableObstacle;
+package com.pao.game.model.GameObject.Obstacles.StoneObstacle;
 
 import com.pao.game.model.Boards.Board;
 import com.pao.game.model.GameObject.Bodies.BodyGameObject;
