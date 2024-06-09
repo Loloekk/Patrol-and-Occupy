@@ -84,10 +84,22 @@ public class RegionPainter {
         batch.draw(texture,(object.getX()- object.getWidth()/2)*scaleWidth+originX,(object.getY()- object.getHeight()/2)*scaleHeight+originY,
                 object.getWidth()/2*scaleWidth,object.getHeight()/2*scaleHeight,(object.getWidth())*scaleWidth,(object.getHeight())*scaleHeight,1,1,object.getRotation());
     }
-//    public void drawTexture(TextureRegion texture, ObjectDescription object,float scale) {
-//        batch.draw(texture,(object.getX()- object.getWidth()*scale/2)*scaleWidth+originX,(object.getY()- object.getHeight()*scale/2)*scaleHeight+originY,
-//                object.getWidth()*scale/2*scaleWidth,object.getHeight()*scale/2*scaleHeight,object.getWidth()*scale*scaleWidth,object.getHeight()*scale*scaleHeight,1,1,object.getRotation());
-//    }
+    public void drawTexture(TextureRegion texture, ObjectDescription object,float scale) {
+        batch.draw(texture,(object.getX()- object.getWidth()*scale/2)*scaleWidth+originX,(object.getY()- object.getHeight()*scale/2)*scaleHeight+originY,
+                object.getWidth()*scale/2*scaleWidth,object.getHeight()*scale/2*scaleHeight,object.getWidth()*scale*scaleWidth,object.getHeight()*scale*scaleHeight,1,1,object.getRotation());
+    }
+    public void drawTexture(Texture texture, float x, float y, float W, float H,float R) {
+        batch.draw(new TextureRegion(texture),(x-W/2)*scaleHeight+originX,(y-H/2)*scaleWidth+originY,
+                W/2*scaleHeight,H/2*scaleWidth,W*scaleHeight,H*scaleWidth,1,1,R);
+    }
+    public void drawTexture(Texture texture, ObjectDescription object) {
+        batch.draw(new TextureRegion(texture),(object.getX()- object.getWidth()/2)*scaleWidth+originX,(object.getY()- object.getHeight()/2)*scaleHeight+originY,
+                object.getWidth()/2*scaleWidth,object.getHeight()/2*scaleHeight,(object.getWidth())*scaleWidth,(object.getHeight())*scaleHeight,1,1,object.getRotation());
+    }
+    public void drawTexture(Texture texture, ObjectDescription object,float scale) {
+        batch.draw(new TextureRegion(texture),(object.getX()- object.getWidth()*scale/2)*scaleWidth+originX,(object.getY()- object.getHeight()*scale/2)*scaleHeight+originY,
+                object.getWidth()*scale/2*scaleWidth,object.getHeight()*scale/2*scaleHeight,object.getWidth()*scale*scaleWidth,object.getHeight()*scale*scaleHeight,1,1,object.getRotation());
+    }
     public void drawAlternatingTexture(Texture texture1, Texture texture2, Rectangle rectangle, Vector3 touchPoint) {
         if(rectangle.contains(touchPoint.x, touchPoint.y)) {
             batch.draw(new TextureRegion(texture1), rectangle.getX(), rectangle.getY(), rectangle.getWidth(), rectangle.getHeight());

@@ -1,4 +1,4 @@
-package com.pao.game.view.GameScreen.PlayerView;
+package com.pao.game.view.GameScreen.Updating.PlayerView;
 
 import com.badlogic.gdx.Gdx;
 import com.pao.game.communication.Move;

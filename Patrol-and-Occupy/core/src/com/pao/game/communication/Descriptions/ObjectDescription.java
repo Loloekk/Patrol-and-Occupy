@@ -1,6 +1,6 @@
 package com.pao.game.communication.Descriptions;
 
-public abstract class ObjectDescription {
+public class ObjectDescription {
     float x;
     float y;
     float width;
@@ -12,6 +12,13 @@ public abstract class ObjectDescription {
         width=0;
         height=0;
         rotation=0;
+    }
+    public ObjectDescription(ObjectDescription desc){
+        x=desc.getX();
+        y=desc.getY();
+        width=desc.getWidth();
+        height=desc.getHeight();
+        rotation=desc.getRotation();
     }
     public ObjectDescription setX(float x) { this.x=x; return this;}
     public ObjectDescription setY(float y) { this.y=y; return this;}

@@ -1,4 +1,4 @@
-package com.pao.game.view.GameScreen;
+package com.pao.game.view.GameScreen.Drawing;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.pao.game.communication.Descriptions.ConcreteDescription.TankDescription;

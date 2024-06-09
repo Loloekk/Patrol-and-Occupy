@@ -4,6 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.pao.game.view.*;
+import com.pao.game.view.GameScreen.Drawing.DrawingBoard;
+import com.pao.game.view.GameScreen.Updating.UpdatingBoard;
 import com.pao.game.viewmodel.*;
 import com.pao.game.viewmodel.EditSettings;
 
