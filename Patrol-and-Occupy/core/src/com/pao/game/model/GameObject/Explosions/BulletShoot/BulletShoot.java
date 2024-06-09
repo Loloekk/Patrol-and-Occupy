@@ -3,10 +3,11 @@ package com.pao.game.model.GameObject.Explosions.BulletShoot;
 import com.badlogic.gdx.math.MathUtils;
 import com.pao.game.communication.Descriptions.ConcreteDescription.BulletShootDescription;
 import com.pao.game.model.Boards.Board;
-import com.pao.game.model.GameObject.Explosions.Explosion.Explosion;
+import com.pao.game.model.GameObject.Explosions.Explosion.ExplosionCircle;
+import com.pao.game.model.GameObject.Explosions.Explosion.ExplosionRectangle;
 import com.pao.game.model.GameObject.Others.Tank.Tank;
 
-public class BulletShoot extends Explosion {
+public class BulletShoot extends ExplosionRectangle {
     Tank tank;
     public BulletShoot(BulletShootCreatingParams BSCP, Board board) {
         super(BSCP,board);

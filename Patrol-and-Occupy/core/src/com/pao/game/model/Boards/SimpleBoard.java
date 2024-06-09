@@ -80,7 +80,7 @@ public class SimpleBoard implements Board {
     public float getRemainingTime() {
         return clock.getRemainingTime();
     }
-    public void setMove(ModelPlayer color, Move move, boolean value) {
+    public void setMove(ModelPlayer color, Move move, boolean state) {
         Tank tank = null;
         for (Tank t : tankList) {
             if (color == t.getColor()) {
@@ -88,26 +88,10 @@ public class SimpleBoard implements Board {
                 break;
             }
         }
-        switch (move) {
-            case Forward:
-                tank.setMoveForwardState(value);
-                break;
-            case Back:
-                tank.setMoveBackwardsState(value);
-                break;
-            case Left:
-                tank.setMoveLeftState(value);
-                break;
-            case Right:
-                tank.setMoveRightState(value);
-                break;
-            case Shoot:
-                tank.setMakeShoot(value);
-                break;
-            case Dynamite:
-                tank.setPlaceDynamite(value);
-                break;
+        if(tank == null){
+            return;
         }
+        tank.setMove(move,state);
     }
     public List<BodyGameObject> getBodyObjects() { return bodyObjects; }
 

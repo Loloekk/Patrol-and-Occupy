@@ -1,11 +1,10 @@
 package com.pao.game.model.GameObject.Others.Dynamite;
 
-import com.pao.game.communication.Descriptions.ConcreteDescription.BulletDescription;
 import com.pao.game.communication.Descriptions.ConcreteDescription.DynamiteDescription;
 import com.pao.game.model.Boards.Board;
 import com.pao.game.model.GameObject.Bodies.BodyGameObject;
 import com.pao.game.model.GameObject.Explosions.DynamiteExplosion.DynamiteExplosionCreatingParams;
-import com.pao.game.model.GameObject.Explosions.Explosion.Explosion;
+import com.pao.game.model.GameObject.Explosions.Explosion.ExplosionCircle;
 
 public class Dynamite extends BodyGameObject {
     Board board;
@@ -17,11 +16,11 @@ public class Dynamite extends BodyGameObject {
     }
 
     public void takeDamage(BodyGameObject killer) {
-        if(!(killer instanceof Explosion)) return;
+        if(!(killer instanceof ExplosionCircle)) return;
         if(!isActive) return;
         System.out.println("dynamite "+killer);
         isActive = false;
-        board.addObjectToCreate(new DynamiteExplosionCreatingParams().setX(getX()).setY(getY()).setColor(((Explosion)killer).getColor()));
+        board.addObjectToCreate(new DynamiteExplosionCreatingParams().setX(getX()).setY(getY()).setColor(((ExplosionCircle)killer).getColor()));
     }
     public void update(float t){
         float vx = body.getLinearVelocity().x;

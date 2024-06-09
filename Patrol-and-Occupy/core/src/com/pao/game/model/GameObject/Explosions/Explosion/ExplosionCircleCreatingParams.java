@@ -5,15 +5,15 @@ import com.pao.game.model.Boards.Board;
 import com.pao.game.model.GameObject.Bodies.BodyGameObject;
 import com.pao.game.model.GameObject.CreatingParams.CreatingParamsCircle;
 
-public class ExplosionCreatingParams extends CreatingParamsCircle {
+public class ExplosionCircleCreatingParams extends CreatingParamsCircle {
     float liveTime;
-    public ExplosionCreatingParams()
+    public ExplosionCircleCreatingParams()
     {
         setBodyType(BodyDef.BodyType.StaticBody);
         setDensity(1f);
         setIsSensor(true);
     }
-    public ExplosionCreatingParams setLiveTime(float time)
+    public ExplosionCircleCreatingParams setLiveTime(float time)
     {
         liveTime = time;
         return this;

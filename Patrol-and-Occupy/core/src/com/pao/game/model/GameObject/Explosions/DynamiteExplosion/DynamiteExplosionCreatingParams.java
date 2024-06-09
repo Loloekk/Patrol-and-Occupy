@@ -1,11 +1,10 @@
 package com.pao.game.model.GameObject.Explosions.DynamiteExplosion;
 
-import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.pao.game.model.Boards.Board;
 import com.pao.game.model.GameObject.Bodies.BodyGameObject;
-import com.pao.game.model.GameObject.Explosions.Explosion.ExplosionCreatingParams;
+import com.pao.game.model.GameObject.Explosions.Explosion.ExplosionCircleCreatingParams;
 
-public class DynamiteExplosionCreatingParams extends ExplosionCreatingParams {
+public class DynamiteExplosionCreatingParams extends ExplosionCircleCreatingParams {
     public DynamiteExplosionCreatingParams()
     {
         super();

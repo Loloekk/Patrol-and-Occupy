@@ -2,9 +2,9 @@ package com.pao.game.model.GameObject.Explosions.DynamiteExplosion;
 
 import com.pao.game.communication.Descriptions.ConcreteDescription.DynamiteExplosionDescription;
 import com.pao.game.model.Boards.Board;
-import com.pao.game.model.GameObject.Explosions.Explosion.Explosion;
+import com.pao.game.model.GameObject.Explosions.Explosion.ExplosionCircle;
 
-public class DynamiteExplosion extends Explosion {
+public class DynamiteExplosion extends ExplosionCircle {
     public DynamiteExplosion(DynamiteExplosionCreatingParams DECP, Board board) {
         super(DECP,board);
         body.setUserData(this);

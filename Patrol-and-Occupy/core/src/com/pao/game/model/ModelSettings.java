@@ -95,7 +95,7 @@ public class ModelSettings {
     public static void setDefault()
     {
         gameTime = 60f;
-        numberOfPlayers = 2;
+        numberOfPlayers = 4;
         map = 1;
         width = 1920;
         height = 954;

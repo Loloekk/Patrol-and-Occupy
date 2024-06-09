@@ -6,9 +6,9 @@ import com.pao.game.communication.Descriptions.ConcreteDescription.BulletDescrip
 import com.pao.game.model.Boards.Board;
 import com.pao.game.model.GameObject.Bodies.BodyGameObject;
 import com.pao.game.model.GameObject.Explosions.BulletExplosion.BulletExplosionCreatingParams;
-import com.pao.game.model.GameObject.Explosions.BulletShoot.BulletShoot;
 import com.pao.game.model.GameObject.Explosions.DynamiteExplosion.DynamiteExplosion;
-import com.pao.game.model.GameObject.Explosions.Explosion.Explosion;
+import com.pao.game.model.GameObject.Explosions.Explosion.ExplosionCircle;
+import com.pao.game.model.GameObject.Explosions.Explosion.ExplosionRectangle;
 import com.pao.game.model.GameObject.Others.Plate.Plate;
 import com.pao.game.model.GameObject.Others.Spawn.Spawn;
 import com.pao.game.model.GameObject.Others.Tank.Tank;
@@ -39,8 +39,9 @@ public class Bullet extends BodyGameObject {
         if(killer instanceof Spawn && ((Spawn) killer).getColor() == color) return;
         if(killer instanceof Bullet && ((Bullet) killer).getColor() == color) return;
         if(killer instanceof Plate) return;
-        if(killer instanceof Explosion && !(killer instanceof DynamiteExplosion)) return;
-        if(killer instanceof Explosion && ((Explosion) killer).getStateTime()>((Explosion) killer).getLiveTime()/4) return;
+        if(killer instanceof ExplosionRectangle) return;
+        if(killer instanceof ExplosionCircle && !(killer instanceof DynamiteExplosion)) return;
+        if(killer instanceof DynamiteExplosion && ((DynamiteExplosion) killer).getStateTime()>((DynamiteExplosion) killer).getLiveTime()/2) return;
         isActive = false;
         float angle = getRotation() * MathUtils.degreesToRadians;
         float x = getX() + MathUtils.cos(angle) * height * 0.5f;

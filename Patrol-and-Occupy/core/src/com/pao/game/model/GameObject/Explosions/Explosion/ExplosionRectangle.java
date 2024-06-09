@@ -4,7 +4,7 @@ import com.pao.game.model.Boards.Board;
 import com.pao.game.model.GameObject.Bodies.BodyGameObject;
 import com.pao.game.model.ModelPlayer;
 
-public abstract class Explosion extends BodyGameObject {
+public abstract class ExplosionRectangle extends BodyGameObject {
     float width;
     float height;
     float x, y;
@@ -12,16 +12,16 @@ public abstract class Explosion extends BodyGameObject {
     float liveTime;
     boolean isActive;
     ModelPlayer color;
-    public Explosion(ExplosionCreatingParams ECP, Board board) {
-        super(ECP,board.getWorld());
-        this.x = ECP.getX();
-        this.y = ECP.getY();
-        this.width = 2*ECP.getRadius();
-        this.height = 2*ECP.getRadius();
-        this.liveTime = ECP.getLiveTime();
+    public ExplosionRectangle(ExplosionRectangleCreatingParams ERCP, Board board) {
+        super(ERCP,board.getWorld());
+        this.x = ERCP.getX();
+        this.y = ERCP.getY();
+        this.width = 2*ERCP.getRealWidth();
+        this.height = 2*ERCP.getRealHeight();
+        this.liveTime = ERCP.getLiveTime();
         stateTime = 0;
         isActive = true;
-        this.color = ECP.getColor();
+        this.color = ERCP.getColor();
     }
 
     public void update(float time) {

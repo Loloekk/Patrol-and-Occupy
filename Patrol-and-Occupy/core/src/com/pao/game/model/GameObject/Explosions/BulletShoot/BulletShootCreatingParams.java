@@ -1,17 +1,18 @@
 package com.pao.game.model.GameObject.Explosions.BulletShoot;
 
-import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.pao.game.model.Boards.Board;
 import com.pao.game.model.GameObject.Bodies.BodyGameObject;
-import com.pao.game.model.GameObject.Explosions.Explosion.ExplosionCreatingParams;
+import com.pao.game.model.GameObject.Explosions.Explosion.ExplosionCircleCreatingParams;
+import com.pao.game.model.GameObject.Explosions.Explosion.ExplosionRectangleCreatingParams;
 import com.pao.game.model.GameObject.Others.Tank.Tank;
 
-public class BulletShootCreatingParams extends ExplosionCreatingParams {
+public class BulletShootCreatingParams extends ExplosionRectangleCreatingParams {
     Tank tank;
     public BulletShootCreatingParams()
     {
         super();
-        setRadius(10);
+        setRealWidth(10);
+        setRealHeight(10);
         setLiveTime(0.2f);
         setIsSensor(false);
     }
