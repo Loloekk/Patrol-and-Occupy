@@ -1,4 +1,4 @@
-package com.pao.game.view.GameScreen;
+package com.pao.game.view.GameScreen.Updating;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -24,10 +24,10 @@ public class UpdatingBoard {
         List<ModelPlayer> colors = ModelPlayer.getColorList(n);
         for(int i = 0 ;i < n ;i ++){
             if(!EditSettings.getControl()){
-                players.add(new PlayerView5Buttons(colors.get(i),VM));
+                players.add((PlayerView) new PlayerView5Buttons(colors.get(i),VM));
             }
             else {
-                players.add(new PlayerViewOneButton(colors.get(i),VM));
+                players.add((PlayerView) new PlayerViewOneButton(colors.get(i),VM));
             }
         }
     }
