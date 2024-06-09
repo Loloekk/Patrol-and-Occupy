@@ -10,4 +10,8 @@ public enum ModelPlayer {
     {
         return Arrays.stream(ModelPlayer.values()).limit(n).collect(Collectors.toList());
     }
+    public static List<ModelPlayer> getAllColorList()
+    {
+        return Arrays.stream(ModelPlayer.values()).collect(Collectors.toList());
+    }
 }

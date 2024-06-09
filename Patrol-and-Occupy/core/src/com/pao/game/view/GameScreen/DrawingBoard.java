@@ -21,8 +21,6 @@ public class DrawingBoard {
     final OrthographicCamera camera;
     final ViewModel VM;
     Viewport viewport;
-    Textures text;
-    Animations animations;
     PrepareDrawingObjects preparator;
     RegionPainter painterGame;
     RegionPainter painterTop;
@@ -35,9 +33,7 @@ public class DrawingBoard {
         this.VM = VM;
         camera.setToOrtho(false, Drop.WIDTH,Drop.HEIGHT);
         viewport = new ExtendViewport(Drop.WIDTH,Drop.HEIGHT,camera);
-        text = new Textures(n);
-        animations = new Animations();
-        preparator = new PrepareDrawingObjects(text,animations);
+        preparator = new PrepareDrawingObjects();
         painterGame = new RegionPainter(game.batch,0,0,Drop.WIDTH,Drop.HEIGHT-100,1920,954,new Color(0.9f,0.9f,0.4f,1));
         painterTop = new RegionPainter(game.batch,0,Drop.HEIGHT-100,Drop.WIDTH,100,Drop.WIDTH,100,new Color(0.274f,0.0f,0.305f,1));
         painterTop.addFont("Time",40,new Color(0.9f,0.9f,0.4f,1));
@@ -67,11 +63,11 @@ public class DrawingBoard {
     }
     private void drowMagazine(MagazineView magazine)
     {
-        painterTop.drawTexture(new TextureRegion(text.getMagazineTexture(magazine.getColor())), magazine.getX(), magazine.getY(), 300,95,0);
-        painterTop.drawTexture(new TextureRegion(text.getPlateTexture(null)),magazine.getX()-80,magazine.getY(),80,80,0);
-        painterTop.drawTexture(new TextureRegion(text.getBulletTexture()),magazine.getX()+60,magazine.getY()-10,150,50,0);
+        painterTop.drawTexture(new TextureRegion(Textures.getMagazineTexture(magazine.getColor())), magazine.getX(), magazine.getY(), 300,95,0);
+        painterTop.drawTexture(new TextureRegion(Textures.getPlateTexture(null)),magazine.getX()-80,magazine.getY(),80,80,0);
+        painterTop.drawTexture(new TextureRegion(Textures.getBulletTexture()),magazine.getX()+60,magazine.getY()-10,150,50,0);
         if(magazine.getDynamite()){
-            painterTop.drawTexture(new TextureRegion(text.getDynamiteTexture()),magazine.getX()+120,magazine.getY()+25,30,30,0);
+            painterTop.drawTexture(new TextureRegion(Textures.getDynamiteTexture()),magazine.getX()+120,magazine.getY()+25,30,30,0);
         }
         painterTop.drowWriting("Plates",((Integer)magazine.getPlates()).toString(),magazine.getX()-80,magazine.getY());
         painterTop.drowWriting("Magazines",(Integer)magazine.getBullets()+"/"+ EditSettings.getMagazineCapacity(),magazine.getX()+35,magazine.getY()-10);
@@ -80,7 +76,6 @@ public class DrawingBoard {
         viewport.update(width, height);
     }
     public void dispose() {
-        text.dispose();
         painterGame.dispose();
     }
 }

@@ -8,9 +8,10 @@ public class Drop extends Game {
     public SpriteBatch batch;
     public static final int WIDTH = 1920;
     public static final int HEIGHT = 1054;
-    GameScreen tmp;
     public void create() {
         batch = new SpriteBatch();
+        Textures.load();
+        Animations.load();
         this.setScreen(new MainMenuScreen(this));
     }
 
@@ -20,7 +21,8 @@ public class Drop extends Game {
 
     public void dispose() {
         batch.dispose();
-        tmp.dispose();
+        Textures.dispose();
+        Animations.dispose();
         //font.dispose();
     }
 }

@@ -26,13 +26,11 @@ public class MainMenuScreen implements Screen {
     Rectangle exitButton;
     Vector3 touchPoint;
     RegionPainter painter;
-    Textures textures;
     public MainMenuScreen(Drop game) {
         this.game = game;
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Drop.WIDTH, Drop.HEIGHT);
         viewport = new ExtendViewport(Drop.WIDTH, Drop.HEIGHT, camera);
-        textures = new Textures(1);
         playButton = new Rectangle(Drop.WIDTH/2 - BUTTON_WIDTH/2, PLAY_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
         settingsButton = new Rectangle(Drop.WIDTH/2 - BUTTON_WIDTH/2, SETTINGS_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
         exitButton = new Rectangle(Drop.WIDTH/2 - BUTTON_WIDTH/2, EXIT_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
@@ -50,34 +48,34 @@ public class MainMenuScreen implements Screen {
         painter.fillBackground();
         camera.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
         if(playButton.contains(touchPoint.x, touchPoint.y)) {
-            painter.drawTexture(new TextureRegion(textures.getPlayButtonActive()), Drop.WIDTH / 2, PLAY_BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT, 0);
+            painter.drawTexture(new TextureRegion(Textures.getPlayButtonActive()), Drop.WIDTH / 2, PLAY_BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT, 0);
             if(Gdx.input.justTouched()) {
                 //this.dispose();
                 game.setScreen(new GameScreen(game));
             }
         }
         else {
-            painter.drawTexture(new TextureRegion(textures.getPlayButtonInactive()), Drop.WIDTH / 2, PLAY_BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT, 0);
+            painter.drawTexture(new TextureRegion(Textures.getPlayButtonInactive()), Drop.WIDTH / 2, PLAY_BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT, 0);
         }
 
         if(settingsButton.contains(touchPoint.x, touchPoint.y)) {
-            painter.drawTexture(new TextureRegion(textures.getSettingsButtonActive()), Drop.WIDTH / 2, SETTINGS_BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT, 0);
+            painter.drawTexture(new TextureRegion(Textures.getSettingsButtonActive()), Drop.WIDTH / 2, SETTINGS_BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT, 0);
             if(Gdx.input.justTouched()) {
                 game.setScreen(new SettingsScreen(game));
             }
         }
         else {
-            painter.drawTexture(new TextureRegion(textures.getSettingsButtonInactive()), Drop.WIDTH / 2, SETTINGS_BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT, 0);
+            painter.drawTexture(new TextureRegion(Textures.getSettingsButtonInactive()), Drop.WIDTH / 2, SETTINGS_BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT, 0);
         }
 
         if(exitButton.contains(touchPoint.x, touchPoint.y)) {
-            painter.drawTexture(new TextureRegion(textures.getExitButtonActive()), Drop.WIDTH / 2, EXIT_BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT, 0);
+            painter.drawTexture(new TextureRegion(Textures.getExitButtonActive()), Drop.WIDTH / 2, EXIT_BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT, 0);
             if(Gdx.input.justTouched()) {
                 Gdx.app.exit();
             }
         }
         else {
-            painter.drawTexture(new TextureRegion(textures.getExitButtonInactive()), Drop.WIDTH / 2, EXIT_BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT, 0);
+            painter.drawTexture(new TextureRegion(Textures.getExitButtonInactive()), Drop.WIDTH / 2, EXIT_BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT, 0);
         }
         game.batch.end();
     }

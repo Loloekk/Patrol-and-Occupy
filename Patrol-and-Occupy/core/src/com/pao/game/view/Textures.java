@@ -8,26 +8,30 @@ import java.util.Map;
 import com.pao.game.model.ModelPlayer;
 
 public class Textures {
-    Map<ModelPlayer, Texture> tanks;
-    Texture bullet;
-    Texture unbreakableObstacle;
-    Texture breakableObstacle;
-    Map<ModelPlayer, Texture> plates;
-    Map<ModelPlayer, Texture> magazines;
-    Texture dynamite;
-    Map<ModelPlayer, Texture> spawns;
-    Texture startButtonActive;
-    Texture startButtonInactive;
-    Texture exitButtonActive;
-    Texture exitButtonInactive;
-    Texture playButtonActive;
-    Texture playButtonInactive;
-    Texture settingsButtonActive;
-    Texture settingsButtonInactive;
-    public Textures(int n) {
+    static Map<ModelPlayer, Texture> tanks;
+    static Texture bullet;
+    static Texture unbreakableObstacle;
+    static Texture breakableObstacle;
+    static Map<ModelPlayer, Texture> plates;
+    static Map<ModelPlayer, Texture> magazines;
+    static Texture dynamite;
+    static Map<ModelPlayer, Texture> spawns;
+    static Texture startButtonActive;
+    static Texture startButtonInactive;
+    static Texture exitButtonActive;
+    static Texture exitButtonInactive;
+    static Texture playButtonActive;
+    static Texture playButtonInactive;
+    static Texture settingsButtonActive;
+    static Texture settingsButtonInactive;
+    static Texture resumeButtonActive;
+    static Texture resumeButtonInactive;
+    static Texture restartButtonActive;
+    static Texture restartButtonInactive;
+    public static void load() {
         tanks = new HashMap<>();
         tanks.put(null,new Texture(Gdx.files.internal("tank_gray.png")));
-        for(ModelPlayer color : ModelPlayer.getColorList(n)){
+        for(ModelPlayer color : ModelPlayer.getAllColorList()){
             if(color == ModelPlayer.Player4) tanks.put(color,new Texture(Gdx.files.internal("tank_red.png")));
             if(color == ModelPlayer.Player3) tanks.put(color,new Texture(Gdx.files.internal("tank_blue.png")));
             if(color == ModelPlayer.Player2) tanks.put(color,new Texture(Gdx.files.internal("tank_green.png")));
@@ -38,7 +42,7 @@ public class Textures {
         breakableObstacle = new Texture(Gdx.files.internal("rock_breakable.png"));
         plates = new HashMap<>();
         plates.put(null, new Texture(Gdx.files.internal("plate_gray.png")));
-        for(ModelPlayer color : ModelPlayer.getColorList(n)){
+        for(ModelPlayer color : ModelPlayer.getAllColorList()){
             if(color == ModelPlayer.Player4) plates.put(color,new Texture(Gdx.files.internal("plate_red.png")));
             if(color == ModelPlayer.Player3) plates.put(color,new Texture(Gdx.files.internal("plate_blue.png")));
             if(color == ModelPlayer.Player2) plates.put(color,new Texture(Gdx.files.internal("plate_green.png")));
@@ -46,14 +50,14 @@ public class Textures {
         }
         dynamite = new Texture(Gdx.files.internal("dynamite.jpeg"));
         spawns = new HashMap<>();
-        for(ModelPlayer color : ModelPlayer.getColorList(n)){
+        for(ModelPlayer color : ModelPlayer.getAllColorList()){
             if(color == ModelPlayer.Player4) spawns.put(color,new Texture(Gdx.files.internal("spawn_red.png")));
             if(color == ModelPlayer.Player3) spawns.put(color,new Texture(Gdx.files.internal("spawn_blue.png")));
             if(color == ModelPlayer.Player2) spawns.put(color,new Texture(Gdx.files.internal("spawn_green.png")));
             if(color == ModelPlayer.Player1) spawns.put(color,new Texture(Gdx.files.internal("spawn_yellow.png")));
         }
         magazines = new HashMap<>();
-        for(ModelPlayer color : ModelPlayer.getColorList(n)){
+        for(ModelPlayer color : ModelPlayer.getAllColorList()){
             if(color == ModelPlayer.Player4) magazines.put(color,new Texture(Gdx.files.internal("magazine_red.png")));
             if(color == ModelPlayer.Player3) magazines.put(color,new Texture(Gdx.files.internal("magazine_blue.png")));
             if(color == ModelPlayer.Player2) magazines.put(color,new Texture(Gdx.files.internal("magazine_green.png")));
@@ -67,28 +71,35 @@ public class Textures {
         playButtonInactive = new Texture(Gdx.files.internal("playInactive.png"));
         settingsButtonActive = new Texture(Gdx.files.internal("settingsActive.png"));
         settingsButtonInactive = new Texture(Gdx.files.internal("settingsInactive.png"));
+        resumeButtonActive = new Texture(Gdx.files.internal("resumeActive.png"));
+        resumeButtonInactive = new Texture(Gdx.files.internal("resumeInactive.png"));
+        restartButtonActive = new Texture(Gdx.files.internal("restartActive.png"));
+        restartButtonInactive = new Texture(Gdx.files.internal("restartInactive.png"));
     }
-    public Texture getTankTexture(ModelPlayer color)
+    public static Texture getTankTexture(ModelPlayer color)
     {
         return tanks.get(color);
     }
-    public Texture getBulletTexture() { return bullet; }
-    public Texture getUnbreakableObstacleTexture() { return unbreakableObstacle; }
-    public Texture getBreakableObstacleTexture() { return breakableObstacle; }
-    public Texture getPlateTexture(ModelPlayer color) { return plates.get(color); }
-    public Texture getMagazineTexture(ModelPlayer color) { return magazines.get(color); }
-    public Texture getDynamiteTexture() { return dynamite; }
-    public Texture getSpawnTexture(ModelPlayer color) { return spawns.get(color); }
-    public Texture getStartButtonActive() { return startButtonActive; }
-    public Texture getStartButtonInactive() { return startButtonInactive; }
-    public Texture getExitButtonActive() { return exitButtonActive; }
-    public Texture getExitButtonInactive() { return exitButtonInactive; }
-    public Texture getPlayButtonActive() { return playButtonActive; }
-    public Texture getPlayButtonInactive() { return playButtonInactive; }
-    public Texture getSettingsButtonActive() { return settingsButtonActive; }
-    public Texture getSettingsButtonInactive() { return settingsButtonInactive; }
-
-    public void dispose() {
+    public static Texture getBulletTexture() { return bullet; }
+    public static Texture getUnbreakableObstacleTexture() { return unbreakableObstacle; }
+    public static Texture getBreakableObstacleTexture() { return breakableObstacle; }
+    public static Texture getPlateTexture(ModelPlayer color) { return plates.get(color); }
+    public static Texture getMagazineTexture(ModelPlayer color) { return magazines.get(color); }
+    public static Texture getDynamiteTexture() { return dynamite; }
+    public static Texture getSpawnTexture(ModelPlayer color) { return spawns.get(color); }
+    public static Texture getStartButtonActive() { return startButtonActive; }
+    public static Texture getStartButtonInactive() { return startButtonInactive; }
+    public static Texture getExitButtonActive() { return exitButtonActive; }
+    public static Texture getExitButtonInactive() { return exitButtonInactive; }
+    public static Texture getPlayButtonActive() { return playButtonActive; }
+    public static Texture getPlayButtonInactive() { return playButtonInactive; }
+    public static Texture getSettingsButtonActive() { return settingsButtonActive; }
+    public static Texture getSettingsButtonInactive() { return settingsButtonInactive; }
+    public static Texture getResumeButtonActive() { return resumeButtonActive; }
+    public static Texture getResumeButtonInactive() { return resumeButtonInactive; }
+    public static Texture getRestartButtonActive() { return restartButtonActive; }
+    public static Texture getRestartButtonInactive() { return restartButtonInactive; }
+    public static void dispose() {
         for (Texture texture : tanks.values())
             texture.dispose();
         for (Texture texture : plates.values())

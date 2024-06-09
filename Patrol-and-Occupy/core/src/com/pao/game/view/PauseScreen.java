@@ -24,12 +24,6 @@ public class PauseScreen implements Screen {
     OrthographicCamera camera;
     GameScreen gameScreen;
     Viewport viewport;
-    Texture resumeButtonActive;
-    Texture resumeButtonInactive;
-    Texture restartButtonActive;
-    Texture restartButtonInactive;
-    Texture exitButtonActive;
-    Texture exitButtonInactive;
     Rectangle resumeButton;
     Rectangle restartButton;
     Rectangle exitButton;
@@ -43,12 +37,6 @@ public class PauseScreen implements Screen {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Drop.WIDTH, Drop.HEIGHT);
         viewport = new ExtendViewport(Drop.WIDTH, Drop.HEIGHT, camera);
-        resumeButtonActive = new Texture(Gdx.files.internal("resumeActive.png"));
-        resumeButtonInactive = new Texture(Gdx.files.internal("resumeInactive.png"));
-        restartButtonActive = new Texture(Gdx.files.internal("restartActive.png"));
-        restartButtonInactive = new Texture(Gdx.files.internal("restartInactive.png"));
-        exitButtonActive = new Texture(Gdx.files.internal("exitActive.png"));
-        exitButtonInactive = new Texture(Gdx.files.internal("exitInactive.png"));
         resumeButton = new Rectangle(Drop.WIDTH/2- BUTTON_WIDTH/2, RESUME_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
         restartButton = new Rectangle(Drop.WIDTH/2- BUTTON_WIDTH/2, RESTART_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
         exitButton = new Rectangle(Drop.WIDTH/2 - BUTTON_WIDTH/2, EXIT_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
@@ -77,36 +65,36 @@ public class PauseScreen implements Screen {
         camera.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
 
         if(resumeButton.contains(touchPoint.x, touchPoint.y)) {
-            game.batch.draw(resumeButtonActive, Drop.WIDTH / 2 - BUTTON_WIDTH / 2, RESUME_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
+            game.batch.draw(Textures.getResumeButtonActive(), Drop.WIDTH / 2 - BUTTON_WIDTH / 2, RESUME_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
             if(Gdx.input.justTouched()) {
                 //this.dispose();
                 game.setScreen(gameScreen);
             }
         }
         else {
-            game.batch.draw(resumeButtonInactive, Drop.WIDTH / 2 - BUTTON_WIDTH / 2, RESUME_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
+            game.batch.draw(Textures.getResumeButtonInactive(), Drop.WIDTH / 2 - BUTTON_WIDTH / 2, RESUME_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
         }
 
         if(restartButton.contains(touchPoint.x, touchPoint.y)) {
-            game.batch.draw(restartButtonActive, Drop.WIDTH / 2 - BUTTON_WIDTH / 2, RESTART_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
+            game.batch.draw(Textures.getRestartButtonActive(), Drop.WIDTH / 2 - BUTTON_WIDTH / 2, RESTART_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
             if(Gdx.input.justTouched()) {
                 //this.dispose();
                 game.setScreen(new GameScreen(game));
             }
         }
         else {
-            game.batch.draw(restartButtonInactive, Drop.WIDTH / 2 - BUTTON_WIDTH / 2, RESTART_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
+            game.batch.draw(Textures.getRestartButtonInactive(), Drop.WIDTH / 2 - BUTTON_WIDTH / 2, RESTART_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
         }
 
         if(exitButton.contains(touchPoint.x, touchPoint.y)) {
-            game.batch.draw(exitButtonActive, Drop.WIDTH / 2 - BUTTON_WIDTH / 2, EXIT_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
+            game.batch.draw(Textures.getExitButtonActive(), Drop.WIDTH / 2 - BUTTON_WIDTH / 2, EXIT_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
             if(Gdx.input.justTouched()) {
                 //this.dispose();
                 game.setScreen(new MainMenuScreen(game));
             }
         }
         else {
-            game.batch.draw(exitButtonInactive, Drop.WIDTH / 2 - BUTTON_WIDTH / 2, EXIT_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
+            game.batch.draw(Textures.getExitButtonInactive(), Drop.WIDTH / 2 - BUTTON_WIDTH / 2, EXIT_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
         }
         game.batch.end();
     }
