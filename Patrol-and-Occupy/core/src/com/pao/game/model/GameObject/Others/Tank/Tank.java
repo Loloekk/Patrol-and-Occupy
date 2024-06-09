@@ -54,7 +54,6 @@ public class Tank extends BodyGameObject {
 
 
     public void setMove(Move move, boolean state){
-        System.out.println(color+" "+move+" "+ state);
         controler.setMove(move,state);
     }
     public void revive() {

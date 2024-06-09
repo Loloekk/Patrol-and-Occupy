@@ -18,7 +18,6 @@ public class Dynamite extends BodyGameObject {
     public void takeDamage(BodyGameObject killer) {
         if(!(killer instanceof ExplosionCircle)) return;
         if(!isActive) return;
-        System.out.println("dynamite "+killer);
         isActive = false;
         board.addObjectToCreate(new DynamiteExplosionCreatingParams().setX(getX()).setY(getY()).setColor(((ExplosionCircle)killer).getColor()));
     }

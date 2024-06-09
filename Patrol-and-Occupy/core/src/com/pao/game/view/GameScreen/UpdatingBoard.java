@@ -1,8 +1,5 @@
-package com.pao.game.view.GameScreen.Updating;
+package com.pao.game.view.GameScreen;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.pao.game.communication.Move;
 import com.pao.game.model.ModelPlayer;
 import com.pao.game.view.GameScreen.PlayerView.PlayerView;
 import com.pao.game.view.GameScreen.PlayerView.PlayerView5Buttons;
