@@ -21,6 +21,6 @@ public class StoneObstacleDrawing implements ObjectDrawing{
     @Override
     public void draw() {
         painter.drawTexture(Textures.getStoneObstacleTexture(),
-                new ObjectDescription(desc).setHeight(desc.getHeight()+2).setWidth(desc.getWidth()+2));
+                new ObjectDescription(desc).setHeight(desc.getHeight()+1).setWidth(desc.getWidth()+1));
     }
 }

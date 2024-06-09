@@ -12,6 +12,8 @@ public class StoneObstacle extends Obstacle {
         body.setUserData(this);
     }
     public void takeDamage(BodyGameObject killer){
+
+        System.out.println(killer);
     }
     public boolean getIsActive() { return isActive; }
     @Override

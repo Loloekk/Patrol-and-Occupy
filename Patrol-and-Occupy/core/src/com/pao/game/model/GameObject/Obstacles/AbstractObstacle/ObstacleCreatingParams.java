@@ -6,8 +6,8 @@ import com.pao.game.model.GameObject.CreatingParams.CreatingParamsRectangle;
 public abstract class ObstacleCreatingParams extends CreatingParamsRectangle {
     public ObstacleCreatingParams()
     {
-        setRealWidth(20);
-        setRealHeight(20);
+        setRealWidth(50);
+        setRealHeight(50);
         setBodyType(BodyDef.BodyType.StaticBody);
         setDensity(1f);
         setIsSensor(false);

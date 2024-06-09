@@ -3,6 +3,7 @@ package com.pao.game.model.MultiContactListener;
 import com.badlogic.gdx.physics.box2d.*;
 import com.pao.game.model.GameObject.Explosions.Explosion.ExplosionCircle;
 import com.pao.game.model.GameObject.Explosions.Explosion.ExplosionRectangle;
+import com.pao.game.model.GameObject.Obstacles.HedgehogsObstacl.HedgehogsObstacle;
 import com.pao.game.model.GameObject.Others.Bullet.Bullet;
 import com.pao.game.model.GameObject.Others.Spawn.Spawn;
 import com.pao.game.model.GameObject.Others.Tank.Tank;
@@ -35,16 +36,16 @@ public class BulletContactListener implements ContactListener {
         if (userDataA instanceof Bullet && userDataB instanceof Bullet) {
             handleBulletBulletContact((Bullet)userDataA,(Bullet)userDataB,contact);
         }
-        if (userDataA instanceof Bullet && userDataB instanceof ExplosionCircle) {
-            contact.setEnabled(false);
-        }
-        else if (userDataA instanceof ExplosionCircle && userDataB instanceof Bullet){
-            contact.setEnabled(false);
-        }
         if (userDataA instanceof Bullet && userDataB instanceof ExplosionRectangle) {
             contact.setEnabled(false);
         }
         else if (userDataA instanceof ExplosionRectangle && userDataB instanceof Bullet){
+            contact.setEnabled(false);
+        }
+        if (userDataA instanceof Bullet && userDataB instanceof HedgehogsObstacle) {
+            contact.setEnabled(false);
+        }
+        else if (userDataA instanceof HedgehogsObstacle && userDataB instanceof Bullet){
             contact.setEnabled(false);
         }
     }

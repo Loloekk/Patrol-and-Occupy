@@ -47,7 +47,7 @@ public class Textures {
         }
         bullet = new Texture(Gdx.files.internal("bullet.png"));
         stoneObstacle = new Texture(Gdx.files.internal("rock.png"));
-        brakeObstacle = new Texture(Gdx.files.internal("rock_breakable.png"));
+        brakeObstacle = new Texture(Gdx.files.internal("rock_breakable2.png"));
         bricksObstacle = new Texture(Gdx.files.internal("brick.png"));
         hedgehogsObstacle = new Texture(Gdx.files.internal("hedgehogs.png"));
         plates = new HashMap<>();

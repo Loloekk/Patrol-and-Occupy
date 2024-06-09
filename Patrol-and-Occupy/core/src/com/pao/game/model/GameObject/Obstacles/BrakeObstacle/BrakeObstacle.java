@@ -7,12 +7,16 @@ import com.pao.game.model.GameObject.Obstacles.AbstractObstacle.Obstacle;
 import com.pao.game.model.GameObject.Others.Tank.Tank;
 
 public class BrakeObstacle extends Obstacle {
+    int width = 50;
+    int height = 50;
     boolean isActive = true;
     public BrakeObstacle(BrakeObstacleCreatingParams BOCP, Board board) {
         super(BOCP, board);
         body.setUserData(this);
     }
     public void takeDamage(BodyGameObject killer){
+
+        System.out.println(killer);
         if(!(killer instanceof Tank)) return;
         isActive = false;
     }
@@ -26,5 +30,15 @@ public class BrakeObstacle extends Obstacle {
                 .setWidth(getWidth())
                 .setHeight(getHeight())
                 .setRotation(getRotation());
+    }
+    @Override
+    public float getWidth()
+    {
+        return width;
+    }
+    @Override
+    public float getHeight()
+    {
+        return height;
     }
 }

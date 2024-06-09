@@ -9,7 +9,7 @@ public abstract class ExplosionCircleCreatingParams extends CreatingParamsCircle
     float liveTime;
     public ExplosionCircleCreatingParams()
     {
-        setBodyType(BodyDef.BodyType.StaticBody);
+        setBodyType(BodyDef.BodyType.DynamicBody);
         setDensity(1f);
         setIsSensor(true);
     }

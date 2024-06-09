@@ -12,7 +12,7 @@ public class BricksObstacleDrawing implements ObjectDrawing{
     public BricksObstacleDrawing(RegionPainter painter, BricksObstacleDescription desc){
         this.painterGame = painter;
         this.desc = desc;
-        priority = 7500;
+        priority = 7600;
     }
     @Override
     public Integer getPriority() {
@@ -21,6 +21,6 @@ public class BricksObstacleDrawing implements ObjectDrawing{
     @Override
     public void draw() {
         painterGame.drawTexture(Textures.getBricksObstacleTexture(),
-                new ObjectDescription(desc).setHeight(desc.getHeight()+2).setWidth(desc.getWidth()+2));
+                new ObjectDescription(desc).setHeight(desc.getHeight()+1).setWidth(desc.getWidth()+1));
     }
 }

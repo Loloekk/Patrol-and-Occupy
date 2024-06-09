@@ -70,7 +70,6 @@ public class Tank extends BodyGameObject {
         if(!(killer instanceof ExplosionCircle)) return;
 
         if(killer instanceof BulletExplosion && ((BulletExplosion) killer).getColor() == color) return;
-        if(killer instanceof BulletShoot) return;
         playerStatistics.incrementDeadNumber();
         board.getTank(((ExplosionCircle) killer).getColor()).getStatistics().incrementKillNumber();
         isAlive = false;

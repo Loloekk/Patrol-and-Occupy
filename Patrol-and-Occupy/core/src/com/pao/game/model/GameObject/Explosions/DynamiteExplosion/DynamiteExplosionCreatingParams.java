@@ -8,7 +8,7 @@ public class DynamiteExplosionCreatingParams extends ExplosionCircleCreatingPara
     public DynamiteExplosionCreatingParams()
     {
         super();
-        setRadius(150);
+        setRadius(100);
         setLiveTime(0.5f);
     }
     @Override

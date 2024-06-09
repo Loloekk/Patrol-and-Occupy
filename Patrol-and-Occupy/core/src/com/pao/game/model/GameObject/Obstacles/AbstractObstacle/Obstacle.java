@@ -19,8 +19,6 @@ public abstract class Obstacle extends BodyGameObject {
             float x1 = x - (numberOfColumns - 1) / 2.0f * side;
             for(int j = 0; j < numberOfColumns; j++) {
                 ObstacleCreatingParams obstacle = (ObstacleCreatingParams)factory.getNew()
-                        .setRealHeight(side)
-                        .setRealWidth(side)
                         .setX(x + (x1-x) * MathUtils.cos(degree * MathUtils.degreesToRadians) - (y1-y) * MathUtils.sin(degree * MathUtils.degreesToRadians))
                         .setY(y + (x1-x) * MathUtils.sin(degree * MathUtils.degreesToRadians) + (y1-y) * MathUtils.cos(degree * MathUtils.degreesToRadians))
                         .setRotation(degree);

@@ -11,7 +11,7 @@ public class BulletDrawing implements ObjectDrawing{
     public BulletDrawing(RegionPainter painter, BulletDescription desc){
         this.painterGame = painter;
         this.desc = desc;
-        priority = 7000;
+        priority = 7500;
     }
     @Override
     public Integer getPriority() {

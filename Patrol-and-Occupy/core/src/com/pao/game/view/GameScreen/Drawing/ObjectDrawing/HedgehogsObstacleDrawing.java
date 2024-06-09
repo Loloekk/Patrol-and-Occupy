@@ -21,6 +21,6 @@ public class HedgehogsObstacleDrawing implements ObjectDrawing{
     @Override
     public void draw() {
         painterGame.drawTexture(Textures.getHedgehogsObstacleTexture(),
-                new ObjectDescription(desc).setHeight(desc.getHeight()+2).setWidth(desc.getWidth()+2));
+                new ObjectDescription(desc).setHeight(desc.getHeight()).setWidth(desc.getWidth()),1.2f);
     }
 }
