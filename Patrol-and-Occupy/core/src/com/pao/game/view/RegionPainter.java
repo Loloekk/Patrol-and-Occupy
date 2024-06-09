@@ -9,6 +9,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector3;
 import com.pao.game.communication.Descriptions.ObjectDescription;
 
 import java.util.HashMap;
@@ -86,6 +88,14 @@ public class RegionPainter {
 //        batch.draw(texture,(object.getX()- object.getWidth()*scale/2)*scaleWidth+originX,(object.getY()- object.getHeight()*scale/2)*scaleHeight+originY,
 //                object.getWidth()*scale/2*scaleWidth,object.getHeight()*scale/2*scaleHeight,object.getWidth()*scale*scaleWidth,object.getHeight()*scale*scaleHeight,1,1,object.getRotation());
 //    }
+    public void drawAlternatingTexture(Texture texture1, Texture texture2, Rectangle rectangle, Vector3 touchPoint) {
+        if(rectangle.contains(touchPoint.x, touchPoint.y)) {
+            batch.draw(new TextureRegion(texture1), rectangle.getX(), rectangle.getY(), rectangle.getWidth(), rectangle.getHeight());
+        }
+        else {
+            batch.draw(new TextureRegion(texture2), rectangle.getX(), rectangle.getY(), rectangle.getWidth(), rectangle.getHeight());
+        }
+    }
     public void dispose()
     {
         backgroundTexture.dispose();

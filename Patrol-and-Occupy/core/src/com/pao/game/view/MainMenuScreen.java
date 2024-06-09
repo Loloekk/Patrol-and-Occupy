@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.pao.game.view.GameScreen.GameScreen;
+import org.w3c.dom.Text;
 
 public class MainMenuScreen implements Screen {
     static final float BUTTON_WIDTH = 300 ;
@@ -39,7 +40,6 @@ public class MainMenuScreen implements Screen {
     }
     @Override
     public void render(float delta) {
-        //game.setScreen(new GameScreen(game));
         ScreenUtils.clear(0f, 0f, 0f, 1);
         camera.update();
         game.batch.setProjectionMatrix(camera.combined);
@@ -47,36 +47,16 @@ public class MainMenuScreen implements Screen {
         game.batch.begin();
         painter.fillBackground();
         camera.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
-        if(playButton.contains(touchPoint.x, touchPoint.y)) {
-            painter.drawTexture(new TextureRegion(Textures.getPlayButtonActive()), Drop.WIDTH / 2, PLAY_BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT, 0);
-            if(Gdx.input.justTouched()) {
-                //this.dispose();
-                game.setScreen(new GameScreen(game));
-            }
-        }
-        else {
-            painter.drawTexture(new TextureRegion(Textures.getPlayButtonInactive()), Drop.WIDTH / 2, PLAY_BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT, 0);
-        }
 
-        if(settingsButton.contains(touchPoint.x, touchPoint.y)) {
-            painter.drawTexture(new TextureRegion(Textures.getSettingsButtonActive()), Drop.WIDTH / 2, SETTINGS_BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT, 0);
-            if(Gdx.input.justTouched()) {
-                game.setScreen(new SettingsScreen(game));
-            }
-        }
-        else {
-            painter.drawTexture(new TextureRegion(Textures.getSettingsButtonInactive()), Drop.WIDTH / 2, SETTINGS_BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT, 0);
-        }
+        painter.drawAlternatingTexture(Textures.getPlayButtonActive(), Textures.getPlayButtonInactive(), playButton, touchPoint);
+        if(playButton.contains(touchPoint.x, touchPoint.y) && Gdx.input.justTouched()) game.setScreen(new GameScreen(game));
 
-        if(exitButton.contains(touchPoint.x, touchPoint.y)) {
-            painter.drawTexture(new TextureRegion(Textures.getExitButtonActive()), Drop.WIDTH / 2, EXIT_BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT, 0);
-            if(Gdx.input.justTouched()) {
-                Gdx.app.exit();
-            }
-        }
-        else {
-            painter.drawTexture(new TextureRegion(Textures.getExitButtonInactive()), Drop.WIDTH / 2, EXIT_BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT, 0);
-        }
+        painter.drawAlternatingTexture(Textures.getSettingsButtonActive(), Textures.getSettingsButtonInactive(), settingsButton, touchPoint);
+        if(settingsButton.contains(touchPoint.x, touchPoint.y) && Gdx.input.justTouched()) game.setScreen(new SettingsScreen(game));
+
+        painter.drawAlternatingTexture(Textures.getExitButtonActive(), Textures.getExitButtonInactive(), exitButton, touchPoint);
+        if(exitButton.contains(touchPoint.x, touchPoint.y) && Gdx.input.justTouched()) Gdx.app.exit();
+
         game.batch.end();
     }
 

@@ -51,7 +51,6 @@ public class EndScreen implements Screen {
     }
     @Override
     public void show() {
-
     }
 
     @Override
@@ -76,27 +75,12 @@ public class EndScreen implements Screen {
             x1 += STATISTICS_WIDTH;
         }
 
-        if(startButton.contains(touchPoint.x, touchPoint.y)) {
-            painter.drawTexture(new TextureRegion(Textures.getStartButtonActive()), Drop.WIDTH / 2, START_BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT, 0);
-            if(Gdx.input.justTouched()) {
-                //this.dispose();
-                game.setScreen(new GameScreen(game));
-            }
-        }
-        else {
-            painter.drawTexture(new TextureRegion(Textures.getStartButtonInactive()), Drop.WIDTH / 2, START_BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT, 0);
-        }
+        painter.drawAlternatingTexture(Textures.getStartButtonActive(), Textures.getStartButtonInactive(), startButton, touchPoint);
+        if(startButton.contains(touchPoint.x, touchPoint.y) && Gdx.input.justTouched()) game.setScreen(new GameScreen(game));
 
-        if(exitButton.contains(touchPoint.x, touchPoint.y)) {
-            painter.drawTexture(new TextureRegion(Textures.getExitButtonActive()), Drop.WIDTH / 2, EXIT_BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT, 0);
-            if(Gdx.input.justTouched()) {
-                //this.dispose();
-                game.setScreen(new MainMenuScreen(game));
-            }
-        }
-        else {
-            painter.drawTexture(new TextureRegion(Textures.getExitButtonInactive()), Drop.WIDTH / 2, EXIT_BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT, 0);
-        }
+        painter.drawAlternatingTexture(Textures.getExitButtonActive(), Textures.getExitButtonInactive(), exitButton, touchPoint);
+        if(exitButton.contains(touchPoint.x, touchPoint.y) && Gdx.input.justTouched()) game.setScreen(new MainMenuScreen(game));
+
         game.batch.end();
     }
 

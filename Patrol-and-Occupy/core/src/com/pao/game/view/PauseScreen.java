@@ -64,38 +64,15 @@ public class PauseScreen implements Screen {
         painter.fillBackground();
         camera.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
 
-        if(resumeButton.contains(touchPoint.x, touchPoint.y)) {
-            game.batch.draw(Textures.getResumeButtonActive(), Drop.WIDTH / 2 - BUTTON_WIDTH / 2, RESUME_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
-            if(Gdx.input.justTouched()) {
-                //this.dispose();
-                game.setScreen(gameScreen);
-            }
-        }
-        else {
-            game.batch.draw(Textures.getResumeButtonInactive(), Drop.WIDTH / 2 - BUTTON_WIDTH / 2, RESUME_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
-        }
+        painter.drawAlternatingTexture(Textures.getResumeButtonActive(), Textures.getResumeButtonInactive(), resumeButton, touchPoint);
+        if(resumeButton.contains(touchPoint.x, touchPoint.y) && Gdx.input.justTouched()) game.setScreen(gameScreen);
 
-        if(restartButton.contains(touchPoint.x, touchPoint.y)) {
-            game.batch.draw(Textures.getRestartButtonActive(), Drop.WIDTH / 2 - BUTTON_WIDTH / 2, RESTART_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
-            if(Gdx.input.justTouched()) {
-                //this.dispose();
-                game.setScreen(new GameScreen(game));
-            }
-        }
-        else {
-            game.batch.draw(Textures.getRestartButtonInactive(), Drop.WIDTH / 2 - BUTTON_WIDTH / 2, RESTART_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
-        }
+        painter.drawAlternatingTexture(Textures.getRestartButtonActive(), Textures.getRestartButtonInactive(), restartButton, touchPoint);
+        if(restartButton.contains(touchPoint.x, touchPoint.y) && Gdx.input.justTouched()) game.setScreen(new GameScreen(game));
 
-        if(exitButton.contains(touchPoint.x, touchPoint.y)) {
-            game.batch.draw(Textures.getExitButtonActive(), Drop.WIDTH / 2 - BUTTON_WIDTH / 2, EXIT_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
-            if(Gdx.input.justTouched()) {
-                //this.dispose();
-                game.setScreen(new MainMenuScreen(game));
-            }
-        }
-        else {
-            game.batch.draw(Textures.getExitButtonInactive(), Drop.WIDTH / 2 - BUTTON_WIDTH / 2, EXIT_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
-        }
+        painter.drawAlternatingTexture(Textures.getExitButtonActive(), Textures.getExitButtonInactive(), exitButton, touchPoint);
+        if(exitButton.contains(touchPoint.x, touchPoint.y) && Gdx.input.justTouched()) game.setScreen(new MainMenuScreen(game));
+
         game.batch.end();
     }
 
