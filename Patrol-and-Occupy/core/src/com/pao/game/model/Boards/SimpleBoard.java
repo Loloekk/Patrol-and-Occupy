@@ -10,6 +10,7 @@ import com.pao.game.model.GameObject.CreatingParams.CreatingParams;
 import com.pao.game.model.GameObject.Others.Spawn.SpawnCreatingParams;
 import com.pao.game.model.GameObject.Others.Tank.Clock;
 import com.pao.game.model.GameObject.Others.Tank.Tank;
+import com.pao.game.model.GameObject.Others.Tank.TankCreatingParams;
 
 import static com.pao.game.model.Constants.*;
 
@@ -33,7 +34,7 @@ public class SimpleBoard implements Board {
         List<CreatingParams> toCreate = Setup.getObjectList(ModelSettings.getMap());
         for(CreatingParams cp : toCreate)
         {
-            if(cp instanceof SpawnCreatingParams){
+            if(cp instanceof SpawnCreatingParams || cp instanceof TankCreatingParams){
                 for(ModelPlayer color : ModelPlayer.getColorList(ModelSettings.getNumberOfPlayers())) {
                     if(cp.getColor() == color){
                         bodyObjectsToCreate.add(cp);
@@ -45,14 +46,9 @@ public class SimpleBoard implements Board {
             }
         }
     }
-    boolean ala =true;
     public void update(float time) {
         for(CreatingParams CP: bodyObjectsToCreate){
             BodyGameObject object = CP.create(this);
-        }
-        if(ala)
-        {
-            ala=false;
         }
         bodyObjectsToCreate.clear();
         world.step((time), VELOCITY_ITERATION, POSITION_ITERATION);

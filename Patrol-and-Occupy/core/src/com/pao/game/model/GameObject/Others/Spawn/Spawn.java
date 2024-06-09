@@ -13,9 +13,8 @@ public class Spawn extends BodyGameObject {
     float cooldown=0;
     public Spawn(SpawnCreatingParams SCP, Board board) {
         super(SCP,board.getWorld());
-        tank = (Tank) SCP.getTankCreatingParams().create(board);
-        tank.setSpawn(this);
         this.color = SCP.getColor();
+        tank = null;
         body.setUserData(this);
     }
     @Override
@@ -27,17 +26,22 @@ public class Spawn extends BodyGameObject {
         if(cooldown > COOLDOWN)
         {
             cooldown = 0;
+            if(tank == null) return;
             tank.setPosition(getX(),getY());
             tank.revive();
         }
     }
-    public void setColor(ModelPlayer color) { this.color = color; }
-    public ModelPlayer getColor() { return color; }
+    public void setTank(Tank tank){
+        this.tank = tank;
+    }
+    public ModelPlayer getColor() {
+        return color;
+    }
     @Override
     public SpawnDescription getDescription()
     {
         return (SpawnDescription) (new SpawnDescription())
-                .setColor(getColor())
+                .setColor(color)
                 .setX(getX())
                 .setY(getY())
                 .setWidth(getWidth())

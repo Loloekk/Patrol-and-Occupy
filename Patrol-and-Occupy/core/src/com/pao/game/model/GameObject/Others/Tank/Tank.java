@@ -28,27 +28,40 @@ public class Tank extends BodyGameObject {
     public Tank(TankCreatingParams TCP, Board board) {
         super(TCP,board.getWorld());
         body.setUserData(this);
-        this.color = TCP.getColor();
+        color = TCP.getColor();
         this.board = board;
-        this.isAlive = true;
-        this.playerStatistics = new PlayerStatistics();
+        isAlive = true;
+        playerStatistics = new PlayerStatistics();
         width = TCP.getRealWidth();
         height = TCP.getRealHeight();
+        spawn = null;
+        for(BodyGameObject obj : board.getBodyObjects()) if(obj instanceof Spawn && ((Spawn) obj).getColor() == this.color)
+        {
+            spawn = (Spawn) obj;
+            ((Spawn)obj).setTank(this);
+            break;
+        }
         if(!ModelSettings.getControl()){
             controler = new Controler5Buttons(this);
         }
         else {
             controler = new ControlerOneButton(this);
         }
+
     }
 
+
+
+
     public void setMove(Move move, boolean state){
+        System.out.println(color+" "+move+" "+ state);
         controler.setMove(move,state);
     }
     public void revive() {
         isAlive = true;
     }
     private boolean isInSpawn(){
+        if(spawn == null) return false;
         return PolyContainsPoly.isPolyInPoly(body,spawn.body);
     }
     public void takeDamage(BodyGameObject killer)
@@ -84,7 +97,6 @@ public class Tank extends BodyGameObject {
     {
         return height;
     }
-    public void setSpawn(Spawn spawn){this.spawn=spawn;}
     public void update(float time) {
         controler.update(time);
     }
