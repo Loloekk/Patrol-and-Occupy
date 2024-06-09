@@ -49,7 +49,6 @@ public class MapScreen implements Screen {
         threePlayers = new Ellipse(Drop.WIDTH/2, PLAYER_BUTTON_Y, PLAYER_BUTTON_WIDTH/2, PLAYER_BUTTON_HEIGHT/2);
         fourPlayers = new Ellipse(Drop.WIDTH/2 + 400, PLAYER_BUTTON_Y, PLAYER_BUTTON_WIDTH/2, PLAYER_BUTTON_HEIGHT/2);
 
-
         touchPoint = new Vector3();
         painter = new RegionPainter(game.batch,0,0,Drop.WIDTH,Drop.HEIGHT,Drop.WIDTH,Drop.HEIGHT,new Color(0.4f,0.4f,0.9f,1));
     }

@@ -29,7 +29,6 @@ public class PauseScreen implements Screen {
     Rectangle exitButton;
     Vector3 touchPoint;
     RegionPainter painter;
-    BitmapFont font;
 
     public PauseScreen(Drop game, GameScreen gameScreen) {
         this.game = game;
@@ -42,12 +41,6 @@ public class PauseScreen implements Screen {
         exitButton = new Rectangle(Drop.WIDTH/2 - BUTTON_WIDTH/2, EXIT_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
         touchPoint = new Vector3();
         painter = new RegionPainter(game.batch,0,0,Drop.WIDTH,Drop.HEIGHT,Drop.WIDTH,Drop.HEIGHT,new Color(0.5f,0.4f,0.4f,1));
-        font = new BitmapFont();
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Roboto-Black.ttf"));
-        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        parameter.size = 20;
-        parameter.color = Color.WHITE;
-        font = generator.generateFont(parameter);
     }
     @Override
     public void show() {

@@ -9,11 +9,14 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -28,7 +31,6 @@ public class SettingsScreen implements Screen {
     Viewport viewport;
     Vector3 touchPoint;
     RegionPainter painter;
-    BitmapFont font;
     Stage stage;
     Skin skin;
     float sliderWidth = 200f;
@@ -48,12 +50,7 @@ public class SettingsScreen implements Screen {
         viewport = new ExtendViewport(Drop.WIDTH, Drop.HEIGHT, camera);
         touchPoint = new Vector3();
         painter = new RegionPainter(game.batch,0,0,Drop.WIDTH,Drop.HEIGHT,Drop.WIDTH,Drop.HEIGHT,new Color(0.5f,0.4f,0.4f,1));
-        font = new BitmapFont();
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Roboto-Black.ttf"));
-        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        parameter.size = 20;
-        parameter.color = Color.WHITE;
-        font = generator.generateFont(parameter);
+        painter.addFont("Suwaki", 20, Color.WHITE);
 
         stage = new Stage(viewport);
         Gdx.input.setInputProcessor(stage);
@@ -80,6 +77,23 @@ public class SettingsScreen implements Screen {
         gameTimeSlider = makeSlider(10, 200, 10f, false, Drop.WIDTH/2 - sliderWidth*3/2, 250f, gameTime);
         gameTimeSlider.setValue(EditSettings.getGameTime());
         stage.addActor(gameTimeSlider);
+
+        TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
+        textButtonStyle.font = skin.getFont("default-font");
+        textButtonStyle.up = skin.getDrawable("default-rect");
+        textButtonStyle.down = skin.getDrawable("default-rect-down");
+
+        TextButton button = new TextButton("Reset", skin);
+        button.setSize(200, 50);
+        button.setPosition(Drop.WIDTH/2 - button.getWidth()/2, 150);
+        button.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                reset();
+            }
+        });
+
+        stage.addActor(button);
     }
 
     public Slider makeSlider(float min, float max, float stepSize, boolean vertical, float x, float y, Options o) {
@@ -102,7 +116,16 @@ public class SettingsScreen implements Screen {
         });
         return slider;
     }
-
+    public void reset() {
+        EditSettings.setDefault();
+        tankSpeedSlider.setValue(EditSettings.getTankSpeed());
+        rotateSpeedSlider.setValue(EditSettings.getRotateSpeed());
+        bulletSpeedSlider.setValue(EditSettings.getBulletSpeed());
+        magazineCapacitySlider.setValue(EditSettings.getMagazineCapacity());
+        shootCooldownSlider.setValue(EditSettings.getShootCooldown());
+        receiveCooldownSlider.setValue(EditSettings.getReceiveCooldown());
+        gameTimeSlider.setValue(EditSettings.getGameTime());
+    }
     @Override
     public void show() {
     }
@@ -115,13 +138,14 @@ public class SettingsScreen implements Screen {
         game.batch.setProjectionMatrix(camera.combined);
         game.batch.begin();
         painter.fillBackground();
-        font.draw(game.batch, "Tank speed: " + String.format("%.0f",tankSpeedSlider.getValue()), tankSpeedSlider.getX(), tankSpeedSlider.getY() + 50);
-        font.draw(game.batch, "Rotate speed: " + String.format("%.1f",rotateSpeedSlider.getValue()), rotateSpeedSlider.getX(), rotateSpeedSlider.getY() + 50);
-        font.draw(game.batch, "Bullet speed: " + String.format("%.0f",bulletSpeedSlider.getValue()), bulletSpeedSlider.getX(), bulletSpeedSlider.getY() + 50);
-        font.draw(game.batch, "Magazine capacity: " + String.format("%.0f",magazineCapacitySlider.getValue()), magazineCapacitySlider.getX(), magazineCapacitySlider.getY() + 50);
-        font.draw(game.batch, "Shoot cool down: " + String.format("%.1f",shootCooldownSlider.getValue()), shootCooldownSlider.getX(), shootCooldownSlider.getY() + 50);
-        font.draw(game.batch, "Reload time: " + String.format("%.1f",receiveCooldownSlider.getValue()), receiveCooldownSlider.getX(), receiveCooldownSlider.getY() + 50);
-        font.draw(game.batch, "Game time: " + String.format("%.0f",gameTimeSlider.getValue()), gameTimeSlider.getX(), gameTimeSlider.getY() + 50);
+
+        painter.drowWriting("Suwaki", "Tank speed: " + String.format("%.0f",tankSpeedSlider.getValue()), tankSpeedSlider.getX()+tankSpeedSlider.getWidth()/2, tankSpeedSlider.getY() + 50);
+        painter.drowWriting("Suwaki", "Rotate speed: " + String.format("%.1f",rotateSpeedSlider.getValue()), rotateSpeedSlider.getX()+rotateSpeedSlider.getWidth()/2, rotateSpeedSlider.getY() + 50);
+        painter.drowWriting("Suwaki", "Bullet speed: " + String.format("%.0f",bulletSpeedSlider.getValue()), bulletSpeedSlider.getX()+bulletSpeedSlider.getWidth()/2, bulletSpeedSlider.getY() + 50);
+        painter.drowWriting("Suwaki", "Magazine capacity: " + String.format("%.0f",magazineCapacitySlider.getValue()), magazineCapacitySlider.getX()+magazineCapacitySlider.getWidth()/2, magazineCapacitySlider.getY() + 50);
+        painter.drowWriting("Suwaki", "Shoot cool down: " + String.format("%.1f",shootCooldownSlider.getValue()), shootCooldownSlider.getX()+shootCooldownSlider.getWidth()/2, shootCooldownSlider.getY() + 50);
+        painter.drowWriting("Suwaki", "Reload time: " + String.format("%.1f",receiveCooldownSlider.getValue()), receiveCooldownSlider.getX()+receiveCooldownSlider.getWidth()/2, receiveCooldownSlider.getY() + 50);
+        painter.drowWriting("Suwaki", "Game time: " + String.format("%.0f",gameTimeSlider.getValue()), gameTimeSlider.getX()+gameTimeSlider.getWidth()/2, gameTimeSlider.getY() + 50);
 
         game.batch.end();
 

@@ -18,11 +18,11 @@ import com.pao.game.view.GameScreen.GameScreen;
 import com.pao.game.viewmodel.EditSettings;
 
 public class EndScreen implements Screen {
-    static final float BUTTON_WIDTH = 400;
+    static final float BUTTON_WIDTH = 300;
     static final float BUTTON_HEIGHT = 200;
     static final float START_BUTTON_Y = 400;
     static final float EXIT_BUTTON_Y = 200;
-    static final float STATISTICS_WIDTH = 200;
+    static final float STATISTICS_WIDTH = 400;
     Drop game;
     GlobalStatistics globalStatistics;
     OrthographicCamera camera;
@@ -31,7 +31,6 @@ public class EndScreen implements Screen {
     Rectangle exitButton;
     Vector3 touchPoint;
     RegionPainter painter;
-    BitmapFont font;
     public EndScreen(Drop game, GlobalStatistics globalStatistics) {
         this.game = game;
         this.globalStatistics = globalStatistics;
@@ -42,12 +41,11 @@ public class EndScreen implements Screen {
         exitButton = new Rectangle(Drop.WIDTH/2 - BUTTON_WIDTH/2, EXIT_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
         touchPoint = new Vector3();
         painter = new RegionPainter(game.batch,0,0,Drop.WIDTH,Drop.HEIGHT,Drop.WIDTH,Drop.HEIGHT,new Color(0.5f,0.4f,0.4f,1));
-        font = new BitmapFont();
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Roboto-Black.ttf"));
-        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        parameter.size = 20;
-        parameter.color = Color.WHITE;
-        font = generator.generateFont(parameter);
+        painter.addFont("WINNER", 50, Color.RED);
+        painter.addFont("Player1", 70, Color.YELLOW);
+        painter.addFont("Player2", 70, Color.GREEN);
+        painter.addFont("Player3", 70, Color.BLUE);
+        painter.addFont("Player4", 70, Color.RED);
     }
     @Override
     public void show() {
@@ -63,13 +61,9 @@ public class EndScreen implements Screen {
         painter.fillBackground();
         camera.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
 
-        if(globalStatistics.getWinner() == ModelPlayer.Player1) font.setColor(Color.YELLOW);
-        if(globalStatistics.getWinner() == ModelPlayer.Player2) font.setColor(Color.GREEN);
-        if(globalStatistics.getWinner() == ModelPlayer.Player3) font.setColor(Color.BLUE);
-        if(globalStatistics.getWinner() == ModelPlayer.Player4) font.setColor(Color.RED);
-        font.draw(game.batch, "WINNER", Drop.WIDTH/2, 900);
+        displayResult(Drop.WIDTH/2, 900);
 
-        float x1 = -STATISTICS_WIDTH * EditSettings.getNumberOfPlayers() / 2;
+        float x1 = -STATISTICS_WIDTH * (EditSettings.getNumberOfPlayers() - 1) / 2.0f;
         for(ModelPlayer color : GlobalStatistics.getPlayers()) {
             displayPlayerStatistics(Drop.WIDTH / 2 + x1, 800, color);
             x1 += STATISTICS_WIDTH;
@@ -83,15 +77,22 @@ public class EndScreen implements Screen {
 
         game.batch.end();
     }
-
+    public void displayResult(float x, float y) {
+//        if(globalStatistics.getWinner() == ModelPlayer.Player1) font.setColor(Color.YELLOW);
+//        if(globalStatistics.getWinner() == ModelPlayer.Player2) font.setColor(Color.GREEN);
+//        if(globalStatistics.getWinner() == ModelPlayer.Player3) font.setColor(Color.BLUE);
+//        if(globalStatistics.getWinner() == ModelPlayer.Player4) font.setColor(Color.RED);
+//        painter.drowWriting("WINNER", "WINNER", x, y);
+    }
     public void displayPlayerStatistics(float x, float y, ModelPlayer color) {
-        if(color == ModelPlayer.Player1) font.setColor(Color.YELLOW);
-        if(color == ModelPlayer.Player2) font.setColor(Color.GREEN);
-        if(color == ModelPlayer.Player3) font.setColor(Color.BLUE);
-        if(color == ModelPlayer.Player4) font.setColor(Color.RED);
-        font.draw(game.batch, "#plates: " + globalStatistics.getNumberOfPlates(color), x, y);
-        font.draw(game.batch, "#kills: " + globalStatistics.getKillNumber(color), x, y - 20);
-        font.draw(game.batch, "#deads: " + globalStatistics.getDeadNumber(color), x, y - 40);
+        String player = "";
+        if(color == ModelPlayer.Player1) player = "Player1";
+        if(color == ModelPlayer.Player2) player = "Player2";
+        if(color == ModelPlayer.Player3) player = "Player3";
+        if(color == ModelPlayer.Player4) player = "Player4";
+        painter.drowWriting(player, "#plates: " + globalStatistics.getNumberOfPlates(color), x, y);
+        painter.drowWriting(player, "#kills: " + globalStatistics.getKillNumber(color), x, y - 70);
+        painter.drowWriting(player, "#deads: " + globalStatistics.getDeadNumber(color), x, y - 140);
     }
 
     @Override
