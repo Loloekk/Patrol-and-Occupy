@@ -43,7 +43,6 @@ public class EndScreen implements Screen {
         exitButton = new Rectangle(Drop.WIDTH/2 - BUTTON_WIDTH/2, EXIT_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
         touchPoint = new Vector3();
         painter = new RegionPainter(game.batch,0,0,Drop.WIDTH,Drop.HEIGHT,Drop.WIDTH,Drop.HEIGHT,new Color(0.5f,0.4f,0.4f,1));
-        painter.addFont("WINNER", 50, Color.RED);
         painter.addFont("Player1", 70, Color.YELLOW);
         painter.addFont("Player2", 70, Color.GREEN);
         painter.addFont("Player3", 70, Color.BLUE);

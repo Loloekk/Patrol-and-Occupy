@@ -96,7 +96,7 @@ public class ModelSettings {
     {
         gameTime = 60f;
         numberOfPlayers = 4;
-        map = 1;
+        map = 8;
         width = 1920;
         height = 954;
         tankSpeed = 8f;
