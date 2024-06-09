@@ -30,6 +30,7 @@ public class PrepareDrawingObjects {
             }
             else if(desc instanceof BulletShootDescription) {
                 texture = animations.getBulletShootAnimation().getKeyFrame(((BulletShootDescription)desc).getStateTime());
+                desc.setWidth(desc.getWidth()*4).setHeight(desc.getHeight()*4);
                 draw.setPriority(2000);
             }
             else if(desc instanceof DynamiteExplosionDescription) {
