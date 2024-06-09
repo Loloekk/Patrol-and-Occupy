@@ -6,7 +6,7 @@ import com.pao.game.communication.Options;
 public class EditSettings {
     private EditSettings()
     {
-        throw new UnsupportedOperationException("Cannot instantiate EditSettings class, Nunu");
+        throw new UnsupportedOperationException("Cannot instantiate EditSettings class");
     }
     public static void setOption(Options o, float state)
     {
@@ -26,4 +26,5 @@ public class EditSettings {
     public static float getReceiveCooldown(){return ModelSettings.getReceiveCooldown();}
     public static int getWidth(){return ModelSettings.getWidth();}
     public static int getHeight(){return ModelSettings.getHeight();}
+    public static boolean getControl(){return ModelSettings.getControl();}
 }

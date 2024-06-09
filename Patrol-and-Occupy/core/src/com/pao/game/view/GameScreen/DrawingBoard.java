@@ -41,12 +41,11 @@ public class DrawingBoard {
         painterTop.addFont("Magazines",28,Color.BLACK);
     }
     public void draw(){
-        ScreenUtils.clear(0f, 0f, 0f, 1);
+        ScreenUtils.clear(0.9f,0.9f,0.4f,1);
         camera.update();
         game.batch.setProjectionMatrix(camera.combined);
 
         game.batch.begin();
-        painterTop.fillBackground();
         painterGame.fillBackground();
         List<MagazineView> magazines = new ArrayList<>();
         List<DrawingObject> drawingObjects = new ArrayList<>();
@@ -54,10 +53,12 @@ public class DrawingBoard {
         for(DrawingObject drawingObject : drawingObjects) {
             painterGame.drawTexture(drawingObject.getTexture(),drawingObject.getDescription());
         }
+
+        painterTop.fillBackground();
+
         for(MagazineView magazine : magazines){
             drowMagazine(magazine);
         }
-
         painterTop.drowWriting("Time", "Time: " + (int)VM.getRemainingTime(), 960, 50);
         game.batch.end();
     }

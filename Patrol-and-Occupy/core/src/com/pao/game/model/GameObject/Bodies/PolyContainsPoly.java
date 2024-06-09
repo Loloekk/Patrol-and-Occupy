@@ -8,7 +8,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 public class PolyContainsPoly {
     private PolyContainsPoly()
     {
-        throw new UnsupportedOperationException("Cannot instantiate PolyContainsPoly class, Nunu");
+        throw new UnsupportedOperationException("Cannot instantiate PolyContainsPoly class");
     }
     public static boolean isPointInPolygon(Polygon polygon, Vector2 point) {
         return polygon.contains(point.x, point.y);

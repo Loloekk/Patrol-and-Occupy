@@ -114,8 +114,8 @@ public class Tank extends BodyGameObject {
 
         if(makeShoot && magazine.shoot()) {
             float angle = getRotation() * MathUtils.degreesToRadians;
-            float x = getX() + MathUtils.cos(angle) * height/2;
-            float y = getY() + MathUtils.sin(angle) * width/2;
+            float x = getX() + MathUtils.cos(angle) * height * 0.5f;
+            float y = getY() + MathUtils.sin(angle) * width * 0.5f;
             board.addObjectToCreate(new BulletCreatingParams().setX(x).setY(y).setColor(color).setRotation(getRotation()));
             board.addObjectToCreate(new BulletShootCreatingParams().setTank(this).setColor(color).setX(x).setY(y).setRotation(getRotation()));
         }

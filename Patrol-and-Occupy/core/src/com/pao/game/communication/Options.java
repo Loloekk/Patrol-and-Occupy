@@ -11,5 +11,6 @@ public enum Options {
     rotateSpeed,
     magazineCapacity,
     shootCooldown,
-    receiveCooldown;
+    receiveCooldown,
+    control
 }

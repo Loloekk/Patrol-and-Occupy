@@ -14,9 +14,10 @@ public class ModelSettings {
     private static int magazineCapacity;
     private static float shootCooldown;
     private static float receiveCooldown;
+    private static boolean oneButtonControl; // 0 / 1
     private ModelSettings()
     {
-        throw new UnsupportedOperationException("Cannot instantiate ModelSettings class, Nunu");
+        throw new UnsupportedOperationException("Cannot instantiate ModelSettings class");
     }
 
 
@@ -52,6 +53,9 @@ public class ModelSettings {
             case receiveCooldown:
                 receiveCooldown = state;
                 break;
+            case control:
+                oneButtonControl = (int)state != 0;
+                break;
         }
     }
     public static void setOption(Options option, int state){
@@ -83,6 +87,9 @@ public class ModelSettings {
             case receiveCooldown:
                 receiveCooldown = (float)state;
                 break;
+            case control:
+                oneButtonControl = state != 0;
+                break;
         }
     }
     public static void setDefault()
@@ -98,6 +105,7 @@ public class ModelSettings {
         magazineCapacity = 5;
         shootCooldown = 0.2f;
         receiveCooldown = 2f;
+        oneButtonControl = false;
     }
     public static float getGameTime(){return gameTime;}
     public static int getNumberOfPlayers(){return numberOfPlayers;}
@@ -110,5 +118,6 @@ public class ModelSettings {
     public static float getReceiveCooldown(){return receiveCooldown;}
     public static int getWidth(){return width;}
     public static int getHeight(){return height;}
+    public static boolean getControl(){return oneButtonControl;}
 
 }

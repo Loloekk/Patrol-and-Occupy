@@ -67,7 +67,7 @@ public class SettingsScreen implements Screen {
         magazineCapacitySlider = makeSlider(1, 10, 1, false, Drop.WIDTH/2 - sliderWidth*3/2, 550f, magazineCapacity);
         magazineCapacitySlider.setValue(EditSettings.getMagazineCapacity());
         stage.addActor(magazineCapacitySlider);
-        shootCooldownSlider = makeSlider(0, 5, 0.5f, false, Drop.WIDTH/2 + sliderWidth/2, 550f, shootCooldown);
+        shootCooldownSlider = makeSlider(0, 5, 0.1f, false, Drop.WIDTH/2 + sliderWidth/2, 550f, shootCooldown);
         shootCooldownSlider.setValue(EditSettings.getShootCooldown());
         stage.addActor(shootCooldownSlider);
         receiveCooldownSlider = makeSlider(0, 5, 0.5f, false, Drop.WIDTH/2 - sliderWidth*3/2, 400f, receiveCooldown);

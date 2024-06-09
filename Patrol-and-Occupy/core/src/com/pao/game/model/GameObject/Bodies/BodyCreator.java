@@ -10,7 +10,7 @@ import static com.pao.game.model.Constants.PPM;
 public class BodyCreator {
     private BodyCreator()
     {
-        throw new UnsupportedOperationException("Cannot instantiate BodyCreator class, Nunu");
+        throw new UnsupportedOperationException("Cannot instantiate BodyCreator class");
     }
     public static Body createBodyRectangle(CreatingParamsRectangle CPR, World world){//, float friction) {
         final BodyDef bdef = new BodyDef();
