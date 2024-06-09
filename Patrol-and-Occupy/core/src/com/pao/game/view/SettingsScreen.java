@@ -34,6 +34,7 @@ public class SettingsScreen implements Screen {
     float sliderWidth = 200f;
     float sliderHeight = 20f;
     Slider tankSpeedSlider;
+    Slider rotateSpeedSlider;
     Slider bulletSpeedSlider;
     Slider magazineCapacitySlider;
     Slider shootCooldownSlider;
@@ -61,22 +62,24 @@ public class SettingsScreen implements Screen {
         tankSpeedSlider = makeSlider(1, 20, 1, false, Drop.WIDTH/2 - sliderWidth*3/2, 700f, tankSpeed);
         tankSpeedSlider.setValue(EditSettings.getTankSpeed());
         stage.addActor(tankSpeedSlider);
-        bulletSpeedSlider = makeSlider(1, 40, 1, false, Drop.WIDTH/2 + sliderWidth/2, 700f, bulletSpeed);
+        rotateSpeedSlider = makeSlider(1, 10, 0.5f, false, Drop.WIDTH/2 + sliderWidth/2, 700f, rotateSpeed);
+        rotateSpeedSlider.setValue(EditSettings.getRotateSpeed());
+        stage.addActor(rotateSpeedSlider);
+        bulletSpeedSlider = makeSlider(1, 40, 1, false, Drop.WIDTH/2 - sliderWidth*3/2, 550f, bulletSpeed);
         bulletSpeedSlider.setValue(EditSettings.getBulletSpeed());
         stage.addActor(bulletSpeedSlider);
-        magazineCapacitySlider = makeSlider(1, 10, 1, false, Drop.WIDTH/2 - sliderWidth*3/2, 550f, magazineCapacity);
+        magazineCapacitySlider = makeSlider(1, 10, 1, false, Drop.WIDTH/2 + sliderWidth/2, 550f, magazineCapacity);
         magazineCapacitySlider.setValue(EditSettings.getMagazineCapacity());
         stage.addActor(magazineCapacitySlider);
-        shootCooldownSlider = makeSlider(0, 5, 0.1f, false, Drop.WIDTH/2 + sliderWidth/2, 550f, shootCooldown);
+        shootCooldownSlider = makeSlider(0, 5, 0.1f, false, Drop.WIDTH/2 - sliderWidth*3/2, 400f, shootCooldown);
         shootCooldownSlider.setValue(EditSettings.getShootCooldown());
         stage.addActor(shootCooldownSlider);
-        receiveCooldownSlider = makeSlider(0, 5, 0.5f, false, Drop.WIDTH/2 - sliderWidth*3/2, 400f, receiveCooldown);
+        receiveCooldownSlider = makeSlider(0, 5, 0.5f, false, Drop.WIDTH/2 + sliderWidth/2, 400f, receiveCooldown);
         receiveCooldownSlider.setValue(EditSettings.getReceiveCooldown());
         stage.addActor(receiveCooldownSlider);
-        gameTimeSlider = makeSlider(10, 200, 10f, false, Drop.WIDTH/2 + sliderWidth/2, 400f, gameTime);
+        gameTimeSlider = makeSlider(10, 200, 10f, false, Drop.WIDTH/2 - sliderWidth*3/2, 250f, gameTime);
         gameTimeSlider.setValue(EditSettings.getGameTime());
         stage.addActor(gameTimeSlider);
-
     }
 
     public Slider makeSlider(float min, float max, float stepSize, boolean vertical, float x, float y, Options o) {
@@ -113,11 +116,13 @@ public class SettingsScreen implements Screen {
         game.batch.begin();
         painter.fillBackground();
         font.draw(game.batch, "Tank speed: " + String.format("%.0f",tankSpeedSlider.getValue()), tankSpeedSlider.getX(), tankSpeedSlider.getY() + 50);
+        font.draw(game.batch, "Rotate speed: " + String.format("%.1f",rotateSpeedSlider.getValue()), rotateSpeedSlider.getX(), rotateSpeedSlider.getY() + 50);
         font.draw(game.batch, "Bullet speed: " + String.format("%.0f",bulletSpeedSlider.getValue()), bulletSpeedSlider.getX(), bulletSpeedSlider.getY() + 50);
         font.draw(game.batch, "Magazine capacity: " + String.format("%.0f",magazineCapacitySlider.getValue()), magazineCapacitySlider.getX(), magazineCapacitySlider.getY() + 50);
         font.draw(game.batch, "Shoot cool down: " + String.format("%.1f",shootCooldownSlider.getValue()), shootCooldownSlider.getX(), shootCooldownSlider.getY() + 50);
         font.draw(game.batch, "Reload time: " + String.format("%.1f",receiveCooldownSlider.getValue()), receiveCooldownSlider.getX(), receiveCooldownSlider.getY() + 50);
         font.draw(game.batch, "Game time: " + String.format("%.0f",gameTimeSlider.getValue()), gameTimeSlider.getX(), gameTimeSlider.getY() + 50);
+
         game.batch.end();
 
         stage.act(delta);

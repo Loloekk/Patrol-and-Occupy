@@ -21,6 +21,7 @@ public class EditSettings {
     public static int getMap(){return ModelSettings.getMap();}
     public static float getTankSpeed(){return ModelSettings.getTankSpeed();}
     public static float getBulletSpeed(){return ModelSettings.getBulletSpeed();}
+    public static float getRotateSpeed(){return ModelSettings.getRotateSpeed();}
     public static int getMagazineCapacity(){return ModelSettings.getMagazineCapacity();}
     public static float getShootCooldown(){return ModelSettings.getShootCooldown();}
     public static float getReceiveCooldown(){return ModelSettings.getReceiveCooldown();}
