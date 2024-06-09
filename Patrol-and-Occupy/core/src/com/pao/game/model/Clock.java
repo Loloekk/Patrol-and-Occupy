@@ -1,4 +1,4 @@
-package com.pao.game.model.GameObject.Others.Tank;
+package com.pao.game.model;
 
 import com.pao.game.model.ModelSettings;
 

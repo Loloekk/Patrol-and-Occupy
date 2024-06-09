@@ -8,7 +8,7 @@ import com.pao.game.model.*;
 import com.pao.game.model.GameObject.Bodies.BodyGameObject;
 import com.pao.game.model.GameObject.CreatingParams.CreatingParams;
 import com.pao.game.model.GameObject.Others.Spawn.SpawnCreatingParams;
-import com.pao.game.model.GameObject.Others.Tank.Clock;
+import com.pao.game.model.Clock;
 import com.pao.game.model.GameObject.Others.Tank.Tank;
 import com.pao.game.model.GameObject.Others.Tank.TankCreatingParams;
 
