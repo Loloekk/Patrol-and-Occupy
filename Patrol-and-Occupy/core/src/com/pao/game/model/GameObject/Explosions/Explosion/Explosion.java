@@ -10,7 +10,6 @@ public abstract class Explosion extends BodyGameObject {
     float x, y;
     float stateTime;
     float liveTime;
-    float board;
     boolean isActive;
     ModelPlayer color;
     public Explosion(ExplosionCreatingParams ECP, Board board) {
@@ -36,5 +35,6 @@ public abstract class Explosion extends BodyGameObject {
     public float getY() { return y; }
     public float getRotation() { return body.getAngle(); }
     public float getStateTime() { return stateTime; }
+    public float getLiveTime() { return liveTime; }
     public ModelPlayer getColor() {return color;}
 }

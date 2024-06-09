@@ -1,6 +1,8 @@
 package com.pao.game.model.GameObject.Bodies;
 
 
+import com.pao.game.communication.Descriptions.ObjectDescription;
+
 public interface GameObject {
     float getX();
     float getY();
@@ -9,4 +11,5 @@ public interface GameObject {
     boolean getIsActive();
     float getWidth();
     float getHeight();
+    ObjectDescription getDescription();
 }

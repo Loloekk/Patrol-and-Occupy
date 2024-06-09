@@ -64,7 +64,7 @@ public class EndScreen implements Screen {
 
         game.batch.setProjectionMatrix(camera.combined);
         game.batch.begin();
-        painter.fillBackground(1f);
+        painter.fillBackground();
         camera.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
 
         if(globalStatistics.getWinner() == ModelPlayer.Player1) font.setColor(Color.YELLOW);

@@ -1,5 +1,6 @@
 package com.pao.game.model.GameObject.Others.Plate;
 
+import com.pao.game.communication.Descriptions.ConcreteDescription.PlateDescription;
 import com.pao.game.model.Boards.Board;
 import com.pao.game.model.GameObject.Bodies.BodyGameObject;
 import com.pao.game.model.GameObject.Others.Tank.Tank;
@@ -34,5 +35,16 @@ public class Plate extends BodyGameObject {
     @Override
     public float getHeight() {
         return height;
+    }
+    @Override
+    public PlateDescription getDescription()
+    {
+        return (PlateDescription) (new PlateDescription())
+                .setColor(getColor())
+                .setX(getX())
+                .setY(getY())
+                .setWidth(getWidth())
+                .setHeight(getHeight())
+                .setRotation(getRotation());
     }
 }

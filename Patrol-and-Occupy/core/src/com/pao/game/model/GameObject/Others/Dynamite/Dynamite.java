@@ -1,12 +1,13 @@
 package com.pao.game.model.GameObject.Others.Dynamite;
 
+import com.pao.game.communication.Descriptions.ConcreteDescription.BulletDescription;
+import com.pao.game.communication.Descriptions.ConcreteDescription.DynamiteDescription;
 import com.pao.game.model.Boards.Board;
 import com.pao.game.model.GameObject.Bodies.BodyGameObject;
 import com.pao.game.model.GameObject.Explosions.DynamiteExplosion.DynamiteExplosionCreatingParams;
 import com.pao.game.model.GameObject.Explosions.Explosion.Explosion;
 
 public class Dynamite extends BodyGameObject {
-    static final int RANGE = 300;    // = explosion.width / 4
     Board board;
     boolean isActive = true;
     public Dynamite(DynamiteCreatingParams DCP, Board board) {
@@ -18,6 +19,7 @@ public class Dynamite extends BodyGameObject {
     public void takeDamage(BodyGameObject killer) {
         if(!(killer instanceof Explosion)) return;
         if(!isActive) return;
+        System.out.println("dynamite "+killer);
         isActive = false;
         board.addObjectToCreate(new DynamiteExplosionCreatingParams().setX(getX()).setY(getY()).setColor(((Explosion)killer).getColor()));
     }
@@ -29,4 +31,14 @@ public class Dynamite extends BodyGameObject {
         body.setAngularVelocity((float) (va * Math.pow(0.01,t)));
     }
     public boolean getIsActive() { return isActive; }
+    @Override
+    public DynamiteDescription getDescription()
+    {
+        return (DynamiteDescription) (new DynamiteDescription())
+                .setX(getX())
+                .setY(getY())
+                .setWidth(getWidth())
+                .setHeight(getHeight())
+                .setRotation(getRotation());
+    }
 }

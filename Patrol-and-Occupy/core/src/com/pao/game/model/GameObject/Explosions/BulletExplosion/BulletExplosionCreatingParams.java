@@ -8,11 +8,9 @@ import com.pao.game.model.GameObject.Explosions.Explosion.ExplosionCreatingParam
 public class BulletExplosionCreatingParams extends ExplosionCreatingParams {
     public BulletExplosionCreatingParams()
     {
+        super();
         setRadius(20);
         setLiveTime(0.5f);
-        setBodyType(BodyDef.BodyType.StaticBody);
-        setDensity(1f);
-        setIsSensor(false);
     }
     @Override
     public BodyGameObject create(Board board)

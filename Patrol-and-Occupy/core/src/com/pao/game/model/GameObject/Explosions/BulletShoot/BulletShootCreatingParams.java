@@ -10,11 +10,9 @@ public class BulletShootCreatingParams extends ExplosionCreatingParams {
     Tank tank;
     public BulletShootCreatingParams()
     {
-        setRadius(20);
+        super();
+        setRadius(40);
         setLiveTime(0.2f);
-        setBodyType(BodyDef.BodyType.StaticBody);
-        setDensity(1f);
-        setIsSensor(false);
     }
     public BulletShootCreatingParams setTank(Tank tank)
     {

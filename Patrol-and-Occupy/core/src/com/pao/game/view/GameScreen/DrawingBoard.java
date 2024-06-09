@@ -6,11 +6,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.pao.game.communication.ColoredParams;
-import com.pao.game.communication.ExplosionParams;
-import com.pao.game.communication.Params;
-import com.pao.game.communication.TankParams;
-import com.pao.game.model.ModelPlayer;
 import com.pao.game.view.Animations;
 import com.pao.game.view.Drop;
 import com.pao.game.view.RegionPainter;
@@ -18,6 +13,7 @@ import com.pao.game.view.Textures;
 import com.pao.game.viewmodel.EditSettings;
 import com.pao.game.viewmodel.ViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DrawingBoard {
@@ -27,8 +23,10 @@ public class DrawingBoard {
     Viewport viewport;
     Textures text;
     Animations animations;
+    PrepareDrawingObjects preparator;
     RegionPainter painterGame;
     RegionPainter painterTop;
+
 
     public DrawingBoard(final Drop game,final ViewModel VM, int n)
     {
@@ -39,6 +37,7 @@ public class DrawingBoard {
         viewport = new ExtendViewport(Drop.WIDTH,Drop.HEIGHT,camera);
         text = new Textures(n);
         animations = new Animations();
+        preparator = new PrepareDrawingObjects(text,animations);
         painterGame = new RegionPainter(game.batch,0,0,Drop.WIDTH,Drop.HEIGHT-100,1920,954,new Color(0.9f,0.9f,0.4f,1));
         painterTop = new RegionPainter(game.batch,0,Drop.HEIGHT-100,Drop.WIDTH,100,Drop.WIDTH,100,new Color(0.274f,0.0f,0.305f,1));
         painterTop.addFont("Time",40,new Color(0.9f,0.9f,0.4f,1));
@@ -51,66 +50,31 @@ public class DrawingBoard {
         game.batch.setProjectionMatrix(camera.combined);
 
         game.batch.begin();
-        painterTop.fillBackground(1f);
-        painterGame.fillBackground(1f);
-        for(ColoredParams spawn : VM.getSpawns()) {
-            painterGame.drawTexture(new TextureRegion(text.getSpawnTexture(spawn.getColor())), spawn);
+        painterTop.fillBackground();
+        painterGame.fillBackground();
+        List<MagazineView> magazines = new ArrayList<>();
+        List<DrawingObject> drawingObjects = new ArrayList<>();
+        preparator.prepare(VM.getObjectDescriptionList(),magazines,drawingObjects);
+        for(DrawingObject drawingObject : drawingObjects) {
+            painterGame.drawTexture(drawingObject.getTexture(),drawingObject.getDescription());
         }
-        for(ColoredParams plate: VM.getPlates()) {
-            painterGame.drawTexture(new TextureRegion(text.getPlateTexture(plate.getColor())), plate);
-        }
-        for(Params obstacle : VM.getObstacles()) {
-            painterGame.drawTexture(new TextureRegion(text.getObstacleTexture()),obstacle,1.03f);
-        }
-        for(Params breakableObstacle : VM.getBreakableObstacles()) {
-            painterGame.drawTexture(new TextureRegion(text.getBreakableObstacleTexture()),breakableObstacle,1.03f);
-        }
-
-        for(ColoredParams bullet : VM.getBullets()) {
-            painterGame.drawTexture(new TextureRegion(text.getBulletTexture()),bullet);
-        }
-        List<TankParams> tanksParams = VM.getTanks();
-        for(TankParams tank : tanksParams) {
-            painterGame.drawTexture(new TextureRegion(text.getTankTexture(tank.getIsAlive() ? tank.getColor(): null)),tank,1.03f);
-            ModelPlayer pl = tank.getColor();
-            float x = 100,y = 50;
-            if(pl == ModelPlayer.Player1) {
-                x = 227.5f;
-            }
-            if(pl == ModelPlayer.Player2) {
-                x = 1692.5f;
-            }
-            if(pl == ModelPlayer.Player3) {
-                x = 682.5f;
-            }
-            if(pl == ModelPlayer.Player4) {
-                x = 1237.5f;
-            }
-            painterTop.drawTexture(new TextureRegion(text.getMagazineTexture(pl)),x,y,300,95,0);
-            painterTop.drawTexture(new TextureRegion(text.getPlateTexture(null)),x-80,y,80,80,0);
-            painterTop.drawTexture(new TextureRegion(text.getBulletTexture()),x+60,y-10,150,50,0);
-            if(tank.hasDynamite()){
-                painterTop.drawTexture(new TextureRegion(text.getDynamiteTexture()),x+120,y+25,30,30,0);
-            }
-            painterTop.drowWriting("Plates",((Integer)tank.getPlates()).toString(),x-80,y);
-            painterTop.drowWriting("Magazines",(Integer)tank.getBullets()+"/"+ EditSettings.getMagazineCapacity(),x+35,y-10);
-
-        }
-        for(Params dynamite : VM.getDynamites()) {
-            painterGame.drawTexture(new TextureRegion(text.getDynamiteTexture()),dynamite);
-        }
-        for(ExplosionParams bulletExplosion : VM.getBulletExplosions()) {
-            painterGame.drawTexture(animations.getBulletExplosionAnimation().getKeyFrame(bulletExplosion.getStateTime()), bulletExplosion);
-        }
-        for(ExplosionParams dynamiteExplosion : VM.getDynamiteExplosions()) {
-            painterGame.drawTexture(animations.getDynamiteExplosionAnimation().getKeyFrame(dynamiteExplosion.getStateTime()), dynamiteExplosion);
-        }
-        for(ExplosionParams bulletShoot : VM.getBulletShoots()) {
-            painterGame.drawTexture(animations.getBulletShootAnimation().getKeyFrame(bulletShoot.getStateTime()), bulletShoot);
+        for(MagazineView magazine : magazines){
+            drowMagazine(magazine);
         }
 
         painterTop.drowWriting("Time", "Time: " + (int)VM.getRemainingTime(), 960, 50);
         game.batch.end();
+    }
+    private void drowMagazine(MagazineView magazine)
+    {
+        painterTop.drawTexture(new TextureRegion(text.getMagazineTexture(magazine.getColor())), magazine.getX(), magazine.getY(), 300,95,0);
+        painterTop.drawTexture(new TextureRegion(text.getPlateTexture(null)),magazine.getX()-80,magazine.getY(),80,80,0);
+        painterTop.drawTexture(new TextureRegion(text.getBulletTexture()),magazine.getX()+60,magazine.getY()-10,150,50,0);
+        if(magazine.getDynamite()){
+            painterTop.drawTexture(new TextureRegion(text.getDynamiteTexture()),magazine.getX()+120,magazine.getY()+25,30,30,0);
+        }
+        painterTop.drowWriting("Plates",((Integer)magazine.getPlates()).toString(),magazine.getX()-80,magazine.getY());
+        painterTop.drowWriting("Magazines",(Integer)magazine.getBullets()+"/"+ EditSettings.getMagazineCapacity(),magazine.getX()+35,magazine.getY()-10);
     }
     public void resize(int width, int height) {
         viewport.update(width, height);

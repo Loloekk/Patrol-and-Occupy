@@ -73,7 +73,7 @@ public class PauseScreen implements Screen {
 
         game.batch.setProjectionMatrix(camera.combined);
         game.batch.begin();
-        painter.fillBackground(1f);
+        painter.fillBackground();
         camera.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
 
         if(resumeButton.contains(touchPoint.x, touchPoint.y)) {

@@ -3,6 +3,7 @@ package com.pao.game.model.GameObject.Bodies;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
+import com.pao.game.communication.Descriptions.ObjectDescription;
 import com.pao.game.model.GameObject.CreatingParams.CreatingParamsCircle;
 import com.pao.game.model.GameObject.CreatingParams.CreatingParamsRectangle;
 
@@ -31,4 +32,5 @@ public abstract class BodyGameObject implements GameObject {
     public boolean getIsActive(){return true;}
     public float getWidth(){ return width; }
     public float getHeight(){ return height; }
+    public ObjectDescription getDescription(){return null;}
 }
