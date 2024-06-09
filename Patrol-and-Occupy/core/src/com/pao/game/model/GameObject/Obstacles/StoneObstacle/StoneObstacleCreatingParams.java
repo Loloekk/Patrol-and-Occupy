@@ -9,8 +9,8 @@ public class StoneObstacleCreatingParams extends ObstacleCreatingParams {
     @Override
     public BodyGameObject create(Board board)
     {
-        StoneObstacle unbreakableObstacle = new StoneObstacle(this,board);
-        board.addObject(unbreakableObstacle);
-        return unbreakableObstacle;
+        StoneObstacle stoneObstacle = new StoneObstacle(this,board);
+        board.addObject(stoneObstacle);
+        return stoneObstacle;
     }
 }

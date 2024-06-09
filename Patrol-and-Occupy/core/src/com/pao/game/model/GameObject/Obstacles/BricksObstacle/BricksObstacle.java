@@ -1,26 +1,23 @@
-package com.pao.game.model.GameObject.Obstacles.BrakeObstacle;
+package com.pao.game.model.GameObject.Obstacles.BricksObstacle;
 
-import com.pao.game.communication.Descriptions.ConcreteDescription.BrakeObstacleDescription;
+import com.pao.game.communication.Descriptions.ConcreteDescription.BricksObstacleDescription;
 import com.pao.game.model.Boards.Board;
 import com.pao.game.model.GameObject.Bodies.BodyGameObject;
 import com.pao.game.model.GameObject.Obstacles.AbstractObstacle.Obstacle;
-import com.pao.game.model.GameObject.Others.Tank.Tank;
 
-public class BrakeObstacle extends Obstacle {
+public class BricksObstacle extends Obstacle {
     boolean isActive = true;
-    public BrakeObstacle(BrakeObstacleCreatingParams BOCP, Board board) {
+    public BricksObstacle(BricksObstacleCreatingParams BOCP, Board board) {
         super(BOCP, board);
         body.setUserData(this);
     }
     public void takeDamage(BodyGameObject killer){
-        if(!(killer instanceof Tank)) return;
-        isActive = false;
     }
     public boolean getIsActive() { return isActive; }
     @Override
-    public BrakeObstacleDescription getDescription()
+    public BricksObstacleDescription getDescription()
     {
-        return (BrakeObstacleDescription) (new BrakeObstacleDescription())
+        return (BricksObstacleDescription) (new BricksObstacleDescription())
                 .setX(getX())
                 .setY(getY())
                 .setWidth(getWidth())

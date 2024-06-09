@@ -6,13 +6,14 @@ import com.badlogic.gdx.graphics.Texture;
 import java.util.HashMap;
 import java.util.Map;
 import com.pao.game.model.ModelPlayer;
-import org.w3c.dom.Text;
 
 public class Textures {
     static Map<ModelPlayer, Texture> tanks;
     static Texture bullet;
-    static Texture unbreakableObstacle;
-    static Texture breakableObstacle;
+    static Texture stoneObstacle;
+    static Texture brakeObstacle;
+    static Texture bricksObstacle;
+    static Texture hedgehogsObstacle;
     static Map<ModelPlayer, Texture> plates;
     static Map<ModelPlayer, Texture> magazines;
     static Texture dynamite;
@@ -45,8 +46,10 @@ public class Textures {
             if(color == ModelPlayer.Player1) tanks.put(color,new Texture(Gdx.files.internal("tank_yellow.png")));
         }
         bullet = new Texture(Gdx.files.internal("bullet.png"));
-        unbreakableObstacle = new Texture(Gdx.files.internal("rock.png"));
-        breakableObstacle = new Texture(Gdx.files.internal("rock_breakable.png"));
+        stoneObstacle = new Texture(Gdx.files.internal("rock.png"));
+        brakeObstacle = new Texture(Gdx.files.internal("rock_breakable.png"));
+        bricksObstacle = new Texture(Gdx.files.internal("brick.png"));
+        hedgehogsObstacle = new Texture(Gdx.files.internal("hedgehogs.png"));
         plates = new HashMap<>();
         plates.put(null, new Texture(Gdx.files.internal("plate_gray.png")));
         for(ModelPlayer color : ModelPlayer.getAllColorList()){
@@ -94,8 +97,10 @@ public class Textures {
         return tanks.get(color);
     }
     public static Texture getBulletTexture() { return bullet; }
-    public static Texture getUnbreakableObstacleTexture() { return unbreakableObstacle; }
-    public static Texture getBreakableObstacleTexture() { return breakableObstacle; }
+    public static Texture getStoneObstacleTexture() { return stoneObstacle; }
+    public static Texture getBrakeObstacleTexture() { return brakeObstacle; }
+    public static Texture getBricksObstacleTexture() { return bricksObstacle; }
+    public static Texture getHedgehogsObstacleTexture() { return hedgehogsObstacle; }
     public static Texture getPlateTexture(ModelPlayer color) { return plates.get(color); }
     public static Texture getMagazineTexture(ModelPlayer color) { return magazines.get(color); }
     public static Texture getDynamiteTexture() { return dynamite; }
@@ -126,8 +131,8 @@ public class Textures {
         for (Texture texture : spawns.values())
             texture.dispose();
         bullet.dispose();
-        unbreakableObstacle.dispose();
+        stoneObstacle.dispose();
         dynamite.dispose();
-        breakableObstacle.dispose();
+        brakeObstacle.dispose();
     }
 }

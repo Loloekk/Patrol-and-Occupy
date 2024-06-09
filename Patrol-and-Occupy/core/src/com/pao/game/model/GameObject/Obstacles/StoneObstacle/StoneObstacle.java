@@ -7,8 +7,8 @@ import com.pao.game.model.GameObject.Obstacles.AbstractObstacle.Obstacle;
 
 public class StoneObstacle extends Obstacle {
     boolean isActive = true;
-    public StoneObstacle(StoneObstacleCreatingParams UBCP, Board board) {
-        super(UBCP, board);
+    public StoneObstacle(StoneObstacleCreatingParams SOCP, Board board) {
+        super(SOCP, board);
         body.setUserData(this);
     }
     public void takeDamage(BodyGameObject killer){

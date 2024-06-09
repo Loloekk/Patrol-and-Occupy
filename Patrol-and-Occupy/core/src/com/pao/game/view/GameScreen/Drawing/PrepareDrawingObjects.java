@@ -35,6 +35,12 @@ public class PrepareDrawingObjects {
             else if(desc instanceof StoneObstacleDescription) {
                 objectsDrawings.add(new StoneObstacleDrawing(painterGame, (StoneObstacleDescription) desc));
             }
+            else if(desc instanceof BricksObstacleDescription) {
+                objectsDrawings.add(new BricksObstacleDrawing(painterGame, (BricksObstacleDescription) desc));
+            }
+            else if(desc instanceof HedgehogsObstacleDescription) {
+                objectsDrawings.add(new HedgehogsObstacleDrawing(painterGame, (HedgehogsObstacleDescription) desc));
+            }
             else if(desc instanceof BulletDescription) {
                 objectsDrawings.add(new BulletDrawing(painterGame, (BulletDescription) desc));
             }
@@ -49,7 +55,6 @@ public class PrepareDrawingObjects {
             }
             else if(desc instanceof TankDescription)
                 objectsDrawings.add(new TankDrawing(painterGame,painterTop,(TankDescription) desc));
-            else continue;
         }
         Collections.sort(objectsDrawings, new Comparator<ObjectDrawing>() {
             @Override

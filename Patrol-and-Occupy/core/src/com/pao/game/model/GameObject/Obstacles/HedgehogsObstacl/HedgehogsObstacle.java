@@ -1,26 +1,23 @@
-package com.pao.game.model.GameObject.Obstacles.BrakeObstacle;
+package com.pao.game.model.GameObject.Obstacles.HedgehogsObstacl;
 
-import com.pao.game.communication.Descriptions.ConcreteDescription.BrakeObstacleDescription;
+import com.pao.game.communication.Descriptions.ConcreteDescription.HedgehogsObstacleDescription;
 import com.pao.game.model.Boards.Board;
 import com.pao.game.model.GameObject.Bodies.BodyGameObject;
 import com.pao.game.model.GameObject.Obstacles.AbstractObstacle.Obstacle;
-import com.pao.game.model.GameObject.Others.Tank.Tank;
 
-public class BrakeObstacle extends Obstacle {
+public class HedgehogsObstacle extends Obstacle {
     boolean isActive = true;
-    public BrakeObstacle(BrakeObstacleCreatingParams BOCP, Board board) {
-        super(BOCP, board);
+    public HedgehogsObstacle(HedgehogsObstacleCreatingParams HOCP, Board board) {
+        super(HOCP, board);
         body.setUserData(this);
     }
     public void takeDamage(BodyGameObject killer){
-        if(!(killer instanceof Tank)) return;
-        isActive = false;
     }
     public boolean getIsActive() { return isActive; }
     @Override
-    public BrakeObstacleDescription getDescription()
+    public HedgehogsObstacleDescription getDescription()
     {
-        return (BrakeObstacleDescription) (new BrakeObstacleDescription())
+        return (HedgehogsObstacleDescription) (new HedgehogsObstacleDescription())
                 .setX(getX())
                 .setY(getY())
                 .setWidth(getWidth())
