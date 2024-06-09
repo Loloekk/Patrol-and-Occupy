@@ -1,13 +1,13 @@
 package com.pao.game.model.GameObject.Obstacles.UnbreakableObstacle;
 
-import com.pao.game.communication.Descriptions.ConcreteDescription.UnbreakableObstacleDescription;
+import com.pao.game.communication.Descriptions.ConcreteDescription.StoneObstacleDescription;
 import com.pao.game.model.Boards.Board;
 import com.pao.game.model.GameObject.Bodies.BodyGameObject;
 import com.pao.game.model.GameObject.Obstacles.AbstractObstacle.Obstacle;
 
-public class UnbreakableObstacle extends Obstacle {
+public class StoneObstacle extends Obstacle {
     boolean isActive = true;
-    public UnbreakableObstacle(UnbreakableObstacleCreatingParams UBCP, Board board) {
+    public StoneObstacle(StoneObstacleCreatingParams UBCP, Board board) {
         super(UBCP, board);
         body.setUserData(this);
     }
@@ -15,9 +15,9 @@ public class UnbreakableObstacle extends Obstacle {
     }
     public boolean getIsActive() { return isActive; }
     @Override
-    public UnbreakableObstacleDescription getDescription()
+    public StoneObstacleDescription getDescription()
     {
-        return (UnbreakableObstacleDescription) (new UnbreakableObstacleDescription())
+        return (StoneObstacleDescription) (new StoneObstacleDescription())
                 .setX(getX())
                 .setY(getY())
                 .setWidth(getWidth())

@@ -1,15 +1,15 @@
 package com.pao.game.view.GameScreen.Drawing.ObjectDrawing;
 
-import com.pao.game.communication.Descriptions.ConcreteDescription.BreakableObstacleDescription;
+import com.pao.game.communication.Descriptions.ConcreteDescription.BrakeObstacleDescription;
 import com.pao.game.communication.Descriptions.ObjectDescription;
 import com.pao.game.view.RegionPainter;
 import com.pao.game.view.Textures;
 
-public class BreakableObstacleDrawing implements ObjectDrawing{
+public class BrakeObstacleDrawing implements ObjectDrawing{
     RegionPainter painterGame;
-    BreakableObstacleDescription desc;
+    BrakeObstacleDescription desc;
     int priority;
-    public BreakableObstacleDrawing(RegionPainter painter, BreakableObstacleDescription desc){
+    public BrakeObstacleDrawing(RegionPainter painter, BrakeObstacleDescription desc){
         this.painterGame = painter;
         this.desc = desc;
         priority = 8000;

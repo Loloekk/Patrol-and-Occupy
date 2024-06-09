@@ -1,16 +1,15 @@
 package com.pao.game.view.GameScreen.Drawing.ObjectDrawing;
 
-import com.pao.game.communication.Descriptions.ConcreteDescription.UnbreakableObstacleDescription;
+import com.pao.game.communication.Descriptions.ConcreteDescription.StoneObstacleDescription;
 import com.pao.game.communication.Descriptions.ObjectDescription;
-import com.pao.game.view.Animations;
 import com.pao.game.view.RegionPainter;
 import com.pao.game.view.Textures;
 
-public class UnbreakableObstacleDrawing implements ObjectDrawing{
+public class StoneObstacleDrawing implements ObjectDrawing{
     RegionPainter painter;
-    UnbreakableObstacleDescription desc;
+    StoneObstacleDescription desc;
     int priority;
-    public UnbreakableObstacleDrawing(RegionPainter painter, UnbreakableObstacleDescription desc){
+    public StoneObstacleDrawing(RegionPainter painter, StoneObstacleDescription desc){
         this.painter = painter;
         this.desc = desc;
         priority = 7000;

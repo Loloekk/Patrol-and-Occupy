@@ -1,11 +1,9 @@
 package com.pao.game.view.GameScreen.Drawing;
 
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.pao.game.communication.Descriptions.ConcreteDescription.*;
 import com.pao.game.communication.Descriptions.ObjectDescription;
 import com.pao.game.view.GameScreen.Drawing.ObjectDrawing.*;
 import com.pao.game.view.RegionPainter;
-import com.pao.game.view.Textures;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -31,11 +29,11 @@ public class PrepareDrawingObjects {
             else if(desc instanceof DynamiteExplosionDescription) {
                 objectsDrawings.add(new DynamiteExplosionDrawing(painterGame, (DynamiteExplosionDescription) desc));
             }
-            else if(desc instanceof BreakableObstacleDescription) {
-                objectsDrawings.add(new BreakableObstacleDrawing(painterGame, (BreakableObstacleDescription) desc));
+            else if(desc instanceof BrakeObstacleDescription) {
+                objectsDrawings.add(new BrakeObstacleDrawing(painterGame, (BrakeObstacleDescription) desc));
             }
-            else if(desc instanceof UnbreakableObstacleDescription) {
-                objectsDrawings.add(new UnbreakableObstacleDrawing(painterGame, (UnbreakableObstacleDescription) desc));
+            else if(desc instanceof StoneObstacleDescription) {
+                objectsDrawings.add(new StoneObstacleDrawing(painterGame, (StoneObstacleDescription) desc));
             }
             else if(desc instanceof BulletDescription) {
                 objectsDrawings.add(new BulletDrawing(painterGame, (BulletDescription) desc));
