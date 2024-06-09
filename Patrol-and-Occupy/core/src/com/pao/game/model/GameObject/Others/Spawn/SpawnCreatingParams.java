@@ -7,19 +7,13 @@ import com.pao.game.model.GameObject.CreatingParams.CreatingParamsRectangle;
 import com.pao.game.model.GameObject.Others.Tank.TankCreatingParams;
 
 public class SpawnCreatingParams extends CreatingParamsRectangle {
-    TankCreatingParams TCP;
-    public SpawnCreatingParams(TankCreatingParams TCP)
+    public SpawnCreatingParams()
     {
         setRealWidth(160);
         setRealHeight(160);
         setBodyType(BodyDef.BodyType.StaticBody);
         setDensity(1f);
         setIsSensor(false);
-        this.TCP=TCP;
-    }
-    public TankCreatingParams getTankCreatingParams()
-    {
-        return TCP;
     }
     @Override
     public BodyGameObject create(Board board)
