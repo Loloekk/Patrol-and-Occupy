@@ -1,6 +1,7 @@
 package com.pao.game.model.MultiContactListener;
 
 import com.badlogic.gdx.physics.box2d.*;
+import com.pao.game.model.GameObject.Explosions.BulletShoot.BulletShoot;
 import com.pao.game.model.GameObject.Others.Bullet.Bullet;
 import com.pao.game.model.GameObject.Others.Spawn.Spawn;
 import com.pao.game.model.GameObject.Others.Tank.Tank;
@@ -32,6 +33,12 @@ public class BulletContactListener implements ContactListener {
         }
         if (userDataA instanceof Bullet && userDataB instanceof Bullet) {
             handleBulletBulletContact((Bullet)userDataA,(Bullet)userDataB,contact);
+        }
+        if (userDataA instanceof Bullet && userDataB instanceof BulletShoot) {
+            contact.setEnabled(false);
+        }
+        else if (userDataA instanceof BulletShoot && userDataB instanceof Bullet){
+            contact.setEnabled(false);
         }
     }
     @Override

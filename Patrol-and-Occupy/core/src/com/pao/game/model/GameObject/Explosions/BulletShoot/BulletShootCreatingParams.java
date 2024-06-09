@@ -11,8 +11,9 @@ public class BulletShootCreatingParams extends ExplosionCreatingParams {
     public BulletShootCreatingParams()
     {
         super();
-        setRadius(40);
+        setRadius(10);
         setLiveTime(0.2f);
+        setIsSensor(false);
     }
     public BulletShootCreatingParams setTank(Tank tank)
     {
