@@ -1,6 +1,5 @@
 package com.pao.game.model;
 
-import com.pao.game.communication.Params;
 import com.pao.game.model.GameObject.CreatingParams.CreatingParams;
 import com.pao.game.model.GameObject.Obstacles.BreakableObstacle.BreakableObstacle;
 import com.pao.game.model.GameObject.Obstacles.AbstractObstacle.Obstacle;
@@ -85,10 +84,6 @@ public class Setup {
 
             objectList.add(new PlateCreatingParams().setX(300).setY(200));
             objectList.addAll(Obstacle.rectangleObstacle((float) width /2, (float) height /2, 500, 1, 1, 0,new UnbreakableObstacleFactory()));
-
-            List<Params> breakableObstacleList = new ArrayList<>();
-
-
 
             setupList.add(objectList);
         }

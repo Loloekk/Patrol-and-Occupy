@@ -9,10 +9,9 @@ public class ExplosionCreatingParams extends CreatingParamsCircle {
     float liveTime;
     public ExplosionCreatingParams()
     {
-        setRadius(20);
         setBodyType(BodyDef.BodyType.StaticBody);
         setDensity(1f);
-        setIsSensor(false);
+        setIsSensor(true);
     }
     public ExplosionCreatingParams setLiveTime(float time)
     {

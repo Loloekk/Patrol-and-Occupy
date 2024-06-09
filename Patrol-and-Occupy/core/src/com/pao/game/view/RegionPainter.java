@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.pao.game.communication.Descriptions.ObjectDescription;
 import com.pao.game.communication.Params;
 
 import java.util.HashMap;
@@ -61,9 +62,9 @@ public class RegionPainter {
         fonts.put(name,generator.generateFont(parameter));
         generator.dispose();
     }
-    public void fillBackground(float scale)
+    public void fillBackground()
     {
-        batch.draw(new TextureRegion(backgroundTexture),originX/scale,originY/scale,width/scale,height/scale);
+        batch.draw(new TextureRegion(backgroundTexture),originX,originY,width,height);
     }
     public void drowWriting(String fontName,String text,float x, float y)
     {
@@ -78,14 +79,14 @@ public class RegionPainter {
         batch.draw(texture,(x-W/2)*scaleHeight+originX,(y-H/2)*scaleWidth+originY,
                 W/2*scaleHeight,H/2*scaleWidth,W*scaleHeight,H*scaleWidth,1,1,R);
     }
-    public void drawTexture(TextureRegion texture, Params object) {
+    public void drawTexture(TextureRegion texture, ObjectDescription object) {
         batch.draw(texture,(object.getX()- object.getWidth()/2)*scaleWidth+originX,(object.getY()- object.getHeight()/2)*scaleHeight+originY,
                 object.getWidth()/2*scaleWidth,object.getHeight()/2*scaleHeight,(object.getWidth())*scaleWidth,(object.getHeight())*scaleHeight,1,1,object.getRotation());
     }
-    public void drawTexture(TextureRegion texture, Params object,float scale) {
-        batch.draw(texture,(object.getX()- object.getWidth()*scale/2)*scaleWidth+originX,(object.getY()- object.getHeight()*scale/2)*scaleHeight+originY,
-                object.getWidth()*scale/2*scaleWidth,object.getHeight()*scale/2*scaleHeight,object.getWidth()*scale*scaleWidth,object.getHeight()*scale*scaleHeight,1,1,object.getRotation());
-    }
+//    public void drawTexture(TextureRegion texture, ObjectDescription object,float scale) {
+//        batch.draw(texture,(object.getX()- object.getWidth()*scale/2)*scaleWidth+originX,(object.getY()- object.getHeight()*scale/2)*scaleHeight+originY,
+//                object.getWidth()*scale/2*scaleWidth,object.getHeight()*scale/2*scaleHeight,object.getWidth()*scale*scaleWidth,object.getHeight()*scale*scaleHeight,1,1,object.getRotation());
+//    }
     public void dispose()
     {
         backgroundTexture.dispose();

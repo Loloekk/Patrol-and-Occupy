@@ -15,7 +15,6 @@ public class MultiContactListener implements ContactListener {
         listeners.add(new DefaultContactListener());
         listeners.add(new TankContactListener());
         listeners.add(new BulletContactListener());
-        listeners.add(new ExplosionContactListener());
     }
     @Override
     public void beginContact(Contact contact) {

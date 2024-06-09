@@ -3,6 +3,7 @@ package com.pao.game.model.GameObject.Others.Tank;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.math.MathUtils;
+import com.pao.game.communication.Descriptions.ConcreteDescription.TankDescription;
 import com.pao.game.model.*;
 import com.pao.game.model.Boards.Board;
 import com.pao.game.model.GameObject.Bodies.BodyGameObject;
@@ -116,7 +117,7 @@ public class Tank extends BodyGameObject {
             float x = getX() + MathUtils.cos(angle) * height/2;
             float y = getY() + MathUtils.sin(angle) * width/2;
             board.addObjectToCreate(new BulletCreatingParams().setX(x).setY(y).setColor(color).setRotation(getRotation()));
-            board.addObjectToCreate((new BulletShootCreatingParams().setTank(this).setColor(color).setX(x).setY(y).setRotation(getRotation())));
+            board.addObjectToCreate(new BulletShootCreatingParams().setTank(this).setColor(color).setX(x).setY(y).setRotation(getRotation()));
         }
 
         if(placeDynamite && magazine.hasDynamite()) {
@@ -166,5 +167,20 @@ public class Tank extends BodyGameObject {
     public Magazine getMagazine()
     {
         return magazine;
+    }
+    @Override
+    public TankDescription getDescription()
+    {
+        return (TankDescription) (new TankDescription())
+                .setBullets(magazine.getQuantity())
+                .setPlates(playerStatistics.getNumberOfPlates())
+                .setIsAlive(getIsAlive())
+                .setDynamite(magazine.hasDynamite())
+                .setColor(getColor())
+                .setX(getX())
+                .setY(getY())
+                .setWidth(getWidth())
+                .setHeight(getHeight())
+                .setRotation(getRotation());
     }
 }

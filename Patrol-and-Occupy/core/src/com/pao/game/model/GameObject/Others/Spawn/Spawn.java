@@ -1,5 +1,6 @@
 package com.pao.game.model.GameObject.Others.Spawn;
 
+import com.pao.game.communication.Descriptions.ConcreteDescription.SpawnDescription;
 import com.pao.game.model.Boards.Board;
 import com.pao.game.model.GameObject.Bodies.BodyGameObject;
 import com.pao.game.model.GameObject.Others.Tank.Tank;
@@ -32,4 +33,15 @@ public class Spawn extends BodyGameObject {
     }
     public void setColor(ModelPlayer color) { this.color = color; }
     public ModelPlayer getColor() { return color; }
+    @Override
+    public SpawnDescription getDescription()
+    {
+        return (SpawnDescription) (new SpawnDescription())
+                .setColor(getColor())
+                .setX(getX())
+                .setY(getY())
+                .setWidth(getWidth())
+                .setHeight(getHeight())
+                .setRotation(getRotation());
+    }
 }

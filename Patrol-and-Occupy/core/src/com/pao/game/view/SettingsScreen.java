@@ -111,7 +111,7 @@ public class SettingsScreen implements Screen {
 
         game.batch.setProjectionMatrix(camera.combined);
         game.batch.begin();
-        painter.fillBackground(1f);
+        painter.fillBackground();
         font.draw(game.batch, "Tank speed: " + String.format("%.0f",tankSpeedSlider.getValue()), tankSpeedSlider.getX(), tankSpeedSlider.getY() + 50);
         font.draw(game.batch, "Bullet speed: " + String.format("%.0f",bulletSpeedSlider.getValue()), bulletSpeedSlider.getX(), bulletSpeedSlider.getY() + 50);
         font.draw(game.batch, "Magazine capacity: " + String.format("%.0f",magazineCapacitySlider.getValue()), magazineCapacitySlider.getX(), magazineCapacitySlider.getY() + 50);

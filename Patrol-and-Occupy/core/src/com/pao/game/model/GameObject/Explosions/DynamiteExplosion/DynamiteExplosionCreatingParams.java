@@ -8,11 +8,9 @@ import com.pao.game.model.GameObject.Explosions.Explosion.ExplosionCreatingParam
 public class DynamiteExplosionCreatingParams extends ExplosionCreatingParams {
     public DynamiteExplosionCreatingParams()
     {
+        super();
         setRadius(150);
         setLiveTime(0.5f);
-        setBodyType(BodyDef.BodyType.StaticBody);
-        setDensity(1f);
-        setIsSensor(false);
     }
     @Override
     public BodyGameObject create(Board board)

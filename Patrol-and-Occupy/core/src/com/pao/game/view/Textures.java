@@ -10,7 +10,7 @@ import com.pao.game.model.ModelPlayer;
 public class Textures {
     Map<ModelPlayer, Texture> tanks;
     Texture bullet;
-    Texture obstacle;
+    Texture unbreakableObstacle;
     Texture breakableObstacle;
     Map<ModelPlayer, Texture> plates;
     Map<ModelPlayer, Texture> magazines;
@@ -34,7 +34,7 @@ public class Textures {
             if(color == ModelPlayer.Player1) tanks.put(color,new Texture(Gdx.files.internal("tank_yellow.png")));
         }
         bullet = new Texture(Gdx.files.internal("bullet.png"));
-        obstacle = new Texture(Gdx.files.internal("rock.png"));
+        unbreakableObstacle = new Texture(Gdx.files.internal("rock.png"));
         breakableObstacle = new Texture(Gdx.files.internal("rock_breakable.png"));
         plates = new HashMap<>();
         plates.put(null, new Texture(Gdx.files.internal("plate_gray.png")));
@@ -73,7 +73,7 @@ public class Textures {
         return tanks.get(color);
     }
     public Texture getBulletTexture() { return bullet; }
-    public Texture getObstacleTexture() { return obstacle; }
+    public Texture getUnbreakableObstacleTexture() { return unbreakableObstacle; }
     public Texture getBreakableObstacleTexture() { return breakableObstacle; }
     public Texture getPlateTexture(ModelPlayer color) { return plates.get(color); }
     public Texture getMagazineTexture(ModelPlayer color) { return magazines.get(color); }
@@ -96,7 +96,7 @@ public class Textures {
         for (Texture texture : spawns.values())
             texture.dispose();
         bullet.dispose();
-        obstacle.dispose();
+        unbreakableObstacle.dispose();
         dynamite.dispose();
         breakableObstacle.dispose();
     }

@@ -47,7 +47,7 @@ public class MainMenuScreen implements Screen {
         game.batch.setProjectionMatrix(camera.combined);
 
         game.batch.begin();
-        painter.fillBackground(1f);
+        painter.fillBackground();
         camera.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
         if(playButton.contains(touchPoint.x, touchPoint.y)) {
             painter.drawTexture(new TextureRegion(textures.getPlayButtonActive()), Drop.WIDTH / 2, PLAY_BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT, 0);

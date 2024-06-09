@@ -1,6 +1,7 @@
 package com.pao.game.model.MultiContactListener;
 
 import com.badlogic.gdx.physics.box2d.*;
+import com.pao.game.model.GameObject.Explosions.BulletShoot.BulletShoot;
 import com.pao.game.model.GameObject.Others.Bullet.Bullet;
 import com.pao.game.model.GameObject.Others.Spawn.Spawn;
 import com.pao.game.model.GameObject.Others.Tank.Tank;
@@ -30,6 +31,15 @@ public class BulletContactListener implements ContactListener {
         else if (userDataA instanceof Spawn && userDataB instanceof Bullet) {
             handleBulletSpawnContact((Bullet) userDataB, (Spawn) userDataA, contact);
         }
+        if (userDataA instanceof Bullet && userDataB instanceof Bullet) {
+            handleBulletBulletContact((Bullet)userDataA,(Bullet)userDataB,contact);
+        }
+        if (userDataA instanceof Bullet && userDataB instanceof BulletShoot) {
+            contact.setEnabled(false);
+        }
+        else if (userDataA instanceof BulletShoot && userDataB instanceof Bullet){
+            contact.setEnabled(false);
+        }
     }
     @Override
     public void postSolve(Contact contact, ContactImpulse impulse) {}
@@ -40,6 +50,11 @@ public class BulletContactListener implements ContactListener {
     }
     private void handleBulletSpawnContact(Bullet bullet, Spawn spawn, Contact contact) {
         if (bullet.getColor() == spawn.getColor()) {
+            contact.setEnabled(false);
+        }
+    }
+    private void handleBulletBulletContact(Bullet bullet1, Bullet bullet2, Contact contact) {
+        if (bullet1.getColor() == bullet2.getColor()) {
             contact.setEnabled(false);
         }
     }
