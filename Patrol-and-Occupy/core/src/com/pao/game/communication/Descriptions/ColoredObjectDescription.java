@@ -4,7 +4,7 @@ import com.pao.game.model.ModelPlayer;
 
 public abstract class ColoredObjectDescription extends ObjectDescription{
     ModelPlayer color;
-    public ColoredObjectDescription(){
+    public ColoredObjectDescription() {
         super();
         color = null;
     }

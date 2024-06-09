@@ -1,23 +1,23 @@
-package com.pao.game.model.GameObject.Obstacles.UnbreakableObstacle;
+package com.pao.game.model.GameObject.Obstacles.BricksObstacle;
 
-import com.pao.game.communication.Descriptions.ConcreteDescription.UnbreakableObstacleDescription;
+import com.pao.game.communication.Descriptions.ConcreteDescription.BricksObstacleDescription;
 import com.pao.game.model.Boards.Board;
 import com.pao.game.model.GameObject.Bodies.BodyGameObject;
 import com.pao.game.model.GameObject.Obstacles.AbstractObstacle.Obstacle;
 
-public class UnbreakableObstacle extends Obstacle {
+public class BricksObstacle extends Obstacle {
     boolean isActive = true;
-    public UnbreakableObstacle(UnbreakableObstacleCreatingParams UBCP, Board board) {
-        super(UBCP, board);
+    public BricksObstacle(BricksObstacleCreatingParams BOCP, Board board) {
+        super(BOCP, board);
         body.setUserData(this);
     }
     public void takeDamage(BodyGameObject killer){
     }
     public boolean getIsActive() { return isActive; }
     @Override
-    public UnbreakableObstacleDescription getDescription()
+    public BricksObstacleDescription getDescription()
     {
-        return (UnbreakableObstacleDescription) (new UnbreakableObstacleDescription())
+        return (BricksObstacleDescription) (new BricksObstacleDescription())
                 .setX(getX())
                 .setY(getY())
                 .setWidth(getWidth())

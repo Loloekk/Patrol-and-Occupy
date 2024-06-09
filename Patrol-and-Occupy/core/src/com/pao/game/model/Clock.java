@@ -8,12 +8,6 @@ public class Clock {
     {
         remainingTime = ModelSettings.getGameTime();
     }
-    public void setRemainingTime(float time) {
-        remainingTime = time;
-    }
-    public void addRemainingTime(float time) {
-        remainingTime += time;
-    }
     public float getRemainingTime(){
         return remainingTime;
     }

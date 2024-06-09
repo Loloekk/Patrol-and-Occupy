@@ -1,9 +1,9 @@
-package com.pao.game.view.GameScreen;
+package com.pao.game.view.GameScreen.Updating;
 
 import com.pao.game.model.ModelPlayer;
-import com.pao.game.view.GameScreen.PlayerView.PlayerView;
-import com.pao.game.view.GameScreen.PlayerView.PlayerView5Buttons;
-import com.pao.game.view.GameScreen.PlayerView.PlayerViewOneButton;
+import com.pao.game.view.GameScreen.Updating.PlayerView.PlayerView;
+import com.pao.game.view.GameScreen.Updating.PlayerView.PlayerView5Buttons;
+import com.pao.game.view.GameScreen.Updating.PlayerView.PlayerViewOneButton;
 import com.pao.game.viewmodel.EditSettings;
 import com.pao.game.viewmodel.ViewModel;
 

@@ -1,13 +1,10 @@
-package com.pao.game.view.GameScreen.PlayerView;
+package com.pao.game.view.GameScreen.Updating.PlayerView;
 
 import com.badlogic.gdx.Gdx;
-import com.pao.game.communication.Descriptions.ConcreteDescription.PlateDescription;
 import com.pao.game.communication.Move;
 import com.pao.game.model.ModelPlayer;
 import com.pao.game.view.ViewSettings;
 import com.pao.game.viewmodel.ViewModel;
-
-import java.util.List;
 
 public class PlayerViewOneButton implements PlayerView{
     ModelPlayer color;
