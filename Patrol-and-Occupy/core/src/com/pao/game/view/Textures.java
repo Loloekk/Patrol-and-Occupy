@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import java.util.HashMap;
 import java.util.Map;
 import com.pao.game.model.ModelPlayer;
+import org.w3c.dom.Text;
 
 public class Textures {
     static Map<ModelPlayer, Texture> tanks;
@@ -28,6 +29,11 @@ public class Textures {
     static Texture resumeButtonInactive;
     static Texture restartButtonActive;
     static Texture restartButtonInactive;
+    static Texture backButtonActive;
+    static Texture backButtonInactive;
+    static Texture twoPlayers;
+    static Texture threePlayers;
+    static Texture fourPlayers;
     public static void load() {
         tanks = new HashMap<>();
         tanks.put(null,new Texture(Gdx.files.internal("tank_gray.png")));
@@ -75,6 +81,11 @@ public class Textures {
         resumeButtonInactive = new Texture(Gdx.files.internal("resumeInactive.png"));
         restartButtonActive = new Texture(Gdx.files.internal("restartActive.png"));
         restartButtonInactive = new Texture(Gdx.files.internal("restartInactive.png"));
+        backButtonActive = new Texture(Gdx.files.internal("backActive.png"));
+        backButtonInactive = new Texture(Gdx.files.internal("backInactive.png"));
+        twoPlayers = new Texture(Gdx.files.internal("twoPlayers.png"));
+        threePlayers = new Texture(Gdx.files.internal("threePlayers.png"));
+        fourPlayers = new Texture(Gdx.files.internal("fourPlayers.png"));
     }
     public static Texture getTankTexture(ModelPlayer color)
     {
@@ -99,6 +110,11 @@ public class Textures {
     public static Texture getResumeButtonInactive() { return resumeButtonInactive; }
     public static Texture getRestartButtonActive() { return restartButtonActive; }
     public static Texture getRestartButtonInactive() { return restartButtonInactive; }
+    public static Texture getBackButtonActive() { return backButtonActive; }
+    public static Texture getBackButtonInactive() { return backButtonInactive; }
+    public static Texture getTwoPlayers() { return twoPlayers; }
+    public static Texture getThreePlayers() { return threePlayers; }
+    public static Texture getFourPlayers() { return fourPlayers; }
     public static void dispose() {
         for (Texture texture : tanks.values())
             texture.dispose();

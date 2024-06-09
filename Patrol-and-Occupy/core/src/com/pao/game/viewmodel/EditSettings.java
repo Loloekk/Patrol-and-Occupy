@@ -12,10 +12,7 @@ public class EditSettings {
     {
         ModelSettings.setOption(o,state);
     }
-    public static void setOption(Options o, int state)
-    {
-        ModelSettings.setOption(o,state);
-    }
+    public static void setOption(Options o, int state) { ModelSettings.setOption(o,state); }
     public static float getGameTime(){return ModelSettings.getGameTime();}
     public static int getNumberOfPlayers(){return ModelSettings.getNumberOfPlayers();}
     public static int getMap(){return ModelSettings.getMap();}

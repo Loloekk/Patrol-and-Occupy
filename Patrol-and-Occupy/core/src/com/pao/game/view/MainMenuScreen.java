@@ -49,7 +49,7 @@ public class MainMenuScreen implements Screen {
         camera.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
 
         painter.drawAlternatingTexture(Textures.getPlayButtonActive(), Textures.getPlayButtonInactive(), playButton, touchPoint);
-        if(playButton.contains(touchPoint.x, touchPoint.y) && Gdx.input.justTouched()) game.setScreen(new GameScreen(game));
+        if(playButton.contains(touchPoint.x, touchPoint.y) && Gdx.input.justTouched()) game.setScreen(new MapScreen(game));
 
         painter.drawAlternatingTexture(Textures.getSettingsButtonActive(), Textures.getSettingsButtonInactive(), settingsButton, touchPoint);
         if(settingsButton.contains(touchPoint.x, touchPoint.y) && Gdx.input.justTouched()) game.setScreen(new SettingsScreen(game));
