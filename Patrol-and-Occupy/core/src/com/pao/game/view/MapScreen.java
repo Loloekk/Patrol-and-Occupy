@@ -49,14 +49,14 @@ public class MapScreen implements Screen {
         skin = new Skin(Gdx.files.internal("uiskin.json"));
 
         Texture[] txs = new Texture[8];
-        txs[0] = Textures.getTexture("bullet");
-        txs[1] = Textures.getTexture("brake.Obstacle");
-        txs[2] = Textures.getTexture("stone.Obstacle");
-        txs[3] = Textures.getTexture("brake.Obstacle");
-        txs[4] = Textures.getTexture("bricks.Obstacle");
-        txs[5] = Textures.getTexture("bullet");
-        txs[6] = Textures.getTexture("brake.Obstacle");
-        txs[7] = Textures.getTexture("bullet");
+        txs[0] = Textures.getTexture("setup.0");
+        txs[1] = Textures.getTexture("setup.1");
+        txs[2] = Textures.getTexture("setup.2");
+        txs[3] = Textures.getTexture("setup.3");
+        txs[4] = Textures.getTexture("setup.4");
+        txs[5] = Textures.getTexture("setup.5");
+        txs[6] = Textures.getTexture("setup.6");
+        txs[7] = Textures.getTexture("setup.7");
 
         table = new Table();
         for(int i = 0; i < txs.length; i++) {
