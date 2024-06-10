@@ -18,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.pao.game.Constants.Constants;
 import com.pao.game.communication.Options;
 import com.pao.game.viewmodel.EditSettings;
 
@@ -56,31 +57,31 @@ public class SettingsScreen implements Screen {
         stage = new Stage(viewport);
         skin = new Skin(Gdx.files.internal("uiskin.json"));
 
-        tankSpeedSlider = makeSlider(1, 20, 1, false, Drop.WIDTH/2 - sliderWidth*3/2, 850f, tankSpeed);
+        tankSpeedSlider = makeSlider(Constants.getConstant("min.TankSpeed"), Constants.getConstant("max.TankSpeed"), Constants.getConstant("step.TankSpeed"), false, Drop.WIDTH/2 - sliderWidth*3/2, 850f, tankSpeed);
         tankSpeedSlider.setValue(EditSettings.getTankSpeed());
         stage.addActor(tankSpeedSlider);
-        rotateSpeedSlider = makeSlider(1, 10, 0.5f, false, Drop.WIDTH/2 + sliderWidth/2, 850f, rotateSpeed);
+        rotateSpeedSlider = makeSlider(Constants.getConstant("min.RotateSpeed"), Constants.getConstant("max.RotateSpeed"), Constants.getConstant("step.RotateSpeed"), false, Drop.WIDTH/2 + sliderWidth/2, 850f, rotateSpeed);
         rotateSpeedSlider.setValue(EditSettings.getRotateSpeed());
         stage.addActor(rotateSpeedSlider);
-        bulletSpeedSlider = makeSlider(1, 40, 1, false, Drop.WIDTH/2 - sliderWidth*3/2, 700f, bulletSpeed);
+        bulletSpeedSlider = makeSlider(Constants.getConstant("min.BulletSpeed"), Constants.getConstant("max.BulletSpeed"), Constants.getConstant("step.BulletSpeed"), false, Drop.WIDTH/2 - sliderWidth*3/2, 700f, bulletSpeed);
         bulletSpeedSlider.setValue(EditSettings.getBulletSpeed());
         stage.addActor(bulletSpeedSlider);
-        magazineCapacitySlider = makeSlider(1, 10, 1, false, Drop.WIDTH/2 + sliderWidth/2, 700f, magazineCapacity);
+        magazineCapacitySlider = makeSlider(Constants.getConstant("min.MagazineCapacity"), Constants.getConstant("max.MagazineCapacity"), Constants.getConstant("step.MagazineCapacity"), false, Drop.WIDTH/2 + sliderWidth/2, 700f, magazineCapacity);
         magazineCapacitySlider.setValue(EditSettings.getMagazineCapacity());
         stage.addActor(magazineCapacitySlider);
-        shootCooldownSlider = makeSlider(0, 5, 0.1f, false, Drop.WIDTH/2 - sliderWidth*3/2, 550f, shootCooldown);
+        shootCooldownSlider = makeSlider(Constants.getConstant("min.ShootCooldown"), Constants.getConstant("max.ShootCooldown"), Constants.getConstant("step.ShootCooldown"), false, Drop.WIDTH/2 - sliderWidth*3/2, 550f, shootCooldown);
         shootCooldownSlider.setValue(EditSettings.getShootCooldown());
         stage.addActor(shootCooldownSlider);
-        receiveCooldownSlider = makeSlider(0, 5, 0.5f, false, Drop.WIDTH/2 + sliderWidth/2, 550f, receiveCooldown);
+        receiveCooldownSlider = makeSlider(Constants.getConstant("min.ReceiveCooldown"), Constants.getConstant("max.ReceiveCooldown"), Constants.getConstant("step.ReceiveCooldown"), false, Drop.WIDTH/2 + sliderWidth/2, 550f, receiveCooldown);
         receiveCooldownSlider.setValue(EditSettings.getReceiveCooldown());
         stage.addActor(receiveCooldownSlider);
-        gameTimeSlider = makeSlider(10, 200, 10f, false, Drop.WIDTH/2 - sliderWidth*3/2, 400f, gameTime);
+        gameTimeSlider = makeSlider(Constants.getConstant("min.GameTime"), Constants.getConstant("max.GameTime"), Constants.getConstant("step.GameTime"), false, Drop.WIDTH/2 - sliderWidth*3/2, 400f, gameTime);
         gameTimeSlider.setValue(EditSettings.getGameTime());
         stage.addActor(gameTimeSlider);
-        respawnSlider = makeSlider(0, 20, 1, false, Drop.WIDTH/2 + sliderWidth/2, 400f, respawnCooldown);
+        respawnSlider = makeSlider(Constants.getConstant("min.RespawnCooldown"), Constants.getConstant("max.RespawnCooldown"), Constants.getConstant("step.RespawnCooldown"), false, Drop.WIDTH/2 + sliderWidth/2, 400f, respawnCooldown);
         respawnSlider.setValue(EditSettings.getRespawnCooldown());
         stage.addActor(respawnSlider);
-        dynamiteCoolDownSlider = makeSlider(0, 20, 0.2f, false, Drop.WIDTH/2 - sliderWidth/2 , 250f, dynamiteCooldown);
+        dynamiteCoolDownSlider = makeSlider(Constants.getConstant("min.DynamiteCooldown"), Constants.getConstant("max.DynamiteCooldown"), Constants.getConstant("step.DynamiteCooldown"), false, Drop.WIDTH/2 - sliderWidth/2 , 250f, dynamiteCooldown);
         dynamiteCoolDownSlider.setValue(EditSettings.getRespawnCooldown());
         stage.addActor(dynamiteCoolDownSlider);
 
