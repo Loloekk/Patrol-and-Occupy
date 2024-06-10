@@ -7,8 +7,8 @@ import com.pao.game.model.GameObject.Obstacles.AbstractObstacle.ObstacleCreating
 public class BrakeObstacleCreatingParams extends ObstacleCreatingParams {
     public BrakeObstacleCreatingParams() {
         super();
-        setRealHeight(10);
-        setRealWidth(10);
+        setRealHeight(25);
+        setRealWidth(25);
     }
     @Override
     public BodyGameObject create(Board board)

@@ -4,7 +4,9 @@ import com.pao.game.model.GameObject.CreatingParams.CreatingParams;
 import com.pao.game.model.GameObject.Obstacles.BrakeObstacle.BrakeObstacle;
 import com.pao.game.model.GameObject.Obstacles.BrakeObstacle.BrakeObstacleFactory;
 import com.pao.game.model.GameObject.Obstacles.AbstractObstacle.Obstacle;
+import com.pao.game.model.GameObject.Obstacles.BricksObstacle.BricksObstacle;
 import com.pao.game.model.GameObject.Obstacles.BricksObstacle.BricksObstacleFactory;
+import com.pao.game.model.GameObject.Obstacles.HedgehogsObstacl.HedgehogsObstacleFactory;
 import com.pao.game.model.GameObject.Obstacles.StoneObstacle.StoneObstacleFactory;
 import com.pao.game.model.GameObject.Others.Plate.PlateCreatingParams;
 import com.pao.game.model.GameObject.Others.Spawn.SpawnCreatingParams;
@@ -376,6 +378,112 @@ public class Setup {
             objectList.addAll(Obstacle.rectangleObstacle(30, height/2, 50, 1, 11, 90,new BrakeObstacleFactory()));
             objectList.addAll(Obstacle.rectangleObstacle(width-30, height/2, 50, 1, 11, 90,new BrakeObstacleFactory()));
 
+
+            setupList.add(objectList);
+        }
+        // Setup 10.
+        {
+            List<CreatingParams> objectList = new ArrayList<>();
+            float off = 300;
+            objectList.add(new SpawnCreatingParams().setColor(ModelPlayer.Player4).setX(width/2+225).setY(height/2-225));
+            objectList.add(new SpawnCreatingParams().setColor(ModelPlayer.Player2).setX(width/2+225).setY(height/2+225));
+            objectList.add(new SpawnCreatingParams().setColor(ModelPlayer.Player3).setX(width/2-225).setY(height/2+225));
+            objectList.add(new SpawnCreatingParams().setColor(ModelPlayer.Player1).setX(width/2-225).setY(height/2-225));
+            objectList.add(new TankCreatingParams().setColor(ModelPlayer.Player4).setX(width/2+225).setY(height/2-225).setRotation(180));
+            objectList.add(new TankCreatingParams().setColor(ModelPlayer.Player2).setX(width/2+225).setY(height/2+225).setRotation(270));
+            objectList.add(new TankCreatingParams().setColor(ModelPlayer.Player3).setX(width/2-225).setY(height/2+225));
+            objectList.add(new TankCreatingParams().setColor(ModelPlayer.Player1).setX(width/2-225).setY(height/2-225).setRotation(90));
+
+
+
+
+            //objectList.addAll(Obstacle.rectangleObstacle(width/2, height/2, 50, 1, 10, 0,new UnbreakableObstacleFactory()));
+            //objectList.addAll(Obstacle.rectangleObstacle(width/2, height/2, 50, 1, 10, 90,new UnbreakableObstacleFactory()));
+            //objectList.addAll(Obstacle.rectangleObstacle(650, 750, 50, 1, 1, 0,new UnbreakableObstacleFactory()));
+
+
+            objectList.addAll(Obstacle.rectangleObstacle(width/2-175, height/2-75, 50, 3, 1, 0,new BrakeObstacleFactory()));
+            objectList.addAll(Obstacle.rectangleObstacle(width/2-75, height/2+175, 50, 1, 3, 0,new BrakeObstacleFactory()));
+            objectList.addAll(Obstacle.rectangleObstacle(width/2+175, height/2+75, 50, 3, 1, 0,new BrakeObstacleFactory()));
+            objectList.addAll(Obstacle.rectangleObstacle(width/2+75, height/2-175, 50, 1, 3, 0,new BrakeObstacleFactory()));
+
+            objectList.addAll(Obstacle.rectangleObstacle(width/2-100, height/2-325, 50, 1, 2, 0,new BricksObstacleFactory()));
+            objectList.addAll(Obstacle.rectangleObstacle(width/2-325, height/2+100, 50, 2, 1, 0,new BricksObstacleFactory()));
+            objectList.addAll(Obstacle.rectangleObstacle(width/2+100, height/2+325, 50, 1, 2, 0,new BricksObstacleFactory()));
+            objectList.addAll(Obstacle.rectangleObstacle(width/2+325, height/2-100, 50, 2, 1, 0,new BricksObstacleFactory()));
+
+            objectList.addAll(Obstacle.rectangleObstacle(width/2-75, height/2-175, 50, 1, 3, 0,new StoneObstacleFactory()));
+            objectList.addAll(Obstacle.rectangleObstacle(width/2-175, height/2+75, 50, 3, 1, 0,new StoneObstacleFactory()));
+            objectList.addAll(Obstacle.rectangleObstacle(width/2+75, height/2+175, 50, 1, 3, 0,new StoneObstacleFactory()));
+            objectList.addAll(Obstacle.rectangleObstacle(width/2+175, height/2-75, 50, 3, 1, 0,new StoneObstacleFactory()));
+
+            objectList.addAll(Obstacle.rectangleObstacle(width/2-25, height/2-250, 50, 2, 1, 0,new HedgehogsObstacleFactory()));
+            objectList.addAll(Obstacle.rectangleObstacle(width/2-250, height/2+25, 50, 1, 2, 0,new HedgehogsObstacleFactory()));
+            objectList.addAll(Obstacle.rectangleObstacle(width/2+25, height/2+250, 50, 2, 1, 0,new HedgehogsObstacleFactory()));
+            objectList.addAll(Obstacle.rectangleObstacle(width/2+250, height/2-25, 50, 1, 2, 0,new HedgehogsObstacleFactory()));
+
+            objectList.addAll(Obstacle.rectangleObstacle(width/2-325, height/2-150, 50, 8, 1, 0,new StoneObstacleFactory()));
+            objectList.addAll(Obstacle.rectangleObstacle(width/2-150, height/2+325, 50, 1, 8, 0,new StoneObstacleFactory()));
+            objectList.addAll(Obstacle.rectangleObstacle(width/2+325, height/2+150, 50, 8, 1, 0,new StoneObstacleFactory()));
+            objectList.addAll(Obstacle.rectangleObstacle(width/2+150, height/2-325, 50, 1, 8, 0,new StoneObstacleFactory()));
+
+            objectList.addAll(Obstacle.rectangleObstacle(width/2-225, height/2-325, 50, 1, 3, 0,new StoneObstacleFactory()));
+            objectList.addAll(Obstacle.rectangleObstacle(width/2-325, height/2+225, 50, 3, 1, 0,new StoneObstacleFactory()));
+            objectList.addAll(Obstacle.rectangleObstacle(width/2+225, height/2+325, 50, 1, 3, 0,new StoneObstacleFactory()));
+            objectList.addAll(Obstacle.rectangleObstacle(width/2+325, height/2-225, 50, 3, 1, 0,new StoneObstacleFactory()));
+
+            objectList.addAll(Obstacle.rectangleObstacle(width/2+525, height/2, 50, 14, 1, 0,new StoneObstacleFactory()));
+            objectList.addAll(Obstacle.rectangleObstacle(width/2-525, height/2, 50, 14, 1, 0,new StoneObstacleFactory()));
+
+            objectList.addAll(Obstacle.rectangleObstacle(width/2+725, height/2, 50, 14, 1, 0,new HedgehogsObstacleFactory()));
+            objectList.addAll(Obstacle.rectangleObstacle(width/2-725, height/2, 50, 14, 1, 0,new HedgehogsObstacleFactory()));
+            /////////////
+            objectList.addAll(Obstacle.rectangleObstacle(width/2+875, height/2+325, 50, 1, 5, 0,new BricksObstacleFactory()));
+            objectList.addAll(Obstacle.rectangleObstacle(width/2-875, height/2+325, 50, 1, 5, 0,new BricksObstacleFactory()));
+            objectList.addAll(Obstacle.rectangleObstacle(width/2+875, height/2-325, 50, 1, 5, 0,new BricksObstacleFactory()));
+            objectList.addAll(Obstacle.rectangleObstacle(width/2-875, height/2-325, 50, 1, 5, 0,new BricksObstacleFactory()));
+
+            objectList.addAll(Obstacle.rectangleObstacle(width/2+875, height/2+110, 50, 1, 5, 0,new BrakeObstacleFactory()));
+            objectList.addAll(Obstacle.rectangleObstacle(width/2-875, height/2+110, 50, 1, 5, 0,new BrakeObstacleFactory()));
+            objectList.addAll(Obstacle.rectangleObstacle(width/2+875, height/2-110, 50, 1, 5, 0,new BrakeObstacleFactory()));
+            objectList.addAll(Obstacle.rectangleObstacle(width/2-875, height/2-110, 50, 1, 5, 0,new BrakeObstacleFactory()));
+
+            objectList.addAll(Obstacle.rectangleObstacle(width/2+625, height/2+325, 50, 1, 3, 0,new BrakeObstacleFactory()));
+            objectList.addAll(Obstacle.rectangleObstacle(width/2-625, height/2+325, 50, 1, 3, 0,new BrakeObstacleFactory()));
+            objectList.addAll(Obstacle.rectangleObstacle(width/2+625, height/2-325, 50, 1, 3, 0,new BrakeObstacleFactory()));
+            objectList.addAll(Obstacle.rectangleObstacle(width/2-625, height/2-325, 50, 1, 3, 0,new BrakeObstacleFactory()));
+
+            objectList.addAll(Obstacle.rectangleObstacle(width/2+625, height/2+110, 50, 1, 3, 0,new BricksObstacleFactory()));
+            objectList.addAll(Obstacle.rectangleObstacle(width/2-625, height/2+110, 50, 1, 3, 0,new BricksObstacleFactory()));
+            objectList.addAll(Obstacle.rectangleObstacle(width/2+625, height/2-110, 50, 1, 3, 0,new BricksObstacleFactory()));
+            objectList.addAll(Obstacle.rectangleObstacle(width/2-625, height/2-110, 50, 1, 3, 0,new BricksObstacleFactory()));
+
+            objectList.add(new PlateCreatingParams().setX(width/2-80).setY(height/2+80));
+            objectList.add(new PlateCreatingParams().setX(width/2-80).setY(height/2-80));
+            objectList.add(new PlateCreatingParams().setX(width/2).setY(height/2));
+            objectList.add(new PlateCreatingParams().setX(width/2+80).setY(height/2-80));
+            objectList.add(new PlateCreatingParams().setX(width/2+80).setY(height/2+80));
+            off = 0;
+            objectList.add(new PlateCreatingParams().setX(width/2+625).setY(height/2+off));
+            objectList.add(new PlateCreatingParams().setX(width/2-625).setY(height/2+off));
+            objectList.add(new PlateCreatingParams().setX(width/2+855).setY(height/2+off));
+            objectList.add(new PlateCreatingParams().setX(width/2-855).setY(height/2+off));
+            off = 220;
+            objectList.add(new PlateCreatingParams().setX(width/2+625).setY(height/2+off));
+            objectList.add(new PlateCreatingParams().setX(width/2-625).setY(height/2+off));
+            objectList.add(new PlateCreatingParams().setX(width/2+855).setY(height/2+off));
+            objectList.add(new PlateCreatingParams().setX(width/2-855).setY(height/2+off));
+            off = -220;
+            objectList.add(new PlateCreatingParams().setX(width/2+625).setY(height/2+off));
+            objectList.add(new PlateCreatingParams().setX(width/2-625).setY(height/2+off));
+            objectList.add(new PlateCreatingParams().setX(width/2+855).setY(height/2+off));
+            objectList.add(new PlateCreatingParams().setX(width/2-855).setY(height/2+off));
+
+            off = 425;
+            objectList.add(new PlateCreatingParams().setX(width/2+off).setY(height/2+off));
+            objectList.add(new PlateCreatingParams().setX(width/2-off).setY(height/2+off));
+            objectList.add(new PlateCreatingParams().setX(width/2+off).setY(height/2-off));
+            objectList.add(new PlateCreatingParams().setX(width/2-off).setY(height/2-off));
 
             setupList.add(objectList);
         }
