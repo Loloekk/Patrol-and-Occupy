@@ -103,9 +103,10 @@ public class MapScreen implements Screen {
         game.batch.setProjectionMatrix(camera.combined);
         game.batch.begin();
         painter.fillBackground();
+        camera.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
 
         painter.drawAlternatingTexture(Textures.getBackButtonActive(), Textures.getBackButtonInactive(), backButton, touchPoint);
-        if(backButton.contains(touchPoint.x, touchPoint.y) && Gdx.input.justTouched()) game.setScreen(new MainMenuScreen(game));
+        if(backButton.contains(touchPoint.x, touchPoint.y) && Gdx.input.justTouched()) game.setScreen(new PlayerNumberScreen(game));
 
         game.batch.end();
 
