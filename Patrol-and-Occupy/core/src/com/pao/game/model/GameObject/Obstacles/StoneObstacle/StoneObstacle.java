@@ -11,10 +11,7 @@ public class StoneObstacle extends Obstacle {
         super(SOCP, board);
         body.setUserData(this);
     }
-    public void takeDamage(BodyGameObject killer){
-
-        System.out.println(killer);
-    }
+    public void takeDamage(BodyGameObject killer){}
     public boolean getIsActive() { return isActive; }
     @Override
     public StoneObstacleDescription getDescription()

@@ -40,12 +40,12 @@ public class TankDrawing implements ObjectDrawing{
     }
     @Override
     public void draw() {
-        painterGame.drawTexture(Textures.getTankTexture(desc.getIsAlive() ? desc.getColor() : null),desc);
-        painterTop.drawTexture(Textures.getMagazineTexture(desc.getColor()), new ObjectDescription().setX(x).setY(y).setWidth(300).setHeight(95));
-        painterTop.drawTexture(Textures.getPlateTexture(null),new ObjectDescription().setX(x-80).setY(y).setWidth(80).setHeight(80));
-        painterTop.drawTexture(Textures.getBulletTexture(),new ObjectDescription().setX(x+60).setY(y-10).setWidth(150).setHeight(50));
+        painterGame.drawTexture(Textures.getTexture("tank",desc.getIsAlive() ? desc.getColor() : null),desc);
+        painterTop.drawTexture(Textures.getTexture("magazine",desc.getColor()), new ObjectDescription().setX(x).setY(y).setWidth(300).setHeight(95));
+        painterTop.drawTexture(Textures.getTexture("plate",null),new ObjectDescription().setX(x-80).setY(y).setWidth(80).setHeight(80));
+        painterTop.drawTexture(Textures.getTexture("bullet"),new ObjectDescription().setX(x+60).setY(y-10).setWidth(150).setHeight(50));
         if(desc.getDynamite()){
-            painterTop.drawTexture(Textures.getDynamiteTexture(),new ObjectDescription().setX(x+120).setY(y+25).setWidth(30).setHeight(30));
+            painterTop.drawTexture(Textures.getTexture("dynamite"),new ObjectDescription().setX(x+120).setY(y+25).setWidth(30).setHeight(30));
         }
         painterTop.drowWriting("Plates",((Integer)desc.getPlates()).toString(),x-80,y);
         painterTop.drowWriting("Magazines",(Integer)desc.getBullets()+"/"+ EditSettings.getMagazineCapacity(),x+35,y-10);

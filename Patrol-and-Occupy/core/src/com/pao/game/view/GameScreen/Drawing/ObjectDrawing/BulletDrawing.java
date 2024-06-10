@@ -19,6 +19,6 @@ public class BulletDrawing implements ObjectDrawing{
     }
     @Override
     public void draw() {
-        painterGame.drawTexture(Textures.getBulletTexture(),desc);
+        painterGame.drawTexture(Textures.getTexture("bullet"),desc);
     }
 }

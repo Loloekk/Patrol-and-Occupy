@@ -49,14 +49,14 @@ public class MapScreen implements Screen {
         skin = new Skin(Gdx.files.internal("uiskin.json"));
 
         Texture[] txs = new Texture[8];
-        txs[0] = Textures.getBulletTexture();
-        txs[1] = Textures.getBrakeObstacleTexture();
-        txs[2] = Textures.getStoneObstacleTexture();
-        txs[3] = Textures.getBrakeObstacleTexture();
-        txs[4] = Textures.getBricksObstacleTexture();
-        txs[5] = Textures.getBulletTexture();
-        txs[6] = Textures.getBrakeObstacleTexture();
-        txs[7] = Textures.getBulletTexture();
+        txs[0] = Textures.getTexture("bullet");
+        txs[1] = Textures.getTexture("brake.Obstacle");
+        txs[2] = Textures.getTexture("stone.Obstacle");
+        txs[3] = Textures.getTexture("brake.Obstacle");
+        txs[4] = Textures.getTexture("bricks.Obstacle");
+        txs[5] = Textures.getTexture("bullet");
+        txs[6] = Textures.getTexture("brake.Obstacle");
+        txs[7] = Textures.getTexture("bullet");
 
         table = new Table();
         for(int i = 0; i < txs.length; i++) {
@@ -107,7 +107,7 @@ public class MapScreen implements Screen {
         painter.fillBackground();
         camera.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
 
-        painter.drawAlternatingTexture(Textures.getBackButtonActive(), Textures.getBackButtonInactive(), backButton, touchPoint);
+        painter.drawAlternatingTexture(Textures.getTexture("back.Button.Active"), Textures.getTexture("back.Button.Inactive"), backButton, touchPoint);
         if(backButton.contains(touchPoint.x, touchPoint.y) && Gdx.input.justTouched()) game.setScreen(new PlayerNumberScreen(game));
 
         game.batch.end();

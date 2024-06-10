@@ -10,7 +10,6 @@ public class Drop extends Game {
     public static final int HEIGHT = 1054;
     public void create() {
         batch = new SpriteBatch();
-        Textures.load();
         Animations.load();
         this.setScreen(new MainMenuScreen(this));
     }

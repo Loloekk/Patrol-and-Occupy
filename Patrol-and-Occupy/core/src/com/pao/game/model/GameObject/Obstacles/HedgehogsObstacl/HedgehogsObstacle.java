@@ -11,10 +11,7 @@ public class HedgehogsObstacle extends Obstacle {
         super(HOCP, board);
         body.setUserData(this);
     }
-    public void takeDamage(BodyGameObject killer){
-
-        System.out.println(killer);
-    }
+    public void takeDamage(BodyGameObject killer){}
     public boolean getIsActive() { return isActive; }
     @Override
     public HedgehogsObstacleDescription getDescription()

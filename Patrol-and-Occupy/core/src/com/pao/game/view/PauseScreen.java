@@ -57,13 +57,13 @@ public class PauseScreen implements Screen {
         painter.fillBackground();
         camera.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
 
-        painter.drawAlternatingTexture(Textures.getResumeButtonActive(), Textures.getResumeButtonInactive(), resumeButton, touchPoint);
+        painter.drawAlternatingTexture(Textures.getTexture("resume.Button.Active"), Textures.getTexture("resume.Button.Inactive"), resumeButton, touchPoint);
         if(resumeButton.contains(touchPoint.x, touchPoint.y) && Gdx.input.justTouched()) game.setScreen(gameScreen);
 
-        painter.drawAlternatingTexture(Textures.getRestartButtonActive(), Textures.getRestartButtonInactive(), restartButton, touchPoint);
+        painter.drawAlternatingTexture(Textures.getTexture("restart.Button.Active"), Textures.getTexture("restart.Button.Inactive"), restartButton, touchPoint);
         if(restartButton.contains(touchPoint.x, touchPoint.y) && Gdx.input.justTouched()) game.setScreen(new GameScreen(game));
 
-        painter.drawAlternatingTexture(Textures.getExitButtonActive(), Textures.getExitButtonInactive(), exitButton, touchPoint);
+        painter.drawAlternatingTexture(Textures.getTexture("exit.Button.Active"), Textures.getTexture("exit.Button.Inactive"), exitButton, touchPoint);
         if(exitButton.contains(touchPoint.x, touchPoint.y) && Gdx.input.justTouched()) game.setScreen(new MainMenuScreen(game));
 
         game.batch.end();

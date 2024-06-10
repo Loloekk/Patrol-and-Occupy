@@ -58,9 +58,9 @@ public class PlayerNumberScreen implements Screen {
         painter.fillBackground();
         camera.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
 
-        painter.drawTexture(new TextureRegion(Textures.getTwoPlayers()), twoPlayers.x, twoPlayers.y, twoPlayers.width, twoPlayers.height, 0);
-        painter.drawTexture(new TextureRegion(Textures.getThreePlayers()), threePlayers.x, threePlayers.y, threePlayers.width, threePlayers.height, 0);
-        painter.drawTexture(new TextureRegion(Textures.getFourPlayers()), fourPlayers.x, fourPlayers.y, fourPlayers.width, fourPlayers.height, 0);
+        painter.drawTexture(new TextureRegion(Textures.getTexture("two.Players")), twoPlayers.x, twoPlayers.y, twoPlayers.width, twoPlayers.height, 0);
+        painter.drawTexture(new TextureRegion(Textures.getTexture("three.Players")), threePlayers.x, threePlayers.y, threePlayers.width, threePlayers.height, 0);
+        painter.drawTexture(new TextureRegion(Textures.getTexture("four.Players")), fourPlayers.x, fourPlayers.y, fourPlayers.width, fourPlayers.height, 0);
 
         if(twoPlayers.contains(touchPoint.x, touchPoint.y) && Gdx.input.justTouched()) {
             EditSettings.setOption(numberOfPlayers, 2);
@@ -78,7 +78,7 @@ public class PlayerNumberScreen implements Screen {
             game.setScreen(new MapScreen(game));
         }
 
-        painter.drawAlternatingTexture(Textures.getBackButtonActive(), Textures.getBackButtonInactive(), backButton, touchPoint);
+        painter.drawAlternatingTexture(Textures.getTexture("back.Button.Active"), Textures.getTexture("back.Button.Inactive"), backButton, touchPoint);
         if(backButton.contains(touchPoint.x, touchPoint.y) && Gdx.input.justTouched()) game.setScreen(new MainMenuScreen(game));
 
         game.batch.end();

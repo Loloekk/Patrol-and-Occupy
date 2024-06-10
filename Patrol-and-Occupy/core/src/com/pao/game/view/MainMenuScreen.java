@@ -45,14 +45,17 @@ public class MainMenuScreen implements Screen {
         painter.fillBackground();
         camera.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
 
-        painter.drawAlternatingTexture(Textures.getPlayButtonActive(), Textures.getPlayButtonInactive(), playButton, touchPoint);
+        painter.drawAlternatingTexture(Textures.getTexture("play.Button.Active"), Textures.getTexture("play.Button.Inactive"), playButton, touchPoint);
         if(playButton.contains(touchPoint.x, touchPoint.y) && Gdx.input.justTouched()) game.setScreen(new PlayerNumberScreen(game));
 
-        painter.drawAlternatingTexture(Textures.getSettingsButtonActive(), Textures.getSettingsButtonInactive(), settingsButton, touchPoint);
+        painter.drawAlternatingTexture(Textures.getTexture("settings.Button.Active"), Textures.getTexture("settings.Button.Inactive"), settingsButton, touchPoint);
         if(settingsButton.contains(touchPoint.x, touchPoint.y) && Gdx.input.justTouched()) game.setScreen(new SettingsScreen(game));
 
-        painter.drawAlternatingTexture(Textures.getExitButtonActive(), Textures.getExitButtonInactive(), exitButton, touchPoint);
-        if(exitButton.contains(touchPoint.x, touchPoint.y) && Gdx.input.justTouched()) Gdx.app.exit();
+        painter.drawAlternatingTexture(Textures.getTexture("exit.Button.Active"), Textures.getTexture("exit.Button.Inactive"), exitButton, touchPoint);
+        if(exitButton.contains(touchPoint.x, touchPoint.y) && Gdx.input.justTouched()) {
+            Textures.dispose();
+            Gdx.app.exit();
+        }
 
         game.batch.end();
     }

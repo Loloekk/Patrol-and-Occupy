@@ -18,6 +18,6 @@ public class SpawnDrawing implements ObjectDrawing{
     }
     @Override
     public void draw() {
-        painterGame.drawTexture(Textures.getSpawnTexture(desc.getColor()),desc);
+        painterGame.drawTexture(Textures.getTexture("spawn",desc.getColor()),desc);
     }
 }

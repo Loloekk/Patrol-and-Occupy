@@ -13,7 +13,6 @@ public class BricksObstacle extends Obstacle {
         body.setUserData(this);
     }
     public void takeDamage(BodyGameObject killer){
-        System.out.println(killer);
         if(!(killer instanceof ExplosionCircle)) return;
         isActive = false;
     }

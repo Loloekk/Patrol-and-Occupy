@@ -20,7 +20,7 @@ public class BrakeObstacleDrawing implements ObjectDrawing{
     }
     @Override
     public void draw() {
-        painterGame.drawTexture(Textures.getBrakeObstacleTexture(),
+        painterGame.drawTexture(Textures.getTexture("brake.Obstacle"),
                 new ObjectDescription(desc).setHeight(desc.getHeight()).setWidth(desc.getWidth()),1.3f);
     }
 }

@@ -19,6 +19,6 @@ public class PlateDrawing implements ObjectDrawing{
     }
     @Override
     public void draw() {
-        painterGame.drawTexture(Textures.getPlateTexture(desc.getColor()),desc);
+        painterGame.drawTexture(Textures.getTexture("plate",desc.getColor()),desc);
     }
 }

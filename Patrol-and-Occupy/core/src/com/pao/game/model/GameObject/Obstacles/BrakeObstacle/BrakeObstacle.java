@@ -15,8 +15,6 @@ public class BrakeObstacle extends Obstacle {
         body.setUserData(this);
     }
     public void takeDamage(BodyGameObject killer){
-
-        System.out.println(killer);
         if(!(killer instanceof Tank)) return;
         isActive = false;
     }
