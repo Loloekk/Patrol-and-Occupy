@@ -1,10 +1,8 @@
 package com.pao.game.model;
 
 import com.pao.game.model.GameObject.CreatingParams.CreatingParams;
-import com.pao.game.model.GameObject.Obstacles.BrakeObstacle.BrakeObstacle;
 import com.pao.game.model.GameObject.Obstacles.BrakeObstacle.BrakeObstacleFactory;
 import com.pao.game.model.GameObject.Obstacles.AbstractObstacle.Obstacle;
-import com.pao.game.model.GameObject.Obstacles.BricksObstacle.BricksObstacle;
 import com.pao.game.model.GameObject.Obstacles.BricksObstacle.BricksObstacleFactory;
 import com.pao.game.model.GameObject.Obstacles.HedgehogsObstacl.HedgehogsObstacleFactory;
 import com.pao.game.model.GameObject.Obstacles.StoneObstacle.StoneObstacleFactory;
@@ -39,8 +37,8 @@ public class Setup {
             objectList.add(new PlateCreatingParams().setX(450).setY(900));
 
             objectList.addAll(Obstacle.rectangleObstacle(1000, 200, 50, 1, 5, 0,new StoneObstacleFactory()));
-            objectList.addAll(Obstacle.rectangleObstacle(1300, 800, 50, 5, 1, 0,new StoneObstacleFactory()));
-            objectList.addAll(Obstacle.rectangleObstacle(900, 600, 50, 2, 1, 0,new StoneObstacleFactory()));
+            objectList.addAll(Obstacle.rectangleObstacle(1300, 800, 50, 5, 1, 0,new BricksObstacleFactory()));
+            objectList.addAll(Obstacle.rectangleObstacle(900, 600, 50, 2, 1, 0,new HedgehogsObstacleFactory()));
 
             objectList.addAll(Obstacle.rectangleObstacle(400, 700, 50, 2, 6, 30,new BrakeObstacleFactory()));
             objectList.addAll(Obstacle.rectangleObstacle(400, 400, 50, 4, 1, 0,new BrakeObstacleFactory()));
@@ -133,16 +131,16 @@ public class Setup {
 
 
             objectList.addAll(Obstacle.rectangleObstacle(1700, 500, 50, 1, 6, 0,new StoneObstacleFactory()));
-            objectList.addAll(Obstacle.rectangleObstacle(900, 600, 50, 2, 1, 0,new StoneObstacleFactory()));
+            objectList.addAll(Obstacle.rectangleObstacle(900, 600, 50, 2, 1, 0,new BricksObstacleFactory()));
             objectList.addAll(Obstacle.rectangleObstacle(1200, 300, 50, 2, 5, 45,new StoneObstacleFactory()));
-            objectList.addAll(Obstacle.rectangleObstacle(150, 400, 50, 1, 6, 0,new StoneObstacleFactory()));
+            objectList.addAll(Obstacle.rectangleObstacle(150, 400, 50, 1, 6, 0,new BricksObstacleFactory()));
             objectList.addAll(Obstacle.rectangleObstacle(250, 600, 50, 1, 3, 0,new StoneObstacleFactory()));
 
 
             objectList.addAll(Obstacle.rectangleObstacle(450, 700, 50, 4, 4, 30,new BrakeObstacleFactory()));
-            objectList.addAll(Obstacle.rectangleObstacle(750, 300, 50, 2, 4, 90,new BrakeObstacleFactory()));
+            objectList.addAll(Obstacle.rectangleObstacle(750, 300, 50, 2, 4, 90,new HedgehogsObstacleFactory()));
             objectList.addAll(Obstacle.rectangleObstacle(450, 700, 50, 4, 4, 30,new BrakeObstacleFactory()));
-            objectList.addAll(Obstacle.rectangleObstacle(1100, 700, 50, 2, 5, 0,new BrakeObstacleFactory()));
+            objectList.addAll(Obstacle.rectangleObstacle(1100, 700, 50, 2, 5, 0,new HedgehogsObstacleFactory()));
             objectList.addAll(Obstacle.rectangleObstacle(1400, 150, 50, 3, 3, 0,new BrakeObstacleFactory()));
             objectList.addAll(Obstacle.rectangleObstacle(100, 550, 50, 2, 2, 0,new BrakeObstacleFactory()));
 
@@ -180,9 +178,9 @@ public class Setup {
 
 
 
-            objectList.addAll(Obstacle.rectangleObstacle(width/2-375, height-150, 50, 1, 8, 90,new StoneObstacleFactory()));
+            objectList.addAll(Obstacle.rectangleObstacle(width/2-375, height-200, 50, 1, 8, 90,new StoneObstacleFactory()));
             objectList.addAll(Obstacle.rectangleObstacle(width/2-375, 150, 50, 1, 8, 90,new StoneObstacleFactory()));
-            objectList.addAll(Obstacle.rectangleObstacle(width/2+375, height-150, 50, 1, 8, 90,new StoneObstacleFactory()));
+            objectList.addAll(Obstacle.rectangleObstacle(width/2+375, height-200, 50, 1, 8, 90,new StoneObstacleFactory()));
             objectList.addAll(Obstacle.rectangleObstacle(width/2+375, 150, 50, 1, 8, 90,new StoneObstacleFactory()));
 
 
@@ -229,14 +227,14 @@ public class Setup {
             objectList.add(new PlateCreatingParams().setX(1500).setY(700));
 
             objectList.addAll(Obstacle.rectangleObstacle(350, 250, 50, 1, 1, 0,new StoneObstacleFactory()));
-            objectList.addAll(Obstacle.rectangleObstacle(500, 650, 50, 1, 1, 0,new StoneObstacleFactory()));
-            objectList.addAll(Obstacle.rectangleObstacle(650, 750, 50, 1, 1, 0,new StoneObstacleFactory()));
-            objectList.addAll(Obstacle.rectangleObstacle(900, 300, 50, 1, 1, 0,new StoneObstacleFactory()));
+            objectList.addAll(Obstacle.rectangleObstacle(500, 650, 50, 1, 1, 0,new HedgehogsObstacleFactory()));
+            objectList.addAll(Obstacle.rectangleObstacle(650, 750, 50, 1, 1, 0,new BricksObstacleFactory()));
+            objectList.addAll(Obstacle.rectangleObstacle(900, 300, 50, 1, 1, 0,new HedgehogsObstacleFactory()));
             objectList.addAll(Obstacle.rectangleObstacle(1200, 150, 50, 1, 1, 0,new StoneObstacleFactory()));
-            objectList.addAll(Obstacle.rectangleObstacle(1350, 800, 50, 1, 1, 0,new StoneObstacleFactory()));
+            objectList.addAll(Obstacle.rectangleObstacle(1350, 800, 50, 1, 1, 0,new HedgehogsObstacleFactory()));
             objectList.addAll(Obstacle.rectangleObstacle(1250, 700, 50, 1, 1, 0,new StoneObstacleFactory()));
-            objectList.addAll(Obstacle.rectangleObstacle(1400, 700, 50, 1, 1, 0,new StoneObstacleFactory()));
-            objectList.addAll(Obstacle.rectangleObstacle(1500, 300, 50, 1, 1, 0,new StoneObstacleFactory()));
+            objectList.addAll(Obstacle.rectangleObstacle(1400, 700, 50, 1, 1, 0,new HedgehogsObstacleFactory()));
+            objectList.addAll(Obstacle.rectangleObstacle(1500, 300, 50, 1, 1, 0,new BricksObstacleFactory()));
 
 
             objectList.addAll(Obstacle.rectangleObstacle(width/2, height/2+100, 50, 2, 38, 0,new BrakeObstacleFactory()));

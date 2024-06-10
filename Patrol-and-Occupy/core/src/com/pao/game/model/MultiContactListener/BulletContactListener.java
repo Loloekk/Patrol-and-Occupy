@@ -1,7 +1,6 @@
 package com.pao.game.model.MultiContactListener;
 
 import com.badlogic.gdx.physics.box2d.*;
-import com.pao.game.model.GameObject.Explosions.Explosion.ExplosionCircle;
 import com.pao.game.model.GameObject.Explosions.Explosion.ExplosionRectangle;
 import com.pao.game.model.GameObject.Obstacles.HedgehogsObstacl.HedgehogsObstacle;
 import com.pao.game.model.GameObject.Others.Bullet.Bullet;
