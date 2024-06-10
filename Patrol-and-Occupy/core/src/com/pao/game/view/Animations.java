@@ -4,22 +4,17 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.pao.game.communication.ConfigLoader;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Animations {
-    static Texture dynamiteExplosion;
-    static Animation<TextureRegion> dynamiteExplosionAnimation;
-    static Texture bulletShoot;
-    static Animation<TextureRegion> bulletShootAnimation;
-    static Texture bulletExplosion;
-    static Animation<TextureRegion> bulletExplosionAnimation;
-    public static void load() {
-        dynamiteExplosion = new Texture(Gdx.files.internal("dynamiteExplosion.png"));
-        dynamiteExplosionAnimation = loadAnimation(dynamiteExplosion, 200, 200, 0.1f);
-        bulletShoot = new Texture(Gdx.files.internal("bulletShoot.png"));
-        bulletShootAnimation = loadAnimation(bulletShoot, 150, 112, 0.05f);
-        bulletExplosion = new Texture(Gdx.files.internal("bulletExplosion.png"));
-        bulletExplosionAnimation = loadAnimation(bulletExplosion, 192, 192, 0.05f);
-    }
+    static Map<String,Animation<TextureRegion>> mapAnimatioons = new HashMap<>();
+    static Map<String,Texture> mapTextures = new HashMap<>();
+    static ConfigLoader configLoader = new ConfigLoader("assets/textures.properties");
+
+
 
     private static Animation<TextureRegion> loadAnimation(Texture texture, int width, int height, float frameDuration) {
         TextureRegion[][] tmpFrames = TextureRegion.split(texture, width, height);
@@ -32,12 +27,17 @@ public class Animations {
         }
         return new Animation<>(frameDuration, animationFrames);
     }
-    public static Animation<TextureRegion> getDynamiteExplosionAnimation() { return dynamiteExplosionAnimation; }
-    public static Animation<TextureRegion> getBulletShootAnimation() { return bulletShootAnimation; }
-    public static Animation<TextureRegion> getBulletExplosionAnimation() { return bulletExplosionAnimation; }
+    public static TextureRegion getFrame(String name, float time)
+    {
+        if(!mapAnimatioons.containsKey(name)) {
+            mapTextures.put(name,new Texture(Gdx.files.internal(configLoader.getProperty(name))));
+            mapAnimatioons.put(name, loadAnimation(mapTextures.get(name), configLoader.getIntProperty(name + ".Width"), configLoader.getIntProperty(name + ".Height"), configLoader.getFloatProperty(name + ".frameDuration")));
+        }
+        return mapAnimatioons.get(name).getKeyFrame(time);
+    }
     public static void dispose() {
-        dynamiteExplosion.dispose();
-        bulletShoot.dispose();
-        bulletExplosion.dispose();
+        for(Texture texture : mapTextures.values()){
+            texture.dispose();
+        }
     }
 }

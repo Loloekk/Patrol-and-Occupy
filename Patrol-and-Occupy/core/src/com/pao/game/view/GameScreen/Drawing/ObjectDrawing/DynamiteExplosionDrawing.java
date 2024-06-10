@@ -19,6 +19,6 @@ public class DynamiteExplosionDrawing implements ObjectDrawing{
     }
     @Override
     public void draw() {
-        painterGame.drawTexture(Animations.getDynamiteExplosionAnimation().getKeyFrame(((desc).getStateTime())),desc,2f);
+        painterGame.drawTexture(Animations.getFrame("dynamite.Explosion",desc.getStateTime()),desc,2f);
     }
 }
