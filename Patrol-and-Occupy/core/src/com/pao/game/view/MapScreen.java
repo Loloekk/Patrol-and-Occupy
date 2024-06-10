@@ -70,12 +70,12 @@ public class MapScreen implements Screen {
                 }
             });
 
-            table.add(image).pad(10);
+            table.add(image).size(600, 300).pad(20);
         }
 
         scrollPane = new ScrollPane(table);
         scrollPane.setScrollingDisabled(false, true);
-        scrollPane.setSize(800, 600);
+        scrollPane.setSize(1000, 700);
         scrollPane.setPosition(Drop.WIDTH/2-scrollPane.getWidth()/2, Drop.HEIGHT/2- scrollPane.getHeight()/2 + 100);
 
         scrollPane.setFlickScroll(true);
