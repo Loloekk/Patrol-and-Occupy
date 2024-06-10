@@ -325,7 +325,7 @@ public class Setup {
 
             setupList.add(objectList);
         }
-        // Setup 10.
+        // Setup 7.
         {
             List<CreatingParams> objectList = new ArrayList<>();
             float off = 300;
