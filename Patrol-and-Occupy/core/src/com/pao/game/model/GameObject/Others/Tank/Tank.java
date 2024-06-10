@@ -69,11 +69,12 @@ public class Tank extends BodyGameObject {
         if(!(killer instanceof ExplosionCircle)) return;
 
         if(killer instanceof BulletExplosion && ((BulletExplosion) killer).getColor() == color) return;
+
         playerStatistics.incrementDeadNumber();
         board.getTank(((ExplosionCircle) killer).getColor()).getStatistics().incrementKillNumber();
         isAlive = false;
     }
-    public void setPosition(float x, float y) { body.setTransform(x/PPM,y/PPM, getRotation());}
+    public void setPosition(float x, float y) { body.setTransform(x/PPM,y/PPM,0);}
     public ModelPlayer getColor() {
         return color;
     }
