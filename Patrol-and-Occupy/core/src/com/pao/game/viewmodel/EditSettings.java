@@ -26,4 +26,6 @@ public class EditSettings {
     public static int getWidth(){return ModelSettings.getWidth();}
     public static int getHeight(){return ModelSettings.getHeight();}
     public static boolean getControl(){return ModelSettings.getControl();}
+    public static float getDynamiteCooldown(){return ModelSettings.getDynamiteCooldown();}
+    public static float getRespawnCooldown(){return ModelSettings.getRespawnCooldown();}
 }
