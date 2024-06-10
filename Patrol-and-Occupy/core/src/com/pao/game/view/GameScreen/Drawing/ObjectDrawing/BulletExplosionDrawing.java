@@ -19,6 +19,6 @@ public class BulletExplosionDrawing implements ObjectDrawing{
     }
     @Override
     public void draw() {
-        painterGame.drawTexture(Animations.getBulletExplosionAnimation().getKeyFrame(((desc).getStateTime())),desc,1.5f);
+        painterGame.drawTexture(Animations.getFrame("bullet.Explosion",desc.getStateTime()),desc,1.5f);
     }
 }

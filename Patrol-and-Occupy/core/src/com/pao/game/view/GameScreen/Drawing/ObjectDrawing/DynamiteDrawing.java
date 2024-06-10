@@ -19,6 +19,6 @@ public class DynamiteDrawing implements ObjectDrawing{
     }
     @Override
     public void draw() {
-        painterGame.drawTexture(Textures.getDynamiteTexture(),desc);
+        painterGame.drawTexture(Textures.getTexture("dynamite"),desc);
     }
 }

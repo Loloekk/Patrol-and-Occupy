@@ -65,26 +65,22 @@ public class EndScreen implements Screen {
         float x1 = -STATISTICS_WIDTH * (EditSettings.getNumberOfPlayers() - 1) / 2.0f;
         for(ModelPlayer player : GlobalStatistics.getPlayers()) {
             if(globalStatistics.getWinners().contains(player)) {
-                painter.drawTexture(new TextureRegion(Textures.getMedal()), Drop.WIDTH/2+x1, 900, MEDAL_WIDTH, MEDAL_HEIGHT, 0);
+                painter.drawTexture(new TextureRegion(Textures.getTexture("medal")), Drop.WIDTH/2+x1, 900, MEDAL_WIDTH, MEDAL_HEIGHT, 0);
             }
             displayPlayerStatistics(Drop.WIDTH / 2 + x1, 800, player);
             x1 += STATISTICS_WIDTH;
         }
 
-        painter.drawAlternatingTexture(Textures.getStartButtonActive(), Textures.getStartButtonInactive(), startButton, touchPoint);
+        painter.drawAlternatingTexture(Textures.getTexture("start.Button.Active"), Textures.getTexture("start.Button.Inactive"), startButton, touchPoint);
         if(startButton.contains(touchPoint.x, touchPoint.y) && Gdx.input.justTouched()) game.setScreen(new GameScreen(game));
 
-        painter.drawAlternatingTexture(Textures.getExitButtonActive(), Textures.getExitButtonInactive(), exitButton, touchPoint);
+        painter.drawAlternatingTexture(Textures.getTexture("exit.Button.Active"), Textures.getTexture("exit.Button.Inactive"), exitButton, touchPoint);
         if(exitButton.contains(touchPoint.x, touchPoint.y) && Gdx.input.justTouched()) game.setScreen(new MainMenuScreen(game));
 
         game.batch.end();
     }
     public void displayPlayerStatistics(float x, float y, ModelPlayer color) {
-        String player = "";
-        if(color == ModelPlayer.Player1) player = "Player1";
-        if(color == ModelPlayer.Player2) player = "Player2";
-        if(color == ModelPlayer.Player3) player = "Player3";
-        if(color == ModelPlayer.Player4) player = "Player4";
+        String player = color.toString();
         painter.drowWriting(player, "#plates: " + globalStatistics.getNumberOfPlates(color), x, y);
         painter.drowWriting(player, "#kills: " + globalStatistics.getKillNumber(color), x, y - 70);
         painter.drowWriting(player, "#deads: " + globalStatistics.getDeadNumber(color), x, y - 140);

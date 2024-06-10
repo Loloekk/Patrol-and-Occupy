@@ -20,7 +20,7 @@ public class BricksObstacleDrawing implements ObjectDrawing{
     }
     @Override
     public void draw() {
-        painterGame.drawTexture(Textures.getBricksObstacleTexture(),
+        painterGame.drawTexture(Textures.getTexture("bricks.Obstacle"),
                 new ObjectDescription(desc).setHeight(desc.getHeight()+1).setWidth(desc.getWidth()+1));
     }
 }
