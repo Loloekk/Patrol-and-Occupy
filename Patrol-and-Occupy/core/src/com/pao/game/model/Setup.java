@@ -28,8 +28,8 @@ public class Setup {
             objectList.add(new SpawnCreatingParams().setColor(ModelPlayer.Player2).setX(width-off).setY(height-off));
             objectList.add(new SpawnCreatingParams().setColor(ModelPlayer.Player3).setX(off).setY(height-off));
             objectList.add(new SpawnCreatingParams().setColor(ModelPlayer.Player1).setX(off).setY(off));
-            objectList.add(new TankCreatingParams().setColor(ModelPlayer.Player4).setX(width-off).setY(off));
-            objectList.add(new TankCreatingParams().setColor(ModelPlayer.Player2).setX(width-off).setY(height-off));
+            objectList.add(new TankCreatingParams().setColor(ModelPlayer.Player4).setX(width-off).setY(off).setRotation(180));
+            objectList.add(new TankCreatingParams().setColor(ModelPlayer.Player2).setX(width-off).setY(height-off).setRotation(180));
             objectList.add(new TankCreatingParams().setColor(ModelPlayer.Player3).setX(off).setY(height-off));
             objectList.add(new TankCreatingParams().setColor(ModelPlayer.Player1).setX(off).setY(off));
 
@@ -59,8 +59,8 @@ public class Setup {
             objectList.add(new SpawnCreatingParams().setColor(ModelPlayer.Player2).setX(width-off).setY(height-off));
             objectList.add(new SpawnCreatingParams().setColor(ModelPlayer.Player3).setX(off).setY(height-off));
             objectList.add(new SpawnCreatingParams().setColor(ModelPlayer.Player1).setX(off).setY(off));
-            objectList.add(new TankCreatingParams().setColor(ModelPlayer.Player4).setX(width-off).setY(off));
-            objectList.add(new TankCreatingParams().setColor(ModelPlayer.Player2).setX(width-off).setY(height-off));
+            objectList.add(new TankCreatingParams().setColor(ModelPlayer.Player4).setX(width-off).setY(off).setRotation(180));
+            objectList.add(new TankCreatingParams().setColor(ModelPlayer.Player2).setX(width-off).setY(height-off).setRotation(180));
             objectList.add(new TankCreatingParams().setColor(ModelPlayer.Player3).setX(off).setY(height-off));
             objectList.add(new TankCreatingParams().setColor(ModelPlayer.Player1).setX(off).setY(off));
 
@@ -117,8 +117,8 @@ public class Setup {
             objectList.add(new SpawnCreatingParams().setColor(ModelPlayer.Player2).setX(width-off).setY(height-off));
             objectList.add(new SpawnCreatingParams().setColor(ModelPlayer.Player3).setX(off).setY(height-off));
             objectList.add(new SpawnCreatingParams().setColor(ModelPlayer.Player1).setX(off).setY(off));
-            objectList.add(new TankCreatingParams().setColor(ModelPlayer.Player4).setX(width-off).setY(off));
-            objectList.add(new TankCreatingParams().setColor(ModelPlayer.Player2).setX(width-off).setY(height-off));
+            objectList.add(new TankCreatingParams().setColor(ModelPlayer.Player4).setX(width-off).setY(off).setRotation(180));
+            objectList.add(new TankCreatingParams().setColor(ModelPlayer.Player2).setX(width-off).setY(height-off).setRotation(180));
             objectList.add(new TankCreatingParams().setColor(ModelPlayer.Player3).setX(off).setY(height-off));
             objectList.add(new TankCreatingParams().setColor(ModelPlayer.Player1).setX(off).setY(off));
 
@@ -158,8 +158,8 @@ public class Setup {
             objectList.add(new SpawnCreatingParams().setColor(ModelPlayer.Player2).setX(width/2+off).setY(height/2+off));
             objectList.add(new SpawnCreatingParams().setColor(ModelPlayer.Player3).setX(width/2-off).setY(height/2+off));
             objectList.add(new SpawnCreatingParams().setColor(ModelPlayer.Player1).setX(width/2-off).setY(height/2-off));
-            objectList.add(new TankCreatingParams().setColor(ModelPlayer.Player4).setX(width/2+off).setY(height/2-off));
-            objectList.add(new TankCreatingParams().setColor(ModelPlayer.Player2).setX(width/2+off).setY(height/2+off));
+            objectList.add(new TankCreatingParams().setColor(ModelPlayer.Player4).setX(width/2+off).setY(height/2-off).setRotation(180));
+            objectList.add(new TankCreatingParams().setColor(ModelPlayer.Player2).setX(width/2+off).setY(height/2+off).setRotation(180));
             objectList.add(new TankCreatingParams().setColor(ModelPlayer.Player3).setX(width/2-off).setY(height/2+off));
             objectList.add(new TankCreatingParams().setColor(ModelPlayer.Player1).setX(width/2-off).setY(height/2-off));
 
@@ -201,8 +201,8 @@ public class Setup {
             objectList.add(new SpawnCreatingParams().setColor(ModelPlayer.Player2).setX(width-off).setY(height-off));
             objectList.add(new SpawnCreatingParams().setColor(ModelPlayer.Player3).setX(off).setY(height-off));
             objectList.add(new SpawnCreatingParams().setColor(ModelPlayer.Player1).setX(off).setY(off));
-            objectList.add(new TankCreatingParams().setColor(ModelPlayer.Player4).setX(width-off).setY(off));
-            objectList.add(new TankCreatingParams().setColor(ModelPlayer.Player2).setX(width-off).setY(height-off));
+            objectList.add(new TankCreatingParams().setColor(ModelPlayer.Player4).setX(width-off).setY(off).setRotation(180));
+            objectList.add(new TankCreatingParams().setColor(ModelPlayer.Player2).setX(width-off).setY(height-off).setRotation(180));
             objectList.add(new TankCreatingParams().setColor(ModelPlayer.Player3).setX(off).setY(height-off));
             objectList.add(new TankCreatingParams().setColor(ModelPlayer.Player1).setX(off).setY(off));
 
@@ -258,8 +258,8 @@ public class Setup {
             objectList.add(new SpawnCreatingParams().setColor(ModelPlayer.Player1).setX(width/2-off).setY(height/2-off));
             objectList.add(new TankCreatingParams().setColor(ModelPlayer.Player4).setX(width/2+off).setY(height/2-off));
             objectList.add(new TankCreatingParams().setColor(ModelPlayer.Player2).setX(width/2+off).setY(height/2+off));
-            objectList.add(new TankCreatingParams().setColor(ModelPlayer.Player3).setX(width/2-off).setY(height/2+off));
-            objectList.add(new TankCreatingParams().setColor(ModelPlayer.Player1).setX(width/2-off).setY(height/2-off));
+            objectList.add(new TankCreatingParams().setColor(ModelPlayer.Player3).setX(width/2-off).setY(height/2+off).setRotation(180));
+            objectList.add(new TankCreatingParams().setColor(ModelPlayer.Player1).setX(width/2-off).setY(height/2-off).setRotation(180));
 
             objectList.add(new PlateCreatingParams().setX(50).setY(130));
             objectList.add(new PlateCreatingParams().setX(130).setY(50));
@@ -292,8 +292,8 @@ public class Setup {
             objectList.add(new SpawnCreatingParams().setColor(ModelPlayer.Player2).setX(width-off).setY(height-off));
             objectList.add(new SpawnCreatingParams().setColor(ModelPlayer.Player3).setX(off).setY(height-off));
             objectList.add(new SpawnCreatingParams().setColor(ModelPlayer.Player1).setX(off).setY(off));
-            objectList.add(new TankCreatingParams().setColor(ModelPlayer.Player4).setX(width-off).setY(off));
-            objectList.add(new TankCreatingParams().setColor(ModelPlayer.Player2).setX(width-off).setY(height-off));
+            objectList.add(new TankCreatingParams().setColor(ModelPlayer.Player4).setX(width-off).setY(off).setRotation(180));
+            objectList.add(new TankCreatingParams().setColor(ModelPlayer.Player2).setX(width-off).setY(height-off).setRotation(180));
             objectList.add(new TankCreatingParams().setColor(ModelPlayer.Player3).setX(off).setY(height-off));
             objectList.add(new TankCreatingParams().setColor(ModelPlayer.Player1).setX(off).setY(off));
 
