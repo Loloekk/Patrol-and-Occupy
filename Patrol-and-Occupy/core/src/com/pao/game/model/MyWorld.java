@@ -6,7 +6,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.pao.game.model.GameObject.Bodies.BodyCreator;
 import com.pao.game.model.MultiContactListener.MultiContactListener;
 
-import static com.pao.game.model.Constants.GRAVITY;
+import static com.pao.game.Constants.Box2dConstants.GRAVITY;
 
 public class MyWorld {
     public static World createMyWorld()

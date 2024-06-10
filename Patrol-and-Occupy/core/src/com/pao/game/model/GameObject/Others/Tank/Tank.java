@@ -7,14 +7,13 @@ import com.pao.game.model.Boards.Board;
 import com.pao.game.model.GameObject.Bodies.BodyGameObject;
 import com.pao.game.model.GameObject.Bodies.PolyContainsPoly;
 import com.pao.game.model.GameObject.Explosions.BulletExplosion.BulletExplosion;
-import com.pao.game.model.GameObject.Explosions.BulletShoot.BulletShoot;
 import com.pao.game.model.GameObject.Explosions.Explosion.ExplosionCircle;
 import com.pao.game.model.GameObject.Others.Spawn.Spawn;
 import com.pao.game.model.GameObject.Others.Tank.Controler.Controler;
 import com.pao.game.model.GameObject.Others.Tank.Controler.Controler5Buttons;
 import com.pao.game.model.GameObject.Others.Tank.Controler.ControlerOneButton;
 
-import static com.pao.game.model.Constants.PPM;
+import static com.pao.game.Constants.Box2dConstants.PPM;
 
 public class Tank extends BodyGameObject {
     ModelPlayer color;
@@ -74,7 +73,7 @@ public class Tank extends BodyGameObject {
         board.getTank(((ExplosionCircle) killer).getColor()).getStatistics().incrementKillNumber();
         isAlive = false;
     }
-    public void setPosition(float x, float y) { body.setTransform(x/PPM,y/PPM, 0);}
+    public void setPosition(float x, float y) { body.setTransform(x/PPM,y/PPM, getRotation());}
     public ModelPlayer getColor() {
         return color;
     }

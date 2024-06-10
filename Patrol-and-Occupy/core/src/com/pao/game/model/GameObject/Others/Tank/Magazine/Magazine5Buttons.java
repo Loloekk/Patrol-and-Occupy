@@ -65,7 +65,7 @@ public class Magazine5Buttons implements Magazine{
             board.addObjectToCreate(new BulletCreatingParams().setX(x).setY(y).setColor(tank.getColor()).setRotation(tank.getRotation()));
             board.addObjectToCreate(new BulletShootCreatingParams().setTank(tank).setColor(tank.getColor()).setX(x).setY(y).setRotation(tank.getRotation()));
         }
-        if(tank.getIsAlive()&& placeDynamite && lastPlaceDynamite > 3.0f){
+        if(tank.getIsAlive()&& placeDynamite && lastPlaceDynamite > ModelSettings.getDynamiteCooldown()){
             lastPlaceDynamite = 0;
             float angle = tank.getRotation() * MathUtils.degreesToRadians;
             float x = tank.getX() - MathUtils.cos(angle) * tank.getHeight() * 1.1f;
@@ -81,7 +81,7 @@ public class Magazine5Buttons implements Magazine{
     @Override
     public boolean hasDynamite()
     {
-        if(lastPlaceDynamite > 3.0f){
+        if(lastPlaceDynamite > ModelSettings.getDynamiteCooldown()){
             return true;
         }
         return false;

@@ -5,9 +5,10 @@ import com.pao.game.model.Boards.Board;
 import com.pao.game.model.GameObject.Bodies.BodyGameObject;
 import com.pao.game.model.GameObject.Others.Tank.Tank;
 import com.pao.game.model.ModelPlayer;
+import com.pao.game.model.ModelSettings;
 
 public class Spawn extends BodyGameObject {
-    float COOLDOWN = 5;
+    float COOLDOWN = ModelSettings.getRespawnCooldown();
     ModelPlayer color;
     Tank tank;
     float cooldown=0;

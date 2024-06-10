@@ -12,7 +12,7 @@ public class BricksObstacleDrawing implements ObjectDrawing{
     public BricksObstacleDrawing(RegionPainter painter, BricksObstacleDescription desc){
         this.painterGame = painter;
         this.desc = desc;
-        priority = 7600;
+        priority = 7350;
     }
     @Override
     public Integer getPriority() {

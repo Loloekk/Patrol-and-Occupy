@@ -12,5 +12,7 @@ public enum Options {
     magazineCapacity,
     shootCooldown,
     receiveCooldown,
-    control
+    control,
+    respawnCooldown,
+    dynamiteCooldown
 }

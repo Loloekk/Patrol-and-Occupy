@@ -1,5 +1,6 @@
 package com.pao.game.model;
 
+import com.pao.game.Constants.Constants;
 import com.pao.game.communication.Options;
 
 public class ModelSettings {
@@ -15,6 +16,8 @@ public class ModelSettings {
     private static float shootCooldown;
     private static float receiveCooldown;
     private static boolean oneButtonControl; // 0 / 1
+    private static float respawnCooldown;
+    private static float dynamiteCooldown;
     private ModelSettings()
     {
         throw new UnsupportedOperationException("Cannot instantiate ModelSettings class");
@@ -56,6 +59,12 @@ public class ModelSettings {
             case control:
                 oneButtonControl = (int)state != 0;
                 break;
+            case respawnCooldown:
+                respawnCooldown = state;
+                break;
+            case dynamiteCooldown:
+                dynamiteCooldown = state;
+                break;
         }
     }
     public static void setOption(Options option, int state){
@@ -90,22 +99,30 @@ public class ModelSettings {
             case control:
                 oneButtonControl = state != 0;
                 break;
+            case respawnCooldown:
+                respawnCooldown = (float)state;
+                break;
+            case dynamiteCooldown:
+                dynamiteCooldown = (float)state;
+                break;
         }
     }
     public static void setDefault()
     {
-        gameTime = 60f;
-        numberOfPlayers = 4;
-        map = 1;
-        width = 1920;
-        height = 954;
-        tankSpeed = 8f;
-        bulletSpeed = 14f;
-        rotateSpeed = 4f;
-        magazineCapacity = 5;
-        shootCooldown = 0.2f;
-        receiveCooldown = 2f;
-        oneButtonControl = false;
+        gameTime = Constants.getConstant("default.GameTime");
+        numberOfPlayers = (int)Constants.getConstant("default.NumberOfPlayers");
+        map = (int)Constants.getConstant("default.Map");
+        width = (int)Constants.getConstant("default.Width");
+        height = (int)Constants.getConstant("default.Height");
+        tankSpeed = Constants.getConstant("default.TankSpeed");
+        bulletSpeed = Constants.getConstant("default.BulletSpeed");
+        rotateSpeed = Constants.getConstant("default.RotateSpeed");
+        magazineCapacity = (int)Constants.getConstant("default.MagazineCapacity");
+        shootCooldown = Constants.getConstant("default.ShootCooldown");
+        receiveCooldown = Constants.getConstant("default.ReceiveCooldown");
+        oneButtonControl = Constants.getConstant("default.OneButtonControl")!=0;
+        respawnCooldown = Constants.getConstant("default.RespawnCooldown");
+        dynamiteCooldown = Constants.getConstant("default.DynamiteCooldown");
     }
     public static float getGameTime(){return gameTime;}
     public static int getNumberOfPlayers(){return numberOfPlayers;}
@@ -119,5 +136,8 @@ public class ModelSettings {
     public static int getWidth(){return width;}
     public static int getHeight(){return height;}
     public static boolean getControl(){return oneButtonControl;}
+    public static float getRespawnCooldown(){return respawnCooldown;}
+
+    public static float getDynamiteCooldown(){return dynamiteCooldown;}
 
 }

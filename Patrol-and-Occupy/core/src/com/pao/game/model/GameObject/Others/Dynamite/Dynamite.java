@@ -2,6 +2,7 @@ package com.pao.game.model.GameObject.Others.Dynamite;
 
 import com.pao.game.communication.Descriptions.ConcreteDescription.DynamiteDescription;
 import com.pao.game.model.Boards.Board;
+import com.pao.game.Constants.Constants;
 import com.pao.game.model.GameObject.Bodies.BodyGameObject;
 import com.pao.game.model.GameObject.Explosions.DynamiteExplosion.DynamiteExplosionCreatingParams;
 import com.pao.game.model.GameObject.Explosions.Explosion.ExplosionCircle;
@@ -24,9 +25,9 @@ public class Dynamite extends BodyGameObject {
     public void update(float t){
         float vx = body.getLinearVelocity().x;
         float vy = body.getLinearVelocity().y;
-        body.setLinearVelocity((float) (vx * Math.pow(0.01,t)), (float) (vy * Math.pow(0.01,t)));
+        body.setLinearVelocity((float) (vx * Math.pow(Constants.getConstant("dynamite.Friction"),t)), (float) (vy * Math.pow(Constants.getConstant("dynamite.Friction"),t)));
         float va = body.getAngularVelocity();
-        body.setAngularVelocity((float) (va * Math.pow(0.01,t)));
+        body.setAngularVelocity((float) (va * Math.pow(Constants.getConstant("dynamite.Friction"),t)));
     }
     public boolean getIsActive() { return isActive; }
     @Override

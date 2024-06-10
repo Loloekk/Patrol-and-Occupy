@@ -66,7 +66,7 @@ public class MagazineOneButton implements Magazine{
         }
         if(fullMagazine && quantity == 0){
         }
-        if(tank.getIsAlive()&& fullMagazine && quantity == 0 && lastPlaceDynamite > 3.0f){
+        if(tank.getIsAlive()&& fullMagazine && quantity == 0 && lastPlaceDynamite > ModelSettings.getDynamiteCooldown()){
             lastPlaceDynamite = 0;
             fullMagazine = false;
             float angle = tank.getRotation() * MathUtils.degreesToRadians;
@@ -84,7 +84,7 @@ public class MagazineOneButton implements Magazine{
     @Override
     public boolean hasDynamite()
     {
-        if(lastPlaceDynamite > 3.0f){
+        if(lastPlaceDynamite > ModelSettings.getDynamiteCooldown()){
             return true;
         }
         return false;

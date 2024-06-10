@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.pao.game.communication.Move;
 import com.pao.game.model.Boards.Board;
+import com.pao.game.Constants.Constants;
 import com.pao.game.model.GameObject.Others.Tank.Magazine.Magazine;
 import com.pao.game.model.GameObject.Others.Tank.Magazine.Magazine5Buttons;
 import com.pao.game.model.GameObject.Others.Tank.Tank;
@@ -78,7 +79,7 @@ public class Controler5Buttons implements Controler{
             tank.getBody().setAngularVelocity(0.0f);
         }
         float rideForwardSpeed = ModelSettings.getTankSpeed();
-        float rideBackwardsSpeed = rideForwardSpeed*3/4;
+        float rideBackwardsSpeed = rideForwardSpeed*Constants.getConstant("tank.BackSpeedByForwardSpeed");
         if(moveForwardState && !moveBackwardsState) {            //move forward
             vel.x = rideForwardSpeed * MathUtils.cos(tank.getBody().getAngle());
             vel.y = rideForwardSpeed * MathUtils.sin(tank.getBody().getAngle());

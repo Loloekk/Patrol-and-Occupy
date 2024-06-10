@@ -2,6 +2,7 @@ package com.pao.game.model.GameObject.Explosions.Explosion;
 
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.pao.game.model.Boards.Board;
+import com.pao.game.Constants.Constants;
 import com.pao.game.model.GameObject.Bodies.BodyGameObject;
 import com.pao.game.model.GameObject.CreatingParams.CreatingParamsCircle;
 
@@ -10,7 +11,7 @@ public abstract class ExplosionCircleCreatingParams extends CreatingParamsCircle
     public ExplosionCircleCreatingParams()
     {
         setBodyType(BodyDef.BodyType.DynamicBody);
-        setDensity(1f);
+        setDensity(Constants.getConstant("explosion.Density"));
         setIsSensor(true);
     }
     public ExplosionCircleCreatingParams setLiveTime(float time)

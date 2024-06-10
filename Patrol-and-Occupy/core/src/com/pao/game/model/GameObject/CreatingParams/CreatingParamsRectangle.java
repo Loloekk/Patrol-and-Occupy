@@ -24,20 +24,4 @@ public class CreatingParamsRectangle extends CreatingParams {
     public float getRealHeight() {
         return realHeight;
     }
-//    public CreatingParamRectangle setWidth(float width)
-//    {
-//        this.width =width;
-//        return this;
-//    }
-//    public CreatingParamRectangle setHeight(float height)
-//    {
-//        this.height =height;
-//        return this;
-//    }
-//    public float getwidth() {
-//        return width;
-//    }
-//    public float getheight() {
-//        return height;
-//    }
 }

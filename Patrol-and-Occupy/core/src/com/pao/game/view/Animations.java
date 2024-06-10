@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.pao.game.communication.ConfigLoader;
+import com.pao.game.Constants.ConfigLoader;
 
 import java.util.HashMap;
 import java.util.Map;

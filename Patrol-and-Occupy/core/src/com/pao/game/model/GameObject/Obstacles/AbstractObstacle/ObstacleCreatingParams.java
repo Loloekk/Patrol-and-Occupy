@@ -1,15 +1,16 @@
 package com.pao.game.model.GameObject.Obstacles.AbstractObstacle;
 
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.pao.game.Constants.Constants;
 import com.pao.game.model.GameObject.CreatingParams.CreatingParamsRectangle;
 
 public abstract class ObstacleCreatingParams extends CreatingParamsRectangle {
     public ObstacleCreatingParams()
     {
-        setRealWidth(50);
-        setRealHeight(50);
+        setRealWidth(Constants.getConstant("obstacle.Width"));
+        setRealHeight(Constants.getConstant("obstacle.Height"));
         setBodyType(BodyDef.BodyType.StaticBody);
-        setDensity(1f);
+        setDensity(Constants.getConstant("obstacle.Density"));
         setIsSensor(false);
     }
 }

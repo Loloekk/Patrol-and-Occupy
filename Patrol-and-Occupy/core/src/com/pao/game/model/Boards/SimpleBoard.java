@@ -12,7 +12,7 @@ import com.pao.game.model.Clock;
 import com.pao.game.model.GameObject.Others.Tank.Tank;
 import com.pao.game.model.GameObject.Others.Tank.TankCreatingParams;
 
-import static com.pao.game.model.Constants.*;
+import static com.pao.game.Constants.Box2dConstants.*;
 
 public class SimpleBoard implements Board {
     List<BodyGameObject> bodyObjects = new ArrayList<>();
@@ -51,7 +51,7 @@ public class SimpleBoard implements Board {
             BodyGameObject object = CP.create(this);
         }
         bodyObjectsToCreate.clear();
-        world.step((time), VELOCITY_ITERATION, POSITION_ITERATION);
+        world.step((time), (int)VELOCITY_ITERATION, (int)POSITION_ITERATION);
 
         clock.update(time);
         // Update tanks
