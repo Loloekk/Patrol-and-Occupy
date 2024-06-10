@@ -5,8 +5,6 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -53,7 +51,6 @@ public class SettingsScreen implements Screen {
         painter.addFont("Suwaki", 20, Color.WHITE);
 
         stage = new Stage(viewport);
-        Gdx.input.setInputProcessor(stage);
         skin = new Skin(Gdx.files.internal("uiskin.json"));
 
         tankSpeedSlider = makeSlider(1, 20, 1, false, Drop.WIDTH/2 - sliderWidth*3/2, 700f, tankSpeed);
@@ -127,8 +124,7 @@ public class SettingsScreen implements Screen {
         gameTimeSlider.setValue(EditSettings.getGameTime());
     }
     @Override
-    public void show() {
-    }
+    public void show() { Gdx.input.setInputProcessor(stage); }
 
     @Override
     public void render(float delta) {
@@ -167,7 +163,7 @@ public class SettingsScreen implements Screen {
     public void resume() {}
 
     @Override
-    public void hide() {}
+    public void hide() { Gdx.input.setInputProcessor(null);}
 
     @Override
     public void dispose() {

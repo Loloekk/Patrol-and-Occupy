@@ -4,14 +4,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.pao.game.view.GameScreen.GameScreen;
-import org.w3c.dom.Text;
 
 public class MainMenuScreen implements Screen {
     static final float BUTTON_WIDTH = 300 ;
@@ -49,7 +46,7 @@ public class MainMenuScreen implements Screen {
         camera.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
 
         painter.drawAlternatingTexture(Textures.getPlayButtonActive(), Textures.getPlayButtonInactive(), playButton, touchPoint);
-        if(playButton.contains(touchPoint.x, touchPoint.y) && Gdx.input.justTouched()) game.setScreen(new MapScreen(game));
+        if(playButton.contains(touchPoint.x, touchPoint.y) && Gdx.input.justTouched()) game.setScreen(new PlayerNumberScreen(game));
 
         painter.drawAlternatingTexture(Textures.getSettingsButtonActive(), Textures.getSettingsButtonInactive(), settingsButton, touchPoint);
         if(settingsButton.contains(touchPoint.x, touchPoint.y) && Gdx.input.justTouched()) game.setScreen(new SettingsScreen(game));
