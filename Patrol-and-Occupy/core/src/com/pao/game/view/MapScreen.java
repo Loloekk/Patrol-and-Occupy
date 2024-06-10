@@ -48,13 +48,15 @@ public class MapScreen implements Screen {
         stage = new Stage(viewport);
         skin = new Skin(Gdx.files.internal("uiskin.json"));
 
-        Texture[] txs = new Texture[6];
+        Texture[] txs = new Texture[8];
         txs[0] = Textures.getBulletTexture();
         txs[1] = Textures.getBrakeObstacleTexture();
         txs[2] = Textures.getStoneObstacleTexture();
         txs[3] = Textures.getBrakeObstacleTexture();
         txs[4] = Textures.getBricksObstacleTexture();
         txs[5] = Textures.getBulletTexture();
+        txs[6] = Textures.getBrakeObstacleTexture();
+        txs[7] = Textures.getBulletTexture();
 
         table = new Table();
         for(int i = 0; i < txs.length; i++) {
