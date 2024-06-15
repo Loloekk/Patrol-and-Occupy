@@ -30,7 +30,7 @@ public class Spawn extends BodyGameObject {
         {
             cooldown = 0;
             if(tank == null) return;
-            tank.setPosition(getX(),getY());
+            tank.setPosition(getX(),getY(), tank.getRotation());
             tank.revive();
         }
     }

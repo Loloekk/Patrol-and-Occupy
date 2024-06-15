@@ -1,5 +1,6 @@
 package com.pao.game.model.GameObject.Others.Tank;
 
+import com.badlogic.gdx.math.MathUtils;
 import com.pao.game.communication.Descriptions.ConcreteDescription.TankDescription;
 import com.pao.game.communication.Descriptions.ObjectDescription;
 import com.pao.game.communication.Move;
@@ -76,7 +77,7 @@ public class Tank extends BodyGameObject {
         board.getTank(((ExplosionCircle) killer).getColor()).getStatistics().incrementKillNumber();
         isAlive = false;
     }
-    public void setPosition(float x, float y) { body.setTransform(x/PPM,y/PPM,0);}
+    public void setPosition(float x, float y,float rotation) { body.setTransform(x/PPM,y/PPM,rotation* MathUtils.degreesToRadians);}
     public ModelPlayer getColor() {
         return color;
     }
