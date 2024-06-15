@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.pao.game.Constants.ConfigLoader;
+import com.pao.game.constants.ConfigLoader;
 import com.pao.game.model.GameObject.CreatingParams.CreatingParams;
 import com.pao.game.model.GameObject.Obstacles.BrakeObstacle.BrakeObstacleFactory;
 import com.pao.game.model.GameObject.Obstacles.AbstractObstacle.Obstacle;

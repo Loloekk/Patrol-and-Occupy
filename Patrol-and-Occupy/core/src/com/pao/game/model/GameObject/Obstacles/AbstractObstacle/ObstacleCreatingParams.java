@@ -1,7 +1,7 @@
 package com.pao.game.model.GameObject.Obstacles.AbstractObstacle;
 
 import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.pao.game.Constants.ModelConstants;
+import com.pao.game.constants.ModelConstants;
 import com.pao.game.model.GameObject.CreatingParams.CreatingParamsRectangle;
 
 public abstract class ObstacleCreatingParams extends CreatingParamsRectangle {

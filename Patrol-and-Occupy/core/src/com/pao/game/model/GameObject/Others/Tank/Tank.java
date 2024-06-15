@@ -15,7 +15,7 @@ import com.pao.game.model.GameObject.Others.Tank.Controler.Controler5Buttons;
 import com.pao.game.model.GameObject.Others.Tank.Controler.ControlerOneButton;
 import java.util.List;
 
-import static com.pao.game.Constants.Box2dConstants.PPM;
+import static com.pao.game.constants.Box2dConstants.PPM;
 
 public class Tank extends BodyGameObject {
     ModelPlayer color;

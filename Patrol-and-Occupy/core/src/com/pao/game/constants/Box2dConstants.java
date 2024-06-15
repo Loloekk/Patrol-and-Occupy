@@ -1,4 +1,4 @@
-package com.pao.game.Constants;
+package com.pao.game.constants;
 
 import com.badlogic.gdx.math.Vector2;
 

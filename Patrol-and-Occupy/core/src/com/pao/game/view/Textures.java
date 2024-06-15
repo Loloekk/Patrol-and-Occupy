@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.pao.game.Constants.ConfigLoader;
+import com.pao.game.constants.ConfigLoader;
 import com.pao.game.model.ModelPlayer;
 
 public class Textures {

@@ -1,4 +1,4 @@
-package com.pao.game.Constants;
+package com.pao.game.constants;
 
 import java.util.HashMap;
 import java.util.Map;

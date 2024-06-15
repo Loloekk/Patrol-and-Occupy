@@ -8,7 +8,7 @@ import com.pao.game.communication.Descriptions.ObjectDescription;
 import com.pao.game.model.GameObject.CreatingParams.CreatingParamsCircle;
 import com.pao.game.model.GameObject.CreatingParams.CreatingParamsRectangle;
 
-import static com.pao.game.Constants.Box2dConstants.PPM;
+import static com.pao.game.constants.Box2dConstants.PPM;
 
 public abstract class BodyGameObject implements GameObject {
     public Body body;

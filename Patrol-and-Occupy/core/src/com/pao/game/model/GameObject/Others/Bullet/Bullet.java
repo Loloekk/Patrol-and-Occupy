@@ -5,7 +5,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.pao.game.communication.Descriptions.ConcreteDescription.BulletDescription;
 import com.pao.game.communication.Descriptions.ObjectDescription;
 import com.pao.game.model.Boards.Board;
-import com.pao.game.Constants.ModelConstants;
+import com.pao.game.constants.ModelConstants;
 import com.pao.game.model.GameObject.Bodies.BodyGameObject;
 import com.pao.game.model.GameObject.Explosions.BulletExplosion.BulletExplosionCreatingParams;
 import com.pao.game.model.GameObject.Explosions.DynamiteExplosion.DynamiteExplosion;

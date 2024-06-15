@@ -5,7 +5,7 @@ import com.badlogic.gdx.physics.box2d.*;
 import com.pao.game.model.GameObject.CreatingParams.CreatingParamsCircle;
 import com.pao.game.model.GameObject.CreatingParams.CreatingParamsRectangle;
 
-import static com.pao.game.Constants.Box2dConstants.PPM;
+import static com.pao.game.constants.Box2dConstants.PPM;
 
 public class BodyCreator {
     private BodyCreator()

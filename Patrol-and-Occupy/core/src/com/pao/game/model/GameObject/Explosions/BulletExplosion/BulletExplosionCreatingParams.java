@@ -1,7 +1,7 @@
 package com.pao.game.model.GameObject.Explosions.BulletExplosion;
 
 import com.pao.game.model.Boards.Board;
-import com.pao.game.Constants.ModelConstants;
+import com.pao.game.constants.ModelConstants;
 import com.pao.game.model.GameObject.Bodies.BodyGameObject;
 import com.pao.game.model.GameObject.Explosions.Explosion.ExplosionCircleCreatingParams;
 

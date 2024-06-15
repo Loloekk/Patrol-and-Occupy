@@ -1,6 +1,6 @@
 package com.pao.game.model;
 
-import com.pao.game.Constants.ModelConstants;
+import com.pao.game.constants.ModelConstants;
 import com.pao.game.communication.Options;
 
 public class ModelSettings {

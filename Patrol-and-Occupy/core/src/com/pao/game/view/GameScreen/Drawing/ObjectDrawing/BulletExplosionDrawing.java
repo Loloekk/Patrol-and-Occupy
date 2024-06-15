@@ -1,6 +1,6 @@
 package com.pao.game.view.GameScreen.Drawing.ObjectDrawing;
 
-import com.pao.game.Constants.DrawingConstants;
+import com.pao.game.constants.DrawingConstants;
 import com.pao.game.communication.Descriptions.ConcreteDescription.BulletExplosionDescription;
 import com.pao.game.view.Animations;
 import com.pao.game.view.RegionPainter;

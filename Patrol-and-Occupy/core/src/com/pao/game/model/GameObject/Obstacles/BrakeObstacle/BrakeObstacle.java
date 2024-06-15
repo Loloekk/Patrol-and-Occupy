@@ -3,7 +3,6 @@ package com.pao.game.model.GameObject.Obstacles.BrakeObstacle;
 import com.pao.game.communication.Descriptions.ConcreteDescription.BrakeObstacleDescription;
 import com.pao.game.communication.Descriptions.ObjectDescription;
 import com.pao.game.model.Boards.Board;
-import com.pao.game.Constants.ModelConstants;
 import com.pao.game.model.GameObject.Bodies.BodyGameObject;
 import com.pao.game.model.GameObject.Explosions.DynamiteExplosion.DynamiteExplosion;
 import com.pao.game.model.GameObject.Obstacles.AbstractObstacle.Obstacle;

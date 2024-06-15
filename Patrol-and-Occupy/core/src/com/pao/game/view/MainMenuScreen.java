@@ -9,7 +9,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.pao.game.Constants.ViewConstants;
+import com.pao.game.constants.ViewConstants;
 
 public class MainMenuScreen implements Screen {
     static final float BUTTON_WIDTH = ViewConstants.getFloatConstant("MainMenuScreen.Button.Width");

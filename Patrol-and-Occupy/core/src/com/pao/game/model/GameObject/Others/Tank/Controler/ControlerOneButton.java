@@ -4,7 +4,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.pao.game.communication.Move;
 import com.pao.game.model.Boards.Board;
-import com.pao.game.Constants.ModelConstants;
+import com.pao.game.constants.ModelConstants;
 import com.pao.game.model.GameObject.Others.Tank.Magazine.Magazine;
 import com.pao.game.model.GameObject.Others.Tank.Magazine.MagazineOneButton;
 import com.pao.game.model.GameObject.Others.Tank.Tank;

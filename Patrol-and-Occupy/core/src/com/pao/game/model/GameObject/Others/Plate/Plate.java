@@ -3,14 +3,12 @@ package com.pao.game.model.GameObject.Others.Plate;
 import com.pao.game.communication.Descriptions.ConcreteDescription.PlateDescription;
 import com.pao.game.communication.Descriptions.ObjectDescription;
 import com.pao.game.model.Boards.Board;
-import com.pao.game.Constants.ModelConstants;
+import com.pao.game.constants.ModelConstants;
 import com.pao.game.model.GameObject.Bodies.BodyGameObject;
 import com.pao.game.model.GameObject.Others.Tank.Tank;
 import com.pao.game.model.ModelPlayer;
 
 import java.util.List;
-
-import javax.print.attribute.standard.JobKOctets;
 
 public class Plate extends BodyGameObject {
     static final float width = ModelConstants.getConstant("plate.Width");

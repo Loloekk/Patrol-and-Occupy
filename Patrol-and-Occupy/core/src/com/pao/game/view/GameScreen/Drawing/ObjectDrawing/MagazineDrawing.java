@@ -1,10 +1,8 @@
 package com.pao.game.view.GameScreen.Drawing.ObjectDrawing;
 
-import com.pao.game.Constants.DrawingConstants;
+import com.pao.game.constants.DrawingConstants;
 import com.pao.game.communication.Descriptions.ConcreteDescription.MagazineDescription;
-import com.pao.game.communication.Descriptions.ConcreteDescription.TankDescription;
 import com.pao.game.communication.Descriptions.ObjectDescription;
-import com.pao.game.model.ModelPlayer;
 import com.pao.game.view.RegionPainter;
 import com.pao.game.view.Textures;
 import com.pao.game.viewmodel.EditSettings;

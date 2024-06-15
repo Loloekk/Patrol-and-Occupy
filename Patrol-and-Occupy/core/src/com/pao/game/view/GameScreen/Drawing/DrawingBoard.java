@@ -2,16 +2,13 @@ package com.pao.game.view.GameScreen.Drawing;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.pao.game.Constants.ViewConstants;
+import com.pao.game.constants.ViewConstants;
 import com.pao.game.view.Drop;
 import com.pao.game.view.GameScreen.Drawing.ObjectDrawing.ObjectDrawing;
 import com.pao.game.view.RegionPainter;
-import com.pao.game.view.Textures;
-import com.pao.game.viewmodel.EditSettings;
 import com.pao.game.viewmodel.ViewModel;
 
 import java.util.ArrayList;
