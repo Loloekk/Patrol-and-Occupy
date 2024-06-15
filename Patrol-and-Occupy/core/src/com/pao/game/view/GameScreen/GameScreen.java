@@ -20,7 +20,7 @@ public class GameScreen implements Screen {
     public GameScreen(final Drop game){
         this.game=game;
         this.VM = new ViewModel();
-        drawingBoard = new DrawingBoard(game,VM,EditSettings.getNumberOfPlayers());
+        drawingBoard = new DrawingBoard(game,VM);
         updatingBoard = new UpdatingBoard(VM,EditSettings.getNumberOfPlayers());
     }
     private void screenChanege()

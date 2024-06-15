@@ -16,15 +16,26 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.pao.game.Constants.ViewConstants;
 import com.pao.game.view.GameScreen.GameScreen;
 import com.pao.game.viewmodel.EditSettings;
 
 import static com.pao.game.communication.Options.*;
 
 public class MapScreen implements Screen {
-    static final float BUTTON_WIDTH = 300 ;
-    static final float BUTTON_HEIGHT = 200 ;
-    static final float BACK_BUTTON_Y = 250 ;
+    final float BUTTON_WIDTH = ViewConstants.getFloatConstant("MapScreen.Button.Width");
+    final float BUTTON_HEIGHT = ViewConstants.getFloatConstant("MapScreen.Button.Height");
+    final float BACK_BUTTON_Y = ViewConstants.getFloatConstant("MapScreen.Back.Button.Y");
+    final float TABLE_WIDTH=ViewConstants.getFloatConstant("MapScreen.Table.Width");
+    final float TABLE_HEIGHT=ViewConstants.getFloatConstant("MapScreen.Table.Height");
+    final float TABLE_PAD=ViewConstants.getFloatConstant("MapScreen.Table.Pad");
+    final float SCROLL_PLANE_WIDTH =ViewConstants.getFloatConstant("MapScreen.Scroll.Plane.Width");
+    final float SCROLL_PLANE_HEIGHT =ViewConstants.getFloatConstant("MapScreen.Scroll.Plane.Height");
+    final float SCROLL_PLANE_OFF =ViewConstants.getFloatConstant("MapScreen.Scroll.Plane.Off");
+    final float BACKGROUND_R = ViewConstants.getFloatConstant("MapScreen.BackGround.R");
+    final float BACKGROUND_G = ViewConstants.getFloatConstant("MapScreen.BackGround.G");
+    final float BACKGROUND_B = ViewConstants.getFloatConstant("MapScreen.BackGround.B");
+    final float BACKGROUND_A = ViewConstants.getFloatConstant("MapScreen.BackGround.A");
     Drop game;
     OrthographicCamera camera;
     Viewport viewport;
@@ -43,10 +54,10 @@ public class MapScreen implements Screen {
 
         backButton = new Rectangle(Drop.WIDTH/2 - BUTTON_WIDTH/2, BACK_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
         touchPoint = new Vector3();
-        painter = new RegionPainter(game.batch,0,0,Drop.WIDTH,Drop.HEIGHT,Drop.WIDTH,Drop.HEIGHT,new Color(0.5f,0.4f,0.4f,1));
+        painter = new RegionPainter(game.batch,0,0,Drop.WIDTH,Drop.HEIGHT,Drop.WIDTH,Drop.HEIGHT,new Color(BACKGROUND_R,BACKGROUND_G,BACKGROUND_B,BACKGROUND_A));
 
         stage = new Stage(viewport);
-        skin = new Skin(Gdx.files.internal("uiskin.json"));
+        skin = new Skin(Gdx.files.internal(ViewConstants.getConstant("MapScreen.Skin")));
 
         Texture[] txs = new Texture[8];
         txs[0] = Textures.getTexture("setup.0");
@@ -70,13 +81,13 @@ public class MapScreen implements Screen {
                 }
             });
 
-            table.add(image).size(600, 300).pad(20);
+            table.add(image).size(TABLE_WIDTH, TABLE_HEIGHT).pad(TABLE_PAD);
         }
 
         scrollPane = new ScrollPane(table);
         scrollPane.setScrollingDisabled(false, true);
-        scrollPane.setSize(1000, 700);
-        scrollPane.setPosition(Drop.WIDTH/2-scrollPane.getWidth()/2, Drop.HEIGHT/2- scrollPane.getHeight()/2 + 100);
+        scrollPane.setSize(SCROLL_PLANE_WIDTH, SCROLL_PLANE_HEIGHT);
+        scrollPane.setPosition(Drop.WIDTH/2-scrollPane.getWidth()/2, Drop.HEIGHT/2- scrollPane.getHeight()/2 + SCROLL_PLANE_OFF);
 
         scrollPane.setFlickScroll(true);
         scrollPane.setSmoothScrolling(true);
@@ -99,7 +110,7 @@ public class MapScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        ScreenUtils.clear(0.4f,0.4f,0.9f,1);
+        ScreenUtils.clear(BACKGROUND_R,BACKGROUND_G,BACKGROUND_B,BACKGROUND_A);
         camera.update();
 
         game.batch.setProjectionMatrix(camera.combined);

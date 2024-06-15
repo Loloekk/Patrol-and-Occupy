@@ -5,21 +5,20 @@ import com.pao.game.communication.Descriptions.ObjectDescription;
 import com.pao.game.model.Boards.Board;
 import com.pao.game.Constants.ModelConstants;
 import com.pao.game.model.GameObject.Bodies.BodyGameObject;
+import com.pao.game.model.GameObject.Explosions.DynamiteExplosion.DynamiteExplosion;
 import com.pao.game.model.GameObject.Obstacles.AbstractObstacle.Obstacle;
 import com.pao.game.model.GameObject.Others.Tank.Tank;
 
 import java.util.List;
 
 public class BrakeObstacle extends Obstacle {
-    float width = ModelConstants.getConstant("obstacle.Width");
-    float height = ModelConstants.getConstant("obstacle.Height");
     boolean isActive = true;
     public BrakeObstacle(BrakeObstacleCreatingParams BOCP, Board board) {
         super(BOCP, board);
         body.setUserData(this);
     }
     public void takeDamage(BodyGameObject killer){
-        if(!(killer instanceof Tank)) return;
+        if(!(killer instanceof Tank || killer instanceof DynamiteExplosion)) return;
         isActive = false;
     }
     public boolean getIsActive() { return isActive; }
@@ -32,15 +31,5 @@ public class BrakeObstacle extends Obstacle {
                 .setWidth(getWidth())
                 .setHeight(getHeight())
                 .setRotation(getRotation()));
-    }
-    @Override
-    public float getWidth()
-    {
-        return width;
-    }
-    @Override
-    public float getHeight()
-    {
-        return height;
     }
 }

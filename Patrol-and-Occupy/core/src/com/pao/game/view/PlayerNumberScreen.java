@@ -11,6 +11,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.pao.game.Constants.ViewConstants;
 import com.pao.game.view.GameScreen.GameScreen;
 import com.pao.game.viewmodel.EditSettings;
 
@@ -18,12 +19,17 @@ import static com.pao.game.communication.Options.control;
 import static com.pao.game.communication.Options.numberOfPlayers;
 
 public class PlayerNumberScreen implements Screen {
-    static final float BUTTON_WIDTH = 300 ;
-    static final float BUTTON_HEIGHT = 200 ;
-    static final float BACK_BUTTON_Y = 250 ;
-    static final float PLAYER_BUTTON_WIDTH = 600;
-    static final float PLAYER_BUTTON_HEIGHT = 500;
-    static final float PLAYER_BUTTON_Y = 700;
+    final float BUTTON_WIDTH = ViewConstants.getFloatConstant("PlayerNumberScreen.Button.Width");
+    final float BUTTON_HEIGHT = ViewConstants.getFloatConstant("PlayerNumberScreen.Button.Height") ;
+    final float BACK_BUTTON_Y = ViewConstants.getFloatConstant("PlayerNumberScreen.Back.Button.Y") ;
+    final float PLAYER_BUTTON_WIDTH = ViewConstants.getFloatConstant("PlayerNumberScreen.Player.Button.Width");
+    final float PLAYER_BUTTON_HEIGHT = ViewConstants.getFloatConstant("PlayerNumberScreen.Player.Button.Height");
+    final float PLAYER_BUTTON_Y = ViewConstants.getFloatConstant("PlayerNumberScreen.Player.Button.Y");
+    final float PLAYER_BUTTON_SPACE = ViewConstants.getFloatConstant("PlayerNumberScreen.Player.Button.Space");
+    final float BACKGROUND_R = ViewConstants.getFloatConstant("PlayerNumberScreen.BackGround.R");
+    final float BACKGROUND_G = ViewConstants.getFloatConstant("PlayerNumberScreen.BackGround.G");
+    final float BACKGROUND_B = ViewConstants.getFloatConstant("PlayerNumberScreen.BackGround.B");
+    final float BACKGROUND_A = ViewConstants.getFloatConstant("PlayerNumberScreen.BackGround.A");
 
     Drop game;
     OrthographicCamera camera;
@@ -41,16 +47,16 @@ public class PlayerNumberScreen implements Screen {
         viewport = new ExtendViewport(Drop.WIDTH, Drop.HEIGHT, camera);
 
         backButton = new Rectangle(Drop.WIDTH/2 - BUTTON_WIDTH/2, BACK_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
-        twoPlayers = new Ellipse(Drop.WIDTH/2 - 400, PLAYER_BUTTON_Y, PLAYER_BUTTON_WIDTH/2, PLAYER_BUTTON_HEIGHT/2);
+        twoPlayers = new Ellipse(Drop.WIDTH/2 - PLAYER_BUTTON_SPACE, PLAYER_BUTTON_Y, PLAYER_BUTTON_WIDTH/2, PLAYER_BUTTON_HEIGHT/2);
         threePlayers = new Ellipse(Drop.WIDTH/2, PLAYER_BUTTON_Y, PLAYER_BUTTON_WIDTH/2, PLAYER_BUTTON_HEIGHT/2);
-        fourPlayers = new Ellipse(Drop.WIDTH/2 + 400, PLAYER_BUTTON_Y, PLAYER_BUTTON_WIDTH/2, PLAYER_BUTTON_HEIGHT/2);
+        fourPlayers = new Ellipse(Drop.WIDTH/2 + PLAYER_BUTTON_SPACE, PLAYER_BUTTON_Y, PLAYER_BUTTON_WIDTH/2, PLAYER_BUTTON_HEIGHT/2);
 
         touchPoint = new Vector3();
-        painter = new RegionPainter(game.batch,0,0,Drop.WIDTH,Drop.HEIGHT,Drop.WIDTH,Drop.HEIGHT,new Color(0.4f,0.4f,0.9f,1));
+        painter = new RegionPainter(game.batch,0,0,Drop.WIDTH,Drop.HEIGHT,Drop.WIDTH,Drop.HEIGHT,new Color(BACKGROUND_R,BACKGROUND_G,BACKGROUND_B,BACKGROUND_A));
     }
     @Override
     public void render(float delta) {
-        ScreenUtils.clear(0.4f,0.4f,0.9f,1);
+        ScreenUtils.clear(BACKGROUND_R,BACKGROUND_G,BACKGROUND_B,BACKGROUND_A);
         camera.update();
         game.batch.setProjectionMatrix(camera.combined);
 

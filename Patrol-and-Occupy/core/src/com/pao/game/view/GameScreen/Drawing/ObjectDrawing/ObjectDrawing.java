@@ -1,7 +1,7 @@
 package com.pao.game.view.GameScreen.Drawing.ObjectDrawing;
 
 public interface ObjectDrawing {
-    Integer getPriority();
+    Float getPriority();
     void draw();
 
 }

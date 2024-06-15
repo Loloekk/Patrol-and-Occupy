@@ -26,6 +26,7 @@ public class ConfigLoader {
 
     public int getIntProperty(String key) {
         String value = properties.getProperty(key);
+        if(value == null) System.out.println(key);
         return value != null ? Integer.parseInt(value) : 0;
     }
     public float getFloatProperty(String key) {

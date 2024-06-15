@@ -12,14 +12,19 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.pao.game.Constants.ViewConstants;
 import com.pao.game.view.GameScreen.GameScreen;
 
 public class PauseScreen implements Screen {
-    static final float BUTTON_WIDTH = 400;
-    static final float BUTTON_HEIGHT = 200;
-    static final float RESUME_BUTTON_Y = 600;
-    static final float RESTART_BUTTON_Y = 400;
-    static final float EXIT_BUTTON_Y = 200;
+    static final float BUTTON_WIDTH = ViewConstants.getFloatConstant("PauseScreen.Button.Width");
+    static final float BUTTON_HEIGHT = ViewConstants.getFloatConstant("PauseScreen.Button.Height");
+    static final float RESUME_BUTTON_Y = ViewConstants.getFloatConstant("PauseScreen.Resume.Button.Y");
+    static final float RESTART_BUTTON_Y = ViewConstants.getFloatConstant("PauseScreen.Restart.Button.Y");
+    static final float EXIT_BUTTON_Y = ViewConstants.getFloatConstant("PauseScreen.Exit.Button.Y");
+    final float BACKGROUND_R = ViewConstants.getFloatConstant("PauseScreen.BackGround.R");
+    final float BACKGROUND_G = ViewConstants.getFloatConstant("PauseScreen.BackGround.G");
+    final float BACKGROUND_B = ViewConstants.getFloatConstant("PauseScreen.BackGround.B");
+    final float BACKGROUND_A = ViewConstants.getFloatConstant("PauseScreen.BackGround.A");
     Drop game;
     OrthographicCamera camera;
     GameScreen gameScreen;
@@ -40,7 +45,7 @@ public class PauseScreen implements Screen {
         restartButton = new Rectangle(Drop.WIDTH/2- BUTTON_WIDTH/2, RESTART_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
         exitButton = new Rectangle(Drop.WIDTH/2 - BUTTON_WIDTH/2, EXIT_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
         touchPoint = new Vector3();
-        painter = new RegionPainter(game.batch,0,0,Drop.WIDTH,Drop.HEIGHT,Drop.WIDTH,Drop.HEIGHT,new Color(0.5f,0.4f,0.4f,1));
+        painter = new RegionPainter(game.batch,0,0,Drop.WIDTH,Drop.HEIGHT,Drop.WIDTH,Drop.HEIGHT,new Color(BACKGROUND_R,BACKGROUND_G,BACKGROUND_B,BACKGROUND_A));
     }
     @Override
     public void show() {
@@ -49,7 +54,7 @@ public class PauseScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        ScreenUtils.clear(0f, 0f, 0f, 1f);
+        ScreenUtils.clear(BACKGROUND_R,BACKGROUND_G,BACKGROUND_B,BACKGROUND_A);
         camera.update();
 
         game.batch.setProjectionMatrix(camera.combined);

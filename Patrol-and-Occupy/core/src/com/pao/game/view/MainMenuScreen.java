@@ -9,13 +9,18 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.pao.game.Constants.ViewConstants;
 
 public class MainMenuScreen implements Screen {
-    static final float BUTTON_WIDTH = 300 ;
-    static final float BUTTON_HEIGHT = 200 ;
-    static final float PLAY_BUTTON_Y = 550 ;
-    static final float SETTINGS_BUTTON_Y = 350 ;
-    static final float EXIT_BUTTON_Y = 150 ;
+    static final float BUTTON_WIDTH = ViewConstants.getFloatConstant("MainMenuScreen.Button.Width");
+    static final float BUTTON_HEIGHT = ViewConstants.getFloatConstant("MainMenuScreen.Button.Height");
+    static final float PLAY_BUTTON_Y = ViewConstants.getFloatConstant("MainMenuScreen.Play.Button.Y");
+    static final float SETTINGS_BUTTON_Y = ViewConstants.getFloatConstant("MainMenuScreen.Settings.Button.Y");
+    static final float EXIT_BUTTON_Y = ViewConstants.getFloatConstant("MainMenuScreen.Exit.Button.Y");
+    final float BACKGROUND_R = ViewConstants.getFloatConstant("MainMenuScreen.BackGround.R");
+    final float BACKGROUND_G = ViewConstants.getFloatConstant("MainMenuScreen.BackGround.G");
+    final float BACKGROUND_B = ViewConstants.getFloatConstant("MainMenuScreen.BackGround.B");
+    final float BACKGROUND_A = ViewConstants.getFloatConstant("MainMenuScreen.BackGround.A");
     Drop game;
     OrthographicCamera camera;
     Viewport viewport;
@@ -33,11 +38,11 @@ public class MainMenuScreen implements Screen {
         settingsButton = new Rectangle(Drop.WIDTH/2 - BUTTON_WIDTH/2, SETTINGS_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
         exitButton = new Rectangle(Drop.WIDTH/2 - BUTTON_WIDTH/2, EXIT_BUTTON_Y - BUTTON_HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT);
         touchPoint = new Vector3();
-        painter = new RegionPainter(game.batch,0,0,Drop.WIDTH,Drop.HEIGHT,Drop.WIDTH,Drop.HEIGHT,new Color(0.4f,0.4f,0.9f,1));
+        painter = new RegionPainter(game.batch,0,0,Drop.WIDTH,Drop.HEIGHT,Drop.WIDTH,Drop.HEIGHT,new Color(BACKGROUND_R,BACKGROUND_G,BACKGROUND_B,BACKGROUND_A));
     }
     @Override
     public void render(float delta) {
-        ScreenUtils.clear(0.4f,0.4f,0.9f,1);
+        ScreenUtils.clear(BACKGROUND_R,BACKGROUND_G,BACKGROUND_B,BACKGROUND_A);
         camera.update();
         game.batch.setProjectionMatrix(camera.combined);
 
