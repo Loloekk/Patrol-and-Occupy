@@ -15,7 +15,7 @@ public class ConfigLoader {
             try (InputStream input = new FileInputStream("Patrol-and-Occupy/"+path)) {
                 properties.load(input);
             } catch (IOException e2) {
-                throw new RuntimeException();
+                throw new RuntimeException("No configuration files.");
             }
         }
     }
