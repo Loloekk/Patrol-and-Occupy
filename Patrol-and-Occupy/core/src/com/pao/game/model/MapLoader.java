@@ -21,11 +21,16 @@ public class MapLoader {
 
     public static List<CreatingParams> getMap(int n)
     {
-        if(!map.containsKey((Integer) n))
+        if(!map.containsKey(n))
         {
             List<CreatingParams> list = new ArrayList<>();
-            ConfigLoader loader = new ConfigLoader("assets/Maps/map"+n+".properties");
-            for(ModelPlayer pla : ModelPlayer.getAllColorList())
+            ConfigLoader loader;
+            try {
+                loader = new ConfigLoader("assets/Maps/map" + n + ".properties");
+            } catch(Exception e){
+                loader = new ConfigLoader("assets/Maps/map0.properties");
+            }
+                for(ModelPlayer pla : ModelPlayer.getAllColorList())
             {
                 list.add(new SpawnCreatingParams().setColor(pla).
                         setX(loader.getFloatProperty("Spawn."+pla+".X")).
