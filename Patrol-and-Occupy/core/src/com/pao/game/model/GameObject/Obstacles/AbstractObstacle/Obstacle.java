@@ -12,20 +12,20 @@ public abstract class Obstacle extends BodyGameObject {
     public Obstacle(CreatingParamsRectangle CPR, Board board) {
         super(CPR,board.getWorld());
     }
-    public static List<ObstacleCreatingParams> rectangleObstacle(float x, float y, float side, int numberOfRows, int numberOfColumns, float degree,ObstacleFactory factory) {
+    public static List<ObstacleCreatingParams> rectangleObstacle(float x, float y, float space, int numberOfRows, int numberOfColumns, float degree,ObstacleFactory factory) {
         List<ObstacleCreatingParams> obstacleList = new ArrayList<>();
-        float y1 = y - (numberOfRows - 1) / 2.0f * side;
+        float y1 = y - (numberOfRows - 1) / 2.0f * space;
         for(int i = 0; i < numberOfRows; i++) {
-            float x1 = x - (numberOfColumns - 1) / 2.0f * side;
+            float x1 = x - (numberOfColumns - 1) / 2.0f * space;
             for(int j = 0; j < numberOfColumns; j++) {
                 ObstacleCreatingParams obstacle = (ObstacleCreatingParams)factory.getNew()
                         .setX(x + (x1-x) * MathUtils.cos(degree * MathUtils.degreesToRadians) - (y1-y) * MathUtils.sin(degree * MathUtils.degreesToRadians))
                         .setY(y + (x1-x) * MathUtils.sin(degree * MathUtils.degreesToRadians) + (y1-y) * MathUtils.cos(degree * MathUtils.degreesToRadians))
                         .setRotation(degree);
                 obstacleList.add(obstacle);
-                x1 += side;
+                x1 += space;
             }
-            y1 += side;
+            y1 += space;
         }
         return obstacleList;
     }

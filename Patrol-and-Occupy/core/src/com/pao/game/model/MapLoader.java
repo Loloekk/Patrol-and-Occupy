@@ -54,7 +54,7 @@ public class MapLoader {
             {
                 list.addAll(Obstacle.rectangleObstacle(loader.getFloatProperty("Stone"+i+".X"),
                         loader.getFloatProperty("Stone"+i+".Y"),
-                        loader.getFloatProperty("Stone"+i+".Side"),
+                        loader.getFloatProperty("Stone"+i+".Space"),
                         loader.getIntProperty("Stone"+i+".Number.Of.Rows"),
                         loader.getIntProperty("Stone"+i+".Number.Of.Columns"),
                         loader.getFloatProperty("Stone"+i+".Degree"),
@@ -65,7 +65,7 @@ public class MapLoader {
             {
                 list.addAll(Obstacle.rectangleObstacle(loader.getFloatProperty("Bricks"+i+".X"),
                         loader.getFloatProperty("Bricks"+i+".Y"),
-                        loader.getFloatProperty("Bricks"+i+".Side"),
+                        loader.getFloatProperty("Bricks"+i+".Space"),
                         loader.getIntProperty("Bricks"+i+".Number.Of.Rows"),
                         loader.getIntProperty("Bricks"+i+".Number.Of.Columns"),
                         loader.getFloatProperty("Bricks"+i+".Degree"),
@@ -76,7 +76,7 @@ public class MapLoader {
             {
                 list.addAll(Obstacle.rectangleObstacle(loader.getFloatProperty("Hedgehogs"+i+".X"),
                         loader.getFloatProperty("Hedgehogs"+i+".Y"),
-                        loader.getFloatProperty("Hedgehogs"+i+".Side"),
+                        loader.getFloatProperty("Hedgehogs"+i+".Space"),
                         loader.getIntProperty("Hedgehogs"+i+".Number.Of.Rows"),
                         loader.getIntProperty("Hedgehogs"+i+".Number.Of.Columns"),
                         loader.getFloatProperty("Hedgehogs"+i+".Degree"),
@@ -87,7 +87,7 @@ public class MapLoader {
             {
                 list.addAll(Obstacle.rectangleObstacle(loader.getFloatProperty("Brakes"+i+".X"),
                         loader.getFloatProperty("Brakes"+i+".Y"),
-                        loader.getFloatProperty("Brakes"+i+".Side"),
+                        loader.getFloatProperty("Brakes"+i+".Space"),
                         loader.getIntProperty("Brakes"+i+".Number.Of.Rows"),
                         loader.getIntProperty("Brakes"+i+".Number.Of.Columns"),
                         loader.getFloatProperty("Brakes"+i+".Degree"),
