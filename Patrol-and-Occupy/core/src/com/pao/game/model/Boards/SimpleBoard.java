@@ -37,6 +37,7 @@ public class SimpleBoard implements Board {
             if(cp instanceof SpawnCreatingParams || cp instanceof TankCreatingParams){
                 for(ModelPlayer color : ModelPlayer.getColorList(ModelSettings.getNumberOfPlayers())) {
                     if(cp.getColor() == color){
+                        if(!(cp instanceof TankCreatingParams))
                         bodyObjectsToCreate.add(cp);
                     }
                 }
@@ -51,25 +52,25 @@ public class SimpleBoard implements Board {
             BodyGameObject object = CP.create(this);
         }
         bodyObjectsToCreate.clear();
-        world.step((time), (int)VELOCITY_ITERATION, (int)POSITION_ITERATION);
-
-        clock.update(time);
-        // Update tanks
-        for(BodyGameObject obj : new ArrayList<>(bodyObjects))
-        {
-            if(obj.getIsActive()){
-                obj.update(time);
-            }
-        }
-        List<BodyGameObject> objectToDestroy = new ArrayList<>();
-        for(BodyGameObject obj : bodyObjects)
-        {
-            if(!obj.getIsActive()){
-                objectToDestroy.add(obj);
-                world.destroyBody(obj.getBody());
-            }
-        }
-        bodyObjects.removeAll(objectToDestroy);
+//        world.step((time), (int)VELOCITY_ITERATION, (int)POSITION_ITERATION);
+//
+//        clock.update(time);
+//        // Update tanks
+//        for(BodyGameObject obj : new ArrayList<>(bodyObjects))
+//        {
+//            if(obj.getIsActive()){
+//                obj.update(time);
+//            }
+//        }
+//        List<BodyGameObject> objectToDestroy = new ArrayList<>();
+//        for(BodyGameObject obj : bodyObjects)
+//        {
+//            if(!obj.getIsActive()){
+//                objectToDestroy.add(obj);
+//                world.destroyBody(obj.getBody());
+//            }
+//        }
+//        bodyObjects.removeAll(objectToDestroy);
 
     }
     @Override
