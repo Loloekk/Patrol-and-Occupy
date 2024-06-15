@@ -31,7 +31,7 @@ public class SimpleBoard implements Board {
     public SimpleBoard(){
         this(ModelSettings.getWidth(), ModelSettings.getHeight());
         // Add players tanks
-        List<CreatingParams> toCreate = Setup.getObjectList(ModelSettings.getMap());
+        List<CreatingParams> toCreate = MapLoader.getMap(ModelSettings.getMap());
         for(CreatingParams cp : toCreate)
         {
             if(cp instanceof SpawnCreatingParams || cp instanceof TankCreatingParams){

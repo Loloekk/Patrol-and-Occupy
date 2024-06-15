@@ -34,7 +34,6 @@ public class MagazineDrawing implements ObjectDrawing {
     float x;
     float y;
     final float priority = DrawingConstants.getFloatConstant("Magazine.Priority");
-//    final float scale = DrawingConstants.getFloatConstant("BrakeObstacle.Scale");
     MagazineDescription desc;
     public MagazineDrawing(RegionPainter topPainter, MagazineDescription desc){
         this.painterTop = topPainter;

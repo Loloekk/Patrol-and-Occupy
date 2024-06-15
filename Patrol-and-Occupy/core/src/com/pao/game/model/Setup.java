@@ -14,8 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Setup {
-    static int width = ModelSettings.getWidth();
-    static int height = ModelSettings.getHeight();
+    static int width = ModelSettings.getWidth();//1920
+    static int height = ModelSettings.getHeight();//954
     private static final List<List<CreatingParams>> setupList = new ArrayList<>();
     static{
         // Setup 0.
