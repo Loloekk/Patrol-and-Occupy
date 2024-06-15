@@ -1,6 +1,7 @@
 package com.pao.game.model.GameObject.Others.Tank.Magazine;
 
 import com.badlogic.gdx.math.MathUtils;
+import com.pao.game.communication.Descriptions.ConcreteDescription.MagazineDescription;
 import com.pao.game.communication.Move;
 import com.pao.game.model.Boards.Board;
 import com.pao.game.model.GameObject.Explosions.BulletShoot.BulletShootCreatingParams;
@@ -88,5 +89,9 @@ public class MagazineOneButton implements Magazine{
             return true;
         }
         return false;
+    }
+    @Override
+    public MagazineDescription getDescription() {
+        return new MagazineDescription().setBullets(quantity).setDynamite(hasDynamite());
     }
 }

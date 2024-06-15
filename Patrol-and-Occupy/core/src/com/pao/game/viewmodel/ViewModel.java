@@ -25,8 +25,8 @@ public class ViewModel{
         List<ObjectDescription> objectDescriptionList = new ArrayList<>();
         for(BodyGameObject obj : board.getBodyObjects())
         {
-            ObjectDescription desc = obj.getDescription();
-            if(desc != null) objectDescriptionList.add(desc);
+            List<ObjectDescription> desc = obj.getDescription();
+            if(desc != null) objectDescriptionList.addAll(desc);
         }
         return objectDescriptionList;
     }

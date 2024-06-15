@@ -3,7 +3,7 @@ package com.pao.game.Constants;
 import java.util.HashMap;
 import java.util.Map;
 
-public class modelConstants {
+public class ModelConstants {
 
     static Map<String, Float> map = new HashMap<>();
     static ConfigLoader configLoader = new ConfigLoader("assets/modelConstants.properties");

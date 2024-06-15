@@ -1,5 +1,6 @@
 package com.pao.game.model.GameObject.Others.Tank.Magazine;
 
+import com.pao.game.communication.Descriptions.ConcreteDescription.MagazineDescription;
 import com.pao.game.communication.Move;
 
 public interface Magazine {
@@ -7,4 +8,5 @@ public interface Magazine {
     void update(float time);
     int getQuantity();
     boolean hasDynamite();
+    MagazineDescription getDescription();
 }

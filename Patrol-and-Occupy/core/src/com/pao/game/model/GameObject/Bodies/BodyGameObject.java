@@ -1,5 +1,6 @@
 package com.pao.game.model.GameObject.Bodies;
 
+import java.util.List;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
@@ -32,5 +33,5 @@ public abstract class BodyGameObject implements GameObject {
     public boolean getIsActive(){return true;}
     public float getWidth(){ return width; }
     public float getHeight(){ return height; }
-    public ObjectDescription getDescription(){return null;}
+    public List<ObjectDescription> getDescription(){return null;}
 }

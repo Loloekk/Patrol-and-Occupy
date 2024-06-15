@@ -2,17 +2,17 @@ package com.pao.game.model.GameObject.Others.Spawn;
 
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.pao.game.model.Boards.Board;
-import com.pao.game.Constants.modelConstants;
+import com.pao.game.Constants.ModelConstants;
 import com.pao.game.model.GameObject.Bodies.BodyGameObject;
 import com.pao.game.model.GameObject.CreatingParams.CreatingParamsRectangle;
 
 public class SpawnCreatingParams extends CreatingParamsRectangle {
     public SpawnCreatingParams()
     {
-        setRealWidth(modelConstants.getConstant("spawn.Width"));
-        setRealHeight(modelConstants.getConstant("spawn.Height"));
+        setRealWidth(ModelConstants.getConstant("spawn.Width"));
+        setRealHeight(ModelConstants.getConstant("spawn.Height"));
         setBodyType(BodyDef.BodyType.StaticBody);
-        setDensity(modelConstants.getConstant("spawn.Density"));
+        setDensity(ModelConstants.getConstant("spawn.Density"));
         setIsSensor(false);
     }
     @Override

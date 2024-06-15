@@ -1,6 +1,7 @@
 package com.pao.game.model.GameObject.Others.Tank;
 
 import com.pao.game.communication.Descriptions.ConcreteDescription.TankDescription;
+import com.pao.game.communication.Descriptions.ObjectDescription;
 import com.pao.game.communication.Move;
 import com.pao.game.model.*;
 import com.pao.game.model.Boards.Board;
@@ -12,6 +13,7 @@ import com.pao.game.model.GameObject.Others.Spawn.Spawn;
 import com.pao.game.model.GameObject.Others.Tank.Controler.Controler;
 import com.pao.game.model.GameObject.Others.Tank.Controler.Controler5Buttons;
 import com.pao.game.model.GameObject.Others.Tank.Controler.ControlerOneButton;
+import java.util.List;
 
 import static com.pao.game.Constants.Box2dConstants.PPM;
 
@@ -99,18 +101,19 @@ public class Tank extends BodyGameObject {
         controler.update(time);
     }
     @Override
-    public TankDescription getDescription()
+    public List<ObjectDescription> getDescription()
     {
-        return (TankDescription) (new TankDescription())
-                .setBullets(controler.getMagazine().getQuantity())
-                .setPlates(playerStatistics.getNumberOfPlates())
-                .setIsAlive(getIsAlive())
-                .setDynamite(controler.getMagazine().hasDynamite())
-                .setColor(getColor())
-                .setX(getX())
-                .setY(getY())
-                .setWidth(getWidth())
-                .setHeight(getHeight())
-                .setRotation(getRotation());
+        return List.of((
+                new TankDescription())
+                        .setIsAlive(getIsAlive())
+                        .setColor(getColor())
+                        .setX(getX())
+                        .setY(getY())
+                        .setWidth(getWidth())
+                        .setHeight(getHeight())
+                        .setRotation(getRotation()),
+                controler.getMagazine().getDescription()
+                        .setPlates(playerStatistics.getNumberOfPlates())
+                        .setColor(getColor()));
     }
 }

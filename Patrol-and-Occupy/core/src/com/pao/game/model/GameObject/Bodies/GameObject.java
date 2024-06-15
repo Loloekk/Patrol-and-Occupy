@@ -2,6 +2,7 @@ package com.pao.game.model.GameObject.Bodies;
 
 
 import com.pao.game.communication.Descriptions.ObjectDescription;
+import java.util.List;
 
 public interface GameObject {
     float getX();
@@ -11,5 +12,5 @@ public interface GameObject {
     boolean getIsActive();
     float getWidth();
     float getHeight();
-    ObjectDescription getDescription();
+    List<ObjectDescription> getDescription();
 }

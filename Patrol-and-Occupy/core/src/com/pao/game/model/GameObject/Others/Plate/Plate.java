@@ -1,15 +1,20 @@
 package com.pao.game.model.GameObject.Others.Plate;
 
 import com.pao.game.communication.Descriptions.ConcreteDescription.PlateDescription;
+import com.pao.game.communication.Descriptions.ObjectDescription;
 import com.pao.game.model.Boards.Board;
-import com.pao.game.Constants.modelConstants;
+import com.pao.game.Constants.ModelConstants;
 import com.pao.game.model.GameObject.Bodies.BodyGameObject;
 import com.pao.game.model.GameObject.Others.Tank.Tank;
 import com.pao.game.model.ModelPlayer;
 
+import java.util.List;
+
+import javax.print.attribute.standard.JobKOctets;
+
 public class Plate extends BodyGameObject {
-    static final float width = modelConstants.getConstant("plate.Width");
-    static final float height = modelConstants.getConstant("plate.Height");
+    static final float width = ModelConstants.getConstant("plate.Width");
+    static final float height = ModelConstants.getConstant("plate.Height");
     ModelPlayer color;
     Board board;
     public Plate(PlateCreatingParams PCP, Board board) {
@@ -38,14 +43,14 @@ public class Plate extends BodyGameObject {
         return height;
     }
     @Override
-    public PlateDescription getDescription()
+    public List<ObjectDescription> getDescription()
     {
-        return (PlateDescription) (new PlateDescription())
+        return List.of((new PlateDescription())
                 .setColor(getColor())
                 .setX(getX())
                 .setY(getY())
                 .setWidth(getWidth())
                 .setHeight(getHeight())
-                .setRotation(getRotation());
+                .setRotation(getRotation()));
     }
 }

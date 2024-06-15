@@ -2,10 +2,13 @@ package com.pao.game.model.GameObject.Explosions.BulletShoot;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.pao.game.communication.Descriptions.ConcreteDescription.BulletShootDescription;
+import com.pao.game.communication.Descriptions.ObjectDescription;
 import com.pao.game.model.Boards.Board;
 import com.pao.game.model.GameObject.Explosions.Explosion.ExplosionCircle;
 import com.pao.game.model.GameObject.Explosions.Explosion.ExplosionRectangle;
 import com.pao.game.model.GameObject.Others.Tank.Tank;
+
+import java.util.List;
 
 public class BulletShoot extends ExplosionRectangle {
     Tank tank;
@@ -22,14 +25,14 @@ public class BulletShoot extends ExplosionRectangle {
     @Override
     public float getRotation() { return tank.getRotation(); }
     @Override
-    public BulletShootDescription getDescription()
+    public List<ObjectDescription> getDescription()
     {
-        return (BulletShootDescription) (new BulletShootDescription())
+        return List.of((new BulletShootDescription())
                 .setStateTime(getStateTime())
                 .setX(getX())
                 .setY(getY())
                 .setWidth(getWidth())
                 .setHeight(getHeight())
-                .setRotation(getRotation());
+                .setRotation(getRotation()));
     }
 }

@@ -1,9 +1,12 @@
 package com.pao.game.model.GameObject.Obstacles.StoneObstacle;
 
 import com.pao.game.communication.Descriptions.ConcreteDescription.StoneObstacleDescription;
+import com.pao.game.communication.Descriptions.ObjectDescription;
 import com.pao.game.model.Boards.Board;
 import com.pao.game.model.GameObject.Bodies.BodyGameObject;
 import com.pao.game.model.GameObject.Obstacles.AbstractObstacle.Obstacle;
+
+import java.util.List;
 
 public class StoneObstacle extends Obstacle {
     boolean isActive = true;
@@ -14,13 +17,13 @@ public class StoneObstacle extends Obstacle {
     public void takeDamage(BodyGameObject killer){}
     public boolean getIsActive() { return isActive; }
     @Override
-    public StoneObstacleDescription getDescription()
+    public List<ObjectDescription> getDescription()
     {
-        return (StoneObstacleDescription) (new StoneObstacleDescription())
+        return List.of((new StoneObstacleDescription())
                 .setX(getX())
                 .setY(getY())
                 .setWidth(getWidth())
                 .setHeight(getHeight())
-                .setRotation(getRotation());
+                .setRotation(getRotation()));
     }
 }

@@ -53,8 +53,12 @@ public class PrepareDrawingObjects {
             else if(desc instanceof SpawnDescription) {
                 objectsDrawings.add(new SpawnDrawing(painterGame, (SpawnDescription) desc));
             }
-            else if(desc instanceof TankDescription)
-                objectsDrawings.add(new TankDrawing(painterGame,painterTop,(TankDescription) desc));
+            else if(desc instanceof TankDescription) {
+                objectsDrawings.add(new TankDrawing(painterGame, (TankDescription) desc));
+            }
+            else if(desc instanceof MagazineDescription) {
+                objectsDrawings.add(new MagazineDrawing(painterTop, (MagazineDescription) desc));
+            }
         }
         Collections.sort(objectsDrawings, new Comparator<ObjectDrawing>() {
             @Override
