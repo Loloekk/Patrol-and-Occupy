@@ -59,8 +59,6 @@ public class DrawingBoard {
         game.batch.setProjectionMatrix(camera.combined);
 
         game.batch.begin();
-        painterGame.fillBackground();
-        painterTop.fillBackground();
         List<ObjectDrawing> objectsDrowings = new ArrayList<>();
         preparator.prepare(VM.getObjectDescriptionList(),objectsDrowings);
         for(ObjectDrawing objectDrawing : objectsDrowings) {

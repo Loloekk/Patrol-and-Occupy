@@ -2,6 +2,7 @@ package com.pao.game.view.GameScreen.Drawing;
 
 import com.pao.game.communication.Descriptions.ConcreteDescription.*;
 import com.pao.game.communication.Descriptions.ObjectDescription;
+import com.pao.game.constants.DrawingConstants;
 import com.pao.game.view.GameScreen.Drawing.ObjectDrawing.*;
 import com.pao.game.view.RegionPainter;
 
@@ -18,6 +19,8 @@ public class PrepareDrawingObjects {
     }
     public void prepare(List<ObjectDescription> objects, List<ObjectDrawing> objectsDrawings)
     {
+        objectsDrawings.add(new SpacePainting(DrawingConstants.getFloatConstant("PainterGame.Priority"),painterGame));
+        objectsDrawings.add(new SpacePainting(DrawingConstants.getFloatConstant("PainterTop.Priority"),painterTop));
         for(ObjectDescription desc : objects)
         {
             if(desc instanceof BulletExplosionDescription) {
