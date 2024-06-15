@@ -16,6 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.pao.game.Constants.ModelConstants;
 import com.pao.game.Constants.ViewConstants;
 import com.pao.game.view.GameScreen.GameScreen;
 import com.pao.game.viewmodel.EditSettings;
@@ -58,17 +59,11 @@ public class MapScreen implements Screen {
 
         stage = new Stage(viewport);
         skin = new Skin(Gdx.files.internal(ViewConstants.getConstant("MapScreen.Skin")));
-
-        Texture[] txs = new Texture[8];
-        txs[0] = Textures.getTexture("setup.0");
-        txs[1] = Textures.getTexture("setup.1");
-        txs[2] = Textures.getTexture("setup.2");
-        txs[3] = Textures.getTexture("setup.3");
-        txs[4] = Textures.getTexture("setup.4");
-        txs[5] = Textures.getTexture("setup.5");
-        txs[6] = Textures.getTexture("setup.6");
-        txs[7] = Textures.getTexture("setup.7");
-
+        int numberOfMaps = (int) ModelConstants.getConstant("Number.Of.Maps");
+        Texture[] txs = new Texture[numberOfMaps];
+        for(int i = 0 ;i < numberOfMaps ;i ++){
+            txs[i]=Textures.getTexture("setup."+i);
+        }
         table = new Table();
         for(int i = 0; i < txs.length; i++) {
             int index = i;
