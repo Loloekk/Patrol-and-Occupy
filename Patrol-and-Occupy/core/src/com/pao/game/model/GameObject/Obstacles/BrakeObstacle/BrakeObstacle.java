@@ -2,14 +2,14 @@ package com.pao.game.model.GameObject.Obstacles.BrakeObstacle;
 
 import com.pao.game.communication.Descriptions.ConcreteDescription.BrakeObstacleDescription;
 import com.pao.game.model.Boards.Board;
-import com.pao.game.Constants.Constants;
+import com.pao.game.Constants.modelConstants;
 import com.pao.game.model.GameObject.Bodies.BodyGameObject;
 import com.pao.game.model.GameObject.Obstacles.AbstractObstacle.Obstacle;
 import com.pao.game.model.GameObject.Others.Tank.Tank;
 
 public class BrakeObstacle extends Obstacle {
-    float width = Constants.getConstant("obstacle.Width");
-    float height = Constants.getConstant("obstacle.Height");
+    float width = modelConstants.getConstant("obstacle.Width");
+    float height = modelConstants.getConstant("obstacle.Height");
     boolean isActive = true;
     public BrakeObstacle(BrakeObstacleCreatingParams BOCP, Board board) {
         super(BOCP, board);

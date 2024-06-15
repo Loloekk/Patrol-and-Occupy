@@ -1,7 +1,7 @@
 package com.pao.game.model.GameObject.Explosions.BulletShoot;
 
 import com.pao.game.model.Boards.Board;
-import com.pao.game.Constants.Constants;
+import com.pao.game.Constants.modelConstants;
 import com.pao.game.model.GameObject.Bodies.BodyGameObject;
 import com.pao.game.model.GameObject.Explosions.Explosion.ExplosionRectangleCreatingParams;
 import com.pao.game.model.GameObject.Others.Tank.Tank;
@@ -11,9 +11,9 @@ public class BulletShootCreatingParams extends ExplosionRectangleCreatingParams 
     public BulletShootCreatingParams()
     {
         super();
-        setRealWidth(Constants.getConstant("bullet.Shoot.Size"));
-        setRealHeight(Constants.getConstant("bullet.Shoot.Size"));
-        setLiveTime(Constants.getConstant("bullet.Shoot.LifeTime"));
+        setRealWidth(modelConstants.getConstant("bullet.Shoot.Size"));
+        setRealHeight(modelConstants.getConstant("bullet.Shoot.Size"));
+        setLiveTime(modelConstants.getConstant("bullet.Shoot.LifeTime"));
         setIsSensor(false);
     }
     public BulletShootCreatingParams setTank(Tank tank)

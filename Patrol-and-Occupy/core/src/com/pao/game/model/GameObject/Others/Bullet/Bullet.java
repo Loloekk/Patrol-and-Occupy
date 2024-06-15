@@ -4,7 +4,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.pao.game.communication.Descriptions.ConcreteDescription.BulletDescription;
 import com.pao.game.model.Boards.Board;
-import com.pao.game.Constants.Constants;
+import com.pao.game.Constants.modelConstants;
 import com.pao.game.model.GameObject.Bodies.BodyGameObject;
 import com.pao.game.model.GameObject.Explosions.BulletExplosion.BulletExplosionCreatingParams;
 import com.pao.game.model.GameObject.Explosions.DynamiteExplosion.DynamiteExplosion;
@@ -18,8 +18,8 @@ import com.pao.game.model.ModelPlayer;
 import com.pao.game.model.ModelSettings;
 
 public class Bullet extends BodyGameObject {
-    static final float width = Constants.getConstant("bullet.Width");
-    static final float height = Constants.getConstant("bullet.Height");
+    static final float width = modelConstants.getConstant("bullet.Width");
+    static final float height = modelConstants.getConstant("bullet.Height");
     Board board;
     ModelPlayer color;
     boolean isActive = true;

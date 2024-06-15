@@ -12,7 +12,11 @@ public class ConfigLoader {
         try (InputStream input = new FileInputStream(path)) {
             properties.load(input);
         } catch (IOException ex) {
-            ex.printStackTrace();
+            try (InputStream input = new FileInputStream("Patrol-and-Occupy/"+path)) {
+                properties.load(input);
+            } catch (IOException e2) {
+                e2.printStackTrace();
+            }
         }
     }
 

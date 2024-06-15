@@ -1,6 +1,6 @@
 package com.pao.game.model;
 
-import com.pao.game.Constants.Constants;
+import com.pao.game.Constants.modelConstants;
 import com.pao.game.communication.Options;
 
 public class ModelSettings {
@@ -109,20 +109,20 @@ public class ModelSettings {
     }
     public static void setDefault()
     {
-        gameTime = Constants.getConstant("default.GameTime");
-        numberOfPlayers = (int)Constants.getConstant("default.NumberOfPlayers");
-        map = (int)Constants.getConstant("default.Map");
-        width = (int)Constants.getConstant("default.Width");
-        height = (int)Constants.getConstant("default.Height");
-        tankSpeed = Constants.getConstant("default.TankSpeed");
-        bulletSpeed = Constants.getConstant("default.BulletSpeed");
-        rotateSpeed = Constants.getConstant("default.RotateSpeed");
-        magazineCapacity = (int)Constants.getConstant("default.MagazineCapacity");
-        shootCooldown = Constants.getConstant("default.ShootCooldown");
-        receiveCooldown = Constants.getConstant("default.ReceiveCooldown");
-        oneButtonControl = Constants.getConstant("default.OneButtonControl")!=0;
-        respawnCooldown = Constants.getConstant("default.RespawnCooldown");
-        dynamiteCooldown = Constants.getConstant("default.DynamiteCooldown");
+        gameTime = modelConstants.getConstant("default.GameTime");
+        numberOfPlayers = (int) modelConstants.getConstant("default.NumberOfPlayers");
+        map = (int) modelConstants.getConstant("default.Map");
+        width = (int) modelConstants.getConstant("default.Width");
+        height = (int) modelConstants.getConstant("default.Height");
+        tankSpeed = modelConstants.getConstant("default.TankSpeed");
+        bulletSpeed = modelConstants.getConstant("default.BulletSpeed");
+        rotateSpeed = modelConstants.getConstant("default.RotateSpeed");
+        magazineCapacity = (int) modelConstants.getConstant("default.MagazineCapacity");
+        shootCooldown = modelConstants.getConstant("default.ShootCooldown");
+        receiveCooldown = modelConstants.getConstant("default.ReceiveCooldown");
+        oneButtonControl = modelConstants.getConstant("default.OneButtonControl")!=0;
+        respawnCooldown = modelConstants.getConstant("default.RespawnCooldown");
+        dynamiteCooldown = modelConstants.getConstant("default.DynamiteCooldown");
     }
     public static float getGameTime(){return gameTime;}
     public static int getNumberOfPlayers(){return numberOfPlayers;}

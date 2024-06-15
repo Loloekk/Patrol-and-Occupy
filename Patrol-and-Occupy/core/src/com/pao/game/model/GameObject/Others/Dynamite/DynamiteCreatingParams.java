@@ -2,17 +2,17 @@ package com.pao.game.model.GameObject.Others.Dynamite;
 
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.pao.game.model.Boards.Board;
-import com.pao.game.Constants.Constants;
+import com.pao.game.Constants.modelConstants;
 import com.pao.game.model.GameObject.Bodies.BodyGameObject;
 import com.pao.game.model.GameObject.CreatingParams.CreatingParamsRectangle;
 
 public class DynamiteCreatingParams extends CreatingParamsRectangle {
     public DynamiteCreatingParams()
     {
-        setRealWidth(Constants.getConstant("dynamite.Width"));
-        setRealHeight(Constants.getConstant("dynamite.Height"));
+        setRealWidth(modelConstants.getConstant("dynamite.Width"));
+        setRealHeight(modelConstants.getConstant("dynamite.Height"));
         setBodyType(BodyDef.BodyType.DynamicBody);
-        setDensity(Constants.getConstant("dynamite.Density"));
+        setDensity(modelConstants.getConstant("dynamite.Density"));
         setIsSensor(false);
     }
     @Override

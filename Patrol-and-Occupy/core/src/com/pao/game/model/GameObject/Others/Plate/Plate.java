@@ -2,14 +2,14 @@ package com.pao.game.model.GameObject.Others.Plate;
 
 import com.pao.game.communication.Descriptions.ConcreteDescription.PlateDescription;
 import com.pao.game.model.Boards.Board;
-import com.pao.game.Constants.Constants;
+import com.pao.game.Constants.modelConstants;
 import com.pao.game.model.GameObject.Bodies.BodyGameObject;
 import com.pao.game.model.GameObject.Others.Tank.Tank;
 import com.pao.game.model.ModelPlayer;
 
 public class Plate extends BodyGameObject {
-    static final float width = Constants.getConstant("plate.Width");
-    static final float height = Constants.getConstant("plate.Height");
+    static final float width = modelConstants.getConstant("plate.Width");
+    static final float height = modelConstants.getConstant("plate.Height");
     ModelPlayer color;
     Board board;
     public Plate(PlateCreatingParams PCP, Board board) {
