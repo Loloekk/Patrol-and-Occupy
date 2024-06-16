@@ -61,7 +61,7 @@ public class MapScreen implements Screen {
         skin = new Skin(Gdx.files.internal(ViewConstants.getConstant("MapScreen.Skin")));
         int numberOfMaps = (int) ModelConstants.getConstant("Number.Of.Maps");
         Texture[] txs = new Texture[numberOfMaps];
-        for(int i = 0 ;i < numberOfMaps ;i ++){
+        for(int i = 0; i < numberOfMaps; i++){
             txs[i]=Textures.getTexture("setup."+i);
         }
         table = new Table();
@@ -82,7 +82,7 @@ public class MapScreen implements Screen {
         scrollPane = new ScrollPane(table);
         scrollPane.setScrollingDisabled(false, true);
         scrollPane.setSize(SCROLL_PLANE_WIDTH, SCROLL_PLANE_HEIGHT);
-        scrollPane.setPosition(Drop.WIDTH/2-scrollPane.getWidth()/2, Drop.HEIGHT/2- scrollPane.getHeight()/2 + SCROLL_PLANE_OFF);
+        scrollPane.setPosition(Drop.WIDTH/2 - scrollPane.getWidth()/2, Drop.HEIGHT/2 - scrollPane.getHeight()/2 + SCROLL_PLANE_OFF);
 
         scrollPane.setFlickScroll(true);
         scrollPane.setSmoothScrolling(true);
@@ -99,6 +99,13 @@ public class MapScreen implements Screen {
         });
 
         stage.addActor(scrollPane);
+        Gdx.app.postRunnable(() -> {
+            scrollPane.layout();
+            float scrollX = scrollPane.getMaxX() / 2;
+            float scrollY = scrollPane.getMaxY() / 2;
+            scrollPane.setScrollX(scrollX);
+            scrollPane.setScrollY(scrollY);
+        });
     }
     @Override
     public void show() { Gdx.input.setInputProcessor(stage);}
