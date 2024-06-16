@@ -11,7 +11,6 @@ import com.pao.game.model.GameObject.Others.Tank.Tank;
 import com.pao.game.model.ModelSettings;
 
 public class Magazine5Buttons implements Magazine{
-
     Tank tank;
     Board board;
     boolean makeShoot;
@@ -73,11 +72,6 @@ public class Magazine5Buttons implements Magazine{
             float y = tank.getY() - MathUtils.sin(angle) * tank.getWidth() * 1.1f;
             board.addObjectToCreate(new DynamiteCreatingParams().setX(x).setY(y).setRotation(tank.getRotation()));
         }
-    }
-    @Override
-    public int getQuantity()
-    {
-        return quantity;
     }
     @Override
     public boolean hasDynamite()

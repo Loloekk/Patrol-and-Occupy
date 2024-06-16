@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ModelConstants {
-
     static Map<String, Float> map = new HashMap<>();
     static ConfigLoader configLoader = new ConfigLoader("assets/modelConstants.properties");
     public static float getConstant(String name)
@@ -15,5 +14,4 @@ public class ModelConstants {
         }
         return map.get(name);
     }
-
 }

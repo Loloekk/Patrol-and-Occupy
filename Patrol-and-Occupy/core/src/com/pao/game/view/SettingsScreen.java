@@ -46,7 +46,6 @@ public class SettingsScreen implements Screen {
     final float BACKGROUND_G = ViewConstants.getFloatConstant("SettingsScreen.BackGround.G");
     final float BACKGROUND_B = ViewConstants.getFloatConstant("SettingsScreen.BackGround.B");
     final float BACKGROUND_A = ViewConstants.getFloatConstant("SettingsScreen.BackGround.A");
-
     Drop game;
     OrthographicCamera camera;
     Viewport viewport;
@@ -62,7 +61,6 @@ public class SettingsScreen implements Screen {
     Slider receiveCooldownSlider;
     Slider gameTimeSlider;
     Slider respawnSlider;
-
     Slider dynamiteCoolDownSlider;
 
     public SettingsScreen(Drop game) {
@@ -167,7 +165,6 @@ public class SettingsScreen implements Screen {
         Label maxValueLabel = new Label(String.valueOf((int)max), skin);
         maxValueLabel.setPosition(x + SLIDER_WIDTH - MAX_VALUE_X_OFF, y - MAX_VALUE_Y_OFF);
         stage.addActor(maxValueLabel);
-        //slider.setValue(slider.getMinValue() + (slider.getMaxValue() - slider.getMinValue()) / 2);
         slider.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {

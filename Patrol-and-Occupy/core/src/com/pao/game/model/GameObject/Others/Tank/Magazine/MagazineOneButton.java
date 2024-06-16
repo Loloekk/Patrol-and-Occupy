@@ -76,12 +76,6 @@ public class MagazineOneButton implements Magazine{
             board.addObjectToCreate(new DynamiteCreatingParams().setX(x).setY(y).setRotation(tank.getRotation()));
         }
     }
-
-    @Override
-    public int getQuantity()
-    {
-        return quantity;
-    }
     @Override
     public boolean hasDynamite()
     {

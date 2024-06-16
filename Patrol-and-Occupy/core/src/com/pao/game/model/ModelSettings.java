@@ -23,7 +23,6 @@ public class ModelSettings {
         throw new UnsupportedOperationException("Cannot instantiate ModelSettings class");
     }
 
-
     static {
         setDefault();
     }
@@ -137,7 +136,5 @@ public class ModelSettings {
     public static int getHeight(){return height;}
     public static boolean getControl(){return oneButtonControl;}
     public static float getRespawnCooldown(){return respawnCooldown;}
-
     public static float getDynamiteCooldown(){return dynamiteCooldown;}
-
 }

@@ -16,5 +16,4 @@ public class PlayerStatistics {
     public int getNumberOfPlates() { return numberOfPlates; }
     public int getKillNumber() { return killNumber; }
     public int getDeadNumber() { return deadNumber; }
-
 }

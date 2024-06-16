@@ -97,6 +97,4 @@ public class MapLoader {
         }
         return map.get(n);
     }
-
-
 }

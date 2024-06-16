@@ -14,7 +14,6 @@ public interface Board {
     float getRemainingTime();
     void setMove(ModelPlayer color, Move move, boolean value);
     List<BodyGameObject> getBodyObjects();
-    List<Tank> getTankList();
     Tank getTank(ModelPlayer color);
     World getWorld();
     void addObject(BodyGameObject obj);

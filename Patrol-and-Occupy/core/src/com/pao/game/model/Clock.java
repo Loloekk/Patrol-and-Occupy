@@ -1,7 +1,5 @@
 package com.pao.game.model;
 
-import com.pao.game.model.ModelSettings;
-
 public class Clock {
     float remainingTime;
     public Clock()

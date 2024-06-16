@@ -52,9 +52,6 @@ public class Tank extends BodyGameObject {
 
     }
 
-
-
-
     public void setMove(Move move, boolean state){
         controler.setMove(move,state);
     }

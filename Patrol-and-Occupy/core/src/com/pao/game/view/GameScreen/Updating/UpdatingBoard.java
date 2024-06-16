@@ -21,10 +21,10 @@ public class UpdatingBoard {
         List<ModelPlayer> colors = ModelPlayer.getColorList(n);
         for(int i = 0 ;i < n ;i ++){
             if(!EditSettings.getControl()){
-                players.add((PlayerView) new PlayerView5Buttons(colors.get(i),VM));
+                players.add(new PlayerView5Buttons(colors.get(i),VM));
             }
             else {
-                players.add((PlayerView) new PlayerViewOneButton(colors.get(i),VM));
+                players.add(new PlayerViewOneButton(colors.get(i),VM));
             }
         }
     }

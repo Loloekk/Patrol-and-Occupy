@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ViewConstants {
-
     static Map<String, Float> mapFloat = new HashMap<>();
     static Map<String, Integer> mapInt = new HashMap<>();
     static Map<String, String> mapString = new HashMap<>();
@@ -33,5 +32,4 @@ public class ViewConstants {
         }
         return mapString.get(name);
     }
-
 }

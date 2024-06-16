@@ -27,7 +27,6 @@ public class MagazineDrawing implements ObjectDrawing {
     final float DYNAMITE_WIDTH = DrawingConstants.getFloatConstant("Magazine.Dynamite.Width");
     final float DYNAMITE_HEIGHT = DrawingConstants.getFloatConstant("Magazine.Dynamite.Height");
 
-
     RegionPainter painterTop;
     float x;
     float y;

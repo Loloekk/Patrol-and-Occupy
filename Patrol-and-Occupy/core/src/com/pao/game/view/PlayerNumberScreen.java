@@ -29,7 +29,6 @@ public class PlayerNumberScreen implements Screen {
     final float BACKGROUND_G = ViewConstants.getFloatConstant("PlayerNumberScreen.BackGround.G");
     final float BACKGROUND_B = ViewConstants.getFloatConstant("PlayerNumberScreen.BackGround.B");
     final float BACKGROUND_A = ViewConstants.getFloatConstant("PlayerNumberScreen.BackGround.A");
-
     Drop game;
     OrthographicCamera camera;
     Viewport viewport;

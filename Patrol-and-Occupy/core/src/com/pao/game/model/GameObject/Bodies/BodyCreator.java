@@ -12,7 +12,7 @@ public class BodyCreator {
     {
         throw new UnsupportedOperationException("Cannot instantiate BodyCreator class");
     }
-    public static Body createBodyRectangle(CreatingParamsRectangle CPR, World world){//, float friction) {
+    public static Body createBodyRectangle(CreatingParamsRectangle CPR, World world) {
         final BodyDef bdef = new BodyDef();
         bdef.position.set(CPR.getX() / PPM, CPR.getY() / PPM);
         bdef.type = CPR.getBodyType();
@@ -25,7 +25,6 @@ public class BodyCreator {
         fdef.shape = shape;
         fdef.density = CPR.getDensity();
         fdef.isSensor = CPR.getIsSensor();
-        //fdef.friction = friction;
 
         body.createFixture(fdef);
 
@@ -53,7 +52,7 @@ public class BodyCreator {
         createEdgeBody(x1, y1, x1, y2, world);        // Left edge
     }
 
-    public static Body createBodyCircle(CreatingParamsCircle CPC, World world){//, float friction) {
+    public static Body createBodyCircle(CreatingParamsCircle CPC, World world) {
         final BodyDef bdef = new BodyDef();
         bdef.position.set(CPC.getX() / PPM, CPC.getY() / PPM);
         bdef.type = CPC.getBodyType();
@@ -65,7 +64,6 @@ public class BodyCreator {
         fdef.shape = shape;
         fdef.density = CPC.getDensity();
         fdef.isSensor = CPC.getIsSensor();
-        //fdef.friction = friction;
 
         body.createFixture(fdef);
 

@@ -10,11 +10,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Animations {
-    static Map<String,Animation<TextureRegion>> mapAnimatioons = new HashMap<>();
+    static Map<String,Animation<TextureRegion>> mapAnimations = new HashMap<>();
     static Map<String,Texture> mapTextures = new HashMap<>();
     static ConfigLoader configLoader = new ConfigLoader("assets/textures.properties");
-
-
 
     private static Animation<TextureRegion> loadAnimation(Texture texture, int width, int height, float frameDuration) {
         TextureRegion[][] tmpFrames = TextureRegion.split(texture, width, height);
@@ -29,11 +27,11 @@ public class Animations {
     }
     public static TextureRegion getFrame(String name, float time)
     {
-        if(!mapAnimatioons.containsKey(name)) {
+        if(!mapAnimations.containsKey(name)) {
             mapTextures.put(name,new Texture(Gdx.files.internal(configLoader.getProperty(name))));
-            mapAnimatioons.put(name, loadAnimation(mapTextures.get(name), configLoader.getIntProperty(name + ".Width"), configLoader.getIntProperty(name + ".Height"), configLoader.getFloatProperty(name + ".frameDuration")));
+            mapAnimations.put(name, loadAnimation(mapTextures.get(name), configLoader.getIntProperty(name + ".Width"), configLoader.getIntProperty(name + ".Height"), configLoader.getFloatProperty(name + ".frameDuration")));
         }
-        return mapAnimatioons.get(name).getKeyFrame(time);
+        return mapAnimations.get(name).getKeyFrame(time);
     }
     public static void dispose() {
         for(Texture texture : mapTextures.values()){

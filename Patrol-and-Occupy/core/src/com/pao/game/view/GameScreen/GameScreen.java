@@ -14,8 +14,6 @@ public class GameScreen implements Screen {
     ViewModel VM;
     DrawingBoard drawingBoard;
     UpdatingBoard updatingBoard;
-    //Rectangle settingsButton;   // pozycja, wymiary
-    //Vector3 touchPoint;
 
     public GameScreen(final Drop game){
         this.game=game;
@@ -23,7 +21,7 @@ public class GameScreen implements Screen {
         drawingBoard = new DrawingBoard(game,VM);
         updatingBoard = new UpdatingBoard(VM,EditSettings.getNumberOfPlayers());
     }
-    private void screenChanege()
+    private void screenChange()
     {
         if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
             game.setScreen(new PauseScreen(game, this));
@@ -36,7 +34,7 @@ public class GameScreen implements Screen {
     public void render(float delta){
         updatingBoard.update(delta);
         drawingBoard.draw();
-        screenChanege();
+        screenChange();
     }
     public void resize(int width, int height) {
         drawingBoard.resize(width,height);
@@ -60,9 +58,6 @@ public class GameScreen implements Screen {
 
     @Override
     public void dispose() {
-
         drawingBoard.dispose();
     }
-
-
 }

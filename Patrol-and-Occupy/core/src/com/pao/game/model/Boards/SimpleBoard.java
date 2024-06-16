@@ -70,7 +70,6 @@ public class SimpleBoard implements Board {
             }
         }
         bodyObjects.removeAll(objectToDestroy);
-
     }
     @Override
     public float getRemainingTime() {
@@ -90,12 +89,6 @@ public class SimpleBoard implements Board {
         tank.setMove(move,state);
     }
     public List<BodyGameObject> getBodyObjects() { return bodyObjects; }
-
-    @Override
-    public List<Tank> getTankList() {
-        return tankList;
-    }
-
     public Tank getTank(ModelPlayer color){
         return tankList.stream()
                 .filter(tank -> tank.getColor() == color)
@@ -111,7 +104,6 @@ public class SimpleBoard implements Board {
         if(obj instanceof Tank){
             tankList.add((Tank) obj);
         }
-
     }
     public void addObjectToCreate(CreatingParams CP){
         bodyObjectsToCreate.add(CP);

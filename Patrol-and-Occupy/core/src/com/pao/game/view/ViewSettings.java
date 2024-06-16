@@ -28,7 +28,4 @@ public class ViewSettings {
         if(player == ModelPlayer.Player4) return player4Button;
         return 0;
     }
-
-
-
 }

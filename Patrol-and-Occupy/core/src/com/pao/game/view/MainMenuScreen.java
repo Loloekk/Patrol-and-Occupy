@@ -58,7 +58,6 @@ public class MainMenuScreen implements Screen {
 
         painter.drawAlternatingTexture(Textures.getTexture("exit.Button.Active"), Textures.getTexture("exit.Button.Inactive"), exitButton, touchPoint);
         if(exitButton.contains(touchPoint.x, touchPoint.y) && Gdx.input.justTouched()) {
-            Textures.dispose();
             Gdx.app.exit();
         }
 

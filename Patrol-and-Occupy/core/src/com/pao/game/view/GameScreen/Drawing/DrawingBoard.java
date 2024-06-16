@@ -38,7 +38,6 @@ public class DrawingBoard {
     RegionPainter painterGame;
     RegionPainter painterTop;
 
-
     public DrawingBoard(final Drop game,final ViewModel VM)
     {
         this.game = game;
