@@ -14,15 +14,15 @@ The goal is to **occupy as many bases as possible** before the round timer expir
 * **Tactical Explosives:** Deploy dynamites across the map. Shooting a dynamite triggers a massive explosion that destroys all vehicles and brick walls in its vicinity.
 * **Ammunition:** Tanks are equipped with a magazine that automatically regenerates over time.
 * **Customization:** Most gameplay parameters can be adjusted in the settings menu.
+  
+## 🗺️ Terrain & Obstacles
 
-### Terrain & Obstacles
-| Obstacle | Movement | Projectiles | Interaction |
-| :--- | :---: | :---: | :--- |
-| **Rocks** | Blocked | Blocked | Indestructible |
-| **Trees** | Blocked | Blocked | Can be destroyed by driving over them |
-| **Anti-tank Spikes** | Blocked | **Pass Through** | Indestructible |
-| **Brick Walls** | Blocked | Blocked | **Destroyed by projectiles & explosions** |
-
+| Obstacle | Tank | Projectiles |
+| :--- | :--- | :--- |
+| **Rocks** | Movement is blocked | Projectile is blocked |
+| **Trees** | Destroyed by driving over them | Projectile is blocked |
+| **Anti-tank Spikes** | Movement is blocked | **Projectiles pass through** |
+| **Brick Walls** | Movement is blocked | **Destroyed by projectiles & explosions** |
 ---
 
 ## ⌨️ Controls
