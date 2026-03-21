@@ -42,7 +42,17 @@ tasks.register('dist', Jar) {
     }
     with jar
 }
+tasks.run {
+  standardInput = System.in
+  // Ta linia ustawia katalog roboczy na główny folder projektu
+  workingDir = project.rootDir.getAbsolutePath()
+  ignoreExitValue = true
 
+  // Opcjonalnie, jeśli używasz nowszych wersji libGDX:
+  if (System.getProperty("os.name").contains("Mac")) {
+    jvmArgs += "-XstartOnFirstThread"
+  }
+}
 
 dist.dependsOn classes
 
