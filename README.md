@@ -1,25 +1,75 @@
-# Tytuł projektu: Patrol and Occupy
+# Patrol and Occupy
 
-## Skład
-- Karol Bielaszka (grupa 3) 
-- Mateusz Gabzdyl (grupa 3) 
-- Jacek Markiewicz (grupa 2)
+**Patrol and Occupy** is a dynamic local multiplayer tank combat game designed for 2, 3, or 4 players. Navigate a tactical battlefield, destroy obstacles, deploy explosives, and capture strategic bases to dominate your opponents.
 
-## Opis projektu
-Patrol and Occupy to gra przeznaczona dla 2, 3 lub 4 graczy. Plansza gry będzie się składać z miejsc spawnu, przeszkód stałych zniszczalnych oraz niezniszczalnych, dynamitów oraz baz. Gracz sterując czołgiem będzie miał za zadanie zająć jak najwięcej baz w określonym czasie. Zajęcie bazy polega na wjechaniu czołgiem na jej teren. Gracz może odbić bazę zajętą przez innego gracza. Czołgi mogą strzelać pociskami. Kiedy gracz zostanie trafiony przez pocisk przeciwnika, to jego pojazd się psuje, automatycznie zostaje teleportowany na miejsce spawnu i musi odczekać kilka sekund zanim znowu będzie mogł brać aktywny udział w grze. Jeżeli pocisk gracza trafi w dynamit, to dynamit ten wybucha psując wszystkie pojazdy, które znajdują się w pobliżu. Jeżeli pocisk uderzy w zniszczalną przeszkodę, ta rozwala się i znika. Wygrywa gracz, który po upływie czasu przeznaczonego na rundę, będzie miał zajęte najwięcej baz.
+## 🎮 Game Overview
 
-W trybie dla dwóch osób sterowanie pojazdami będzie się odbywało domyślnie za pomocą przycisków A, W, D, SPACE dla pierwszego gracza, oraz strzałek i prawego CTRL dla drugiego gracza.
+In **Patrol and Occupy**, players command tanks on a map filled with spawn points, destructible and indestructible obstacles, and strategic bases.
 
-W pozostałych trybach na jednego gracza będzie przypadał jeden przycisk (które dokładnie przyciski, to jest jeszcze do ustalenia).
+### Objective
+The goal is to **occupy as many bases as possible** before the round timer expires. To capture a base, simply drive your tank onto its territory. Be alert—bases can be recaptured by opponents at any time!
 
-## Opcjonalne rozszerzenia
-- Ustawienia, umożliwiające zmianę długości trwania rundy oraz zmianę klawiszów do sterowania pojazdami;
-- magazynek pocisków, pojazd może wystrzelić pocisk, tylko jeżeli magazynek nie jest pusty. Magazynek posiada ograniczoną ilość miejsc. Co sekundę każdy pojazd, którego magazynek nie jest pełny otrzymuje jeden pocisk;
-- możliwość rozstawiania dynamitów, które wybuchają po jakimś czasie;
-- dźwiek strzałów, wybuchów oraz zniszczeń pojazdów;
-- dodanie botów, co umożliwiłoby granie samemu.
+### Combat & Mechanics
+* **Engagement:** Fire projectiles to disable enemy tanks. If hit, a tank is destroyed, teleported to a spawn point, and sidelined for a few seconds.
+* **Tactical Explosives:** Deploy dynamites across the map. Shooting a dynamite triggers a massive explosion that destroys all vehicles and brick walls in its vicinity.
+* **Ammunition:** Tanks are equipped with a magazine that automatically regenerates over time.
+* **Customization:** Most gameplay parameters can be adjusted in the settings menu.
 
-## Biblioteki/Framework
-- libGDX
+### Terrain & Obstacles
+| Obstacle | Movement | Projectiles | Interaction |
+| :--- | :---: | :---: | :--- |
+| **Rocks** | Blocked | Blocked | Indestructible |
+| **Trees** | Blocked | Blocked | Can be destroyed by driving over them |
+| **Anti-tank Spikes** | Blocked | **Pass Through** | Indestructible |
+| **Brick Walls** | Blocked | Blocked | **Destroyed by projectiles & explosions** |
 
-## [Repository](https://github.com/Loloekk/Patrol-and-Occupy)
+---
+
+## ⌨️ Controls
+
+### 2-Player Mode
+* **Player 1:** * `W`, `A`, `S`, `D`: Movement
+  * `SPACE`: Shoot
+  * `E`: Deploy Dynamite
+* **Player 2:** * `Arrow Keys`: Movement
+  * `Right CTRL`: Shoot
+  * `Right SHIFT`: Deploy Dynamite
+
+### 3 & 4-Player Mode (Simplified)
+* **Player 1:** `W`
+* **Player 2:** `Up Arrow`
+* **Player 3:** `T`
+* **Player 4:** `O`
+
+---
+
+## 🛠 Tech Stack
+
+* **Language:** Java
+* **Framework:** [libGDX](https://libgdx.com/)
+* **Physics Engine:** [Box2D](https://box2d.org/)
+
+---
+
+## 🚀 How to Run
+
+### Prerequisites
+* Java Development Kit (JDK) 17 or higher.
+* The project uses the Gradle build system.
+
+### Running from Terminal
+To launch the game, run the following command in the root directory:
+
+./gradlew desktop:run
+
+---
+
+## 🎓 About the Project
+
+This project was developed as part of the **Object-Oriented Programming** course within the **Theoretical Computer Science** program at the **Jagiellonian University** in Kraków.
+
+### 👥 Authors
+
+* **Karol Bielaszka**
+* **Mateusz Gabzdyl**
+* **Jacek Markiewicz**
