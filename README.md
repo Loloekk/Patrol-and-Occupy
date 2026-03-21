@@ -70,6 +70,6 @@ This project was developed as part of the **Object-Oriented Programming** course
 
 ### 👥 Authors
 
-**Karol Bielaszka**
-**Mateusz Gabzdyl**
-**Jacek Markiewicz**
+* **Karol Bielaszka**
+* **Mateusz Gabzdyl**
+* **Jacek Markiewicz**
